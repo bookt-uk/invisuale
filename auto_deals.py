@@ -38,11 +38,23 @@ def fetch_deals():
             desc_raw = dm.group(1)
             desc_raw = re.sub(r"<!\[CDATA\[(.*?)\]\]>", r"\1", desc_raw, flags=re.S)
         img = ""
-        im = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', desc_raw)
-        if im: img = im.group(1)
-        # Also try enclosure
-        em = re.search(r'<enclosure[^>]+url=["\']([^"\']+)["\']', block)
-        if em and not img: img = em.group(1)
+        # Prefer media:content / media:thumbnail (standard HotUKDeals tags)
+        mm = re.search(r'<media:content[^>]+url=["\']([^"\']+)["\']', block)
+        if mm: img = mm.group(1)
+        if not img:
+            mm = re.search(r'<media:thumbnail[^>]+url=["\']([^"\']+)["\']', block)
+            if mm: img = mm.group(1)
+        # Fallback: <img> in description HTML
+        if not img:
+            im = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', desc_raw)
+            if im: img = im.group(1)
+        # Fallback: enclosure
+        if not img:
+            em = re.search(r'<enclosure[^>]+url=["\']([^"\']+)["\']', block)
+            if em: img = em.group(1)
+        # Upgrade thumbnail to larger size (150x150 → 300x300)
+        if img:
+            img = re.sub(r'/re/\d+x\d+/', '/re/300x300/', img)
         desc_text = html.unescape(re.sub(r"<[^>]+>", "", desc_raw)).strip()[:400]
         deals.append({
             "title": g("title"),
@@ -133,8 +145,8 @@ def update_index(new_deals):
         with open("index.html") as f: base = f.read()
     except: base = ""
     marker_start = '<div id="deals">'
-    marker_end = '</div>'
-    if marker_start in base:
+    marker_end = '<!--/deals-->'
+    if marker_start in base and marker_end in base:
         start = base.index(marker_start) + len(marker_start)
         end = base.index(marker_end, start)
         base = base[:start] + '\n' + cards + base[end:]
