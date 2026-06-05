@@ -103,8 +103,8 @@ header{{background:#0f172a;padding:0 24px;position:sticky;top:0;z-index:100}}
 main{{max-width:800px;margin:0 auto;padding:40px 20px}}
 .back{{color:#64748b;text-decoration:none;font-size:14px;font-weight:600;display:inline-block;margin-bottom:24px}}
 .back:hover{{color:#ef4444}}
-.deal-img{{margin-bottom:28px;border-radius:16px;overflow:hidden;background:#fff;border:1px solid #e2e8f0;text-align:center;padding:20px}}
-.deal-img img{{max-width:100%;max-height:300px;object-fit:contain;border-radius:8px}}
+.deal-img{{margin-bottom:28px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;padding:32px;min-height:260px}}
+.deal-img img{{max-width:100%;max-height:280px;width:auto;height:auto;object-fit:contain;mix-blend-mode:multiply;border-radius:6px}}
 h1{{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.2;margin-bottom:20px;color:#0f172a}}
 .desc{{font-size:17px;line-height:1.7;color:#334155;background:#fff;border-radius:12px;padding:24px;border:1px solid #e2e8f0;margin-bottom:24px}}
 .btn{{display:inline-flex;align-items:center;gap:10px;background:#ef4444;color:#fff;padding:16px 32px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px;transition:background .2s}}
@@ -140,7 +140,11 @@ def update_index(new_deals):
             im = re.search(r'<img[^>]+src="([^"]+)"', content)
             if im: img_html = f'<div class="card-img"><img src="{im.group(1)}" alt="" loading="lazy"></div>'
         except: pass
-        cards += f'''<div class="deal">{img_html}<h2><a href="/deals/{fname}">{html.escape(title)}</a></h2><a href="/deals/{fname}" class="btn">See deal &rarr;</a></div>\n'''
+        if img_html:
+            img_block = f'<div class="card-img">{img_html}</div>'
+        else:
+            img_block = '<div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div>'
+        cards += f'''<div class="deal">{img_block}<h2><a href="/deals/{fname}">{html.escape(title)}</a></h2><a href="/deals/{fname}" class="btn">See deal &rarr;</a></div>\n'''
     try:
         with open("index.html") as f: base = f.read()
     except: base = ""
