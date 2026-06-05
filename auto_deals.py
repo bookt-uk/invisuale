@@ -54,73 +54,67 @@ def make_page(deal, desc):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{t} | Invisuale Deals</title>
-<style>body{{font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:20px;background:#f9f9f9}}
-a.btn{{background:#e44;color:#fff;padding:10px 20px;border-radius:5px;text-decoration:none;display:inline-block;margin:15px 0}}
-a.back{{color:#666;font-size:14px}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{{box-sizing:border-box;margin:0;padding:0}}
+body{{font-family:'Nunito Sans',sans-serif;background:#f8f7f4;color:#1e293b;min-height:100vh}}
+header{{background:#0f172a;padding:0 24px;position:sticky;top:0;z-index:100}}
+.header-inner{{max-width:1200px;margin:0 auto;display:flex;align-items:center;height:64px}}
+.logo{{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#fff;text-decoration:none}}
+.logo span{{color:#ef4444}}
+main{{max-width:800px;margin:0 auto;padding:40px 20px}}
+.back{{color:#64748b;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-bottom:24px}}
+.back:hover{{color:#ef4444}}
+h1{{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.2;margin-bottom:20px;color:#0f172a}}
+.desc{{font-size:17px;line-height:1.7;color:#334155;background:#fff;border-radius:12px;padding:24px;border:1px solid #e2e8f0;margin-bottom:24px}}
+.btn{{display:inline-flex;align-items:center;gap:10px;background:#ef4444;color:#fff;padding:16px 32px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px;transition:background .2s}}
+.btn:hover{{background:#dc2626}}
+footer{{background:#0f172a;color:#64748b;text-align:center;padding:24px;font-size:13px;margin-top:64px}}
 </style>
 </head>
 <body>
-<a class="back" href="/">← Back to all deals</a>
+<header><div class="header-inner"><a href="/" class="logo">INVIS<span>UALE</span></a></div></header>
+<main>
+<a href="/" class="back">Back to all deals</a>
 <h1>{t}</h1>
-<p>{html.escape(desc)}</p>
-<a class="btn" href="{deal['link']}" rel="nofollow sponsored" target="_blank">Get this deal →</a>
+<div class="desc">{html.escape(desc)}</div>
+<a href="{deal['link']}" class="btn" rel="nofollow sponsored" target="_blank">Get this deal</a>
+</main>
+<footer>Invisuale - Best UK Deals. Prices correct at time of posting.</footer>
 {SKIMLINKS}
 </body>
 </html>"""
 
 def update_index(new_deals):
-    # Rebuild index from ALL deal files every time
     all_files = sorted(os.listdir('deals')) if os.path.exists('deals') else []
     cards = ""
     for fname in reversed(all_files):
         if not fname.endswith('.html'): continue
         title = fname.replace('.html','').replace('-',' ').title()
-        # Try to get real title from file
         try:
             with open(f'deals/{fname}') as f: content = f.read()
             m = re.search(r'<h1>(.*?)</h1>', content)
             if m: title = html.unescape(m.group(1))
         except: pass
         cards += f'<div class="deal"><h2><a href="/deals/{fname}">{html.escape(title)}</a></h2><a href="/deals/{fname}" class="btn">See deal</a></div>\n'
-    
     try:
         with open("index.html") as f: base = f.read()
     except: base = ""
-    
     marker_start = '<div id="deals">'
     marker_end = '</div>'
     if marker_start in base:
         start = base.index(marker_start) + len(marker_start)
         end = base.index(marker_end, start)
         base = base[:start] + '\n' + cards + base[end:]
-    
     with open("index.html", "w") as f: f.write(base)
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Invisuale - Best Deals Today</title>
-<style>body{{font-family:Arial,sans-serif;max-width:900px;margin:0 auto;padding:20px;background:#f9f9f9}}
-h1{{color:#333}}.deal{{background:#fff;border:1px solid #ddd;border-radius:8px;padding:20px;margin:15px 0}}
-.deal h2{{margin:0 0 10px}}.deal h2 a{{color:#222;text-decoration:none}}
-.btn{{display:inline-block;background:#e44;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;margin-top:10px}}
-</style>
-</head>
-<body>
-<h1>🔥 Best Deals Today</h1>
-<p>Updated daily - hand-picked offers from across the web.</p>
-<div id="deals">
-{cards}
-</div>
-{SKIMLINKS}
-</body>
-</html>"""
-    with open("index.html", "w") as f: f.write(content)
+
 def make_sitemap():
     pages = [''] + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')]
     urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc></url>' for p in pages])
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
     with open('sitemap.xml', 'w') as f: f.write(xml)
+
 def main():
     os.makedirs("deals", exist_ok=True)
     posted = load_posted()
@@ -137,11 +131,10 @@ def main():
             new.append(deal)
             posted.add(did)
             count += 1
-            print(f"✅ {deal['title'][:60]}")
+            print(f"done: {deal['title'][:60]}")
             time.sleep(2)
         except Exception as e:
-            print(f"❌ {e}: {deal['title'][:40]}")
-    
+            print(f"skip ({e}): {deal['title'][:40]}")
     update_index(new)
     make_sitemap()
     save_posted(posted)
