@@ -1,42 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="google-site-verification" content="EN6CWwfN9VEvk3s36Pc35q3_qUpCBFFWphY2hikPSmk" />
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="EN6CWwfN9VEvk3s36Pc35q3_qUpCBFFWphY2hikPSmk" />
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The best UK deals updated daily. Hand-picked offers on tech, gaming, food, fashion and more.">
 <title>Invisuale — Best Deals Today</title>
-<style>body{font-family:Arial,sans-serif;max-width:900px;margin:0 auto;padding:20px;background:#f9f9f9}
-h1{color:#333}.deal{background:#fff;border:1px solid #ddd;border-radius:8px;padding:20px;margin:15px 0}
-.deal h2{margin:0 0 10px}.deal h2 a{color:#222;text-decoration:none}
-.btn{display:inline-block;background:#e44;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;margin-top:10px}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f172a;
+  --red:#ef4444;
+  --orange:#f97316;
+  --bg:#f8f7f4;
+  --white:#ffffff;
+  --text:#1e293b;
+  --muted:#64748b;
+  --border:#e2e8f0;
+  --shadow:0 2px 12px rgba(0,0,0,.08);
+  --shadow-hover:0 8px 32px rgba(0,0,0,.14);
+}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* HEADER */
+header{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--white);letter-spacing:-0.5px;text-decoration:none}
+.logo span{color:var(--red)}
+.tagline{font-size:12px;color:#94a3b8;font-weight:600;letter-spacing:1px;text-transform:uppercase;display:none}
+@media(min-width:600px){.tagline{display:block}}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,rgba(239,68,68,.12) 0%,transparent 60%)}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,8vw,72px);font-weight:800;color:var(--white);line-height:1;letter-spacing:-1px;position:relative}
+.hero h1 em{color:var(--red);font-style:normal}
+.hero p{color:#94a3b8;font-size:16px;margin-top:12px;font-weight:600;position:relative}
+.deal-counter{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:8px 20px;margin-top:20px;color:var(--white);font-size:14px;font-weight:700;position:relative}
+.pulse{width:8px;height:8px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.4)}}
+
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:32px 20px 64px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--text);letter-spacing:0.5px;text-transform:uppercase}
+.section-title::before{content:'🔥 '}
+.updated{font-size:13px;color:var(--muted);font-weight:600}
+
+/* DEALS GRID */
+#deals{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+
+/* DEAL CARD */
+.deal{
+  background:var(--white);
+  border-radius:16px;
+  padding:24px;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  transition:transform .2s ease,box-shadow .2s ease;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  position:relative;
+  overflow:hidden;
+}
+.deal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--orange));transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.deal:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.deal:hover::before{transform:scaleX(1)}
+.deal:nth-child(-n+3) .hot-badge{display:inline-flex}
+.hot-badge{display:none;align-items:center;gap:4px;background:linear-gradient(135deg,var(--red),var(--orange));color:white;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px;width:fit-content}
+.deal h2{font-size:16px;font-weight:700;line-height:1.4;color:var(--text);flex:1}
+.deal h2 a{color:inherit;text-decoration:none;transition:color .2s}
+.deal h2 a:hover{color:var(--red)}
+.deal .btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--red);
+  color:white;
+  padding:12px 20px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+  transition:background .2s,transform .1s;
+  width:fit-content;
+  margin-top:auto;
+}
+.deal .btn::after{content:'→'}
+.deal .btn:hover{background:#dc2626;transform:translateX(2px)}
+
+/* FOOTER */
+footer{background:var(--navy);color:#64748b;text-align:center;padding:32px 24px;font-size:13px;font-weight:600}
+footer a{color:#94a3b8;text-decoration:none}
+footer strong{color:var(--white)}
+
+/* LOADING STATE */
+.loading-placeholder{text-align:center;padding:80px 20px;color:var(--muted)}
+.loading-placeholder p{font-size:18px;font-weight:600}
+
+@media(max-width:480px){
+  #deals{grid-template-columns:1fr}
+  .deal{padding:20px}
+}
 </style>
 </head>
 <body>
-<h1>🔥 Best Deals Today</h1>
-<p>Updated daily — hand-picked offers from across the web.</p>
-<div id="deals">
-<div class="deal"><h2><a href="/deals/msi-geforce-rtx-5060-ti-gaming-trio-oc-8gb-graphics-card.html">MSI GeForce RTX 5060 Ti GAMING TRIO OC 8GB Graphics Card</a></h2><a href="/deals/msi-geforce-rtx-5060-ti-gaming-trio-oc-8gb-graphics-card.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/tank-mechanic-simulator-steam-pc.html">Tank Mechanic Simulator (Steam PC)</a></h2><a href="/deals/tank-mechanic-simulator-steam-pc.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/haribo-buzzy-bees-sweets-140g-in-store-guisborough.html">Haribo Buzzy Bees Sweets - 140g - In Store Guisborough</a></h2><a href="/deals/haribo-buzzy-bees-sweets-140g-in-store-guisborough.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/all-vegetable-plants-now-1-e-g-tomato-meltaway-f1-1-x-9cm-pe.html">All Vegetable Plants Now £1 - e.g. Tomato &#x27;Meltaway&#x27; F1 1 x 9cm Peat-Free Potted Plant</a></h2><a href="/deals/all-vegetable-plants-now-1-e-g-tomato-meltaway-f1-1-x-9cm-pe.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/erbauer-multi-material-drill-bits-50-piece-set-318ph-free-c.html">Erbauer Multi-Material Drill Bits 50 Piece Set (318PH) (Free C&amp;C)</a></h2><a href="/deals/erbauer-multi-material-drill-bits-50-piece-set-318ph-free-c.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/grenade-protein-shake-330ml-strawberries-cream-salted-carame.html">Grenade Protein Shake 330ml - Strawberries &amp; Cream / Salted Caramel / White Chocolate</a></h2><a href="/deals/grenade-protein-shake-330ml-strawberries-cream-salted-carame.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/lg-75ur78006lk-75-inch-4k-ultra-hd-smart-tv-5-ai-processor-4.html">LG 75UR78006LK 75-Inch 4K Ultra HD Smart TV, α5 AI processor 4K Gen6, Freeview Play and Amazon Alexa</a></h2><a href="/deals/lg-75ur78006lk-75-inch-4k-ultra-hd-smart-tv-5-ai-processor-4.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/google-pixel-10-sim-free-good-as-new-128gb-256gb-549.html">Google Pixel 10 SIM-Free Good As New 128GB / 256GB - £549</a></h2><a href="/deals/google-pixel-10-sim-free-good-as-new-128gb-256gb-549.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/fireshine-games-little-friends-puppy-island-nintendo-switch.html">Fireshine Games Little Friends: Puppy Island - Nintendo Switch Game</a></h2><a href="/deals/fireshine-games-little-friends-puppy-island-nintendo-switch.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/calypso-scalp-protection-spray-spf50-high-protection-for-sca.html">Calypso Scalp Protection Spray SPF50 | High protection for Scalp and Parting | 50 ml | CALD50SCA £2.25 s&amp;s</a></h2><a href="/deals/calypso-scalp-protection-spray-spf50-high-protection-for-sca.html" class="btn">See deal →</a></div>
 
-<div class="deal"><h2><a href="/deals/cronos-the-new-dawn-ps5.html">Cronos: The New Dawn PS5</a></h2><a href="/deals/cronos-the-new-dawn-ps5.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/seiko-presage-automatic-watch-cocktail-time-the-irish-coffee.html">Seiko Presage Automatic Watch - Cocktail Time ‘The Irish Coffee’ SRPJ17J1 - With Code (Back Order - July 2026)</a></h2><a href="/deals/seiko-presage-automatic-watch-cocktail-time-the-irish-coffee.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/remington-rx7-electric-head-shaver-cordless-turbo-voucher-pr.html">Remington RX7 Electric Head Shaver (Cordless) Turbo (voucher price)</a></h2><a href="/deals/remington-rx7-electric-head-shaver-cordless-turbo-voucher-pr.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/hillfarm-extra-virgin-cold-pressed-rapeseed-oil-2l.html">Hillfarm Extra Virgin Cold Pressed Rapeseed Oil - 2L</a></h2><a href="/deals/hillfarm-extra-virgin-cold-pressed-rapeseed-oil-2l.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/irwin-quick-grip-mini-2-pack-6-150mm-free-c-c.html">Irwin Quick-Grip Mini 2 Pack 6&#x27;&#x27;/150mm free C&amp;C</a></h2><a href="/deals/irwin-quick-grip-mini-2-pack-6-150mm-free-c-c.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/2-x-rabanne-pure-xs-eau-de-toilette-50ml-members-price-43-80.html">2 x Rabanne Pure XS Eau De Toilette 50ml - Members Price (£43.80 with Student Discount) + Free C&amp;C</a></h2><a href="/deals/2-x-rabanne-pure-xs-eau-de-toilette-50ml-members-price-43-80.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/cyberpunk-2077-ultimate-edition-ps5.html">Cyberpunk 2077: Ultimate Edition (PS5)</a></h2><a href="/deals/cyberpunk-2077-ultimate-edition-ps5.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/bg-electrical-fbn22u3b-screwless-flat-plate-double-switched.html">BG Electrical fbn22u3b Screwless Flat Plate Double Switched Fast Charging Power Socket with Two USB Charging Ports, 13 A, Black Nickel</a></h2><a href="/deals/bg-electrical-fbn22u3b-screwless-flat-plate-double-switched.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/doom-the-dark-ages-standard-edition-xbox-series-x-s-pc-uk-ke.html">DOOM: The Dark Ages Standard Edition Xbox Series X|S &amp; PC (UK Key)</a></h2><a href="/deals/doom-the-dark-ages-standard-edition-xbox-series-x-s-pc-uk-ke.html" class="btn">See deal →</a></div>
-<div class="deal"><h2><a href="/deals/brabantia-premium-peg-bag-with-closing-cord-durable-and-weat.html">Brabantia - Premium Peg Bag - with Closing Cord - Durable and Weather Resistant - Storage for up to 150 Pegs - Rotary Dryer - Black</a></h2><a href="/deals/brabantia-premium-peg-bag-with-closing-cord-durable-and-weat.html" class="btn">See deal →</a></div>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">INVIS<span>UALE</span></a>
+    <span class="tagline">UK Deals · Updated Daily</span>
+  </div>
+</header>
 
+<section class="hero">
+  <h1>TODAY'S BEST <em>DEALS</em></h1>
+  <p>Hand-picked UK offers updated every day</p>
+  <div class="deal-counter">
+    <span class="pulse"></span>
+    Live deals — refreshed daily at 9am
+  </div>
+</section>
+
+<main>
+  <div class="section-header">
+    <h2 class="section-title">Hot Deals</h2>
+    <span class="updated" id="updated-date"></span>
+  </div>
+  <div id="deals">
 </div>
+</main>
+
+<footer>
+  <p><strong>Invisuale</strong> — The best UK deals, updated daily. Prices correct at time of posting.</p>
+  <p style="margin-top:8px"><a href="/sitemap.xml">Sitemap</a></p>
+</footer>
+
+<script>
+document.getElementById('updated-date').textContent = 'Updated ' + new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long'});
+// Add hot badge to first 3 deals
+document.querySelectorAll('.deal').forEach((card,i)=>{
+  if(i<3){
+    const badge = document.createElement('span');
+    badge.className = 'hot-badge';
+    badge.textContent = '🔥 Hot Deal';
+    card.insertBefore(badge, card.firstChild);
+  }
+});
+</script>
 <script type="text/javascript" src="https://s.skimresources.com/js/304253X1792420.skimlinks.js"></script>
 </body>
 </html>
