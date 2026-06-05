@@ -106,7 +106,11 @@ h1{{color:#333}}.deal{{background:#fff;border:1px solid #ddd;border-radius:8px;p
 </body>
 </html>"""
     with open("index.html", "w") as f: f.write(content)
-
+def make_sitemap():
+    pages = [''] + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')]
+    urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc></url>' for p in pages])
+    xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
+    with open('sitemap.xml', 'w') as f: f.write(xml)
 def main():
     os.makedirs("deals", exist_ok=True)
     posted = load_posted()
@@ -129,6 +133,7 @@ def main():
             print(f"❌ {e}: {deal['title'][:40]}")
     
     if new: update_index(new)
+    make_sitemap()
     save_posted(posted)
     print(f"Done. {count} deals added.")
 
