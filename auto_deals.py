@@ -69,22 +69,32 @@ a.back{{color:#666;font-size:14px}}
 </html>"""
 
 def update_index(new_deals):
-    try:
-        with open("index.html") as f: content = f.read()
-    except:
-        content = ""
-    
+    # Rebuild index from ALL deal files every time
+    all_files = sorted(os.listdir('deals')) if os.path.exists('deals') else []
     cards = ""
-    for d in new_deals:
-        s = slug(d["title"])
-        t = html.escape(d["title"])
-        cards += f'<div class="deal"><h2><a href="/deals/{s}.html">{t}</a></h2><a href="/deals/{s}.html" class="btn">See deal →</a></div>\n'
+    for fname in reversed(all_files):
+        if not fname.endswith('.html'): continue
+        title = fname.replace('.html','').replace('-',' ').title()
+        # Try to get real title from file
+        try:
+            with open(f'deals/{fname}') as f: content = f.read()
+            m = re.search(r'<h1>(.*?)</h1>', content)
+            if m: title = html.unescape(m.group(1))
+        except: pass
+        cards += f'<div class="deal"><h2><a href="/deals/{fname}">{html.escape(title)}</a></h2><a href="/deals/{fname}" class="btn">See deal</a></div>\n'
     
-    marker = '<div id="deals">'
-    if marker in content:
-        content = content.replace(marker, marker + "\n" + cards)
-    else:
-        content = f"""<!DOCTYPE html>
+    try:
+        with open("index.html") as f: base = f.read()
+    except: base = ""
+    
+    marker_start = '<div id="deals">'
+    marker_end = '</div>'
+    if marker_start in base:
+        start = base.index(marker_start) + len(marker_start)
+        end = base.index(marker_end, start)
+        base = base[:start] + '\n' + cards + base[end:]
+    
+    with open("index.html", "w") as f: f.write(base)
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -132,7 +142,7 @@ def main():
         except Exception as e:
             print(f"❌ {e}: {deal['title'][:40]}")
     
-    if new: update_index(new)
+    update_index(new)
     make_sitemap()
     save_posted(posted)
     print(f"Done. {count} deals added.")
