@@ -99,7 +99,7 @@ def update_index(new_deals):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Invisuale — Best Deals Today</title>
+<title>Invisuale - Best Deals Today</title>
 <style>body{{font-family:Arial,sans-serif;max-width:900px;margin:0 auto;padding:20px;background:#f9f9f9}}
 h1{{color:#333}}.deal{{background:#fff;border:1px solid #ddd;border-radius:8px;padding:20px;margin:15px 0}}
 .deal h2{{margin:0 0 10px}}.deal h2 a{{color:#222;text-decoration:none}}
@@ -108,7 +108,7 @@ h1{{color:#333}}.deal{{background:#fff;border:1px solid #ddd;border-radius:8px;p
 </head>
 <body>
 <h1>🔥 Best Deals Today</h1>
-<p>Updated daily — hand-picked offers from across the web.</p>
+<p>Updated daily - hand-picked offers from across the web.</p>
 <div id="deals">
 {cards}
 </div>
