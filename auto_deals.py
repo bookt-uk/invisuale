@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, os, re, html, time, hashlib, urllib.request
+import json, os, re, html, time, hashlib, urllib.request, urllib.error
 from datetime import datetime
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
@@ -39,8 +39,12 @@ def write_desc(deal):
     body = json.dumps({"model": "claude-3-haiku-20240307", "max_tokens": 300, "messages": [{"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body,
         headers={"x-api-key": ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
-    resp = json.loads(urllib.request.urlopen(req, timeout=60).read())
-    return "".join(b.get("text","") for b in resp.get("content",[])).strip()
+    try:
+        resp = json.loads(urllib.request.urlopen(req, timeout=60).read())
+        return "".join(b.get("text","") for b in resp.get("content",[])).strip()
+    except urllib.error.HTTPError as e:
+        err = e.read().decode("utf-8","ignore")
+        raise Exception(f"HTTP {e.code}: {err[:300]}")
 
 def make_page(deal, desc):
     t = html.escape(deal["title"])
