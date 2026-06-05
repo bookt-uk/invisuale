@@ -36,7 +36,7 @@ def fetch_deals():
 
 def write_desc(deal):
     prompt = f"Write a 100-150 word UK deals site description for this offer. Friendly, helpful, no hype. Plain prose.\nDeal: {deal['title']}\nDetails: {deal['desc']}"
-    body = json.dumps({"model": "claude-3-haiku-20240307", "max_tokens": 300, "messages": [{"role": "user", "content": prompt}]}).encode()
+    body = json.dumps({"model": "claude-haiku-4-5-20251001", "max_tokens": 300, "messages": [{"role": "user", "content": prompt}]}).encode()
     req = urllib.request.Request("https://api.anthropic.com/v1/messages", data=body,
         headers={"x-api-key": ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json"})
     try:
