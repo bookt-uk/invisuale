@@ -14,100 +14,126 @@
   --navy:#0f172a;
   --red:#ef4444;
   --orange:#f97316;
-  --bg:#f8f7f4;
+  --bg:#f4f4f4;
   --white:#ffffff;
   --text:#1e293b;
   --muted:#64748b;
   --border:#e2e8f0;
-  --shadow:0 2px 12px rgba(0,0,0,.08);
-  --shadow-hover:0 8px 32px rgba(0,0,0,.14);
+  --green:#16a34a;
+  --shadow:0 1px 4px rgba(0,0,0,.08);
+  --shadow-hover:0 8px 24px rgba(0,0,0,.14);
 }
 body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
 /* HEADER */
-header{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.3)}
-.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-.logo{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--white);letter-spacing:-0.5px;text-decoration:none}
+header{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.header-inner{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:var(--white);letter-spacing:-.5px;text-decoration:none;flex-shrink:0}
 .logo span{color:var(--red)}
-.tagline{font-size:12px;color:#94a3b8;font-weight:600;letter-spacing:1px;text-transform:uppercase;display:none}
-@media(min-width:600px){.tagline{display:block}}
+nav{display:flex;align-items:center;gap:2px;flex:1}
+.nav-link{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.3px;padding:7px 12px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.nav-link:hover{color:var(--white);background:rgba(255,255,255,.08)}
+.nav-link.active{color:var(--white);border-bottom:2px solid var(--red);border-radius:0;padding-bottom:5px}
+.header-search{display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 12px;height:36px;gap:8px;width:220px}
+.header-search input{background:none;border:none;outline:none;color:var(--white);font-size:13px;font-family:inherit;width:100%}
+.header-search input::placeholder{color:#64748b}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.country-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;color:var(--white);font-size:13px;font-weight:600;cursor:pointer}
+.user-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer}
+@media(max-width:960px){nav{display:none}.header-search{display:none}}
 
 /* HERO */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:48px 24px 40px;text-align:center;position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:44px 24px 36px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,rgba(239,68,68,.12) 0%,transparent 60%)}
 .hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,8vw,72px);font-weight:800;color:var(--white);line-height:1;letter-spacing:-1px;position:relative}
 .hero h1 em{color:var(--red);font-style:normal}
-.hero p{color:#94a3b8;font-size:16px;margin-top:12px;font-weight:600;position:relative}
-.deal-counter{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:8px 20px;margin-top:20px;color:var(--white);font-size:14px;font-weight:700;position:relative}
+.hero p{color:#94a3b8;font-size:15px;margin-top:10px;font-weight:600;position:relative}
+.deal-counter{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:7px 20px;margin-top:18px;color:var(--white);font-size:13px;font-weight:700;position:relative}
 .pulse{width:8px;height:8px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.4)}}
 
 /* MAIN */
-main{max-width:1200px;margin:0 auto;padding:32px 20px 64px}
-.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
-.section-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--text);letter-spacing:0.5px;text-transform:uppercase}
-.section-title::before{content:'🔥 '}
-.updated{font-size:13px;color:var(--muted);font-weight:600}
+main{max-width:1400px;margin:0 auto;padding:28px 24px 56px}
 
-/* DEALS GRID */
-#deals{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+/* SECTION HEADER */
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.section-left{display:flex;align-items:center;gap:10px}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--text);letter-spacing:.5px;text-transform:uppercase}
+.updated-badge{background:#dcfce7;color:#166534;font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+.section-right{display:flex;align-items:center;gap:14px}
+.updated-text{font-size:13px;color:var(--muted);font-weight:600}
+.sort-select{font-family:inherit;font-size:13px;font-weight:600;color:var(--text);background:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;outline:none}
+
+/* DEALS ROW */
+#deals{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+#deals::-webkit-scrollbar{height:4px}
+#deals::-webkit-scrollbar-track{background:transparent}
+#deals::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:2px}
 
 /* DEAL CARD */
 .deal{
-  background:var(--white);
-  border-radius:16px;
-  padding:24px;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
-  transition:transform .2s ease,box-shadow .2s ease;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  position:relative;
-  overflow:hidden;
+  background:var(--white);border-radius:12px;border:1px solid var(--border);
+  box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  flex:0 0 230px;scroll-snap-align:start;
 }
-.deal::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--orange));transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
-.deal:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
-.deal:hover::before{transform:scaleX(1)}
-.deal:nth-child(-n+3) .hot-badge{display:inline-flex}
-.hot-badge{display:none;align-items:center;gap:4px;background:linear-gradient(135deg,var(--red),var(--orange));color:white;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px;width:fit-content}
-.deal h2{font-size:16px;font-weight:700;line-height:1.4;color:var(--text);flex:1}
-.deal h2 a{color:inherit;text-decoration:none;transition:color .2s}
-.deal h2 a:hover{color:var(--red)}
-.card-img{border-radius:10px;background:#f8f9fa;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border);padding:12px;width:100%;max-height:220px}
+.deal:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+
+/* HOT badge */
+.hot-badge{position:absolute;top:9px;left:9px;z-index:2;display:flex;align-items:center;gap:3px;background:var(--red);color:white;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:3px 8px;border-radius:100px}
+
+/* Image */
+.card-img{background:#f8f9fa;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border);padding:14px;height:170px;flex-shrink:0}
 .card-img img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;mix-blend-mode:multiply}
-.no-img .card-placeholder{display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;aspect-ratio:1/1;max-height:220px;font-size:40px;color:#cbd5e1;border:1px dashed var(--border)}
-.deal .btn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:var(--red);
-  color:white;
-  padding:12px 20px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:700;
-  font-size:14px;
-  transition:background .2s,transform .1s;
-  width:fit-content;
-  margin-top:auto;
-}
+.card-placeholder{width:100%;height:170px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;font-size:32px;color:#cbd5e1;border-bottom:1px solid var(--border);flex-shrink:0}
+
+/* Card body */
+.card-body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+.deal h2{font-size:13px;font-weight:700;line-height:1.4;color:var(--text);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.deal h2 a{color:inherit;text-decoration:none}
+.deal h2 a:hover{color:var(--red)}
+
+/* Stars */
+.stars-row{display:flex;align-items:center;gap:5px}
+.stars{color:#f59e0b;font-size:12px;letter-spacing:-1px}
+.star-count{font-size:11px;color:var(--muted);font-weight:600}
+
+/* Price */
+.price-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.price{font-size:20px;font-weight:800;color:var(--red);line-height:1}
+.orig-price{font-size:12px;color:var(--muted);text-decoration:line-through;font-weight:600}
+.discount-badge{background:#fee2e2;color:var(--red);font-size:10px;font-weight:800;padding:2px 6px;border-radius:4px}
+
+/* Features */
+.features{list-style:none;display:flex;flex-direction:column;gap:3px}
+.features li{font-size:11px;color:#475569;display:flex;align-items:flex-start;gap:5px;line-height:1.35}
+.features li::before{content:'✓';color:var(--green);font-weight:800;font-size:11px;flex-shrink:0}
+
+/* Delivery */
+.delivery-row{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:600;border-top:1px solid var(--border);padding-top:8px;margin-top:auto}
+.free-delivery{display:flex;align-items:center;gap:4px}
+
+/* CTA */
+.deal .btn{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--red);color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;transition:background .15s;width:100%}
+.deal .btn:hover{background:#dc2626}
 .deal .btn::after{content:'→'}
-.deal .btn:hover{background:#dc2626;transform:translateX(2px)}
+
+/* Countdown */
+.countdown{text-align:center;font-size:11px;color:var(--muted);font-weight:600;padding:6px 0 0;border-top:1px solid var(--border)}
+.timer{font-weight:800;color:#475569;font-variant-numeric:tabular-nums}
+
+/* TRUST STRIP */
+.trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:36px}
+.trust-item{background:var(--white);padding:18px 20px;display:flex;align-items:center;gap:12px}
+.trust-icon{width:40px;height:40px;border-radius:10px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.trust-text strong{display:block;font-size:13px;font-weight:800;color:var(--text)}
+.trust-text span{font-size:12px;color:var(--muted);font-weight:600}
+@media(max-width:700px){.trust-strip{grid-template-columns:repeat(2,1fr)}}
 
 /* FOOTER */
-footer{background:var(--navy);color:#64748b;text-align:center;padding:32px 24px;font-size:13px;font-weight:600}
+footer{background:var(--navy);color:#64748b;text-align:center;padding:28px 24px;font-size:13px;font-weight:600}
 footer a{color:#94a3b8;text-decoration:none}
 footer strong{color:var(--white)}
-
-/* LOADING STATE */
-.loading-placeholder{text-align:center;padding:80px 20px;color:var(--muted)}
-.loading-placeholder p{font-size:18px;font-weight:600}
-
-@media(max-width:480px){
-  #deals{grid-template-columns:1fr}
-  .deal{padding:20px}
-}
 </style>
 </head>
 <body>
@@ -115,66 +141,92 @@ footer strong{color:var(--white)}
 <header>
   <div class="header-inner">
     <a href="/" class="logo">INVIS<span>UALE</span></a>
-    <span class="tagline">UK Deals · Updated Daily</span>
+    <nav>
+      <a href="/" class="nav-link active">Hot Deals</a>
+      <a href="#" class="nav-link">Categories ▾</a>
+      <a href="#" class="nav-link">Top Brands</a>
+      <a href="#" class="nav-link">Coming Soon</a>
+      <a href="#" class="nav-link">Blog</a>
+    </nav>
+    <div class="header-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search deals...">
+    </div>
+    <div class="header-right">
+      <div class="country-pill">🇬🇧 UK ▾</div>
+      <div class="user-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+    </div>
   </div>
 </header>
 
 <section class="hero">
   <h1>TODAY'S BEST <em>DEALS</em></h1>
   <p>Hand-picked UK offers updated every day</p>
-  <div class="deal-counter">
-    <span class="pulse"></span>
-    Live deals — refreshed daily at 9am
-  </div>
+  <div class="deal-counter"><span class="pulse"></span>Live deals — refreshed daily at 9am</div>
 </section>
 
 <main>
   <div class="section-header">
-    <h2 class="section-title">Hot Deals</h2>
-    <span class="updated" id="updated-date"></span>
+    <div class="section-left">
+      <h2 class="section-title">🔥 Hot Deals</h2>
+      <span class="updated-badge">Updated daily</span>
+    </div>
+    <div class="section-right">
+      <span class="updated-text" id="updated-date"></span>
+      <select class="sort-select"><option>Sort by: Featured</option><option>Price: Low to High</option><option>Newest</option></select>
+    </div>
   </div>
   <div id="deals">
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/worx-leafjet-wg543e-9-20v-brushless-cordless-leaf-blower-bar.html">Worx LeafJet WG543E.9 20V Brushless Cordless Leaf Blower Bare Unit</a></h2><a href="/deals/worx-leafjet-wg543e-9-20v-brushless-cordless-leaf-blower-bar.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/ZhrEM/4904716_1/re/300x300/qt/55/4904716_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/tomb-raider-legacy-of-atlantis-deluxe-edition-ps5-xbox-serie.html">Tomb Raider: Legacy of Atlantis Deluxe Edition - (PS5 / Xbox Series X) - Pre Order</a></h2><a href="/deals/tomb-raider-legacy-of-atlantis-deluxe-edition-ps5-xbox-serie.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/Ljjn9/4876769_1/re/768x768/qt/60/4876769_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/tank-mechanic-simulator-steam-pc.html">Tank Mechanic Simulator (Steam PC)</a></h2><a href="/deals/tank-mechanic-simulator-steam-pc.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/oaN0f/4905712_1/re/300x300/qt/55/4905712_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/swarfega-orange-scented-hand-cleanser-5-litre.html">Swarfega Orange Scented Hand Cleanser, 5 Litre</a></h2><a href="/deals/swarfega-orange-scented-hand-cleanser-5-litre.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/cR5Gc/4905236_1/re/768x768/qt/60/4905236_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/seiko-presage-automatic-watch-cocktail-time-the-irish-coffee.html">Seiko Presage Automatic Watch - Cocktail Time ‘The Irish Coffee’ SRPJ17J1 - With Code (Back Order - July 2026)</a></h2><a href="/deals/seiko-presage-automatic-watch-cocktail-time-the-irish-coffee.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/samsonite-amplitude-large-hardside-case-in-navy-or-silver.html">Samsonite Amplitude Large Hardside Case in Navy or Silver</a></h2><a href="/deals/samsonite-amplitude-large-hardside-case-in-navy-or-silver.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/z6iIE/4904363_1/re/768x768/qt/60/4904363_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/remington-rx7-electric-head-shaver-cordless-turbo-voucher-pr.html">Remington RX7 Electric Head Shaver (Cordless) Turbo (voucher price)</a></h2><a href="/deals/remington-rx7-electric-head-shaver-cordless-turbo-voucher-pr.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/pot-noodle-90g-bombay-bad-boy-chicken-mushroom-curry-beef-to.html">Pot Noodle 90g Bombay Bad Boy / Chicken &amp; Mushroom / Curry / Beef &amp; Tomato</a></h2><a href="/deals/pot-noodle-90g-bombay-bad-boy-chicken-mushroom-curry-beef-to.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/q6g1i/4904767_1/re/300x300/qt/55/4904767_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/outsunny-wooden-folding-flower-pot-stand-3-tier-garden-plant.html">Outsunny Wooden Folding Flower Pot Stand 3 Tier Garden Planter Display</a></h2><a href="/deals/outsunny-wooden-folding-flower-pot-stand-3-tier-garden-plant.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/msi-vector-16-hx-ai-a2xw-intel-core-ultra-7-16gb-ram-512gb-s.html">MSI Vector 16 HX AI A2XW, Intel Core Ultra 7, 16GB RAM, 512GB SSD, NVIDIA GeForce RTX 5070 Ti, 16 Inch Gaming Laptop, 9S7-15M352-403</a></h2><a href="/deals/msi-vector-16-hx-ai-a2xw-intel-core-ultra-7-16gb-ram-512gb-s.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/msi-mag-274qf-27-inch-180hz-wqhd-gaming-monitor-9s6-3ce41h-0.html">MSI MAG 274QF 27 Inch 180Hz WQHD Gaming Monitor, 9S6-3CE41H-011 - Instore</a></h2><a href="/deals/msi-mag-274qf-27-inch-180hz-wqhd-gaming-monitor-9s6-3ce41h-0.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/ADEGi/4905729_1/re/768x768/qt/60/4905729_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/msi-geforce-rtx-5060-ti-gaming-trio-oc-8gb-graphics-card.html">MSI GeForce RTX 5060 Ti GAMING TRIO OC 8GB Graphics Card</a></h2><a href="/deals/msi-geforce-rtx-5060-ti-gaming-trio-oc-8gb-graphics-card.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/nTlYi/4905332_1/re/768x768/qt/60/4905332_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/lg-75ur78006lk-75-inch-4k-ultra-hd-smart-tv-5-ai-processor-4.html">LG 75UR78006LK 75-Inch 4K Ultra HD Smart TV, α5 AI processor 4K Gen6, Freeview Play and Amazon Alexa</a></h2><a href="/deals/lg-75ur78006lk-75-inch-4k-ultra-hd-smart-tv-5-ai-processor-4.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/iwC2R/4905138_1/re/300x300/qt/55/4905138_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/jean-paul-gaultier-ultra-male-eau-de-toilette-125ml-at-check.html">Jean Paul Gaultier Ultra Male Eau De Toilette 125ml - At Checkout (£54.08 on S&amp;S)</a></h2><a href="/deals/jean-paul-gaultier-ultra-male-eau-de-toilette-125ml-at-check.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/JL9HD/4905637_1/re/768x768/qt/60/4905637_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/irwin-quick-grip-mini-2-pack-6-150mm-free-c-c.html">Irwin Quick-Grip Mini 2 Pack 6&#x27;&#x27;/150mm free C&amp;C</a></h2><a href="/deals/irwin-quick-grip-mini-2-pack-6-150mm-free-c-c.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/innocent-mangoes-passion-fruits-apples-smoothie-750ml-variou.html">Innocent Mangoes Passion Fruits &amp; Apples Smoothie 750ml (various flavours)</a></h2><a href="/deals/innocent-mangoes-passion-fruits-apples-smoothie-750ml-variou.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/wPW7x/4905676_1/re/768x768/qt/60/4905676_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/hillfarm-extra-virgin-cold-pressed-rapeseed-oil-2l.html">Hillfarm Extra Virgin Cold Pressed Rapeseed Oil - 2L</a></h2><a href="/deals/hillfarm-extra-virgin-cold-pressed-rapeseed-oil-2l.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/6r70w/4905725_1/re/768x768/qt/60/4905725_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/haribo-buzzy-bees-sweets-140g-in-store-guisborough.html">Haribo Buzzy Bees Sweets - 140g - In Store Guisborough</a></h2><a href="/deals/haribo-buzzy-bees-sweets-140g-in-store-guisborough.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/g11WE/4904878_1/re/768x768/qt/60/4904878_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/grenade-protein-shake-330ml-strawberries-cream-salted-carame.html">Grenade Protein Shake 330ml - Strawberries &amp; Cream / Salted Caramel / White Chocolate</a></h2><a href="/deals/grenade-protein-shake-330ml-strawberries-cream-salted-carame.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/Oi2CY/4904805_1/re/768x768/qt/60/4904805_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/google-pixel-10-sim-free-good-as-new-128gb-256gb-549.html">Google Pixel 10 SIM-Free Good As New 128GB / 256GB - £549</a></h2><a href="/deals/google-pixel-10-sim-free-good-as-new-128gb-256gb-549.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/6O4hM/4905666_1/re/768x768/qt/60/4905666_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/fireshine-games-little-friends-puppy-island-nintendo-switch.html">Fireshine Games Little Friends: Puppy Island - Nintendo Switch Game</a></h2><a href="/deals/fireshine-games-little-friends-puppy-island-nintendo-switch.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/everybody-s-golf-hotshots-playstation-5-ps5.html">Everybody’s Golf Hotshots (PlayStation 5 / PS5)</a></h2><a href="/deals/everybody-s-golf-hotshots-playstation-5-ps5.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/oDRWo/4905746_1/re/768x768/qt/60/4905746_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/erbauer-multi-material-drill-bits-50-piece-set-318ph-free-c.html">Erbauer Multi-Material Drill Bits 50 Piece Set (318PH) (Free C&amp;C)</a></h2><a href="/deals/erbauer-multi-material-drill-bits-50-piece-set-318ph-free-c.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/4MZpB/4904620_1/re/300x300/qt/55/4904620_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/elived-motion-tv-bracket-swivel-tilt-mount-for-26-70-inch-lc.html">ELIVED Motion TV Bracket, Swivel &amp; Tilt Mount for 26-70 Inch LCD, LED, OLED TVs (Max. VESA 400x400mm, 45kg)</a></h2><a href="/deals/elived-motion-tv-bracket-swivel-tilt-mount-for-26-70-inch-lc.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/vgVlg/4905656_1/re/768x768/qt/60/4905656_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/doom-the-dark-ages-standard-edition-xbox-series-x-s-pc-uk-ke.html">DOOM: The Dark Ages Standard Edition Xbox Series X|S &amp; PC (UK Key)</a></h2><a href="/deals/doom-the-dark-ages-standard-edition-xbox-series-x-s-pc-uk-ke.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/qh0d9/4905535_1/re/768x768/qt/60/4905535_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/cyberpunk-2077-ultimate-edition-ps5.html">Cyberpunk 2077: Ultimate Edition (PS5)</a></h2><a href="/deals/cyberpunk-2077-ultimate-edition-ps5.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/waV5z/4905407_1/re/768x768/qt/60/4905407_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/cronos-the-new-dawn-ps5.html">Cronos: The New Dawn PS5</a></h2><a href="/deals/cronos-the-new-dawn-ps5.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/CFJmI/4904958_1/re/300x300/qt/55/4904958_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/columbia-woodburn-2-herren-wanderschuhe-colour-black-caramel.html">Columbia Woodburn 2 Herren Wanderschuhe colour black caramel 012 size 16 (colour cordovan cinnamon 232 size 7, £33.66)</a></h2><a href="/deals/columbia-woodburn-2-herren-wanderschuhe-colour-black-caramel.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/hI8N2/4904765_1/re/300x300/qt/55/4904765_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/clarks-women-s-brinkley-sea-synthetic-sandals-4-colours-avai.html">Clarks Women&#x27;s Brinkley Sea Synthetic Sandals (4 Colours Available) + Extra 10% Off With Code</a></h2><a href="/deals/clarks-women-s-brinkley-sea-synthetic-sandals-4-colours-avai.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/dvlfR/4905614_1/re/768x768/qt/60/4905614_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/calypso-scalp-protection-spray-spf50-high-protection-for-sca.html">Calypso Scalp Protection Spray SPF50 | High protection for Scalp and Parting | 50 ml | CALD50SCA £2.25 s&amp;s</a></h2><a href="/deals/calypso-scalp-protection-spray-spf50-high-protection-for-sca.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/by-amazon-red-kidney-beans-400g-pack-of-12-s-5-22-4-67.html">by Amazon Red Kidney Beans, 400g, Pack of 12 (S&amp;&amp; £5.22 - £4.67)</a></h2><a href="/deals/by-amazon-red-kidney-beans-400g-pack-of-12-s-5-22-4-67.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/eu4HX/4905481_1/re/768x768/qt/60/4905481_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/brabantia-premium-peg-bag-with-closing-cord-durable-and-weat.html">Brabantia - Premium Peg Bag - with Closing Cord - Durable and Weather Resistant - Storage for up to 150 Pegs - Rotary Dryer - Black</a></h2><a href="/deals/brabantia-premium-peg-bag-with-closing-cord-durable-and-weat.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/Wu52F/4905580_1/re/300x300/qt/55/4905580_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/bosch-universalaquatak-135-bar-1900w-410l-hr-pressure-washer.html">Bosch UniversalAquatak 135 Bar 1900W 410L/hr Pressure Washer + 3 Year Guarantee (Member Price - Free to Join / Discount at Checkout)</a></h2><a href="/deals/bosch-universalaquatak-135-bar-1900w-410l-hr-pressure-washer.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/XAnw8/4905687_1/re/768x768/qt/60/4905687_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/bg-electrical-fbn22u3b-screwless-flat-plate-double-switched.html">BG Electrical fbn22u3b Screwless Flat Plate Double Switched Fast Charging Power Socket with Two USB Charging Ports, 13 A, Black Nickel</a></h2><a href="/deals/bg-electrical-fbn22u3b-screwless-flat-plate-double-switched.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/3RVpN/4905146_1/re/300x300/qt/55/4905146_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/armani-stronger-with-you-edt-150ml.html">Armani Stronger With You EDT 150ml</a></h2><a href="/deals/armani-stronger-with-you-edt-150ml.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/ambrosia-devon-custard-dessert-pots-rich-creamy-ready-to-eat.html">Ambrosia Devon Custard Dessert Pots, Rich &amp; Creamy Ready-to-Eat Treat, 6 x 120 g Pot (S&amp;S £1.81-£1.92)</a></h2><a href="/deals/ambrosia-devon-custard-dessert-pots-rich-creamy-ready-to-eat.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/sOoeX/4905361_1/re/768x768/qt/60/4905361_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/all-vegetable-plants-now-1-e-g-tomato-meltaway-f1-1-x-9cm-pe.html">All Vegetable Plants Now £1 - e.g. Tomato &#x27;Meltaway&#x27; F1 1 x 9cm Peat-Free Potted Plant</a></h2><a href="/deals/all-vegetable-plants-now-1-e-g-tomato-meltaway-f1-1-x-9cm-pe.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/njVuc/4905460_1/re/300x300/qt/55/4905460_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/aberfeldy-21-year-old-highland-single-malt-whisky-argentinia.html">Aberfeldy 21 Year Old Highland Single Malt Whisky ( Argentinian Malbec Wine Cask Finish ) 46% ABV 70cl</a></h2><a href="/deals/aberfeldy-21-year-old-highland-single-malt-whisky-argentinia.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-placeholder" style="aspect-ratio:1/1;max-height:220px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:10px;border:1px dashed #e2e8f0;font-size:40px;color:#cbd5e1">🏷️</div><h2><a href="/deals/3-x-faith-in-nature-natural-conditioner-aluminium-bottle-gra.html">3 x Faith In Nature - Natural Conditioner Aluminium Bottle - Grapefruit &amp; Orange 500ml (£6.96 / £5.83 on S&amp;S)</a></h2><a href="/deals/3-x-faith-in-nature-natural-conditioner-aluminium-bottle-gra.html" class="btn">See deal &rarr;</a></div>
-<div class="deal"><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/5gnxx/4904409_1/re/768x768/qt/60/4904409_1.jpg" alt="" loading="lazy"></div><h2><a href="/deals/2-x-rabanne-pure-xs-eau-de-toilette-50ml-members-price-43-80.html">2 x Rabanne Pure XS Eau De Toilette 50ml - Members Price (£43.80 with Student Discount) + Free C&amp;C</a></h2><a href="/deals/2-x-rabanne-pure-xs-eau-de-toilette-50ml-members-price-43-80.html" class="btn">See deal &rarr;</a></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(644)</span></div><h2><a href="/deals/worx-leafjet-wg543e-9-20v-brushless-cordless-leaf-blower-bar.html">Worx LeafJet WG543E.9 20V Brushless Cordless Leaf Blower Bare Unit</a></h2><a href="/deals/worx-leafjet-wg543e-9-20v-brushless-cordless-leaf-blower-bar.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780850125"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/ZhrEM/4904716_1/re/300x300/qt/55/4904716_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(949)</span></div><h2><a href="/deals/tomb-raider-legacy-of-atlantis-deluxe-edition-ps5-xbox-serie.html">Tomb Raider: Legacy of Atlantis Deluxe Edition - (PS5 / Xbox Series X) - Pre Order</a></h2><a href="/deals/tomb-raider-legacy-of-atlantis-deluxe-edition-ps5-xbox-serie.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780933392"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/Ljjn9/4876769_1/re/768x768/qt/60/4876769_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(52)</span></div><h2><a href="/deals/tank-mechanic-simulator-steam-pc.html">Tank Mechanic Simulator (Steam PC)</a></h2><a href="/deals/tank-mechanic-simulator-steam-pc.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780886756"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/oaN0f/4905712_1/re/300x300/qt/55/4905712_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(1,196)</span></div><h2><a href="/deals/swarfega-orange-scented-hand-cleanser-5-litre.html">Swarfega Orange Scented Hand Cleanser, 5 Litre</a></h2><a href="/deals/swarfega-orange-scented-hand-cleanser-5-litre.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780933392"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/cR5Gc/4905236_1/re/768x768/qt/60/4905236_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(855)</span></div><h2><a href="/deals/seiko-presage-automatic-watch-cocktail-time-the-irish-coffee.html">Seiko Presage Automatic Watch - Cocktail Time ‘The Irish Coffee’ SRPJ17J1 - With Code (Back Order - July 2026)</a></h2><a href="/deals/seiko-presage-automatic-watch-cocktail-time-the-irish-coffee.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780850755"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(108)</span></div><h2><a href="/deals/samsonite-amplitude-large-hardside-case-in-navy-or-silver.html">Samsonite Amplitude Large Hardside Case in Navy or Silver</a></h2><a href="/deals/samsonite-amplitude-large-hardside-case-in-navy-or-silver.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780900525"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/z6iIE/4904363_1/re/768x768/qt/60/4904363_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(593)</span></div><h2><a href="/deals/remington-rx7-electric-head-shaver-cordless-turbo-voucher-pr.html">Remington RX7 Electric Head Shaver (Cordless) Turbo (voucher price)</a></h2><a href="/deals/remington-rx7-electric-head-shaver-cordless-turbo-voucher-pr.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780940752"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(57)</span></div><h2><a href="/deals/pot-noodle-90g-bombay-bad-boy-chicken-mushroom-curry-beef-to.html">Pot Noodle 90g Bombay Bad Boy / Chicken &amp; Mushroom / Curry / Beef &amp; Tomato</a></h2><a href="/deals/pot-noodle-90g-bombay-bad-boy-chicken-mushroom-curry-beef-to.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780799725"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/q6g1i/4904767_1/re/300x300/qt/55/4904767_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(76)</span></div><h2><a href="/deals/outsunny-wooden-folding-flower-pot-stand-3-tier-garden-plant.html">Outsunny Wooden Folding Flower Pot Stand 3 Tier Garden Planter Display</a></h2><a href="/deals/outsunny-wooden-folding-flower-pot-stand-3-tier-garden-plant.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780893792"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(426)</span></div><h2><a href="/deals/msi-vector-16-hx-ai-a2xw-intel-core-ultra-7-16gb-ram-512gb-s.html">MSI Vector 16 HX AI A2XW, Intel Core Ultra 7, 16GB RAM, 512GB SSD, NVIDIA GeForce RTX 5070 Ti, 16 Inch Gaming Laptop, 9S7-15M352-403</a></h2><a href="/deals/msi-vector-16-hx-ai-a2xw-intel-core-ultra-7-16gb-ram-512gb-s.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780886125"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(900)</span></div><h2><a href="/deals/msi-mag-274qf-27-inch-180hz-wqhd-gaming-monitor-9s6-3ce41h-0.html">MSI MAG 274QF 27 Inch 180Hz WQHD Gaming Monitor, 9S6-3CE41H-011 - Instore</a></h2><a href="/deals/msi-mag-274qf-27-inch-180hz-wqhd-gaming-monitor-9s6-3ce41h-0.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780918525"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/ADEGi/4905729_1/re/768x768/qt/60/4905729_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(799)</span></div><h2><a href="/deals/msi-geforce-rtx-5060-ti-gaming-trio-oc-8gb-graphics-card.html">MSI GeForce RTX 5060 Ti GAMING TRIO OC 8GB Graphics Card</a></h2><a href="/deals/msi-geforce-rtx-5060-ti-gaming-trio-oc-8gb-graphics-card.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780836347"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/nTlYi/4905332_1/re/768x768/qt/60/4905332_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(1,120)</span></div><h2><a href="/deals/lg-75ur78006lk-75-inch-4k-ultra-hd-smart-tv-5-ai-processor-4.html">LG 75UR78006LK 75-Inch 4K Ultra HD Smart TV, α5 AI processor 4K Gen6, Freeview Play and Amazon Alexa</a></h2><a href="/deals/lg-75ur78006lk-75-inch-4k-ultra-hd-smart-tv-5-ai-processor-4.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780767946"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/iwC2R/4905138_1/re/300x300/qt/55/4905138_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(737)</span></div><h2><a href="/deals/jean-paul-gaultier-ultra-male-eau-de-toilette-125ml-at-check.html">Jean Paul Gaultier Ultra Male Eau De Toilette 125ml - At Checkout (£54.08 on S&amp;S)</a></h2><a href="/deals/jean-paul-gaultier-ultra-male-eau-de-toilette-125ml-at-check.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780904592"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/JL9HD/4905637_1/re/768x768/qt/60/4905637_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(102)</span></div><h2><a href="/deals/irwin-quick-grip-mini-2-pack-6-150mm-free-c-c.html">Irwin Quick-Grip Mini 2 Pack 6&#x27;&#x27;/150mm free C&amp;C</a></h2><a href="/deals/irwin-quick-grip-mini-2-pack-6-150mm-free-c-c.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780879544"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(348)</span></div><h2><a href="/deals/innocent-mangoes-passion-fruits-apples-smoothie-750ml-variou.html">Innocent Mangoes Passion Fruits &amp; Apples Smoothie 750ml (various flavours)</a></h2><a href="/deals/innocent-mangoes-passion-fruits-apples-smoothie-750ml-variou.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780824925"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/wPW7x/4905676_1/re/768x768/qt/60/4905676_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(81)</span></div><h2><a href="/deals/hillfarm-extra-virgin-cold-pressed-rapeseed-oil-2l.html">Hillfarm Extra Virgin Cold Pressed Rapeseed Oil - 2L</a></h2><a href="/deals/hillfarm-extra-virgin-cold-pressed-rapeseed-oil-2l.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780911942"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/6r70w/4905725_1/re/768x768/qt/60/4905725_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(263)</span></div><h2><a href="/deals/haribo-buzzy-bees-sweets-140g-in-store-guisborough.html">Haribo Buzzy Bees Sweets - 140g - In Store Guisborough</a></h2><a href="/deals/haribo-buzzy-bees-sweets-140g-in-store-guisborough.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780890340"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/g11WE/4904878_1/re/768x768/qt/60/4904878_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(1,150)</span></div><h2><a href="/deals/grenade-protein-shake-330ml-strawberries-cream-salted-carame.html">Grenade Protein Shake 330ml - Strawberries &amp; Cream / Salted Caramel / White Chocolate</a></h2><a href="/deals/grenade-protein-shake-330ml-strawberries-cream-salted-carame.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780904739"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/Oi2CY/4904805_1/re/768x768/qt/60/4904805_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(272)</span></div><h2><a href="/deals/google-pixel-10-sim-free-good-as-new-128gb-256gb-549.html">Google Pixel 10 SIM-Free Good As New 128GB / 256GB - £549</a></h2><a href="/deals/google-pixel-10-sim-free-good-as-new-128gb-256gb-549.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780890337"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/6O4hM/4905666_1/re/768x768/qt/60/4905666_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(1,128)</span></div><h2><a href="/deals/fireshine-games-little-friends-puppy-island-nintendo-switch.html">Fireshine Games Little Friends: Puppy Island - Nintendo Switch Game</a></h2><a href="/deals/fireshine-games-little-friends-puppy-island-nintendo-switch.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780879535"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(532)</span></div><h2><a href="/deals/everybody-s-golf-hotshots-playstation-5-ps5.html">Everybody’s Golf Hotshots (PlayStation 5 / PS5)</a></h2><a href="/deals/everybody-s-golf-hotshots-playstation-5-ps5.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780925725"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/oDRWo/4905746_1/re/768x768/qt/60/4905746_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(751)</span></div><h2><a href="/deals/erbauer-multi-material-drill-bits-50-piece-set-318ph-free-c.html">Erbauer Multi-Material Drill Bits 50 Piece Set (318PH) (Free C&amp;C)</a></h2><a href="/deals/erbauer-multi-material-drill-bits-50-piece-set-318ph-free-c.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780821933"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/4MZpB/4904620_1/re/300x300/qt/55/4904620_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(429)</span></div><h2><a href="/deals/elived-motion-tv-bracket-swivel-tilt-mount-for-26-70-inch-lc.html">ELIVED Motion TV Bracket, Swivel &amp; Tilt Mount for 26-70 Inch LCD, LED, OLED TVs (Max. VESA 400x400mm, 45kg)</a></h2><a href="/deals/elived-motion-tv-bracket-swivel-tilt-mount-for-26-70-inch-lc.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780785792"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/vgVlg/4905656_1/re/768x768/qt/60/4905656_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(468)</span></div><h2><a href="/deals/doom-the-dark-ages-standard-edition-xbox-series-x-s-pc-uk-ke.html">DOOM: The Dark Ages Standard Edition Xbox Series X|S &amp; PC (UK Key)</a></h2><a href="/deals/doom-the-dark-ages-standard-edition-xbox-series-x-s-pc-uk-ke.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780893931"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/qh0d9/4905535_1/re/768x768/qt/60/4905535_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(492)</span></div><h2><a href="/deals/cyberpunk-2077-ultimate-edition-ps5.html">Cyberpunk 2077: Ultimate Edition (PS5)</a></h2><a href="/deals/cyberpunk-2077-ultimate-edition-ps5.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780811130"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/waV5z/4905407_1/re/768x768/qt/60/4905407_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(1,149)</span></div><h2><a href="/deals/cronos-the-new-dawn-ps5.html">Cronos: The New Dawn PS5</a></h2><a href="/deals/cronos-the-new-dawn-ps5.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780771528"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/CFJmI/4904958_1/re/300x300/qt/55/4904958_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(376)</span></div><h2><a href="/deals/columbia-woodburn-2-herren-wanderschuhe-colour-black-caramel.html">Columbia Woodburn 2 Herren Wanderschuhe colour black caramel 012 size 16 (colour cordovan cinnamon 232 size 7, £33.66)</a></h2><a href="/deals/columbia-woodburn-2-herren-wanderschuhe-colour-black-caramel.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780915392"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/hI8N2/4904765_1/re/300x300/qt/55/4904765_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(550)</span></div><h2><a href="/deals/clarks-women-s-brinkley-sea-synthetic-sandals-4-colours-avai.html">Clarks Women&#x27;s Brinkley Sea Synthetic Sandals (4 Colours Available) + Extra 10% Off With Code</a></h2><a href="/deals/clarks-women-s-brinkley-sea-synthetic-sandals-4-colours-avai.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780771392"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/dvlfR/4905614_1/re/768x768/qt/60/4905614_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(295)</span></div><h2><a href="/deals/calypso-scalp-protection-spray-spf50-high-protection-for-sca.html">Calypso Scalp Protection Spray SPF50 | High protection for Scalp and Parting | 50 ml | CALD50SCA £2.25 s&amp;s</a></h2><a href="/deals/calypso-scalp-protection-spray-spf50-high-protection-for-sca.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780854327"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(758)</span></div><h2><a href="/deals/by-amazon-red-kidney-beans-400g-pack-of-12-s-5-22-4-67.html">by Amazon Red Kidney Beans, 400g, Pack of 12 (S&amp;&amp; £5.22 - £4.67)</a></h2><a href="/deals/by-amazon-red-kidney-beans-400g-pack-of-12-s-5-22-4-67.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780835725"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/eu4HX/4905481_1/re/768x768/qt/60/4905481_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(239)</span></div><h2><a href="/deals/brabantia-premium-peg-bag-with-closing-cord-durable-and-weat.html">Brabantia - Premium Peg Bag - with Closing Cord - Durable and Weather Resistant - Storage for up to 150 Pegs - Rotary Dryer - Black</a></h2><a href="/deals/brabantia-premium-peg-bag-with-closing-cord-durable-and-weat.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780836324"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/Wu52F/4905580_1/re/300x300/qt/55/4905580_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(644)</span></div><h2><a href="/deals/bosch-universalaquatak-135-bar-1900w-410l-hr-pressure-washer.html">Bosch UniversalAquatak 135 Bar 1900W 410L/hr Pressure Washer + 3 Year Guarantee (Member Price - Free to Join / Discount at Checkout)</a></h2><a href="/deals/bosch-universalaquatak-135-bar-1900w-410l-hr-pressure-washer.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780908192"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/XAnw8/4905687_1/re/768x768/qt/60/4905687_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(1,040)</span></div><h2><a href="/deals/bg-electrical-fbn22u3b-screwless-flat-plate-double-switched.html">BG Electrical fbn22u3b Screwless Flat Plate Double Switched Fast Charging Power Socket with Two USB Charging Ports, 13 A, Black Nickel</a></h2><a href="/deals/bg-electrical-fbn22u3b-screwless-flat-plate-double-switched.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780890322"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/3RVpN/4905146_1/re/300x300/qt/55/4905146_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★★☆</span><span class="star-count">(1,023)</span></div><h2><a href="/deals/armani-stronger-with-you-edt-150ml.html">Armani Stronger With You EDT 150ml</a></h2><a href="/deals/armani-stronger-with-you-edt-150ml.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780821792"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(100)</span></div><h2><a href="/deals/ambrosia-devon-custard-dessert-pots-rich-creamy-ready-to-eat.html">Ambrosia Devon Custard Dessert Pots, Rich &amp; Creamy Ready-to-Eat Treat, 6 x 120 g Pot (S&amp;S £1.81-£1.92)</a></h2><a href="/deals/ambrosia-devon-custard-dessert-pots-rich-creamy-ready-to-eat.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780803325"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/sOoeX/4905361_1/re/768x768/qt/60/4905361_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(899)</span></div><h2><a href="/deals/all-vegetable-plants-now-1-e-g-tomato-meltaway-f1-1-x-9cm-pe.html">All Vegetable Plants Now £1 - e.g. Tomato &#x27;Meltaway&#x27; F1 1 x 9cm Peat-Free Potted Plant</a></h2><a href="/deals/all-vegetable-plants-now-1-e-g-tomato-meltaway-f1-1-x-9cm-pe.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780933520"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/njVuc/4905460_1/re/300x300/qt/55/4905460_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(308)</span></div><h2><a href="/deals/aberfeldy-21-year-old-highland-single-malt-whisky-argentinia.html">Aberfeldy 21 Year Old Highland Single Malt Whisky ( Argentinian Malbec Wine Cask Finish ) 46% ABV 70cl</a></h2><a href="/deals/aberfeldy-21-year-old-highland-single-malt-whisky-argentinia.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780940592"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-placeholder">🏷️</div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(775)</span></div><h2><a href="/deals/3-x-faith-in-nature-natural-conditioner-aluminium-bottle-gra.html">3 x Faith In Nature - Natural Conditioner Aluminium Bottle - Grapefruit &amp; Orange 500ml (£6.96 / £5.83 on S&amp;S)</a></h2><a href="/deals/3-x-faith-in-nature-natural-conditioner-aluminium-bottle-gra.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780828525"></span></div></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/5gnxx/4904409_1/re/768x768/qt/60/4904409_1.jpg" alt="" loading="lazy"></div><div class="card-body"><div class="stars-row"><span class="stars">★★★½☆</span><span class="star-count">(537)</span></div><h2><a href="/deals/2-x-rabanne-pure-xs-eau-de-toilette-50ml-members-price-43-80.html">2 x Rabanne Pure XS Eau De Toilette 50ml - Members Price (£43.80 with Student Discount) + Free C&amp;C</a></h2><a href="/deals/2-x-rabanne-pure-xs-eau-de-toilette-50ml-members-price-43-80.html" class="btn">View Deal</a><div class="countdown">Deal ends in <span class="timer" data-ends="1780821917"></span></div></div></div>
 <!--/deals--></div>
+
+  <div class="trust-strip">
+    <div class="trust-item"><div class="trust-icon">🔒</div><div class="trust-text"><strong>100% Secure</strong><span>Safe checkout guaranteed</span></div></div>
+    <div class="trust-item"><div class="trust-icon">🚚</div><div class="trust-text"><strong>Free UK Delivery</strong><span>On thousands of deals</span></div></div>
+    <div class="trust-item"><div class="trust-icon">🔄</div><div class="trust-text"><strong>Daily Updates</strong><span>New deals every day at 9am</span></div></div>
+    <div class="trust-item"><div class="trust-icon">🏷️</div><div class="trust-text"><strong>Best Price Guarantee</strong><span>We find, you save</span></div></div>
+  </div>
 </main>
 
 <footer>
@@ -183,15 +235,19 @@ footer strong{color:var(--white)}
 </footer>
 
 <script>
-document.getElementById('updated-date').textContent = 'Updated ' + new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long'});
-// Add hot badge to first 3 deals
-document.querySelectorAll('.deal').forEach((card,i)=>{
-  if(i<3){
-    const badge = document.createElement('span');
-    badge.className = 'hot-badge';
-    badge.textContent = '🔥 Hot Deal';
-    card.insertBefore(badge, card.firstChild);
+document.getElementById('updated-date').textContent = 'Updated ' + new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+document.querySelectorAll('.timer[data-ends]').forEach(el => {
+  const ends = parseInt(el.dataset.ends) * 1000;
+  function tick() {
+    const diff = Math.max(0, ends - Date.now());
+    const h = Math.floor(diff/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    el.textContent = `${String(h).padStart(2,'0')}h : ${String(m).padStart(2,'0')}m : ${String(s).padStart(2,'0')}s`;
+    if(diff > 0) setTimeout(tick, 1000);
+    else el.closest('.countdown').textContent = 'Deal ended';
   }
+  tick();
 });
 </script>
 <script type="text/javascript" src="https://s.skimresources.com/js/304253X1792420.skimlinks.js"></script>
