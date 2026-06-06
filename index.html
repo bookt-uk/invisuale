@@ -314,5 +314,16 @@ footer strong{color:var(--white)}
 document.getElementById('updated-date').textContent = 'Updated ' + new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
 </script>
 <script type="text/javascript" src="https://s.skimresources.com/js/304253X1792420.skimlinks.js"></script>
+<style>
+#go-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;background:#ef4444;color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.2);opacity:0;transform:translateY(20px);transition:opacity .25s,transform .25s;z-index:999;text-decoration:none}
+#go-top.visible{opacity:1;transform:translateY(0)}
+#go-top:hover{background:#dc2626}
+</style>
+<button id="go-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+window.addEventListener('scroll',function(){
+  document.getElementById('go-top').classList.toggle('visible',window.scrollY>400);
+});
+</script>
 </body>
 </html>
