@@ -4,7 +4,7 @@ from datetime import datetime
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 FEED_URL = "https://www.hotukdeals.com/rss/deals"
-MAX_PER_RUN = 10
+MAX_PER_RUN = 25
 STATE_FILE = "posted.json"
 SKIMLINKS = '<script type="text/javascript" src="https://s.skimresources.com/js/304253X1792420.skimlinks.js"></script>'
 
@@ -59,6 +59,7 @@ def fetch_deals():
             v = m.group(1)
             v = re.sub(r"<!\[CDATA\[(.*?)\]\]>", r"\1", v, flags=re.S)
             return html.unescape(re.sub(r"<[^>]+>", "", v)).strip()
+        category = g("category")
         desc_raw = ""
         dm = re.search(r"<description[^>]*>(.*?)</description>", block, re.S)
         if dm:
@@ -101,6 +102,7 @@ def fetch_deals():
             "merchant": merchant,
             "price": price,
             "orig_price": orig_price,
+            "category": category,
         })
     return [d for d in deals if d["title"] and d["link"]]
 
@@ -170,6 +172,7 @@ def make_page(deal, desc, features, merchant_url):
 <meta name="deal-features" content="{html.escape('|'.join(features))}">
 <meta name="deal-image" content="{html.escape(deal.get('image',''))}">
 <meta name="deal-url" content="{html.escape(merchant_url or '')}">
+<meta name="deal-category" content="{html.escape(deal.get('category',''))}">
 <title>{t} | Invisuale Deals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -333,8 +336,163 @@ def update_index(new_deals):
         base = base[:start] + '\n' + cards + base[end:]
     with open("index.html", "w") as f: f.write(base)
 
+CATEGORY_ICONS = {
+    "Gaming": "🎮", "Electronics": "💻", "Groceries": "🛒",
+    "Fashion & Accessories": "👗", "Health & Beauty": "💄",
+    "Home & Living": "🏠", "Garden & Do It Yourself": "🌱",
+    "Family & Kids": "👶", "Car & Motorcycle": "🚗",
+    "Services & Contracts": "📋", "Broadband & Phone Contracts": "📱",
+}
+
+def cat_slug(cat):
+    return re.sub(r'[^a-z0-9]+', '-', cat.lower()).strip('-')
+
+def make_category_pages():
+    if not os.path.exists("deals"): return
+    # Group deals by category
+    cats = {}
+    for fname in os.listdir("deals"):
+        if not fname.endswith(".html"): continue
+        try:
+            with open(f"deals/{fname}") as f: content = f.read()
+            mm = re.search(r'<meta name="deal-category" content="([^"]*)"', content)
+            cat = html.unescape(mm.group(1)) if mm else "Other"
+            if not cat: cat = "Other"
+            title_m = re.search(r'<h1>(.*?)</h1>', content)
+            title = html.unescape(title_m.group(1)) if title_m else fname.replace('.html','').replace('-',' ').title()
+            im = re.search(r'<meta name="deal-image" content="([^"]*)"', content)
+            img = html.unescape(im.group(1)) if im else ""
+            pm = re.search(r'<meta name="deal-price" content="([^"]*)"', content)
+            price = html.unescape(pm.group(1)) if pm else ""
+            cats.setdefault(cat, []).append((fname, title, img, price))
+        except: pass
+
+    os.makedirs("categories", exist_ok=True)
+    for cat, deals in cats.items():
+        icon = CATEGORY_ICONS.get(cat, "🏷️")
+        cards = ""
+        for fname, title, img, price in deals:
+            img_block = f'<div class="card-img"><img src="{html.escape(img)}" alt="" loading="lazy"></div>' if img else '<div class="card-placeholder">🏷️</div>'
+            price_html = f'<div class="price-row"><span class="price">{html.escape(price)}</span></div>' if price else ""
+            cards += f'<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div>{img_block}<div class="card-body"><h2><a href="/deals/{fname}">{html.escape(title)}</a></h2>{price_html}<a href="/deals/{fname}" class="btn">View Deal</a></div></div>\n'
+
+        slug = cat_slug(cat)
+        page = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{icon} {html.escape(cat)} Deals | Invisuale</title>
+<meta name="description" content="Best UK {html.escape(cat)} deals updated daily.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{{box-sizing:border-box;margin:0;padding:0}}
+:root{{--navy:#0f172a;--red:#ef4444;--orange:#f97316;--bg:#f4f4f4;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--green:#16a34a;--shadow:0 1px 4px rgba(0,0,0,.08);--shadow-hover:0 8px 24px rgba(0,0,0,.14)}}
+body{{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text)}}
+header{{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}}
+.header-inner{{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}}
+.logo{{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;text-decoration:none;flex-shrink:0}}
+.logo span{{color:var(--red)}}
+nav{{display:flex;align-items:center;gap:2px;flex:1}}
+.nav-link{{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;padding:7px 12px;border-radius:6px;transition:color .15s}}
+.nav-link:hover,.nav-link.active{{color:#fff}}
+.nav-link.active{{border-bottom:2px solid var(--red);border-radius:0;padding-bottom:5px}}
+.page-hero{{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:32px 24px;text-align:center}}
+.page-hero h1{{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,56px);font-weight:800;color:#fff;letter-spacing:-1px}}
+.page-hero p{{color:#94a3b8;font-size:14px;margin-top:8px;font-weight:600}}
+main{{max-width:1400px;margin:0 auto;padding:28px 24px 64px}}
+#deals{{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}}
+.deal{{background:var(--white);border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column;position:relative;overflow:hidden}}
+.deal:hover{{transform:translateY(-3px);box-shadow:var(--shadow-hover)}}
+.hot-badge{{position:absolute;top:9px;left:9px;z-index:2;display:flex;align-items:center;gap:3px;background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:3px 8px;border-radius:100px}}
+.card-img{{background:#f8f9fa;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border);padding:14px;height:170px;flex-shrink:0}}
+.card-img img{{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}}
+.card-placeholder{{width:100%;height:170px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;font-size:32px;color:#cbd5e1;border-bottom:1px solid var(--border);flex-shrink:0}}
+.card-body{{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}}
+.deal h2{{font-size:13px;font-weight:700;line-height:1.4;color:var(--text);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}}
+.deal h2 a{{color:inherit;text-decoration:none}}
+.deal h2 a:hover{{color:var(--red)}}
+.price-row{{display:flex;align-items:center;gap:7px}}
+.price{{font-size:20px;font-weight:800;color:var(--red);line-height:1}}
+.deal .btn{{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--red);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;transition:background .15s;width:100%;margin-top:auto}}
+.deal .btn:hover{{background:#dc2626}}
+.deal .btn::after{{content:'→'}}
+footer{{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-size:13px}}
+footer strong{{color:#fff}}
+</style>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">INVIS<span>UALE</span></a>
+  <nav>
+    <a href="/" class="nav-link">Hot Deals</a>
+    <a href="/categories/" class="nav-link active">Categories</a>
+  </nav>
+</div></header>
+<div class="page-hero"><h1>{icon} {html.escape(cat)}</h1><p>Best UK {html.escape(cat)} deals updated daily</p></div>
+<main><div id="deals">{cards}</div></main>
+<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
+</body></html>"""
+        with open(f"categories/{slug}.html", "w") as f: f.write(page)
+
+    # Categories index page
+    cat_cards = ""
+    for cat, deals in sorted(cats.items()):
+        icon = CATEGORY_ICONS.get(cat, "🏷️")
+        slug = cat_slug(cat)
+        cat_cards += f'<a href="/categories/{slug}.html" class="cat-card"><span class="cat-icon">{icon}</span><span class="cat-name">{html.escape(cat)}</span><span class="cat-count">{len(deals)} deals</span></a>\n'
+
+    index = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deal Categories | Invisuale</title>
+<meta name="description" content="Browse UK deals by category — Gaming, Electronics, Groceries and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{{box-sizing:border-box;margin:0;padding:0}}
+:root{{--navy:#0f172a;--red:#ef4444;--bg:#f4f4f4;--white:#fff;--border:#e2e8f0;--muted:#64748b}}
+body{{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}}
+header{{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}}
+.header-inner{{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}}
+.logo{{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;text-decoration:none}}
+.logo span{{color:var(--red)}}
+nav{{display:flex;align-items:center;gap:2px;flex:1}}
+.nav-link{{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;padding:7px 12px;border-radius:6px}}
+.nav-link:hover,.nav-link.active{{color:#fff}}
+.nav-link.active{{border-bottom:2px solid var(--red);border-radius:0;padding-bottom:5px}}
+.page-hero{{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:32px 24px;text-align:center}}
+.page-hero h1{{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,56px);font-weight:800;color:#fff}}
+main{{max-width:1000px;margin:0 auto;padding:32px 24px 64px}}
+.cat-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}}
+.cat-card{{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.08)}}
+.cat-card:hover{{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}}
+.cat-icon{{font-size:36px}}
+.cat-name{{font-size:13px;font-weight:800;color:#1e293b;text-align:center}}
+.cat-count{{font-size:11px;color:var(--muted);font-weight:600}}
+footer{{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-size:13px}}
+footer strong{{color:#fff}}
+</style>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">INVIS<span>UALE</span></a>
+  <nav>
+    <a href="/" class="nav-link">Hot Deals</a>
+    <a href="/categories/" class="nav-link active">Categories</a>
+  </nav>
+</div></header>
+<div class="page-hero"><h1>Browse by Category</h1></div>
+<main><div class="cat-grid">{cat_cards}</div></main>
+<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
+</body></html>"""
+    with open("categories/index.html", "w") as f: f.write(index)
+    print(f"Built {len(cats)} category pages.")
+
 def make_sitemap():
-    pages = [''] + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')]
+    cat_pages = [f'categories/{f}' for f in os.listdir('categories') if f.endswith('.html')] if os.path.exists('categories') else []
+    pages = [''] + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages
     urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc></url>' for p in pages])
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
     with open('sitemap.xml', 'w') as f: f.write(xml)
@@ -382,6 +540,7 @@ def main():
         except Exception as e:
             print(f"skip ({e}): {deal['title'][:40]}")
     update_index(new)
+    make_category_pages()
     make_sitemap()
     save_posted(posted)
     print(f"Done. {count} deals added.")
