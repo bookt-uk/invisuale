@@ -64,18 +64,14 @@ main{max-width:1400px;margin:0 auto;padding:28px 24px 56px}
 .updated-text{font-size:13px;color:var(--muted);font-weight:600}
 .sort-select{font-family:inherit;font-size:13px;font-weight:600;color:var(--text);background:var(--white);border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;outline:none}
 
-/* DEALS ROW */
-#deals{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-#deals::-webkit-scrollbar{height:4px}
-#deals::-webkit-scrollbar-track{background:transparent}
-#deals::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:2px}
+/* DEALS GRID */
+#deals{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
 
 /* DEAL CARD */
 .deal{
   background:var(--white);border-radius:12px;border:1px solid var(--border);
   box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease;
   display:flex;flex-direction:column;position:relative;overflow:hidden;
-  flex:0 0 230px;scroll-snap-align:start;
 }
 .deal:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
 
