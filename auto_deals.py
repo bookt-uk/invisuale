@@ -172,6 +172,7 @@ def make_page(deal, desc, features, merchant_url):
 <meta name="deal-features" content="{html.escape('|'.join(features))}">
 <meta name="deal-image" content="{html.escape(deal.get('image',''))}">
 <meta name="deal-url" content="{html.escape(merchant_url or '')}">
+<meta name="deal-hukd-url" content="{html.escape(deal.get('link',''))}">
 <meta name="deal-category" content="{html.escape(deal.get('category',''))}">
 <title>{t} | Invisuale Deals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -511,6 +512,36 @@ def purge_old_deals(days=7):
     if removed:
         print(f"Purged {removed} expired deals.")
 
+def purge_expired_deals():
+    """Check all existing deal files against HUKD and delete any that are now expired."""
+    if not os.path.exists("deals"): return
+    removed = 0
+    files = [f for f in os.listdir("deals") if f.endswith(".html")]
+    print(f"Checking {len(files)} existing deals for expiry...")
+    for fname in files:
+        fpath = f"deals/{fname}"
+        try:
+            with open(fpath) as f: content = f.read()
+            # Get HUKD URL from meta tag
+            m = re.search(r'<meta name="deal-hukd-url" content="([^"]*)"', content)
+            if not m:
+                # Fallback: try to find thread ID from image URL
+                im = re.search(r'hotukdeals\.com/threads/raw/\w+/(\d+)_', content)
+                if not im: continue
+                hukd_url = f"https://www.hotukdeals.com/deals/x-{im.group(1)}"
+            else:
+                hukd_url = html.unescape(m.group(1))
+            _, expired = resolve_merchant_url(hukd_url)
+            if expired:
+                os.remove(fpath)
+                print(f"expired+removed: {fname}")
+                removed += 1
+            time.sleep(0.5)
+        except Exception as e:
+            print(f"expiry check error {fname}: {e}")
+    if removed:
+        print(f"Removed {removed} expired deals.")
+
 def main():
     os.makedirs("deals", exist_ok=True)
     purge_old_deals(days=7)
@@ -539,6 +570,7 @@ def main():
             time.sleep(2)
         except Exception as e:
             print(f"skip ({e}): {deal['title'][:40]}")
+    purge_expired_deals()
     update_index(new)
     make_category_pages()
     make_sitemap()
