@@ -387,8 +387,8 @@ def cat_slug(cat):
 
 def make_category_pages():
     if not os.path.exists("deals"): return
-    # Group deals by category
-    cats = {}
+    # Seed all known categories so pages always exist
+    cats = {cat: [] for cat in CATEGORY_ICONS}
     for fname in os.listdir("deals"):
         if not fname.endswith(".html"): continue
         try:
@@ -412,7 +412,9 @@ def make_category_pages():
         for fname, title, img, price in deals:
             img_block = f'<div class="card-img"><img src="{html.escape(img)}" alt="" loading="lazy"></div>' if img else '<div class="card-placeholder">🏷️</div>'
             price_html = f'<div class="price-row"><span class="price">{html.escape(price)}</span></div>' if price else ""
-            cards += f'<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div>{img_block}<div class="card-body"><h2><a href="/deals/{fname}">{html.escape(title)}</a></h2>{price_html}<a href="/deals/{fname}" class="btn">View Deal</a></div></div>\n'
+            cards += f'<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div>{img_block}<div class="card-body"><h2><a href="/deals/{fname}">{html.escape(title)}</a></h2>{price_html}<a href="/deals/{fname}" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>\n'
+        if not cards:
+            cards = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#64748b"><div style="font-size:48px;margin-bottom:16px">' + CATEGORY_ICONS.get(cat,"🏷️") + '</div><p style="font-size:16px;font-weight:700">No deals right now</p><p style="font-size:13px;margin-top:8px">New deals are added daily at 9am — check back soon!</p><a href="/" style="display:inline-block;margin-top:20px;background:#ef4444;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700">Browse all deals</a></div>'
 
         slug = cat_slug(cat)
         cat_css = (
