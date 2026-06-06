@@ -8,6 +8,66 @@ MAX_PER_RUN = 25
 STATE_FILE = "posted.json"
 SKIMLINKS = '<script type="text/javascript" src="https://s.skimresources.com/js/304253X1792420.skimlinks.js"></script>'
 
+HEADER_CSS = """
+header{background:#0f172a;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.header-inner{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px;text-decoration:none;flex-shrink:0}
+.logo span{color:#ef4444}
+nav{display:flex;align-items:center;gap:2px;flex:1}
+.nav-link{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.3px;padding:7px 12px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-link.active{color:#fff;border-bottom:2px solid #ef4444;border-radius:0;padding-bottom:5px}
+.cat-dropdown{position:relative}
+.cat-dropdown .nav-link{cursor:pointer;user-select:none}
+.cat-menu{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.15);min-width:220px;z-index:200;padding:14px 0 6px;overflow:hidden}
+.cat-dropdown:hover .cat-menu,.cat-dropdown:focus-within .cat-menu{display:block}
+.cat-menu a{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:13px;font-weight:700;color:#1e293b;text-decoration:none;transition:background .12s}
+.cat-menu a:hover{background:#f1f5f9;color:#ef4444}
+.header-search{display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 12px;height:36px;gap:8px;width:220px}
+.header-search input{background:none;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;width:100%}
+.header-search input::placeholder{color:#64748b}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.country-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
+.user-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer}
+@media(max-width:960px){nav{display:none}.header-search{display:none}}
+"""
+
+HEADER_HTML = """<header>
+  <div class="header-inner">
+    <a href="/" class="logo">INVIS<span>UALE</span></a>
+    <nav>
+      <a href="/" class="nav-link">Hot Deals</a>
+      <div class="cat-dropdown">
+        <span class="nav-link">Categories &#9660;</span>
+        <div class="cat-menu">
+          <a href="/categories/electronics.html">&#x1F4BB; Electronics</a>
+          <a href="/categories/gaming.html">&#x1F3AE; Gaming</a>
+          <a href="/categories/groceries.html">&#x1F6D2; Groceries</a>
+          <a href="/categories/fashion.html">&#x1F457; Fashion &amp; Accessories</a>
+          <a href="/categories/health-beauty.html">&#x1F484; Health &amp; Beauty</a>
+          <a href="/categories/home-living.html">&#x1F3E0; Home &amp; Living</a>
+          <a href="/categories/garden-diy.html">&#x1F331; Garden &amp; DIY</a>
+          <a href="/categories/family-kids.html">&#x1F476; Family &amp; Kids</a>
+          <a href="/categories/car-motorcycle.html">&#x1F697; Car &amp; Motorcycle</a>
+          <a href="/categories/broadband-phone.html">&#x1F4F1; Broadband &amp; Phone</a>
+          <a href="/categories/services.html">&#x1F4CB; Services</a>
+          <a href="/categories/">View All &#8594;</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search deals...">
+    </div>
+    <div class="header-right">
+      <div class="country-pill">&#x1F1EC;&#x1F1E7; UK &#9660;</div>
+      <div class="user-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+    </div>
+  </div>
+</header>"""
+
 def load_posted():
     try:
         with open(STATE_FILE) as f: return set(json.load(f))
@@ -181,14 +241,7 @@ def make_page(deal, desc, features, merchant_url):
 *{{box-sizing:border-box;margin:0;padding:0}}
 :root{{--red:#ef4444;--navy:#0f172a;--green:#16a34a;--border:#e2e8f0;--muted:#64748b;--bg:#f4f4f4}}
 body{{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}}
-header{{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}}
-.header-inner{{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}}
-.logo{{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;text-decoration:none}}
-.logo span{{color:var(--red)}}
-.header-nav{{display:flex;gap:4px}}
-.hnav{{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;padding:6px 12px;border-radius:6px}}
-.hnav:hover{{color:#fff;background:rgba(255,255,255,.08)}}
-.hnav.active{{color:#fff;border-bottom:2px solid var(--red);border-radius:0}}
+{HEADER_CSS.replace('{','{{').replace('}','}}')}
 main{{max-width:1100px;margin:0 auto;padding:28px 20px 64px}}
 .breadcrumb{{font-size:13px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:6px}}
 .breadcrumb a{{color:var(--muted);text-decoration:none}}
@@ -226,16 +279,7 @@ footer strong{{color:#fff}}
 </style>
 </head>
 <body>
-<header>
-  <div class="header-inner">
-    <a href="/" class="logo">INVIS<span>UALE</span></a>
-    <nav class="header-nav">
-      <a href="/" class="hnav active">Hot Deals</a>
-      <a href="#" class="hnav">Categories</a>
-      <a href="#" class="hnav">Top Brands</a>
-    </nav>
-  </div>
-</header>
+{HEADER_HTML}
 <main>
   <div class="breadcrumb">
     <a href="/">Home</a><span>›</span>
@@ -390,14 +434,7 @@ def make_category_pages():
 *{{box-sizing:border-box;margin:0;padding:0}}
 :root{{--navy:#0f172a;--red:#ef4444;--orange:#f97316;--bg:#f4f4f4;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--green:#16a34a;--shadow:0 1px 4px rgba(0,0,0,.08);--shadow-hover:0 8px 24px rgba(0,0,0,.14)}}
 body{{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text)}}
-header{{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}}
-.header-inner{{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}}
-.logo{{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;text-decoration:none;flex-shrink:0}}
-.logo span{{color:var(--red)}}
-nav{{display:flex;align-items:center;gap:2px;flex:1}}
-.nav-link{{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;padding:7px 12px;border-radius:6px;transition:color .15s}}
-.nav-link:hover,.nav-link.active{{color:#fff}}
-.nav-link.active{{border-bottom:2px solid var(--red);border-radius:0;padding-bottom:5px}}
+{HEADER_CSS.replace(chr(123),'{{').replace(chr(125),'}}')}
 .page-hero{{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:32px 24px;text-align:center}}
 .page-hero h1{{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,56px);font-weight:800;color:#fff;letter-spacing:-1px}}
 .page-hero p{{color:#94a3b8;font-size:14px;margin-top:8px;font-weight:600}}
@@ -423,13 +460,7 @@ footer strong{{color:#fff}}
 </style>
 </head>
 <body>
-<header><div class="header-inner">
-  <a href="/" class="logo">INVIS<span>UALE</span></a>
-  <nav>
-    <a href="/" class="nav-link">Hot Deals</a>
-    <a href="/categories/" class="nav-link active">Categories</a>
-  </nav>
-</div></header>
+{HEADER_HTML}
 <div class="page-hero"><h1>{icon} {html.escape(cat)}</h1><p>Best UK {html.escape(cat)} deals updated daily</p></div>
 <main><div id="deals">{cards}</div></main>
 <footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
@@ -455,14 +486,7 @@ footer strong{{color:#fff}}
 *{{box-sizing:border-box;margin:0;padding:0}}
 :root{{--navy:#0f172a;--red:#ef4444;--bg:#f4f4f4;--white:#fff;--border:#e2e8f0;--muted:#64748b}}
 body{{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}}
-header{{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}}
-.header-inner{{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}}
-.logo{{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;text-decoration:none}}
-.logo span{{color:var(--red)}}
-nav{{display:flex;align-items:center;gap:2px;flex:1}}
-.nav-link{{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;padding:7px 12px;border-radius:6px}}
-.nav-link:hover,.nav-link.active{{color:#fff}}
-.nav-link.active{{border-bottom:2px solid var(--red);border-radius:0;padding-bottom:5px}}
+{HEADER_CSS.replace(chr(123),'{{').replace(chr(125),'}}')}
 .page-hero{{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:32px 24px;text-align:center}}
 .page-hero h1{{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,56px);font-weight:800;color:#fff}}
 main{{max-width:1000px;margin:0 auto;padding:32px 24px 64px}}
@@ -477,13 +501,7 @@ footer strong{{color:#fff}}
 </style>
 </head>
 <body>
-<header><div class="header-inner">
-  <a href="/" class="logo">INVIS<span>UALE</span></a>
-  <nav>
-    <a href="/" class="nav-link">Hot Deals</a>
-    <a href="/categories/" class="nav-link active">Categories</a>
-  </nav>
-</div></header>
+{HEADER_HTML}
 <div class="page-hero"><h1>Browse by Category</h1></div>
 <main><div class="cat-grid">{cat_cards}</div></main>
 <footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>

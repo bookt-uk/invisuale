@@ -10,14 +10,29 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#0f172a;--red:#ef4444;--orange:#f97316;--bg:#f4f4f4;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--green:#16a34a;--shadow:0 1px 4px rgba(0,0,0,.08);--shadow-hover:0 8px 24px rgba(0,0,0,.14)}
 body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text)}
-header{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
-.header-inner{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}
-.logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;text-decoration:none;flex-shrink:0}
-.logo span{color:var(--red)}
-nav{display:flex;align-items:center;gap:2px;flex:1}
-.nav-link{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;padding:7px 12px;border-radius:6px;transition:color .15s}
-.nav-link:hover,.nav-link.active{color:#fff}
-.nav-link.active{border-bottom:2px solid var(--red);border-radius:0;padding-bottom:5px}
+
+header{{background:#0f172a;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}}
+.header-inner{{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}}
+.logo{{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px;text-decoration:none;flex-shrink:0}}
+.logo span{{color:#ef4444}}
+nav{{display:flex;align-items:center;gap:2px;flex:1}}
+.nav-link{{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.3px;padding:7px 12px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}}
+.nav-link:hover{{color:#fff;background:rgba(255,255,255,.08)}}
+.nav-link.active{{color:#fff;border-bottom:2px solid #ef4444;border-radius:0;padding-bottom:5px}}
+.cat-dropdown{{position:relative}}
+.cat-dropdown .nav-link{{cursor:pointer;user-select:none}}
+.cat-menu{{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.15);min-width:220px;z-index:200;padding:14px 0 6px;overflow:hidden}}
+.cat-dropdown:hover .cat-menu,.cat-dropdown:focus-within .cat-menu{{display:block}}
+.cat-menu a{{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:13px;font-weight:700;color:#1e293b;text-decoration:none;transition:background .12s}}
+.cat-menu a:hover{{background:#f1f5f9;color:#ef4444}}
+.header-search{{display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 12px;height:36px;gap:8px;width:220px}}
+.header-search input{{background:none;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;width:100%}}
+.header-search input::placeholder{{color:#64748b}}
+.header-right{{display:flex;align-items:center;gap:10px;flex-shrink:0}}
+.country-pill{{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer}}
+.user-btn{{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer}}
+@media(max-width:960px){{nav{{display:none}}.header-search{{display:none}}}}
+
 .page-hero{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:32px 24px;text-align:center}
 .page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,56px);font-weight:800;color:#fff;letter-spacing:-1px}
 .page-hero p{color:#94a3b8;font-size:14px;margin-top:8px;font-weight:600}
@@ -43,19 +58,47 @@ footer strong{color:#fff}
 </style>
 </head>
 <body>
-<header><div class="header-inner">
-  <a href="/" class="logo">INVIS<span>UALE</span></a>
-  <nav>
-    <a href="/" class="nav-link">Hot Deals</a>
-    <a href="/categories/" class="nav-link active">Categories</a>
-  </nav>
-</div></header>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">INVIS<span>UALE</span></a>
+    <nav>
+      <a href="/" class="nav-link">Hot Deals</a>
+      <div class="cat-dropdown">
+        <span class="nav-link">Categories &#9660;</span>
+        <div class="cat-menu">
+          <a href="/categories/electronics.html">&#x1F4BB; Electronics</a>
+          <a href="/categories/gaming.html">&#x1F3AE; Gaming</a>
+          <a href="/categories/groceries.html">&#x1F6D2; Groceries</a>
+          <a href="/categories/fashion.html">&#x1F457; Fashion &amp; Accessories</a>
+          <a href="/categories/health-beauty.html">&#x1F484; Health &amp; Beauty</a>
+          <a href="/categories/home-living.html">&#x1F3E0; Home &amp; Living</a>
+          <a href="/categories/garden-diy.html">&#x1F331; Garden &amp; DIY</a>
+          <a href="/categories/family-kids.html">&#x1F476; Family &amp; Kids</a>
+          <a href="/categories/car-motorcycle.html">&#x1F697; Car &amp; Motorcycle</a>
+          <a href="/categories/broadband-phone.html">&#x1F4F1; Broadband &amp; Phone</a>
+          <a href="/categories/services.html">&#x1F4CB; Services</a>
+          <a href="/categories/">View All &#8594;</a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search deals...">
+    </div>
+    <div class="header-right">
+      <div class="country-pill">&#x1F1EC;&#x1F1E7; UK &#9660;</div>
+      <div class="user-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
 <div class="page-hero"><h1>🛒 Groceries</h1><p>Best UK Groceries deals updated daily</p></div>
-<main><div id="deals"><div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/DmOyR/4905816_1/re/300x300/qt/55/4905816_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/talisker-skye-single-malt-scotch-whisky-45-8-vol-70cl.html">Talisker Skye Single Malt Scotch Whisky 45.8% vol 70cl</a></h2><div class="price-row"><span class="price">£23.98</span></div><a href="/deals/talisker-skye-single-malt-scotch-whisky-45-8-vol-70cl.html" class="btn">View Deal</a></div></div>
-<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/QgzIS/4867028_1/re/300x300/qt/55/4867028_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/mccain-air-fryer-deep-ridge-crinkle-cut-chips-750g.html">McCain Air Fryer Deep Ridge Crinkle Cut Chips 750g</a></h2><div class="price-row"><span class="price">£1.87</span></div><a href="/deals/mccain-air-fryer-deep-ridge-crinkle-cut-chips-750g.html" class="btn">View Deal</a></div></div>
+<main><div id="deals"><div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/QgzIS/4867028_1/re/300x300/qt/55/4867028_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/mccain-air-fryer-deep-ridge-crinkle-cut-chips-750g.html">McCain Air Fryer Deep Ridge Crinkle Cut Chips 750g</a></h2><div class="price-row"><span class="price">£1.87</span></div><a href="/deals/mccain-air-fryer-deep-ridge-crinkle-cut-chips-750g.html" class="btn">View Deal</a></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/DmOyR/4905816_1/re/300x300/qt/55/4905816_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/talisker-skye-single-malt-scotch-whisky-45-8-vol-70cl.html">Talisker Skye Single Malt Scotch Whisky 45.8% vol 70cl</a></h2><div class="price-row"><span class="price">£23.98</span></div><a href="/deals/talisker-skye-single-malt-scotch-whisky-45-8-vol-70cl.html" class="btn">View Deal</a></div></div>
+<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/2kYyK/4906013_1/re/300x300/qt/55/4906013_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/coca-cola-zero-sugar-24-x-330ml.html">Coca-Cola Zero Sugar 24 x 330ml</a></h2><div class="price-row"><span class="price">£6.50</span></div><a href="/deals/coca-cola-zero-sugar-24-x-330ml.html" class="btn">View Deal</a></div></div>
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/fdP0H/4906038_1/re/300x300/qt/55/4906038_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/3-x-dolmio-bolognese-smooth-original-tomato-pasta-sauce-jar.html">3 x Dolmio Bolognese Smooth/Original Tomato Pasta Sauce Jar Family Size 675g - 3 for 2 (£4.03 - £4.42)</a></h2><div class="price-row"><span class="price">£5.20</span></div><a href="/deals/3-x-dolmio-bolognese-smooth-original-tomato-pasta-sauce-jar.html" class="btn">View Deal</a></div></div>
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/7Pv2H/4906066_1/re/300x300/qt/55/4906066_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/whole-earth-smooth-peanut-butter-1000g-on-amazon-fresh-deliv.html">Whole earth smooth peanut butter 1000g on Amazon Fresh, delivery + fees apply</a></h2><div class="price-row"><span class="price">£2.75</span></div><a href="/deals/whole-earth-smooth-peanut-butter-1000g-on-amazon-fresh-deliv.html" class="btn">View Deal</a></div></div>
-<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/2kYyK/4906013_1/re/300x300/qt/55/4906013_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/coca-cola-zero-sugar-24-x-330ml.html">Coca-Cola Zero Sugar 24 x 330ml</a></h2><div class="price-row"><span class="price">£6.50</span></div><a href="/deals/coca-cola-zero-sugar-24-x-330ml.html" class="btn">View Deal</a></div></div>
 </div></main>
 <footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
 </body></html>
