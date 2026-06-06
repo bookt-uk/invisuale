@@ -54,6 +54,11 @@ main{max-width:1400px;margin:0 auto;padding:28px 24px 64px}
 .deal h2 a:hover{color:var(--red)}
 .price-row{display:flex;align-items:center;gap:7px}
 .price{font-size:20px;font-weight:800;color:var(--red);line-height:1}
+.features{list-style:none;display:flex;flex-direction:column;gap:3px}
+.features li{font-size:11px;color:#475569;display:flex;align-items:flex-start;gap:5px;line-height:1.35}
+.features li::before{content:'✓';color:var(--green);font-weight:800;font-size:11px;flex-shrink:0}
+.delivery-row{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:600;border-top:1px solid var(--border);padding-top:8px;margin-top:auto}
+.free-delivery{display:flex;align-items:center;gap:4px}
 footer{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-size:13px}
 footer strong{color:#fff}
 </style>
@@ -114,7 +119,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',ini
   </div>
 </header>
 <div class="page-hero"><h1>📋 Services &amp; Contracts</h1><p>Best UK Services &amp; Contracts deals updated daily</p></div>
-<main><div id="deals"><div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/LOG6a/4906108_1/re/300x300/qt/55/4906108_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/murphy-s-2-99-a-pint.html">Murphy&#x27;s £2.99 a pint</a></h2><div class="price-row"><span class="price">£2.99</span></div><a href="/deals/murphy-s-2-99-a-pint.html" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>
+<main><div id="deals"><div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/LOG6a/4906108_1/re/300x300/qt/55/4906108_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/murphy-s-2-99-a-pint.html">Murphy&#x27;s £2.99 a pint</a></h2><div class="price-row"><span class="price">£2.99</span></div><ul class="features"><li>Smooth creamy Irish stout</li><li>Coffee chocolate toffee notes</li><li>Less bitter than alternatives</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Free delivery</span><span class="merchant">Wetherspoon</span></div><a href="/deals/murphy-s-2-99-a-pint.html" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>
 </div></main>
 <footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
 </body></html>

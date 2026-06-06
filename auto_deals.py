@@ -423,21 +423,23 @@ def make_category_pages():
             if not cat: cat = "Other"
             title_m = re.search(r'<h1>(.*?)</h1>', content)
             title = html.unescape(title_m.group(1)) if title_m else fname.replace('.html','').replace('-',' ').title()
-            im = re.search(r'<meta name="deal-image" content="([^"]*)"', content)
-            img = html.unescape(im.group(1)) if im else ""
-            pm = re.search(r'<meta name="deal-price" content="([^"]*)"', content)
-            price = html.unescape(pm.group(1)) if pm else ""
-            cats.setdefault(cat, []).append((fname, title, img, price))
+            def ex(n): m=re.search(rf'<meta name="{n}" content="([^"]*)"',content); return html.unescape(m.group(1)) if m else ""
+            img = ex("deal-image"); price = ex("deal-price")
+            features = [f for f in ex("deal-features").split("|") if f.strip()][:3]
+            merchant = ex("deal-merchant")
+            cats.setdefault(cat, []).append((fname, title, img, price, features, merchant))
         except: pass
 
     os.makedirs("categories", exist_ok=True)
     for cat, deals in cats.items():
         icon = CATEGORY_ICONS.get(cat, "🏷️")
         cards = ""
-        for fname, title, img, price in deals:
+        for fname, title, img, price, features, merchant in deals:
             img_block = f'<div class="card-img"><img src="{html.escape(img)}" alt="" loading="lazy"></div>' if img else '<div class="card-placeholder">🏷️</div>'
             price_html = f'<div class="price-row"><span class="price">{html.escape(price)}</span></div>' if price else ""
-            cards += f'<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div>{img_block}<div class="card-body"><h2><a href="/deals/{fname}">{html.escape(title)}</a></h2>{price_html}<a href="/deals/{fname}" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>\n'
+            feat_html = f'<ul class="features">{"".join(f"<li>{html.escape(f)}</li>" for f in features)}</ul>' if features else ""
+            delivery_html = f'<div class="delivery-row"><span class="free-delivery">🚚 Free delivery</span><span class="merchant">{html.escape(merchant)}</span></div>' if merchant else ""
+            cards += f'<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div>{img_block}<div class="card-body"><h2><a href="/deals/{fname}">{html.escape(title)}</a></h2>{price_html}{feat_html}{delivery_html}<a href="/deals/{fname}" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>\n'
         if not cards:
             cards = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#64748b"><div style="font-size:48px;margin-bottom:16px">' + CATEGORY_ICONS.get(cat,"🏷️") + '</div><p style="font-size:16px;font-weight:700">No deals right now</p><p style="font-size:13px;margin-top:8px">New deals are added daily at 9am — check back soon!</p><a href="/" style="display:inline-block;margin-top:20px;background:#ef4444;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700">Browse all deals</a></div>'
 
@@ -465,6 +467,11 @@ def make_category_pages():
             ".deal h2 a:hover{color:var(--red)}\n"
             ".price-row{display:flex;align-items:center;gap:7px}\n"
             ".price{font-size:20px;font-weight:800;color:var(--red);line-height:1}\n"
+            ".features{list-style:none;display:flex;flex-direction:column;gap:3px}\n"
+            ".features li{font-size:11px;color:#475569;display:flex;align-items:flex-start;gap:5px;line-height:1.35}\n"
+            ".features li::before{content:'✓';color:var(--green);font-weight:800;font-size:11px;flex-shrink:0}\n"
+            ".delivery-row{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);font-weight:600;border-top:1px solid var(--border);padding-top:8px;margin-top:auto}\n"
+            ".free-delivery{display:flex;align-items:center;gap:4px}\n"
             "footer{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-size:13px}\n"
             "footer strong{color:#fff}\n"
         )
