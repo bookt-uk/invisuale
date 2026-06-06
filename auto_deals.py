@@ -338,7 +338,7 @@ def build_card(fname, title, img_src, price, merchant, features):
         f'{price_html}'
         f'{feat_html}'
         f'{delivery_html}'
-        f'<a href="/deals/{fname}" class="btn">View Deal</a>'
+        f'<a href="/deals/{fname}" class="btn" style="display:block;background:#ef4444;color:#ffffff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto;width:100%;box-sizing:border-box">View Deal →</a>'
         f'</div>'
         f'</div>\n'
     )
