@@ -329,8 +329,23 @@ def make_sitemap():
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
     with open('sitemap.xml', 'w') as f: f.write(xml)
 
+def purge_old_deals(days=7):
+    cutoff = time.time() - days * 86400
+    removed = 0
+    if not os.path.exists("deals"): return
+    for fname in os.listdir("deals"):
+        if not fname.endswith(".html"): continue
+        fpath = f"deals/{fname}"
+        if os.path.getmtime(fpath) < cutoff:
+            os.remove(fpath)
+            print(f"purged: {fname}")
+            removed += 1
+    if removed:
+        print(f"Purged {removed} expired deals.")
+
 def main():
     os.makedirs("deals", exist_ok=True)
+    purge_old_deals(days=7)
     posted = load_posted()
     deals = fetch_deals()
     new, count = [], 0
