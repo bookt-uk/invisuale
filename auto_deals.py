@@ -48,14 +48,14 @@ HEADER_HTML = """<header>
           <a href="/categories/electronics.html">&#x1F4BB; Electronics</a>
           <a href="/categories/gaming.html">&#x1F3AE; Gaming</a>
           <a href="/categories/groceries.html">&#x1F6D2; Groceries</a>
-          <a href="/categories/fashion.html">&#x1F457; Fashion &amp; Accessories</a>
+          <a href="/categories/fashion-accessories.html">&#x1F457; Fashion &amp; Accessories</a>
           <a href="/categories/health-beauty.html">&#x1F484; Health &amp; Beauty</a>
           <a href="/categories/home-living.html">&#x1F3E0; Home &amp; Living</a>
-          <a href="/categories/garden-diy.html">&#x1F331; Garden &amp; DIY</a>
+          <a href="/categories/garden-do-it-yourself.html">&#x1F331; Garden &amp; DIY</a>
           <a href="/categories/family-kids.html">&#x1F476; Family &amp; Kids</a>
           <a href="/categories/car-motorcycle.html">&#x1F697; Car &amp; Motorcycle</a>
-          <a href="/categories/broadband-phone.html">&#x1F4F1; Broadband &amp; Phone</a>
-          <a href="/categories/services.html">&#x1F4CB; Services</a>
+          <a href="/categories/broadband-phone-contracts.html">&#x1F4F1; Broadband &amp; Phone</a>
+          <a href="/categories/services-contracts.html">&#x1F4CB; Services</a>
           <a href="/categories/">View All &#8594;</a>
         </div>
       </div>
