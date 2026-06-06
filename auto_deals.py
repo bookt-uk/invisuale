@@ -29,7 +29,7 @@ nav{display:flex;align-items:center;gap:2px;flex:1}
 .header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .country-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
 .user-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer}
-@media(max-width:960px){nav{display:none}.header-search{display:none}}
+@media(max-width:960px){.header-search{display:none}.header-right{display:none}nav{gap:0}.nav-link{font-size:12px;padding:5px 8px}.cat-menu{left:-10px}}
 """
 
 HEADER_HTML = """<header>
