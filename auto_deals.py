@@ -201,11 +201,51 @@ def write_desc(deal):
     except urllib.error.HTTPError as e:
         raise Exception(f"HTTP {e.code}: {e.read().decode('utf-8','ignore')[:300]}")
 
+DEAL_PAGE_CSS = """
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#ef4444;--navy:#0f172a;--green:#16a34a;--border:#e2e8f0;--muted:#64748b;--bg:#f4f4f4}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}
+""" + HEADER_CSS + """
+main{max-width:1100px;margin:0 auto;padding:28px 20px 64px}
+.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:6px}
+.breadcrumb a{color:var(--muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--red)}
+.breadcrumb span{color:#94a3b8}
+.deal-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+@media(max-width:700px){.deal-layout{grid-template-columns:1fr}}
+.img-panel{background:#f8f9fa;border-radius:14px;border:1px solid var(--border);padding:32px;display:flex;align-items:center;justify-content:center;min-height:320px}
+.img-panel img{max-width:100%;max-height:340px;object-fit:contain;mix-blend-mode:multiply}
+.img-placeholder{width:100%;height:320px;display:flex;align-items:center;justify-content:center;font-size:48px;color:#cbd5e1}
+.info-panel{display:flex;flex-direction:column;gap:16px}
+.hot-badge{display:inline-flex;align-items:center;gap:4px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 10px;border-radius:100px;width:fit-content}
+h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:800;line-height:1.2;color:var(--navy)}
+.price-row{display:flex;align-items:center;gap:12px}
+.price{font-size:32px;font-weight:800;color:var(--red);line-height:1}
+.orig-price{font-size:16px;color:var(--muted);text-decoration:line-through;font-weight:600}
+.features{list-style:none;display:flex;flex-direction:column;gap:6px}
+.features li{font-size:14px;color:#334155;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.features li::before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0}
+.delivery-row{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.merchant-name{color:#334155;font-weight:700}
+.btn-cta{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;padding:15px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;transition:background .2s;width:100%}
+.btn-cta:hover{background:#dc2626}
+.desc-section{margin-top:32px;background:#fff;border-radius:12px;border:1px solid var(--border);padding:28px}
+.desc-section h2{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;color:var(--navy)}
+.desc-section p{font-size:15px;line-height:1.75;color:#334155}
+.trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:32px}
+.trust-item{background:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.trust-icon{font-size:22px;flex-shrink:0}
+.trust-text strong{display:block;font-size:13px;font-weight:800}
+.trust-text span{font-size:12px;color:var(--muted)}
+@media(max-width:700px){.trust-strip{grid-template-columns:repeat(2,1fr)}}
+footer{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-size:13px;margin-top:48px}
+footer strong{color:#fff}
+"""
+
 def make_page(deal, desc, features, merchant_url):
     t = html.escape(deal["title"])
     img_html = ""
     if deal.get("image"):
-        # Use higher-res image for deal page
         big_img = re.sub(r'/re/\d+x\d+/', '/re/768x768/', deal["image"])
         img_html = f'<img src="{html.escape(big_img)}" alt="{t}" loading="lazy">'
     feat_html = ""
@@ -220,100 +260,48 @@ def make_page(deal, desc, features, merchant_url):
     if deal.get("merchant"):
         delivery_html = f'<div class="delivery-row"><span class="free">🚚 Free delivery</span><span class="merchant-name">{html.escape(deal["merchant"])}</span></div>'
     cta_url = html.escape(merchant_url or deal["link"])
-    # Metadata for index rebuilds
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="deal-price" content="{html.escape(deal.get('price',''))}">
-<meta name="deal-orig-price" content="{html.escape(deal.get('orig_price',''))}">
-<meta name="deal-merchant" content="{html.escape(deal.get('merchant',''))}">
-<meta name="deal-features" content="{html.escape('|'.join(features))}">
-<meta name="deal-image" content="{html.escape(deal.get('image',''))}">
-<meta name="deal-url" content="{html.escape(merchant_url or '')}">
-<meta name="deal-hukd-url" content="{html.escape(deal.get('link',''))}">
-<meta name="deal-category" content="{html.escape(deal.get('category',''))}">
-<title>{t} | Invisuale Deals</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-*{{box-sizing:border-box;margin:0;padding:0}}
-:root{{--red:#ef4444;--navy:#0f172a;--green:#16a34a;--border:#e2e8f0;--muted:#64748b;--bg:#f4f4f4}}
-body{{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}}
-{HEADER_CSS.replace('{','{{').replace('}','}}')}
-main{{max-width:1100px;margin:0 auto;padding:28px 20px 64px}}
-.breadcrumb{{font-size:13px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:6px}}
-.breadcrumb a{{color:var(--muted);text-decoration:none}}
-.breadcrumb a:hover{{color:var(--red)}}
-.breadcrumb span{{color:#94a3b8}}
-.deal-layout{{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}}
-@media(max-width:700px){{.deal-layout{{grid-template-columns:1fr}}}}
-.img-panel{{background:#f8f9fa;border-radius:14px;border:1px solid var(--border);padding:32px;display:flex;align-items:center;justify-content:center;min-height:320px}}
-.img-panel img{{max-width:100%;max-height:340px;object-fit:contain;mix-blend-mode:multiply}}
-.img-placeholder{{width:100%;height:320px;display:flex;align-items:center;justify-content:center;font-size:48px;color:#cbd5e1}}
-.info-panel{{display:flex;flex-direction:column;gap:16px}}
-.hot-badge{{display:inline-flex;align-items:center;gap:4px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 10px;border-radius:100px;width:fit-content}}
-h1{{font-family:'Barlow Condensed',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:800;line-height:1.2;color:var(--navy)}}
-.price-row{{display:flex;align-items:center;gap:12px}}
-.price{{font-size:32px;font-weight:800;color:var(--red);line-height:1}}
-.orig-price{{font-size:16px;color:var(--muted);text-decoration:line-through;font-weight:600}}
-.features{{list-style:none;display:flex;flex-direction:column;gap:6px}}
-.features li{{font-size:14px;color:#334155;display:flex;align-items:flex-start;gap:8px;line-height:1.4}}
-.features li::before{{content:'✓';color:var(--green);font-weight:800;flex-shrink:0}}
-.delivery-row{{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}}
-.merchant-name{{color:#334155;font-weight:700}}
-.btn-cta{{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;padding:15px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;transition:background .2s;width:100%}}
-.btn-cta:hover{{background:#dc2626}}
-.desc-section{{margin-top:32px;background:#fff;border-radius:12px;border:1px solid var(--border);padding:28px}}
-.desc-section h2{{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;color:var(--navy)}}
-.desc-section p{{font-size:15px;line-height:1.75;color:#334155}}
-.trust-strip{{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:32px}}
-.trust-item{{background:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px}}
-.trust-icon{{font-size:22px;flex-shrink:0}}
-.trust-text strong{{display:block;font-size:13px;font-weight:800}}
-.trust-text span{{font-size:12px;color:var(--muted)}}
-@media(max-width:700px){{.trust-strip{{grid-template-columns:repeat(2,1fr)}}}}
-footer{{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-size:13px;margin-top:48px}}
-footer strong{{color:#fff}}
-</style>
-</head>
-<body>
-{HEADER_HTML}
-<main>
-  <div class="breadcrumb">
-    <a href="/">Home</a><span>›</span>
-    <a href="/">Hot Deals</a><span>›</span>
-    <span>{t}</span>
-  </div>
-  <div class="deal-layout">
-    <div class="img-panel">
-      {img_html if img_html else '<div class="img-placeholder">🏷️</div>'}
-    </div>
-    <div class="info-panel">
-      <span class="hot-badge">🔥 HOT DEAL</span>
-      <h1>{t}</h1>
-      {price_html}
-      {feat_html}
-      {delivery_html}
-      <a href="{cta_url}" class="btn-cta" rel="nofollow sponsored" target="_blank">Get this deal &rarr;</a>
-    </div>
-  </div>
-  <div class="desc-section">
-    <h2>About this deal</h2>
-    <p>{html.escape(desc)}</p>
-  </div>
-  <div class="trust-strip">
-    <div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text"><strong>100% Secure</strong><span>Safe checkout guaranteed</span></div></div>
-    <div class="trust-item"><span class="trust-icon">🚚</span><div class="trust-text"><strong>Free UK Delivery</strong><span>On thousands of deals</span></div></div>
-    <div class="trust-item"><span class="trust-icon">🔄</span><div class="trust-text"><strong>Daily Updates</strong><span>New deals every day at 9am</span></div></div>
-    <div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Best Price Guarantee</strong><span>We find, you save</span></div></div>
-  </div>
-</main>
-<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
-{SKIMLINKS}
-</body>
-</html>"""
+    img_panel = img_html if img_html else '<div class="img-placeholder">🏷️</div>'
+    return (
+        '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
+        '<meta charset="UTF-8">\n'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
+        f'<meta name="deal-price" content="{html.escape(deal.get("price",""))}">\n'
+        f'<meta name="deal-orig-price" content="{html.escape(deal.get("orig_price",""))}">\n'
+        f'<meta name="deal-merchant" content="{html.escape(deal.get("merchant",""))}">\n'
+        f'<meta name="deal-features" content="{html.escape("|".join(features))}">\n'
+        f'<meta name="deal-image" content="{html.escape(deal.get("image",""))}">\n'
+        f'<meta name="deal-url" content="{html.escape(merchant_url or "")}">\n'
+        f'<meta name="deal-hukd-url" content="{html.escape(deal.get("link",""))}">\n'
+        f'<meta name="deal-category" content="{html.escape(deal.get("category",""))}">\n'
+        f'<title>{t} | Invisuale Deals</title>\n'
+        '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+        '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
+        '<style>' + DEAL_PAGE_CSS + '</style>\n'
+        '</head>\n<body>\n'
+        + HEADER_HTML +
+        f'\n<main>\n'
+        f'  <div class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/">Hot Deals</a><span>›</span><span>{t}</span></div>\n'
+        f'  <div class="deal-layout">\n'
+        f'    <div class="img-panel">{img_panel}</div>\n'
+        f'    <div class="info-panel">\n'
+        f'      <span class="hot-badge">🔥 HOT DEAL</span>\n'
+        f'      <h1>{t}</h1>\n'
+        f'      {price_html}\n'
+        f'      {feat_html}\n'
+        f'      {delivery_html}\n'
+        f'      <a href="{cta_url}" class="btn-cta" rel="nofollow sponsored" target="_blank">Get this deal &rarr;</a>\n'
+        f'    </div>\n  </div>\n'
+        f'  <div class="desc-section"><h2>About this deal</h2><p>{html.escape(desc)}</p></div>\n'
+        '  <div class="trust-strip">'
+        '<div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text"><strong>100% Secure</strong><span>Safe checkout guaranteed</span></div></div>'
+        '<div class="trust-item"><span class="trust-icon">🚚</span><div class="trust-text"><strong>Free UK Delivery</strong><span>On thousands of deals</span></div></div>'
+        '<div class="trust-item"><span class="trust-icon">🔄</span><div class="trust-text"><strong>Daily Updates</strong><span>New deals every day at 9am</span></div></div>'
+        '<div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Best Price Guarantee</strong><span>We find, you save</span></div></div>'
+        '</div>\n'
+        '</main>\n'
+        '<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>\n'
+        + SKIMLINKS + '\n</body>\n</html>'
+    )
 
 def build_card(fname, title, img_src, price, merchant, features):
     img_block = (

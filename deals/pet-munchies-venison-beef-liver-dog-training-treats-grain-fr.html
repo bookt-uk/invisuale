@@ -19,27 +19,27 @@
 :root{--red:#ef4444;--navy:#0f172a;--green:#16a34a;--border:#e2e8f0;--muted:#64748b;--bg:#f4f4f4}
 body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}
 
-header{{background:#0f172a;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}}
-.header-inner{{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}}
-.logo{{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px;text-decoration:none;flex-shrink:0}}
-.logo span{{color:#ef4444}}
-nav{{display:flex;align-items:center;gap:2px;flex:1}}
-.nav-link{{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.3px;padding:7px 12px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}}
-.nav-link:hover{{color:#fff;background:rgba(255,255,255,.08)}}
-.nav-link.active{{color:#fff;border-bottom:2px solid #ef4444;border-radius:0;padding-bottom:5px}}
-.cat-dropdown{{position:relative}}
-.cat-dropdown .nav-link{{cursor:pointer;user-select:none}}
-.cat-menu{{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.15);min-width:220px;z-index:200;padding:14px 0 6px;overflow:hidden}}
-.cat-dropdown:hover .cat-menu,.cat-dropdown:focus-within .cat-menu{{display:block}}
-.cat-menu a{{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:13px;font-weight:700;color:#1e293b;text-decoration:none;transition:background .12s}}
-.cat-menu a:hover{{background:#f1f5f9;color:#ef4444}}
-.header-search{{display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 12px;height:36px;gap:8px;width:220px}}
-.header-search input{{background:none;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;width:100%}}
-.header-search input::placeholder{{color:#64748b}}
-.header-right{{display:flex;align-items:center;gap:10px;flex-shrink:0}}
-.country-pill{{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer}}
-.user-btn{{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer}}
-@media(max-width:960px){{nav{{display:none}}.header-search{{display:none}}}}
+header{background:#0f172a;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.header-inner{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px;text-decoration:none;flex-shrink:0}
+.logo span{color:#ef4444}
+nav{display:flex;align-items:center;gap:2px;flex:1}
+.nav-link{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.3px;padding:7px 12px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-link.active{color:#fff;border-bottom:2px solid #ef4444;border-radius:0;padding-bottom:5px}
+.cat-dropdown{position:relative}
+.cat-dropdown .nav-link{cursor:pointer;user-select:none}
+.cat-menu{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.15);min-width:220px;z-index:200;padding:14px 0 6px;overflow:hidden}
+.cat-dropdown:hover .cat-menu,.cat-dropdown:focus-within .cat-menu{display:block}
+.cat-menu a{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:13px;font-weight:700;color:#1e293b;text-decoration:none;transition:background .12s}
+.cat-menu a:hover{background:#f1f5f9;color:#ef4444}
+.header-search{display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 12px;height:36px;gap:8px;width:220px}
+.header-search input{background:none;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;width:100%}
+.header-search input::placeholder{color:#64748b}
+.header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.country-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer}
+.user-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer}
+@media(max-width:960px){nav{display:none}.header-search{display:none}}
 
 main{max-width:1100px;margin:0 auto;padding:28px 20px 64px}
 .breadcrumb{font-size:13px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:6px}
@@ -114,15 +114,9 @@ footer strong{color:#fff}
   </div>
 </header>
 <main>
-  <div class="breadcrumb">
-    <a href="/">Home</a><span>›</span>
-    <a href="/">Hot Deals</a><span>›</span>
-    <span>Pet Munchies Venison &amp; Beef Liver Dog Training Treats, Grain Free Tasty Bites with Natural Real Meat, Low in Fat 50g</span>
-  </div>
+  <div class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/">Hot Deals</a><span>›</span><span>Pet Munchies Venison &amp; Beef Liver Dog Training Treats, Grain Free Tasty Bites with Natural Real Meat, Low in Fat 50g</span></div>
   <div class="deal-layout">
-    <div class="img-panel">
-      <img src="https://images.hotukdeals.com/threads/raw/R5DPz/4905783_1/re/768x768/qt/55/4905783_1.jpg" alt="Pet Munchies Venison &amp; Beef Liver Dog Training Treats, Grain Free Tasty Bites with Natural Real Meat, Low in Fat 50g" loading="lazy">
-    </div>
+    <div class="img-panel"><img src="https://images.hotukdeals.com/threads/raw/R5DPz/4905783_1/re/768x768/qt/55/4905783_1.jpg" alt="Pet Munchies Venison &amp; Beef Liver Dog Training Treats, Grain Free Tasty Bites with Natural Real Meat, Low in Fat 50g" loading="lazy"></div>
     <div class="info-panel">
       <span class="hot-badge">🔥 HOT DEAL</span>
       <h1>Pet Munchies Venison &amp; Beef Liver Dog Training Treats, Grain Free Tasty Bites with Natural Real Meat, Low in Fat 50g</h1>
@@ -132,16 +126,8 @@ footer strong{color:#fff}
       <a href="https://www.amazon.co.uk/dp/B06Y3WGZTZ?smid=A3P5ROKL5A1OLE&amp;tag=pepperegc-21&amp;ascsubtag=ppr-uk-2986230702" class="btn-cta" rel="nofollow sponsored" target="_blank">Get this deal &rarr;</a>
     </div>
   </div>
-  <div class="desc-section">
-    <h2>About this deal</h2>
-    <p>Pet Munchies Venison and Beef Liver Dog Training Treats are delicious, grain-free bites made from 100% natural, human-grade venison fused with beef liver. Perfectly baked to retain natural juices, these low-fat treats are ideal for rewarding good behaviour during training sessions or walks. Suitable for all dog breeds and sizes over four months old, they&#x27;re loved by dogs everywhere. Make these tasty morsels a small part of your dog&#x27;s daily diet for best results.</p>
-  </div>
-  <div class="trust-strip">
-    <div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text"><strong>100% Secure</strong><span>Safe checkout guaranteed</span></div></div>
-    <div class="trust-item"><span class="trust-icon">🚚</span><div class="trust-text"><strong>Free UK Delivery</strong><span>On thousands of deals</span></div></div>
-    <div class="trust-item"><span class="trust-icon">🔄</span><div class="trust-text"><strong>Daily Updates</strong><span>New deals every day at 9am</span></div></div>
-    <div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Best Price Guarantee</strong><span>We find, you save</span></div></div>
-  </div>
+  <div class="desc-section"><h2>About this deal</h2><p>Pet Munchies Venison and Beef Liver Dog Training Treats are delicious, grain-free bites made from 100% natural, human-grade venison fused with beef liver. Perfectly baked to retain natural juices, these low-fat treats are ideal for rewarding good behaviour during training sessions or walks. Suitable for all dog breeds and sizes over four months old, they&#x27;re loved by dogs everywhere. Make these tasty morsels a small part of your dog&#x27;s daily diet for best results.</p></div>
+  <div class="trust-strip"><div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text"><strong>100% Secure</strong><span>Safe checkout guaranteed</span></div></div><div class="trust-item"><span class="trust-icon">🚚</span><div class="trust-text"><strong>Free UK Delivery</strong><span>On thousands of deals</span></div></div><div class="trust-item"><span class="trust-icon">🔄</span><div class="trust-text"><strong>Daily Updates</strong><span>New deals every day at 9am</span></div></div><div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Best Price Guarantee</strong><span>We find, you save</span></div></div></div>
 </main>
 <footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
 <script type="text/javascript" src="https://s.skimresources.com/js/304253X1792420.skimlinks.js"></script>
