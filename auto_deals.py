@@ -19,6 +19,24 @@ def save_posted(p):
 def slug(title):
     return re.sub(r'[^a-z0-9]+', '-', title.lower())[:60].strip('-')
 
+def resolve_merchant_url(hukd_url):
+    """Follow hotukdeals.com/visit/threadmain/{id} redirect to get real merchant URL."""
+    m = re.search(r'-(\d+)$', hukd_url.rstrip('/'))
+    if not m:
+        return ""
+    thread_id = m.group(1)
+    visit_url = f"https://www.hotukdeals.com/visit/threadmain/{thread_id}"
+    try:
+        req = urllib.request.Request(visit_url, headers={"User-Agent": "Mozilla/5.0"})
+        resp = urllib.request.urlopen(req, timeout=15)
+        final = resp.geturl()
+        # If it's still on hotukdeals, it failed
+        if "hotukdeals.com" in final:
+            return ""
+        return final
+    except:
+        return ""
+
 def fetch_deals():
     req = urllib.request.Request(FEED_URL, headers={"User-Agent": "Mozilla/5.0"})
     raw = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "ignore")
@@ -36,7 +54,7 @@ def fetch_deals():
         if dm:
             desc_raw = dm.group(1)
             desc_raw = re.sub(r"<!\[CDATA\[(.*?)\]\]>", r"\1", desc_raw, flags=re.S)
-        # Image: prefer media:content / media:thumbnail
+        # Image
         img = ""
         mm = re.search(r'<media:content[^>]+url=["\']([^"\']+)["\']', block)
         if mm: img = mm.group(1)
@@ -46,12 +64,9 @@ def fetch_deals():
         if not img:
             im = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', desc_raw)
             if im: img = im.group(1)
-        if not img:
-            em = re.search(r'<enclosure[^>]+url=["\']([^"\']+)["\']', block)
-            if em: img = em.group(1)
         if img:
             img = re.sub(r'/re/\d+x\d+/', '/re/300x300/', img)
-        desc_text = html.unescape(re.sub(r"<[^>]+>", "", desc_raw)).strip()[:400]
+        desc_text = html.unescape(re.sub(r"<[^>]+>", "", desc_raw)).strip()[:600]
         # Merchant name and price from pepper:merchant
         merchant = ""
         price = ""
@@ -59,20 +74,30 @@ def fetch_deals():
         if pm: merchant = pm.group(1)
         pp = re.search(r'<pepper:merchant[^>]+price=["\']([^"\']+)["\']', block)
         if pp: price = pp.group(1)
+        # Original/was price from description text
+        orig_price = ""
+        for pat in [r'[Ww]as[:\s]+[£$€](\d+[\d.,]*)', r'[Rr]{2}[Pp][:\s]+[£$€](\d+[\d.,]*)',
+                    r'[Nn]ormally[:\s]+[£$€](\d+[\d.,]*)', r'[Uu]sually[:\s]+[£$€](\d+[\d.,]*)']:
+            om = re.search(pat, desc_text)
+            if om:
+                orig_price = f"£{om.group(1)}"
+                break
+        hukd_url = g("link")
         deals.append({
             "title": g("title"),
-            "link": g("link"),
+            "link": hukd_url,
             "desc": desc_text,
             "image": img,
             "merchant": merchant,
             "price": price,
+            "orig_price": orig_price,
         })
     return [d for d in deals if d["title"] and d["link"]]
 
 def write_desc(deal):
     prompt = (
         f"Write content for a UK deals site card. Return EXACTLY this format, no extra text:\n"
-        f"DESCRIPTION: <80-120 word friendly description, plain prose, no markdown>\n"
+        f"DESCRIPTION: <80-120 word friendly plain prose, no markdown>\n"
         f"FEATURES: <feature 1, max 7 words> | <feature 2, max 7 words> | <feature 3, max 7 words>\n\n"
         f"Deal: {deal['title']}\n"
         f"Price: {deal['price'] or 'unknown'}\n"
@@ -97,116 +122,148 @@ def write_desc(deal):
         if dm: desc = dm.group(1).strip()
         fm = re.search(r'FEATURES:\s*(.*)', text, re.S)
         if fm:
-            raw = fm.group(1).strip()
-            features = [f.strip() for f in raw.split('|') if f.strip()][:4]
+            features = [f.strip() for f in fm.group(1).split('|') if f.strip()][:3]
         desc = re.sub(r'^#+\s*', '', desc, flags=re.MULTILINE)
         desc = re.sub(r'\*\*(.*?)\*\*', r'\1', desc)
         return desc, features
     except urllib.error.HTTPError as e:
-        err = e.read().decode("utf-8","ignore")
-        raise Exception(f"HTTP {e.code}: {err[:300]}")
+        raise Exception(f"HTTP {e.code}: {e.read().decode('utf-8','ignore')[:300]}")
 
-def stars_html(fname):
-    h = int(hashlib.md5(fname.encode()).hexdigest()[:4], 16)
-    rating = 3.5 + (h % 16) / 16.0
-    reviews = 50 + (h % 1150)
-    full = int(rating)
-    half = 1 if rating - full >= 0.5 else 0
-    empty = 5 - full - half
-    stars = '★' * full + ('½' if half else '') + '☆' * empty
-    return f'<div class="stars-row"><span class="stars">{stars}</span><span class="star-count">({reviews:,})</span></div>'
-
-def ends_ts(fname):
-    h = int(hashlib.md5(fname.encode()).hexdigest()[4:8], 16)
-    try: mtime = int(os.path.getmtime(f"deals/{fname}"))
-    except: mtime = int(time.time())
-    hours = 18 + (h % 54)
-    return mtime + hours * 3600
-
-def make_page(deal, desc, features):
+def make_page(deal, desc, features, merchant_url):
     t = html.escape(deal["title"])
     img_html = ""
     if deal.get("image"):
-        img_html = f'<div class="deal-img"><img src="{html.escape(deal["image"])}" alt="{t}" loading="lazy"></div>'
+        # Use higher-res image for deal page
+        big_img = re.sub(r'/re/\d+x\d+/', '/re/768x768/', deal["image"])
+        img_html = f'<img src="{html.escape(big_img)}" alt="{t}" loading="lazy">'
     feat_html = ""
     if features:
         items = "".join(f"<li>{html.escape(f)}</li>" for f in features)
         feat_html = f'<ul class="features">{items}</ul>'
     price_html = ""
     if deal.get("price"):
-        price_html = f'<div class="price-display"><span class="price">{html.escape(deal["price"])}</span></div>'
-    merchant_html = ""
+        orig = f'<span class="orig-price">{html.escape(deal["orig_price"])}</span>' if deal.get("orig_price") else ""
+        price_html = f'<div class="price-row"><span class="price">{html.escape(deal["price"])}</span>{orig}</div>'
+    delivery_html = ""
     if deal.get("merchant"):
-        merchant_html = f'<div class="merchant-tag">from <strong>{html.escape(deal["merchant"])}</strong></div>'
+        delivery_html = f'<div class="delivery-row"><span class="free">🚚 Free delivery</span><span class="merchant-name">{html.escape(deal["merchant"])}</span></div>'
+    cta_url = html.escape(merchant_url or deal["link"])
     # Metadata for index rebuilds
-    meta_price = html.escape(deal.get("price",""))
-    meta_merchant = html.escape(deal.get("merchant",""))
-    meta_features = html.escape("|".join(features))
-    meta_img = html.escape(deal.get("image",""))
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="deal-price" content="{meta_price}">
-<meta name="deal-merchant" content="{meta_merchant}">
-<meta name="deal-features" content="{meta_features}">
-<meta name="deal-image" content="{meta_img}">
+<meta name="deal-price" content="{html.escape(deal.get('price',''))}">
+<meta name="deal-orig-price" content="{html.escape(deal.get('orig_price',''))}">
+<meta name="deal-merchant" content="{html.escape(deal.get('merchant',''))}">
+<meta name="deal-features" content="{html.escape('|'.join(features))}">
+<meta name="deal-image" content="{html.escape(deal.get('image',''))}">
+<meta name="deal-url" content="{html.escape(merchant_url or '')}">
 <title>{t} | Invisuale Deals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{{box-sizing:border-box;margin:0;padding:0}}
-body{{font-family:'Nunito Sans',sans-serif;background:#f4f4f4;color:#1e293b}}
-header{{background:#0f172a;padding:0 24px;position:sticky;top:0;z-index:100}}
-.header-inner{{max-width:1200px;margin:0 auto;display:flex;align-items:center;height:60px}}
+:root{{--red:#ef4444;--navy:#0f172a;--green:#16a34a;--border:#e2e8f0;--muted:#64748b;--bg:#f4f4f4}}
+body{{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}}
+header{{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}}
+.header-inner{{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}}
 .logo{{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;text-decoration:none}}
-.logo span{{color:#ef4444}}
-main{{max-width:820px;margin:0 auto;padding:36px 20px}}
-.back{{color:#64748b;text-decoration:none;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:4px;margin-bottom:24px}}
-.back:hover{{color:#ef4444}}
-.deal-img{{margin-bottom:28px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;padding:32px;min-height:260px}}
-.deal-img img{{max-width:100%;max-height:280px;width:auto;height:auto;object-fit:contain;mix-blend-mode:multiply}}
-h1{{font-family:'Barlow Condensed',sans-serif;font-size:clamp(26px,5vw,42px);font-weight:800;line-height:1.2;margin-bottom:16px;color:#0f172a}}
-.price-display{{margin-bottom:12px}}
-.price{{font-size:28px;font-weight:800;color:#ef4444}}
-.merchant-tag{{font-size:14px;color:#64748b;font-weight:600;margin-bottom:16px}}
-.merchant-tag strong{{color:#334155}}
-.features{{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:20px}}
+.logo span{{color:var(--red)}}
+.header-nav{{display:flex;gap:4px}}
+.hnav{{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;padding:6px 12px;border-radius:6px}}
+.hnav:hover{{color:#fff;background:rgba(255,255,255,.08)}}
+.hnav.active{{color:#fff;border-bottom:2px solid var(--red);border-radius:0}}
+main{{max-width:1100px;margin:0 auto;padding:28px 20px 64px}}
+.breadcrumb{{font-size:13px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:6px}}
+.breadcrumb a{{color:var(--muted);text-decoration:none}}
+.breadcrumb a:hover{{color:var(--red)}}
+.breadcrumb span{{color:#94a3b8}}
+.deal-layout{{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}}
+@media(max-width:700px){{.deal-layout{{grid-template-columns:1fr}}}}
+.img-panel{{background:#f8f9fa;border-radius:14px;border:1px solid var(--border);padding:32px;display:flex;align-items:center;justify-content:center;min-height:320px}}
+.img-panel img{{max-width:100%;max-height:340px;object-fit:contain;mix-blend-mode:multiply}}
+.img-placeholder{{width:100%;height:320px;display:flex;align-items:center;justify-content:center;font-size:48px;color:#cbd5e1}}
+.info-panel{{display:flex;flex-direction:column;gap:16px}}
+.hot-badge{{display:inline-flex;align-items:center;gap:4px;background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:4px 10px;border-radius:100px;width:fit-content}}
+h1{{font-family:'Barlow Condensed',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:800;line-height:1.2;color:var(--navy)}}
+.price-row{{display:flex;align-items:center;gap:12px}}
+.price{{font-size:32px;font-weight:800;color:var(--red);line-height:1}}
+.orig-price{{font-size:16px;color:var(--muted);text-decoration:line-through;font-weight:600}}
+.features{{list-style:none;display:flex;flex-direction:column;gap:6px}}
 .features li{{font-size:14px;color:#334155;display:flex;align-items:flex-start;gap:8px;line-height:1.4}}
-.features li::before{{content:'✓';color:#16a34a;font-weight:800;flex-shrink:0}}
-.desc{{font-size:16px;line-height:1.7;color:#334155;background:#fff;border-radius:12px;padding:24px;border:1px solid #e2e8f0;margin-bottom:24px}}
-.btn{{display:inline-flex;align-items:center;gap:10px;background:#ef4444;color:#fff;padding:14px 32px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;transition:background .2s;width:100%;justify-content:center}}
-.btn:hover{{background:#dc2626}}
-footer{{background:#0f172a;color:#64748b;text-align:center;padding:24px;font-size:13px;margin-top:64px}}
+.features li::before{{content:'✓';color:var(--green);font-weight:800;flex-shrink:0}}
+.delivery-row{{display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}}
+.merchant-name{{color:#334155;font-weight:700}}
+.btn-cta{{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;padding:15px 24px;border-radius:10px;text-decoration:none;font-weight:700;font-size:15px;transition:background .2s;width:100%}}
+.btn-cta:hover{{background:#dc2626}}
+.desc-section{{margin-top:32px;background:#fff;border-radius:12px;border:1px solid var(--border);padding:28px}}
+.desc-section h2{{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;color:var(--navy)}}
+.desc-section p{{font-size:15px;line-height:1.75;color:#334155}}
+.trust-strip{{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:32px}}
+.trust-item{{background:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px}}
+.trust-icon{{font-size:22px;flex-shrink:0}}
+.trust-text strong{{display:block;font-size:13px;font-weight:800}}
+.trust-text span{{font-size:12px;color:var(--muted)}}
+@media(max-width:700px){{.trust-strip{{grid-template-columns:repeat(2,1fr)}}}}
+footer{{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-size:13px;margin-top:48px}}
+footer strong{{color:#fff}}
 </style>
 </head>
 <body>
-<header><div class="header-inner"><a href="/" class="logo">INVIS<span>UALE</span></a></div></header>
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">INVIS<span>UALE</span></a>
+    <nav class="header-nav">
+      <a href="/" class="hnav active">Hot Deals</a>
+      <a href="#" class="hnav">Categories</a>
+      <a href="#" class="hnav">Top Brands</a>
+    </nav>
+  </div>
+</header>
 <main>
-<a href="/" class="back">← Back to all deals</a>
-{img_html}
-<h1>{t}</h1>
-{price_html}
-{merchant_html}
-{feat_html}
-<div class="desc">{html.escape(desc)}</div>
-<a href="{deal['link']}" class="btn" rel="nofollow sponsored" target="_blank">Get this deal &rarr;</a>
+  <div class="breadcrumb">
+    <a href="/">Home</a><span>›</span>
+    <a href="/">Hot Deals</a><span>›</span>
+    <span>{t}</span>
+  </div>
+  <div class="deal-layout">
+    <div class="img-panel">
+      {img_html if img_html else '<div class="img-placeholder">🏷️</div>'}
+    </div>
+    <div class="info-panel">
+      <span class="hot-badge">🔥 HOT DEAL</span>
+      <h1>{t}</h1>
+      {price_html}
+      {feat_html}
+      {delivery_html}
+      <a href="{cta_url}" class="btn-cta" rel="nofollow sponsored" target="_blank">Get this deal &rarr;</a>
+    </div>
+  </div>
+  <div class="desc-section">
+    <h2>About this deal</h2>
+    <p>{html.escape(desc)}</p>
+  </div>
+  <div class="trust-strip">
+    <div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text"><strong>100% Secure</strong><span>Safe checkout guaranteed</span></div></div>
+    <div class="trust-item"><span class="trust-icon">🚚</span><div class="trust-text"><strong>Free UK Delivery</strong><span>On thousands of deals</span></div></div>
+    <div class="trust-item"><span class="trust-icon">🔄</span><div class="trust-text"><strong>Daily Updates</strong><span>New deals every day at 9am</span></div></div>
+    <div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Best Price Guarantee</strong><span>We find, you save</span></div></div>
+  </div>
 </main>
-<footer>Invisuale - Best UK Deals. Prices correct at time of posting.</footer>
+<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
 {SKIMLINKS}
 </body>
 </html>"""
 
-def build_card(fname, title, img_src, price, merchant, features, ends):
+def build_card(fname, title, img_src, price, merchant, features):
     img_block = (
         f'<div class="card-img"><img src="{html.escape(img_src)}" alt="" loading="lazy"></div>'
         if img_src else
         '<div class="card-placeholder">🏷️</div>'
     )
-    price_html = ""
-    if price:
-        price_html = f'<div class="price-row"><span class="price">{html.escape(price)}</span></div>'
+    price_html = f'<div class="price-row"><span class="price">{html.escape(price)}</span></div>' if price else ""
     feat_html = ""
     if features:
         items = "".join(f"<li>{html.escape(f)}</li>" for f in features[:3])
@@ -219,13 +276,11 @@ def build_card(fname, title, img_src, price, merchant, features, ends):
         f'<div class="hot-badge">🔥 HOT DEAL</div>'
         f'{img_block}'
         f'<div class="card-body">'
-        f'{stars_html(fname)}'
         f'<h2><a href="/deals/{fname}">{html.escape(title)}</a></h2>'
         f'{price_html}'
         f'{feat_html}'
         f'{delivery_html}'
         f'<a href="/deals/{fname}" class="btn">View Deal</a>'
-        f'<div class="countdown">Deal ends in <span class="timer" data-ends="{ends}"></span></div>'
         f'</div>'
         f'</div>\n'
     )
@@ -242,7 +297,6 @@ def update_index(new_deals):
             with open(f'deals/{fname}') as f: content = f.read()
             m = re.search(r'<h1>(.*?)</h1>', content)
             if m: title = html.unescape(m.group(1))
-            # New-style meta tags
             mm = re.search(r'<meta name="deal-image" content="([^"]*)"', content)
             if mm: img_src = html.unescape(mm.group(1))
             mm = re.search(r'<meta name="deal-price" content="([^"]*)"', content)
@@ -251,15 +305,12 @@ def update_index(new_deals):
             if mm: merchant = html.unescape(mm.group(1))
             mm = re.search(r'<meta name="deal-features" content="([^"]*)"', content)
             if mm:
-                raw = html.unescape(mm.group(1))
-                features = [f for f in raw.split('|') if f.strip()]
-            # Fallback: read img from deal-img div for old pages
+                features = [f for f in html.unescape(mm.group(1)).split('|') if f.strip()]
             if not img_src:
                 im = re.search(r'<img[^>]+src="([^"]+)"', content)
                 if im: img_src = im.group(1)
         except: pass
-        ends = ends_ts(fname)
-        cards += build_card(fname, title, img_src, price, merchant, features, ends)
+        cards += build_card(fname, title, img_src, price, merchant, features)
 
     try:
         with open("index.html") as f: base = f.read()
@@ -288,9 +339,12 @@ def main():
         did = hashlib.md5((deal["title"]+deal["link"]).encode()).hexdigest()
         if did in posted: continue
         try:
+            print(f"resolving merchant URL for: {deal['title'][:50]}")
+            merchant_url = resolve_merchant_url(deal["link"])
             desc, features = write_desc(deal)
             s = slug(deal["title"])
-            with open(f"deals/{s}.html", "w") as f: f.write(make_page(deal, desc, features))
+            with open(f"deals/{s}.html", "w") as f:
+                f.write(make_page(deal, desc, features, merchant_url))
             new.append(deal)
             posted.add(did)
             count += 1
