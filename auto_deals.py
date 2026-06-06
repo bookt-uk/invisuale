@@ -190,11 +190,14 @@ def fetch_deals():
         })
     return [d for d in deals if d["title"] and d["link"]]
 
+CATEGORY_LIST = "Electronics|Gaming|Groceries|Fashion & Accessories|Health & Beauty|Home & Living|Garden & Do It Yourself|Family & Kids|Car & Motorcycle|Broadband & Phone Contracts|Services & Contracts"
+
 def write_desc(deal):
     prompt = (
         f"Write content for a UK deals site card. Return EXACTLY this format, no extra text:\n"
         f"DESCRIPTION: <80-120 word friendly plain prose, no markdown>\n"
-        f"FEATURES: <feature 1, max 7 words> | <feature 2, max 7 words> | <feature 3, max 7 words>\n\n"
+        f"FEATURES: <feature 1, max 7 words> | <feature 2, max 7 words> | <feature 3, max 7 words>\n"
+        f"CATEGORY: <one of: {CATEGORY_LIST}>\n\n"
         f"Deal: {deal['title']}\n"
         f"Price: {deal['price'] or 'unknown'}\n"
         f"Retailer: {deal['merchant'] or 'unknown'}\n"
@@ -214,14 +217,17 @@ def write_desc(deal):
         text = "".join(b.get("text","") for b in resp.get("content",[])).strip()
         desc = ""
         features = []
-        dm = re.search(r'DESCRIPTION:\s*(.*?)(?=FEATURES:|$)', text, re.S)
+        ai_category = ""
+        dm = re.search(r'DESCRIPTION:\s*(.*?)(?=FEATURES:|CATEGORY:|$)', text, re.S)
         if dm: desc = dm.group(1).strip()
-        fm = re.search(r'FEATURES:\s*(.*)', text, re.S)
+        fm = re.search(r'FEATURES:\s*(.*?)(?=CATEGORY:|$)', text, re.S)
         if fm:
             features = [f.strip() for f in fm.group(1).split('|') if f.strip()][:3]
+        cm = re.search(r'CATEGORY:\s*(.*)', text)
+        if cm: ai_category = cm.group(1).strip()
         desc = re.sub(r'^#+\s*', '', desc, flags=re.MULTILINE)
         desc = re.sub(r'\*\*(.*?)\*\*', r'\1', desc)
-        return desc, features
+        return desc, features, ai_category
     except urllib.error.HTTPError as e:
         raise Exception(f"HTTP {e.code}: {e.read().decode('utf-8','ignore')[:300]}")
 
@@ -589,7 +595,9 @@ def main():
                 print(f"skip (expired): {deal['title'][:50]}")
                 posted.add(did)  # mark so we don't retry it
                 continue
-            desc, features = write_desc(deal)
+            desc, features, ai_category = write_desc(deal)
+            if not deal.get("category") and ai_category:
+                deal["category"] = ai_category
             s = slug(deal["title"])
             with open(f"deals/{s}.html", "w") as f:
                 f.write(make_page(deal, desc, features, merchant_url))
