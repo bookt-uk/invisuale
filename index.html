@@ -44,8 +44,8 @@ nav{display:flex;align-items:center;gap:2px;flex:1}
 .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .country-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;color:var(--white);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
 .header-search{display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 12px;height:36px;gap:8px;width:220px}
-.header-search input{background:none;border:none;outline:none;color:var(--white);font-size:13px;font-family:inherit;width:100%}
-.header-search input::placeholder{color:#64748b}
+.header-search input{background:none;border:none;outline:none;color:var(--white);font-size:16px;font-family:inherit;width:100%}
+.header-search input::placeholder{color:#64748b;font-size:14px}
 .search-icon-btn{display:none;background:none;border:none;cursor:pointer;color:#94a3b8;padding:6px;line-height:0}
 @media(max-width:960px){
   nav{gap:0}.nav-link{font-size:12px;padding:5px 8px}.cat-menu{left:-10px}
@@ -197,6 +197,22 @@ footer strong{color:var(--white)}
     </div>
   </div>
 </header>
+<script>
+(function(){
+  var inp=document.querySelector('.header-search input');
+  if(!inp)return;
+  inp.addEventListener('input',function(){
+    var q=this.value.trim().toLowerCase();
+    document.querySelectorAll('#deals .deal').forEach(function(c){
+      var txt=(c.querySelector('h2')||c).textContent.toLowerCase();
+      c.style.display=(!q||txt.includes(q))?'':'none';
+    });
+  });
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){this.value='';this.dispatchEvent(new Event('input'));document.getElementById('hdrSearch').classList.remove('open');}
+  });
+})();
+</script>
 
 <section class="hero">
   <h1>TODAY'S BEST <em>DEALS</em></h1>
