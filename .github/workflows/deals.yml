@@ -28,3 +28,6 @@ jobs:
           git add -A
           git commit -m "update deals" || echo "nothing to commit"
           git push
+
+      - name: Ping Google
+        run: curl -s "https://www.google.com/ping?sitemap=https://invisuale.com/sitemap.xml"
