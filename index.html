@@ -73,7 +73,6 @@ main{max-width:1400px;margin:0 auto;padding:28px 24px 56px}
 
 /* DEALS GRID */
 #deals{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-@media(max-width:600px){#deals{grid-template-columns:repeat(2,1fr);gap:10px}}
 
 /* DEAL CARD */
 .deal{
@@ -117,16 +116,29 @@ main{max-width:1400px;margin:0 auto;padding:28px 24px 56px}
 .deal .btn:hover{background:#dc2626;color:#fff !important}
 .deal .btn::after{content:'→'}
 @media(max-width:600px){
-  .card-img{height:110px;padding:8px}
-  .card-placeholder{height:110px}
-  .card-body{padding:8px;gap:5px}
-  .deal h2{font-size:11px;-webkit-line-clamp:2}
-  .price{font-size:15px}
-  .features{display:none}
-  .delivery-row{display:none}
-  .deal .btn{display:flex !important;padding:8px 6px;font-size:11px;background:#ef4444 !important;color:#fff !important;border-radius:6px;margin-top:auto;width:100%;text-align:center;justify-content:center;text-decoration:none;font-weight:700}
-  .deal .btn::after{content:'→'}
-  .hot-badge{font-size:9px;padding:2px 6px}
+  #deals{grid-template-columns:repeat(2,1fr);gap:8px}
+  .card-img{height:120px;padding:8px}
+  .card-placeholder{height:120px}
+  .card-body{padding:8px;gap:6px}
+  .deal h2{font-size:11px;-webkit-line-clamp:3}
+  .price{font-size:16px}
+  .features li{font-size:10px}
+  .delivery-row{font-size:10px;padding-top:6px}
+  .hot-badge{font-size:9px;padding:2px 6px;top:6px;left:6px}
+  a.btn, .deal .btn, .deal a.btn{
+    display:block !important;
+    background:#ef4444 !important;
+    color:#ffffff !important;
+    padding:9px 4px !important;
+    font-size:11px !important;
+    font-weight:700 !important;
+    text-align:center !important;
+    border-radius:6px !important;
+    text-decoration:none !important;
+    margin-top:auto !important;
+    width:100% !important;
+    box-sizing:border-box !important;
+  }
 }
 
 /* TRUST STRIP */
