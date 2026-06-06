@@ -20,22 +20,32 @@ def slug(title):
     return re.sub(r'[^a-z0-9]+', '-', title.lower())[:60].strip('-')
 
 def resolve_merchant_url(hukd_url):
-    """Follow hotukdeals.com/visit/threadmain/{id} redirect to get real merchant URL."""
+    """Fetch HUKD page: check not expired, return real merchant URL."""
     m = re.search(r'-(\d+)$', hukd_url.rstrip('/'))
-    if not m:
-        return ""
+    if not m: return "", False
     thread_id = m.group(1)
-    visit_url = f"https://www.hotukdeals.com/visit/threadmain/{thread_id}"
     try:
-        req = urllib.request.Request(visit_url, headers={"User-Agent": "Mozilla/5.0"})
-        resp = urllib.request.urlopen(req, timeout=15)
-        final = resp.geturl()
-        # If it's still on hotukdeals, it failed
-        if "hotukdeals.com" in final:
-            return ""
-        return final
+        req = urllib.request.Request(
+            f"https://www.hotukdeals.com/deals/x-{thread_id}",
+            headers={"User-Agent": "Mozilla/5.0"})
+        raw = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "ignore")
+        # Check expired/stale
+        js = re.search(r'__INITIAL_STATE__ = (\{.*)', raw)
+        if js:
+            state = json.loads(js.group(1).rstrip().rstrip(';'))
+            td = state.get("threadDetail", {})
+            if td.get("isExpired") or td.get("stale"):
+                return "", True  # expired
+            visit = td.get("linkCloakedItemMainButton", "")
+            if visit:
+                req2 = urllib.request.Request(visit, headers={"User-Agent": "Mozilla/5.0"})
+                resp = urllib.request.urlopen(req2, timeout=15)
+                final = resp.geturl()
+                if "hotukdeals.com" not in final:
+                    return final, False
+        return "", False
     except:
-        return ""
+        return "", False
 
 def fetch_deals():
     req = urllib.request.Request(FEED_URL, headers={"User-Agent": "Mozilla/5.0"})
@@ -355,7 +365,11 @@ def main():
         if did in posted: continue
         try:
             print(f"resolving merchant URL for: {deal['title'][:50]}")
-            merchant_url = resolve_merchant_url(deal["link"])
+            merchant_url, expired = resolve_merchant_url(deal["link"])
+            if expired:
+                print(f"skip (expired): {deal['title'][:50]}")
+                posted.add(did)  # mark so we don't retry it
+                continue
             desc, features = write_desc(deal)
             s = slug(deal["title"])
             with open(f"deals/{s}.html", "w") as f:
