@@ -9,6 +9,8 @@
 <meta name="deal-features" content="75-inch 4K Ultra HD display|α5 Gen6 AI processor|HDR10 Pro and Active HDR">
 <meta name="deal-image" content="https://images.hotukdeals.com/threads/raw/nTlYi/4905332_1/re/300x300/qt/55/4905332_1.jpg">
 <meta name="deal-url" content="https://www.amazon.co.uk/dp/B0BYK85VQK?smid=A3P5ROKL5A1OLE&amp;tag=pepperegc-21&amp;ascsubtag=ppr-uk-2986131626">
+<meta name="deal-hukd-url" content="">
+<meta name="deal-category" content="">
 <title>LG 75UR78006LK 75-Inch 4K Ultra HD Smart TV, α5 AI processor 4K Gen6, Freeview Play and Amazon Alexa | Invisuale Deals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,14 +18,29 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--red:#ef4444;--navy:#0f172a;--green:#16a34a;--border:#e2e8f0;--muted:#64748b;--bg:#f4f4f4}
 body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}
-header{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
-.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;text-decoration:none}
-.logo span{color:var(--red)}
-.header-nav{display:flex;gap:4px}
-.hnav{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;padding:6px 12px;border-radius:6px}
-.hnav:hover{color:#fff;background:rgba(255,255,255,.08)}
-.hnav.active{color:#fff;border-bottom:2px solid var(--red);border-radius:0}
+
+header{{background:#0f172a;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}}
+.header-inner{{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}}
+.logo{{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;letter-spacing:-.5px;text-decoration:none;flex-shrink:0}}
+.logo span{{color:#ef4444}}
+nav{{display:flex;align-items:center;gap:2px;flex:1}}
+.nav-link{{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.3px;padding:7px 12px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}}
+.nav-link:hover{{color:#fff;background:rgba(255,255,255,.08)}}
+.nav-link.active{{color:#fff;border-bottom:2px solid #ef4444;border-radius:0;padding-bottom:5px}}
+.cat-dropdown{{position:relative}}
+.cat-dropdown .nav-link{{cursor:pointer;user-select:none}}
+.cat-menu{{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.15);min-width:220px;z-index:200;padding:14px 0 6px;overflow:hidden}}
+.cat-dropdown:hover .cat-menu,.cat-dropdown:focus-within .cat-menu{{display:block}}
+.cat-menu a{{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:13px;font-weight:700;color:#1e293b;text-decoration:none;transition:background .12s}}
+.cat-menu a:hover{{background:#f1f5f9;color:#ef4444}}
+.header-search{{display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 12px;height:36px;gap:8px;width:220px}}
+.header-search input{{background:none;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;width:100%}}
+.header-search input::placeholder{{color:#64748b}}
+.header-right{{display:flex;align-items:center;gap:10px;flex-shrink:0}}
+.country-pill{{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer}}
+.user-btn{{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer}}
+@media(max-width:960px){{nav{{display:none}}.header-search{{display:none}}}}
+
 main{max-width:1100px;margin:0 auto;padding:28px 20px 64px}
 .breadcrumb{font-size:13px;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;gap:6px}
 .breadcrumb a{color:var(--muted);text-decoration:none}
@@ -64,11 +81,36 @@ footer strong{color:#fff}
 <header>
   <div class="header-inner">
     <a href="/" class="logo">INVIS<span>UALE</span></a>
-    <nav class="header-nav">
-      <a href="/" class="hnav active">Hot Deals</a>
-      <a href="#" class="hnav">Categories</a>
-      <a href="#" class="hnav">Top Brands</a>
+    <nav>
+      <a href="/" class="nav-link">Hot Deals</a>
+      <div class="cat-dropdown">
+        <span class="nav-link">Categories &#9660;</span>
+        <div class="cat-menu">
+          <a href="/categories/electronics.html">&#x1F4BB; Electronics</a>
+          <a href="/categories/gaming.html">&#x1F3AE; Gaming</a>
+          <a href="/categories/groceries.html">&#x1F6D2; Groceries</a>
+          <a href="/categories/fashion.html">&#x1F457; Fashion &amp; Accessories</a>
+          <a href="/categories/health-beauty.html">&#x1F484; Health &amp; Beauty</a>
+          <a href="/categories/home-living.html">&#x1F3E0; Home &amp; Living</a>
+          <a href="/categories/garden-diy.html">&#x1F331; Garden &amp; DIY</a>
+          <a href="/categories/family-kids.html">&#x1F476; Family &amp; Kids</a>
+          <a href="/categories/car-motorcycle.html">&#x1F697; Car &amp; Motorcycle</a>
+          <a href="/categories/broadband-phone.html">&#x1F4F1; Broadband &amp; Phone</a>
+          <a href="/categories/services.html">&#x1F4CB; Services</a>
+          <a href="/categories/">View All &#8594;</a>
+        </div>
+      </div>
     </nav>
+    <div class="header-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search deals...">
+    </div>
+    <div class="header-right">
+      <div class="country-pill">&#x1F1EC;&#x1F1E7; UK &#9660;</div>
+      <div class="user-btn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+    </div>
   </div>
 </header>
 <main>
