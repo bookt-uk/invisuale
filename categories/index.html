@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deal Categories | Invisuale</title>
+<meta name="description" content="Browse UK deals by category — Gaming, Electronics, Groceries and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0f172a;--red:#ef4444;--bg:#f4f4f4;--white:#fff;--border:#e2e8f0;--muted:#64748b}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}
+header{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.header-inner{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:60px;gap:20px}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:#fff;text-decoration:none}
+.logo span{color:var(--red)}
+nav{display:flex;align-items:center;gap:2px;flex:1}
+.nav-link{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:700;padding:7px 12px;border-radius:6px}
+.nav-link:hover,.nav-link.active{color:#fff}
+.nav-link.active{border-bottom:2px solid var(--red);border-radius:0;padding-bottom:5px}
+.page-hero{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:32px 24px;text-align:center}
+.page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,56px);font-weight:800;color:#fff}
+main{max-width:1000px;margin:0 auto;padding:32px 24px 64px}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.cat-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.cat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.cat-icon{font-size:36px}
+.cat-name{font-size:13px;font-weight:800;color:#1e293b;text-align:center}
+.cat-count{font-size:11px;color:var(--muted);font-weight:600}
+footer{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-size:13px}
+footer strong{color:#fff}
+</style>
+</head>
+<body>
+<header><div class="header-inner">
+  <a href="/" class="logo">INVIS<span>UALE</span></a>
+  <nav>
+    <a href="/" class="nav-link">Hot Deals</a>
+    <a href="/categories/" class="nav-link active">Categories</a>
+  </nav>
+</div></header>
+<div class="page-hero"><h1>Browse by Category</h1></div>
+<main><div class="cat-grid"><a href="/categories/other.html" class="cat-card"><span class="cat-icon">🏷️</span><span class="cat-name">Other</span><span class="cat-count">39 deals</span></a>
+</div></main>
+<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
+</body></html>
