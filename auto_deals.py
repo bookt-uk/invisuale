@@ -104,32 +104,38 @@ def slug(title):
     return re.sub(r'[^a-z0-9]+', '-', title.lower())[:60].strip('-')
 
 def resolve_merchant_url(hukd_url):
-    """Fetch HUKD page: check not expired, return real merchant URL."""
+    """Fetch HUKD page: check not expired, return (merchant_url, expired, shipping_label)."""
     m = re.search(r'-(\d+)$', hukd_url.rstrip('/'))
-    if not m: return "", False
+    if not m: return "", False, ""
     thread_id = m.group(1)
     try:
         req = urllib.request.Request(
             f"https://www.hotukdeals.com/deals/x-{thread_id}",
             headers={"User-Agent": "Mozilla/5.0"})
         raw = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "ignore")
-        # Check expired/stale
         js = re.search(r'__INITIAL_STATE__ = (\{.*)', raw)
         if js:
             state = json.loads(js.group(1).rstrip().rstrip(';'))
             td = state.get("threadDetail", {})
             if td.get("isExpired") or td.get("stale"):
-                return "", True  # expired
+                return "", True, ""
+            # Shipping
+            shipping = td.get("shipping") or {}
+            if shipping.get("isFree"):
+                shipping_label = "free"
+            else:
+                cost = shipping.get("cost")
+                shipping_label = f"£{float(cost):.2f}" if cost else ""
             visit = td.get("linkCloakedItemMainButton", "")
             if visit:
                 req2 = urllib.request.Request(visit, headers={"User-Agent": "Mozilla/5.0"})
                 resp = urllib.request.urlopen(req2, timeout=15)
                 final = resp.geturl()
                 if "hotukdeals.com" not in final:
-                    return final, False
-        return "", False
+                    return final, False, shipping_label
+        return "", False, ""
     except:
-        return "", False
+        return "", False, ""
 
 def fetch_deals():
     req = urllib.request.Request(FEED_URL, headers={"User-Agent": "Mozilla/5.0"})
@@ -288,7 +294,14 @@ def make_page(deal, desc, features, merchant_url):
         price_html = f'<div class="price-row"><span class="price">{html.escape(deal["price"])}</span>{orig}</div>'
     delivery_html = ""
     if deal.get("merchant"):
-        delivery_html = f'<div class="delivery-row"><span class="free">🚚 Free delivery</span><span class="merchant-name">{html.escape(deal["merchant"])}</span></div>'
+        ship = deal.get("shipping", "")
+        if ship == "free":
+            ship_label = "🚚 Free delivery"
+        elif ship:
+            ship_label = f"🚚 +{ship} delivery"
+        else:
+            ship_label = "🚚 Check delivery"
+        delivery_html = f'<div class="delivery-row"><span class="free">{ship_label}</span><span class="merchant-name">{html.escape(deal["merchant"])}</span></div>'
     cta_url = html.escape(merchant_url or deal["link"])
     img_panel = img_html if img_html else '<div class="img-placeholder">🏷️</div>'
     return (
@@ -310,6 +323,7 @@ def make_page(deal, desc, features, merchant_url):
         f'<meta name="deal-url" content="{html.escape(merchant_url or "")}">\n'
         f'<meta name="deal-hukd-url" content="{html.escape(deal.get("link",""))}">\n'
         f'<meta name="deal-category" content="{html.escape(deal.get("category",""))}">\n'
+        f'<meta name="deal-shipping" content="{html.escape(deal.get("shipping",""))}">\n'
         f'<title>{t} | Invisuale Deals</title>\n'
         '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
         '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
@@ -340,7 +354,7 @@ def make_page(deal, desc, features, merchant_url):
         + SKIMLINKS + '\n</body>\n</html>'
     )
 
-def build_card(fname, title, img_src, price, merchant, features):
+def build_card(fname, title, img_src, price, merchant, features, shipping=""):
     img_block = (
         f'<div class="card-img"><img src="{html.escape(img_src)}" alt="" loading="lazy"></div>'
         if img_src else
@@ -353,7 +367,13 @@ def build_card(fname, title, img_src, price, merchant, features):
         feat_html = f'<ul class="features">{items}</ul>'
     delivery_html = ""
     if merchant:
-        delivery_html = f'<div class="delivery-row"><span class="free-delivery">🚚 Free delivery</span><span class="merchant">{html.escape(merchant)}</span></div>'
+        if shipping == "free":
+            ship_label = "🚚 Free delivery"
+        elif shipping:
+            ship_label = f"🚚 +{shipping} delivery"
+        else:
+            ship_label = "🚚 Check delivery"
+        delivery_html = f'<div class="delivery-row"><span class="free-delivery">{ship_label}</span><span class="merchant">{html.escape(merchant)}</span></div>'
     return (
         f'<div class="deal">'
         f'<div class="hot-badge">🔥 HOT DEAL</div>'
@@ -374,7 +394,7 @@ def update_index(new_deals):
     for fname in reversed(all_files):
         if not fname.endswith('.html'): continue
         title = fname.replace('.html','').replace('-',' ').title()
-        img_src = price = merchant = ""
+        img_src = price = merchant = shipping = ""
         features = []
         try:
             with open(f'deals/{fname}') as f: content = f.read()
@@ -389,11 +409,13 @@ def update_index(new_deals):
             mm = re.search(r'<meta name="deal-features" content="([^"]*)"', content)
             if mm:
                 features = [f for f in html.unescape(mm.group(1)).split('|') if f.strip()]
+            mm = re.search(r'<meta name="deal-shipping" content="([^"]*)"', content)
+            if mm: shipping = html.unescape(mm.group(1))
             if not img_src:
                 im = re.search(r'<img[^>]+src="([^"]+)"', content)
                 if im: img_src = im.group(1)
         except: pass
-        cards += build_card(fname, title, img_src, price, merchant, features)
+        cards += build_card(fname, title, img_src, price, merchant, features, shipping)
 
     try:
         with open("index.html") as f: base = f.read()
@@ -433,19 +455,22 @@ def make_category_pages():
             def ex(n): m=re.search(rf'<meta name="{n}" content="([^"]*)"',content); return html.unescape(m.group(1)) if m else ""
             img = ex("deal-image"); price = ex("deal-price")
             features = [f for f in ex("deal-features").split("|") if f.strip()][:3]
-            merchant = ex("deal-merchant")
-            cats.setdefault(cat, []).append((fname, title, img, price, features, merchant))
+            merchant = ex("deal-merchant"); shipping = ex("deal-shipping")
+            cats.setdefault(cat, []).append((fname, title, img, price, features, merchant, shipping))
         except: pass
 
     os.makedirs("categories", exist_ok=True)
     for cat, deals in cats.items():
         icon = CATEGORY_ICONS.get(cat, "🏷️")
         cards = ""
-        for fname, title, img, price, features, merchant in deals:
+        for fname, title, img, price, features, merchant, shipping in deals:
             img_block = f'<div class="card-img"><img src="{html.escape(img)}" alt="" loading="lazy"></div>' if img else '<div class="card-placeholder">🏷️</div>'
             price_html = f'<div class="price-row"><span class="price">{html.escape(price)}</span></div>' if price else ""
             feat_html = f'<ul class="features">{"".join(f"<li>{html.escape(f)}</li>" for f in features)}</ul>' if features else ""
-            delivery_html = f'<div class="delivery-row"><span class="free-delivery">🚚 Free delivery</span><span class="merchant">{html.escape(merchant)}</span></div>' if merchant else ""
+            if shipping == "free": ship_label = "🚚 Free delivery"
+            elif shipping: ship_label = f"🚚 +{shipping} delivery"
+            else: ship_label = "🚚 Check delivery"
+            delivery_html = f'<div class="delivery-row"><span class="free-delivery">{ship_label}</span><span class="merchant">{html.escape(merchant)}</span></div>' if merchant else ""
             cards += f'<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div>{img_block}<div class="card-body"><h2><a href="/deals/{fname}">{html.escape(title)}</a></h2>{price_html}{feat_html}{delivery_html}<a href="/deals/{fname}" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>\n'
         if not cards:
             cards = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#64748b"><div style="font-size:48px;margin-bottom:16px">' + CATEGORY_ICONS.get(cat,"🏷️") + '</div><p style="font-size:16px;font-weight:700">No deals right now</p><p style="font-size:13px;margin-top:8px">New deals are added daily at 9am — check back soon!</p><a href="/" style="display:inline-block;margin-top:20px;background:#ef4444;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700">Browse all deals</a></div>'
@@ -581,7 +606,7 @@ def purge_expired_deals():
                 hukd_url = f"https://www.hotukdeals.com/deals/x-{im.group(1)}"
             else:
                 hukd_url = html.unescape(m.group(1))
-            _, expired = resolve_merchant_url(hukd_url)
+            _, expired, _shipping = resolve_merchant_url(hukd_url)
             if expired:
                 os.remove(fpath)
                 print(f"expired+removed: {fname}")
@@ -604,11 +629,12 @@ def main():
         if did in posted: continue
         try:
             print(f"resolving merchant URL for: {deal['title'][:50]}")
-            merchant_url, expired = resolve_merchant_url(deal["link"])
+            merchant_url, expired, shipping_label = resolve_merchant_url(deal["link"])
             if expired:
                 print(f"skip (expired): {deal['title'][:50]}")
-                posted.add(did)  # mark so we don't retry it
+                posted.add(did)
                 continue
+            deal["shipping"] = shipping_label
             desc, features, ai_category = write_desc(deal)
             if not deal.get("category") and ai_category:
                 deal["category"] = ai_category
