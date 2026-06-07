@@ -3,15 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="deal-price" content="£159">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Samsung 50 Inch UE50U7000FK Smart 4K UHD HDR LED TV - Free C&amp;C">
+<meta property="og:description" content="Get this deal on Invisuale — the best UK deals updated daily.">
+<meta property="og:image" content="https://images.hotukdeals.com/threads/raw/P6zfc/4906920_1/re/300x300/qt/55/4906920_1.jpg">
+<meta property="og:url" content="https://invisuale.com/deals/samsung-50-inch-ue50u7000fk-smart-4k-uhd-hdr-led-tv-free-c-c.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="deal-price" content="£249">
 <meta name="deal-orig-price" content="">
-<meta name="deal-merchant" content="eBay">
-<meta name="deal-features" content="Vibrant OLED display, 2340x1080 pixels|50MP main camera, f/1.8 aperture|256GB storage, 8GB RAM">
-<meta name="deal-image" content="https://images.hotukdeals.com/threads/raw/GjOTA/4905277_1/re/300x300/qt/55/4905277_1.jpg">
+<meta name="deal-merchant" content="Argos">
+<meta name="deal-features" content="50-inch 4K UHD display|HDR picture technology|Smart TV streaming built-in">
+<meta name="deal-image" content="https://images.hotukdeals.com/threads/raw/P6zfc/4906920_1/re/300x300/qt/55/4906920_1.jpg">
 <meta name="deal-url" content="">
-<meta name="deal-hukd-url" content="https://www.hotukdeals.com/deals/samsung-galaxy-a26-5g-256gb-black-sm-a266bzkceub-opened-never-used-4905277">
+<meta name="deal-hukd-url" content="https://www.hotukdeals.com/deals/samsung-50-inch-ue50u7000fk-smart-4k-uhd-hdr-led-tv-4906920">
 <meta name="deal-category" content="Electronics">
-<title>Samsung Galaxy A26 5G 256GB, Black - SM-A266BZKCEUB - Opened – never used - TheElectronicWarehouseltd | Invisuale Deals</title>
+<meta name="deal-shipping" content="">
+<title>Samsung 50 Inch UE50U7000FK Smart 4K UHD HDR LED TV - Free C&amp;C | Invisuale Deals</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -36,8 +44,8 @@ nav{display:flex;align-items:center;gap:2px;flex:1}
 .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .country-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;color:#fff;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
 .header-search{display:flex;align-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:0 12px;height:36px;gap:8px;width:220px;transition:width .3s}
-.header-search input{background:none;border:none;outline:none;color:#fff;font-size:13px;font-family:inherit;width:100%}
-.header-search input::placeholder{color:#64748b}
+.header-search input{background:none;border:none;outline:none;color:#fff;font-size:16px;font-family:inherit;width:100%}
+.header-search input::placeholder{color:#64748b;font-size:14px}
 .search-icon-btn{display:none;background:none;border:none;cursor:pointer;color:#94a3b8;padding:6px;line-height:0}
 @media(max-width:960px){
   nav{gap:0}.nav-link{font-size:12px;padding:5px 8px}.cat-menu{left:-10px}
@@ -94,14 +102,14 @@ footer strong{color:#fff}
           <a href="/categories/electronics.html">&#x1F4BB; Electronics</a>
           <a href="/categories/gaming.html">&#x1F3AE; Gaming</a>
           <a href="/categories/groceries.html">&#x1F6D2; Groceries</a>
-          <a href="/categories/fashion.html">&#x1F457; Fashion &amp; Accessories</a>
+          <a href="/categories/fashion-accessories.html">&#x1F457; Fashion &amp; Accessories</a>
           <a href="/categories/health-beauty.html">&#x1F484; Health &amp; Beauty</a>
           <a href="/categories/home-living.html">&#x1F3E0; Home &amp; Living</a>
-          <a href="/categories/garden-diy.html">&#x1F331; Garden &amp; DIY</a>
+          <a href="/categories/garden-do-it-yourself.html">&#x1F331; Garden &amp; DIY</a>
           <a href="/categories/family-kids.html">&#x1F476; Family &amp; Kids</a>
           <a href="/categories/car-motorcycle.html">&#x1F697; Car &amp; Motorcycle</a>
-          <a href="/categories/broadband-phone.html">&#x1F4F1; Broadband &amp; Phone</a>
-          <a href="/categories/services.html">&#x1F4CB; Services</a>
+          <a href="/categories/broadband-phone-contracts.html">&#x1F4F1; Broadband &amp; Phone</a>
+          <a href="/categories/services-contracts.html">&#x1F4CB; Services</a>
           <a href="/categories/">View All &#8594;</a>
         </div>
       </div>
@@ -114,24 +122,43 @@ footer strong{color:#fff}
       <button class="search-icon-btn" onclick="var s=document.getElementById('hdrSearch');s.classList.toggle('open');if(s.classList.contains('open'))s.querySelector('input').focus()" aria-label="Search">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
+<script>
+function initSearch(){
+  var inp=document.querySelector('.header-search input');
+  if(!inp)return;
+  inp.addEventListener('input',function(){
+    var q=this.value.trim().toLowerCase();
+    var cards=document.querySelectorAll('#deals .deal');
+    if(!cards.length)return;
+    cards.forEach(function(c){
+      var txt=(c.querySelector('h2')||c).textContent.toLowerCase();
+      c.style.display=(!q||txt.includes(q))?'':'none';
+    });
+  });
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){this.value='';this.dispatchEvent(new Event('input'));document.getElementById('hdrSearch').classList.remove('open');}
+  });
+}
+document.readyState==='loading'?document.addEventListener('DOMContentLoaded',initSearch):initSearch();
+</script>
       <div class="country-pill">&#x1F1EC;&#x1F1E7; UK &#9660;</div>
     </div>
   </div>
 </header>
 <main>
-  <div class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/">Hot Deals</a><span>›</span><span>Samsung Galaxy A26 5G 256GB, Black - SM-A266BZKCEUB - Opened – never used - TheElectronicWarehouseltd</span></div>
+  <div class="breadcrumb"><a href="/">Home</a><span>›</span><a href="/">Hot Deals</a><span>›</span><span>Samsung 50 Inch UE50U7000FK Smart 4K UHD HDR LED TV - Free C&amp;C</span></div>
   <div class="deal-layout">
-    <div class="img-panel"><img src="https://images.hotukdeals.com/threads/raw/GjOTA/4905277_1/re/768x768/qt/55/4905277_1.jpg" alt="Samsung Galaxy A26 5G 256GB, Black - SM-A266BZKCEUB - Opened – never used - TheElectronicWarehouseltd" loading="lazy"></div>
+    <div class="img-panel"><img src="https://images.hotukdeals.com/threads/raw/P6zfc/4906920_1/re/768x768/qt/55/4906920_1.jpg" alt="Samsung 50 Inch UE50U7000FK Smart 4K UHD HDR LED TV - Free C&amp;C" loading="lazy"></div>
     <div class="info-panel">
       <span class="hot-badge">🔥 HOT DEAL</span>
-      <h1>Samsung Galaxy A26 5G 256GB, Black - SM-A266BZKCEUB - Opened – never used - TheElectronicWarehouseltd</h1>
-      <div class="price-row"><span class="price">£159</span></div>
-      <ul class="features"><li>Vibrant OLED display, 2340x1080 pixels</li><li>50MP main camera, f/1.8 aperture</li><li>256GB storage, 8GB RAM</li></ul>
-      <div class="delivery-row"><span class="free">🚚 Free delivery</span><span class="merchant-name">eBay</span></div>
-      <a href="https://www.hotukdeals.com/deals/samsung-galaxy-a26-5g-256gb-black-sm-a266bzkceub-opened-never-used-4905277" class="btn-cta" rel="nofollow sponsored" target="_blank">Get this deal &rarr;</a>
+      <h1>Samsung 50 Inch UE50U7000FK Smart 4K UHD HDR LED TV - Free C&amp;C</h1>
+      <div class="price-row"><span class="price">£249</span></div>
+      <ul class="features"><li>50-inch 4K UHD display</li><li>HDR picture technology</li><li>Smart TV streaming built-in</li></ul>
+      <div class="delivery-row"><span class="free">🚚 Check delivery</span><span class="merchant-name">Argos</span></div>
+      <a href="https://www.hotukdeals.com/deals/samsung-50-inch-ue50u7000fk-smart-4k-uhd-hdr-led-tv-4906920" class="btn-cta" rel="nofollow sponsored" target="_blank">Get this deal &rarr;</a>
     </div>
   </div>
-  <div class="desc-section"><h2>About this deal</h2><p>Grab this Samsung Galaxy A26 5G at an incredible price. This unopened device offers fantastic value with its vibrant OLED display, powerful Exynos processor, and impressive 50MP camera. Includes 8GB RAM and 256GB storage for all your apps and photos. It&#x27;s unlocked to all UK networks and comes with a 12-month back-to-base warranty, giving you peace of mind with your purchase.</p></div>
+  <div class="desc-section"><h2>About this deal</h2><p>Grab this stunning Samsung 50-inch 4K UHD smart TV for just £249 at Argos with free click and collect. Experience crystal-clear picture quality with HDR support, perfect for films, sports and gaming. The smart TV functionality lets you stream your favourite shows directly, while the sleek design fits beautifully in any living room. At this price point, it&#x27;s an incredible bargain for a quality large-screen television.</p></div>
   <div class="trust-strip"><div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text"><strong>100% Secure</strong><span>Safe checkout guaranteed</span></div></div><div class="trust-item"><span class="trust-icon">🚚</span><div class="trust-text"><strong>Free UK Delivery</strong><span>On thousands of deals</span></div></div><div class="trust-item"><span class="trust-icon">🔄</span><div class="trust-text"><strong>Daily Updates</strong><span>New deals every day at 9am</span></div></div><div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Best Price Guarantee</strong><span>We find, you save</span></div></div></div>
 </main>
 <footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>
