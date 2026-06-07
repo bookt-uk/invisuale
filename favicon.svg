@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#0f172a"/>
+  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" 
+    font-family="Arial Black,sans-serif" font-weight="900" font-size="28" fill="#ffffff">IN</text>
+  <rect x="0" y="52" width="64" height="12" rx="0" fill="#ef4444"/>
+  <rect x="0" y="52" width="64" height="12" rx="12" fill="#ef4444"/>
+</svg>
