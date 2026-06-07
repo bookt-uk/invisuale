@@ -242,7 +242,14 @@ footer strong{color:var(--white)}
     </div>
     <div class="section-right">
       <span class="updated-text" id="updated-date"></span>
-      <select class="sort-select"><option>Sort by: Featured</option><option>Price: Low to High</option><option>Newest</option></select>
+      <select class="sort-select" id="sortSelect" onchange="sortDeals(this.value)">
+        <option value="featured">Sort by: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="az">A–Z</option>
+      </select>
     </div>
   </div>
   <div id="deals">
@@ -413,6 +420,41 @@ document.getElementById('updated-date').textContent = 'Updated ' + new Date().to
 window.addEventListener('scroll',function(){
   document.getElementById('go-top').classList.toggle('visible',window.scrollY>400);
 });
+
+var _originalOrder = null;
+document.addEventListener('DOMContentLoaded', function() {
+  var grid = document.getElementById('deals');
+  if (grid) _originalOrder = Array.from(grid.querySelectorAll('.deal'));
+});
+
+function sortDeals(val) {
+  var grid = document.getElementById('deals');
+  var cards = Array.from(grid.querySelectorAll('.deal'));
+  cards.sort(function(a, b) {
+    function getPrice(el) {
+      var t = (el.querySelector('.price')||{}).textContent || '';
+      var n = parseFloat(t.replace(/[^0-9.]/g,''));
+      return isNaN(n) ? 99999 : n;
+    }
+    function getTitle(el) {
+      return ((el.querySelector('h2')||{}).textContent||'').trim().toLowerCase();
+    }
+    function getIndex(el) {
+      return Array.from(grid.children).indexOf(el);
+    }
+    if (val === 'price-asc')  return getPrice(a) - getPrice(b);
+    if (val === 'price-desc') return getPrice(b) - getPrice(a);
+    if (val === 'newest')     return getIndex(b) - getIndex(a);
+    if (val === 'oldest')     return getIndex(a) - getIndex(b);
+    if (val === 'az')         return getTitle(a) > getTitle(b) ? 1 : -1;
+    if (val === 'featured' && _originalOrder) {
+      _originalOrder.forEach(function(c){ grid.appendChild(c); }); return;
+    }
+    return 0;
+  });
+  // Re-append in new order
+  cards.forEach(function(c){ grid.appendChild(c); });
+}
 </script>
 </body>
 </html>
