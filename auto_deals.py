@@ -494,7 +494,7 @@ def make_category_pages():
             ".card-img img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}\n"
             ".card-placeholder{width:100%;height:170px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;font-size:32px;color:#cbd5e1;border-bottom:1px solid var(--border);flex-shrink:0}\n"
             ".card-body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}\n"
-            ".deal h2{font-size:13px;font-weight:700;line-height:1.4;color:var(--text);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}\n"
+            ".deal h2{font-size:13px;font-weight:700;line-height:1.4;color:var(--text);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:54px}\n"
             ".deal h2 a{color:inherit;text-decoration:none}\n"
             ".deal h2 a:hover{color:var(--red)}\n"
             ".price-row{display:flex;align-items:center;gap:7px}\n"
