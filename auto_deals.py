@@ -76,7 +76,7 @@ nav{display:flex;align-items:center;gap:2px;flex:1}
 
 HEADER_HTML = """<header>
   <div class="header-inner" style="position:relative">
-    <a href="/" class="logo">INVIS<span>UALE</span></a>
+    <a href="/" class="logo">IN<span>VISUALE</span></a>
     <nav>
       <a href="/" class="nav-link">Hot Deals</a>
       <a href="/guides/" class="nav-link">Guides</a>

@@ -8,8 +8,7 @@
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect x="0" y="540" width="1200" height="90" fill="#ef4444"/>
   <!-- Logo -->
-  <text x="600" y="240" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="120" fill="#ffffff">INVIS</text>
-  <text x="600" y="240" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="120" fill="#ef4444" dx="280">UALE</text>
+  <text x="600" y="240" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="120" letter-spacing="-4"><tspan fill="#ffffff">IN</tspan><tspan fill="#ef4444">VISUALE</tspan></text>
   <text x="600" y="350" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="36" fill="#94a3b8">Best UK Deals · Updated Daily · 100% Free</text>
   <text x="600" y="480" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="28" fill="#ffffff">🔥 Electronics  🎮 Gaming  🛒 Groceries  👗 Fashion  🏠 Home</text>
   <text x="600" y="585" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="22" fill="#fff">invisuale.com</text>
