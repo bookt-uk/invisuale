@@ -18,6 +18,8 @@ jobs:
       - name: Run deal poster
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AMAZON_ASSOCIATES_TAG: ${{ secrets.AMAZON_ASSOCIATES_TAG }}
+          AWIN_PUBLISHER_ID: ${{ secrets.AWIN_PUBLISHER_ID }}
         run: python auto_deals.py
 
       - name: Save state
