@@ -1,12 +1,44 @@
 #!/usr/bin/env python3
-import json, os, re, html, time, hashlib, urllib.request, urllib.error
+import json, os, re, html, time, hashlib, urllib.request, urllib.error, urllib.parse
 from datetime import datetime
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 FEED_URL = "https://www.hotukdeals.com/rss/deals"
 MAX_PER_RUN = 25
 STATE_FILE = "posted.json"
-SKIMLINKS = '<script type="text/javascript" src="https://s.skimresources.com/js/304253X1792420.skimlinks.js"></script>'
+
+# Affiliate config. When AWIN_PUBLISHER_ID is set in env, merchant URLs are wrapped
+# in Awin's deeplink format for retailers we have a programme with. AWIN_MERCHANT_MAP
+# maps lower-cased retailer name -> Awin advertiser ID (mid). Add entries as you get
+# approved by each merchant on darwin.awin.com.
+AWIN_PUBLISHER_ID = os.environ.get("AWIN_PUBLISHER_ID", "")
+AWIN_MERCHANT_MAP = {
+    # "argos": "12345",
+    # "currys": "1599",
+    # "john lewis": "6395",
+    # "boots": "2073",
+    # "dunelm": "5854",
+    # Populate as Awin approves you for each merchant.
+}
+AMAZON_TAG = os.environ.get("AMAZON_ASSOCIATES_TAG", "")  # e.g. "invisuale-21"
+
+def affiliate_wrap(merchant_url, merchant_name):
+    """Wrap a raw merchant URL with the appropriate affiliate tracking, if available."""
+    if not merchant_url:
+        return merchant_url
+    name = (merchant_name or "").lower().strip()
+    # Amazon Associates UK tag injection
+    if AMAZON_TAG and ("amazon.co.uk" in merchant_url or "amazon.com" in merchant_url):
+        sep = "&" if "?" in merchant_url else "?"
+        if "tag=" not in merchant_url:
+            return f"{merchant_url}{sep}tag={AMAZON_TAG}"
+        return merchant_url
+    # Awin deeplink wrapping for approved merchants
+    if AWIN_PUBLISHER_ID and name in AWIN_MERCHANT_MAP:
+        mid = AWIN_MERCHANT_MAP[name]
+        encoded = urllib.parse.quote(merchant_url, safe="")
+        return f"https://www.awin1.com/cread.php?awinmid={mid}&awinaffid={AWIN_PUBLISHER_ID}&ued={encoded}"
+    return merchant_url
 
 HEADER_CSS = """
 header{background:#0f172a;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
@@ -42,6 +74,7 @@ HEADER_HTML = """<header>
     <a href="/" class="logo">INVIS<span>UALE</span></a>
     <nav>
       <a href="/" class="nav-link">Hot Deals</a>
+      <a href="/guides/" class="nav-link">Guides</a>
       <div class="cat-dropdown">
         <span class="nav-link">Categories &#9660;</span>
         <div class="cat-menu">
@@ -351,7 +384,7 @@ def make_page(deal, desc, features, merchant_url):
         '</div>\n'
         '</main>\n'
         '<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>\n'
-        + SKIMLINKS + '\n</body>\n</html>'
+        + '\n</body>\n</html>'
     )
 
 def build_card(fname, title, img_src, price, merchant, features, shipping=""):
@@ -568,7 +601,9 @@ def make_category_pages():
 
 def make_sitemap():
     cat_pages = [f'categories/{f}' for f in os.listdir('categories') if f.endswith('.html')] if os.path.exists('categories') else []
-    pages = [''] + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages
+    guide_pages = [f'guides/{f}' for f in os.listdir('guides') if f.endswith('.html')] if os.path.exists('guides') else []
+    static_pages = ['', 'about.html', 'privacy.html', 'guides/']
+    pages = static_pages + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages + [g for g in guide_pages if g != 'guides/index.html']
     urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc></url>' for p in pages])
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
     with open('sitemap.xml', 'w') as f: f.write(xml)
@@ -634,6 +669,8 @@ def main():
                 print(f"skip (expired): {deal['title'][:50]}")
                 posted.add(did)
                 continue
+            # Wrap with affiliate tracking when configured (Amazon Associates / Awin)
+            merchant_url = affiliate_wrap(merchant_url, deal.get("merchant", ""))
             deal["shipping"] = shipping_label
             desc, features, ai_category = write_desc(deal)
             if not deal.get("category") and ai_category:
