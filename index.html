@@ -183,6 +183,7 @@ footer strong{color:var(--white)}
 .chev{display:inline-block;transition:transform .25s}
 .nav-backdrop{display:none}
 @media(max-width:860px){
+  .header-right{margin-left:auto}
   .header-inner nav{display:flex;position:fixed;top:0;right:0;bottom:0;height:100vh;width:80%;max-width:330px;flex-direction:column;align-items:stretch;background:#0f172a;padding:70px 0 28px;gap:0;overflow-y:auto;transform:translateX(100%);transition:transform .3s ease;box-shadow:-12px 0 34px rgba(0,0,0,.5);z-index:400}
   .header-inner nav.open{transform:translateX(0)}
   .header-inner nav .nav-link{font-size:16px;padding:15px 24px;border-radius:0;width:100%;border-bottom:1px solid rgba(255,255,255,.06)}
