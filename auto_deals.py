@@ -46,6 +46,12 @@ def affiliate_wrap(merchant_url, merchant_name):
         return f"https://www.awin1.com/cread.php?awinmid={mid}&awinaffid={AWIN_PUBLISHER_ID}&ued={encoded}"
     return merchant_url
 
+# Google Analytics 4. Swap G-XXXXXXXXXX for your real Measurement ID once
+# (one global find/replace activates it on every page, static + generated).
+ANALYTICS = ('<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>\n'
+             '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
+             'gtag(\'js\',new Date());gtag(\'config\',\'G-XXXXXXXXXX\');</script>\n')
+
 HEADER_CSS = """
 header{background:#0f172a;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
 .header-inner{max-width:1400px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:12px}
@@ -416,7 +422,7 @@ def make_page(deal, desc, features, merchant_url):
         '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
         '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
         '<style>' + DEAL_PAGE_CSS + '</style>\n'
-        + jsonld +
+        + jsonld + ANALYTICS +
         '</head>\n<body>\n'
         + HEADER_HTML +
         f'\n<main>\n'
@@ -613,7 +619,7 @@ def make_category_pages():
             f'<meta name="description" content="Best UK {html.escape(cat)} deals updated daily.">\n'
             '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
             '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
-            '<style>' + cat_css + '</style>\n'
+            '<style>' + cat_css + '</style>\n' + ANALYTICS +
             '</head>\n<body>\n'
             + HEADER_HTML +
             f'\n<div class="page-hero"><h1>{icon} {html.escape(cat)}</h1><p>Best UK {html.escape(cat)} deals updated daily</p></div>\n'
@@ -654,7 +660,7 @@ def make_category_pages():
         '<meta name="description" content="Browse UK deals by category — Gaming, Electronics, Groceries and more.">\n'
         '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
         '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
-        '<style>' + idx_css + '</style>\n'
+        '<style>' + idx_css + '</style>\n' + ANALYTICS +
         '</head>\n<body>\n'
         + HEADER_HTML +
         '\n<div class="page-hero"><h1>Browse by Category</h1></div>\n'
