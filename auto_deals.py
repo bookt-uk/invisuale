@@ -22,6 +22,57 @@ AWIN_MERCHANT_MAP = {
     # "ee mobile": "...",
 }
 AMAZON_TAG = os.environ.get("AMAZON_ASSOCIATES_TAG", "")  # e.g. "invisuale-21"
+AWIN_API_TOKEN = os.environ.get("AWIN_API_TOKEN", "")  # OAuth token for Awin Publisher API
+
+def awin_fetch_joined_programmes():
+    """Pull all joined Awin programmes via the API. Returns list of dicts with
+    {id, name, logo, displayUrl, sector, region, deeplink, kpi}.
+    Auto-discovers new merchants as they approve — no manual map updates needed."""
+    if not (AWIN_API_TOKEN and AWIN_PUBLISHER_ID):
+        return []
+    out = []
+    try:
+        req = urllib.request.Request(
+            f"https://api.awin.com/publishers/{AWIN_PUBLISHER_ID}/programmes/?relationship=joined",
+            headers={"Authorization": f"Bearer {AWIN_API_TOKEN}", "Accept": "application/json"})
+        r = urllib.request.urlopen(req, timeout=15)
+        progs = json.loads(r.read())
+    except Exception as e:
+        print(f"Awin programmes fetch failed: {e}")
+        return []
+    for p in progs:
+        mid = p.get("id")
+        if not mid: continue
+        # Pull richer details (logo, KPI, commission) per merchant
+        detail = {}
+        try:
+            dreq = urllib.request.Request(
+                f"https://api.awin.com/publishers/{AWIN_PUBLISHER_ID}/programmedetails?advertiserId={mid}",
+                headers={"Authorization": f"Bearer {AWIN_API_TOKEN}", "Accept": "application/json"})
+            detail = json.loads(urllib.request.urlopen(dreq, timeout=10).read())
+        except Exception:
+            pass
+        info = detail.get("programmeInfo", {})
+        kpi = detail.get("kpi", {})
+        comm = detail.get("commissionRange", [{}])[0] if detail.get("commissionRange") else {}
+        out.append({
+            "id": mid,
+            "name": info.get("name") or p.get("name") or "",
+            "logo": info.get("logoUrl") or "",
+            "displayUrl": info.get("displayUrl") or p.get("displayUrl") or "",
+            "sector": info.get("primarySector") or "",
+            "description": info.get("description") or "",
+            "deeplink": f"https://www.awin1.com/cread.php?awinmid={mid}&awinaffid={AWIN_PUBLISHER_ID}",
+            "commission": (f"{comm.get('min','')}{('%' if comm.get('type')=='percentage' else '£') if comm.get('min') is not None else ''}" if comm else ""),
+            "approval_rate": kpi.get("approvalPercentage"),
+            "epc": kpi.get("epc"),
+        })
+        # Auto-populate the merchant map so deals from this merchant get wrapped too
+        AWIN_MERCHANT_MAP[info.get("name","").lower().strip()] = str(mid)
+        if info.get("displayUrl"):
+            domain = info["displayUrl"].replace("https://","").replace("http://","").replace("www.","").rstrip("/")
+            AWIN_MERCHANT_MAP[domain.lower()] = str(mid)
+    return out
 
 def affiliate_wrap(merchant_url, merchant_name):
     """Wrap a raw merchant URL with the appropriate affiliate tracking, if available."""
@@ -86,7 +137,7 @@ HEADER_HTML = """<header>
     <a href="/" class="logo">IN<span>VISUALE</span></a>
     <nav>
       <a href="/" class="nav-link">Hot Deals</a>
-      <a href="/discount-codes.html" class="nav-link">Codes</a>
+      <a href="/codes/" class="nav-link">Codes</a>
       <a href="/guides/" class="nav-link">Guides</a>
       <div class="cat-dropdown">
         <span class="nav-link">Categories &#9660;</span>
@@ -671,11 +722,162 @@ def make_category_pages():
     with open("categories/index.html", "w") as f: f.write(index)
     print(f"Built {len(cats)} category pages.")
 
+def make_codes_pages(merchants):
+    """Generate /codes/ index + per-brand pages from joined Awin merchants.
+    Updates automatically as new merchants approve."""
+    if not merchants:
+        return
+    os.makedirs("codes", exist_ok=True)
+    css = HEADER_CSS + """
+body{font-family:'Nunito Sans',sans-serif;background:#f4f4f4;color:#1e293b;margin:0}
+.page-hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);padding:48px 24px;text-align:center;color:#fff}
+.page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(30px,6vw,46px);font-weight:800;line-height:1.1}
+.page-hero p{color:#94a3b8;font-size:15px;margin-top:14px;font-weight:600;max-width:640px;margin-left:auto;margin-right:auto}
+main{max-width:1200px;margin:0 auto;padding:36px 20px 64px}
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;margin-top:24px}
+.brand-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:22px;display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s,border-color .15s}
+.brand-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(15,23,42,.1);border-color:#cbd5e1}
+.brand-logo{width:120px;height:60px;object-fit:contain;margin-bottom:14px}
+.brand-name{font-size:16px;font-weight:800;color:#0f172a;margin-bottom:4px}
+.brand-meta{font-size:12px;color:#16a34a;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.brand-comm{font-size:11px;color:#64748b;font-weight:700;margin-top:6px}
+.brand-page-hero{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:32px;display:flex;align-items:center;gap:24px;margin-bottom:24px;flex-wrap:wrap}
+.brand-page-hero img{width:140px;height:80px;object-fit:contain}
+.brand-page-hero .info{flex:1;min-width:200px}
+.brand-page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:800;color:#0f172a;margin-bottom:6px}
+.brand-page-hero p{color:#475569;font-size:14px;line-height:1.6}
+.cta-row{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.btn-primary{display:inline-block;background:#ef4444;color:#fff;padding:13px 24px;border-radius:8px;font-weight:800;text-decoration:none;font-size:14px}
+.btn-primary:hover{background:#dc2626}
+.btn-secondary{display:inline-block;background:#f1f5f9;color:#0f172a;padding:13px 24px;border-radius:8px;font-weight:800;text-decoration:none;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-top:16px}
+.stat{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px;text-align:center}
+.stat strong{display:block;font-size:18px;color:#0f172a;font-weight:800}
+.stat span{font-size:11px;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.seo-block{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:28px;margin-top:24px;font-size:14px;line-height:1.7;color:#334155}
+.seo-block h2{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#0f172a;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.back-link{display:inline-block;margin-bottom:18px;color:#64748b;font-size:13px;font-weight:700;text-decoration:none}
+.back-link:hover{color:#ef4444}
+footer{background:#0f172a;color:#64748b;text-align:center;padding:28px 24px;font-size:13px;font-weight:600;margin-top:48px}
+footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
+"""
+    footer_html = (
+        '<footer><p><strong style="color:#fff">Invisuale</strong> — Best UK Deals, updated daily.</p>'
+        '<p style="margin-top:8px;font-size:11px">We may earn a commission when you buy through links. As an Amazon Associate we earn from qualifying purchases.</p>'
+        '<p style="margin-top:12px"><a href="/">Hot Deals</a><a href="/codes/">Codes</a><a href="/guides/">Guides</a>'
+        '<a href="/about.html">About</a><a href="/privacy.html">Privacy</a></p></footer>'
+    )
+
+    # --- Per-brand pages ---
+    for m in merchants:
+        slug_b = re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-')
+        cta_link = m["deeplink"]
+        stats = ""
+        if m.get("approval_rate"):
+            stats += f'<div class="stat"><strong>{m["approval_rate"]:.0f}%</strong><span>Approval Rate</span></div>'
+        if m.get("epc") is not None:
+            stats += f'<div class="stat"><strong>£{m["epc"]:.2f}</strong><span>Avg Earnings/Click</span></div>'
+        if m.get("commission"):
+            stats += f'<div class="stat"><strong>{m["commission"]}</strong><span>Commission</span></div>'
+        if m.get("sector"):
+            stats += f'<div class="stat"><strong>{html.escape(m["sector"])}</strong><span>Sector</span></div>'
+
+        # Schema for brand page
+        schema = json.dumps({
+            "@context":"https://schema.org","@type":"Organization",
+            "name": m["name"],
+            "url": m.get("displayUrl",""),
+            "logo": m.get("logo",""),
+        })
+        bc = json.dumps({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://invisuale.com/"},
+            {"@type":"ListItem","position":2,"name":"Discount Codes","item":"https://invisuale.com/codes/"},
+            {"@type":"ListItem","position":3,"name":f"{m['name']} Offers","item":f"https://invisuale.com/codes/{slug_b}.html"},
+        ]})
+
+        page = (
+            '<!DOCTYPE html><html lang="en"><head>'
+            '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+            f'<title>{html.escape(m["name"])} Discount Codes & Offers (Verified Daily) | Invisuale</title>'
+            f'<meta name="description" content="Verified {html.escape(m["name"])} offers and discounts. Direct link to {html.escape(m["name"])}\'s official sale page — updated daily on Invisuale.">'
+            f'<link rel="canonical" href="https://invisuale.com/codes/{slug_b}.html">'
+            '<link rel="icon" type="image/svg+xml" href="/favicon.svg">'
+            f'<meta property="og:title" content="{html.escape(m["name"])} Discount Codes | Invisuale">'
+            f'<meta property="og:description" content="Verified {html.escape(m["name"])} offers, updated daily.">'
+            f'<meta property="og:image" content="{html.escape(m.get("logo",""))}">'
+            '<link rel="preconnect" href="https://fonts.googleapis.com">'
+            '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">'
+            f'<script type="application/ld+json">{schema}</script>'
+            f'<script type="application/ld+json">{bc}</script>'
+            f'<style>{css}</style>' + ANALYTICS +
+            '</head><body>' + HEADER_HTML +
+            f'<div class="page-hero"><h1>{html.escape(m["name"])} Discount Codes & Offers</h1>'
+            f'<p>Live offers from {html.escape(m["name"])} — verified through our official Awin partnership. We link straight to their sale page.</p></div>'
+            '<main>'
+            '<a href="/codes/" class="back-link">&larr; All retailers</a>'
+            '<div class="brand-page-hero">'
+            + (f'<img src="{html.escape(m["logo"])}" alt="{html.escape(m["name"])} logo">' if m.get("logo") else '')
+            + f'<div class="info"><h1>{html.escape(m["name"])}</h1>'
+            + (f'<p>{html.escape(m["description"])}</p>' if m.get("description") else "")
+            + f'<div class="cta-row"><a href="{cta_link}" class="btn-primary" rel="nofollow sponsored" target="_blank">Visit {html.escape(m["name"])} →</a>'
+            + (f'<a href="{html.escape(m["displayUrl"])}" class="btn-secondary" target="_blank">Direct site</a>' if m.get("displayUrl") else "")
+            + '</div></div></div>'
+            + (f'<div class="stats">{stats}</div>' if stats else "")
+            + '<div class="seo-block"><h2>About this offer page</h2>'
+            f'<p>This page links directly to {html.escape(m["name"])}\'s current offers via our verified Awin partnership. Rather than listing individual codes that often expire within hours, we send you straight to {html.escape(m["name"])}\'s official sale and offers pages where the live discounts are guaranteed to work.</p>'
+            f'<p>Browse <a href="/codes/">all our retailer offer pages</a>, check today\'s <a href="/">hot deals</a>, or read our <a href="/guides/spot-a-real-deal-vs-fake-discount.html">guide on spotting fake discounts</a>.</p>'
+            '</div></main>' + footer_html + '</body></html>'
+        )
+        with open(f"codes/{slug_b}.html", "w") as f: f.write(page)
+
+    # --- Codes index page ---
+    cards = ""
+    for m in sorted(merchants, key=lambda x: x["name"].lower()):
+        slug_b = re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-')
+        logo = f'<img src="{html.escape(m["logo"])}" alt="{html.escape(m["name"])} logo" class="brand-logo" loading="lazy">' if m.get("logo") else '<div class="brand-logo" style="display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:8px;font-weight:800;color:#475569">' + html.escape(m["name"][:2].upper()) + '</div>'
+        meta = "Verified Partner"
+        comm = f'<div class="brand-comm">Up to {m["commission"]} commission</div>' if m.get("commission") else ""
+        cards += (
+            f'<a href="/codes/{slug_b}.html" class="brand-card">'
+            f'{logo}<div class="brand-name">{html.escape(m["name"])}</div>'
+            f'<div class="brand-meta">{meta}</div>{comm}</a>'
+        )
+    idx_schema = json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"UK Discount Codes & Voucher Codes",
+        "description":f"Verified UK discount codes and offers from {len(merchants)} retailers.","url":"https://invisuale.com/codes/"})
+    idx = (
+        '<!DOCTYPE html><html lang="en"><head>'
+        '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<title>UK Discount Codes & Voucher Codes (Verified Daily) | Invisuale</title>'
+        f'<meta name="description" content="Verified UK discount codes and offer pages from {len(merchants)} retailers. No fake codes — direct links to official sale pages, updated daily.">'
+        '<link rel="canonical" href="https://invisuale.com/codes/">'
+        '<link rel="icon" type="image/svg+xml" href="/favicon.svg">'
+        '<meta property="og:title" content="UK Discount Codes & Voucher Codes | Invisuale">'
+        '<meta property="og:description" content="Verified UK discount codes, updated daily. No fake codes.">'
+        '<meta property="og:image" content="https://invisuale.com/og-image.svg">'
+        '<meta property="og:url" content="https://invisuale.com/codes/">'
+        '<link rel="preconnect" href="https://fonts.googleapis.com">'
+        '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">'
+        f'<script type="application/ld+json">{idx_schema}</script>'
+        f'<style>{css}</style>' + ANALYTICS +
+        '</head><body>' + HEADER_HTML +
+        f'<div class="page-hero"><h1>UK Discount Codes & Voucher Codes</h1>'
+        f'<p>We don\'t list fake or expired codes. Each link below takes you straight to the retailer\'s official offers page — where the real savings live. Currently {len(merchants)} verified partner{"s" if len(merchants)!=1 else ""}, growing weekly.</p></div>'
+        '<main>'
+        '<div class="seo-block" style="margin-top:0;margin-bottom:8px"><h2>Why no fake codes?</h2>'
+        '<p>Most "voucher code" websites are stuffed with codes that expired months ago or never worked. We take a different approach: every retailer here is a <strong>verified partner</strong> through Awin, and we link straight to their official offers — where the discounts are always live.</p>'
+        '<p>Looking for everyday deals instead? Browse <a href="/">today\'s hot deals</a> or our <a href="/categories/">category pages</a>.</p></div>'
+        f'<div class="brand-grid">{cards}</div>'
+        '</main>' + footer_html + '</body></html>'
+    )
+    with open("codes/index.html", "w") as f: f.write(idx)
+    print(f"Built /codes/ with {len(merchants)} brand pages.")
+
 def make_sitemap():
     cat_pages = [f'categories/{f}' for f in os.listdir('categories') if f.endswith('.html')] if os.path.exists('categories') else []
     guide_pages = [f'guides/{f}' for f in os.listdir('guides') if f.endswith('.html')] if os.path.exists('guides') else []
-    static_pages = ['', 'about.html', 'privacy.html', 'discount-codes.html', 'guides/']
-    pages = static_pages + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages + [g for g in guide_pages if g != 'guides/index.html']
+    code_pages = [f'codes/{f}' for f in os.listdir('codes') if f.endswith('.html') and f != 'index.html'] if os.path.exists('codes') else []
+    static_pages = ['', 'about.html', 'privacy.html', 'discount-codes.html', 'guides/', 'codes/']
+    pages = static_pages + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages + [g for g in guide_pages if g != 'guides/index.html'] + code_pages
     urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc></url>' for p in pages])
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
     with open('sitemap.xml', 'w') as f: f.write(xml)
@@ -758,6 +960,12 @@ def main():
         except Exception as e:
             print(f"skip ({e}): {deal['title'][:40]}")
     purge_expired_deals()
+    # Pull joined Awin merchants and build auto-updating /codes/ pages
+    # (also auto-populates AWIN_MERCHANT_MAP so all merchants get affiliate-wrapped)
+    merchants = awin_fetch_joined_programmes()
+    if merchants:
+        print(f"Awin: {len(merchants)} joined programmes — building codes pages")
+        make_codes_pages(merchants)
     update_index(new)
     make_category_pages()
     make_sitemap()
