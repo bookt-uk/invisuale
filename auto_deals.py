@@ -13,12 +13,13 @@ STATE_FILE = "posted.json"
 # approved by each merchant on darwin.awin.com.
 AWIN_PUBLISHER_ID = os.environ.get("AWIN_PUBLISHER_ID", "")
 AWIN_MERCHANT_MAP = {
-    # "argos": "12345",
+    "bunches": "488",
+    "bunches.co.uk": "488",
+    # Add more as Awin merchants approve us:
     # "currys": "1599",
     # "john lewis": "6395",
-    # "boots": "2073",
-    # "dunelm": "5854",
-    # Populate as Awin approves you for each merchant.
+    # "virgin media": "...",
+    # "ee mobile": "...",
 }
 AMAZON_TAG = os.environ.get("AMAZON_ASSOCIATES_TAG", "")  # e.g. "invisuale-21"
 
