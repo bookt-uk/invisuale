@@ -27,12 +27,17 @@ def affiliate_wrap(merchant_url, merchant_name):
     if not merchant_url:
         return merchant_url
     name = (merchant_name or "").lower().strip()
-    # Amazon Associates UK tag injection
+    # Amazon Associates UK tag injection.
+    # NOTE: HotUKDeals injects its own affiliate tag (e.g. tag=pepperugc03-21) into
+    # Amazon URLs before we see them. We must STRIP any existing tag (and HUKD's
+    # ascsubtag tracking) and replace with ours, otherwise HUKD keeps the commission.
     if AMAZON_TAG and ("amazon.co.uk" in merchant_url or "amazon.com" in merchant_url):
-        sep = "&" if "?" in merchant_url else "?"
-        if "tag=" not in merchant_url:
-            return f"{merchant_url}{sep}tag={AMAZON_TAG}"
-        return merchant_url
+        parts = urllib.parse.urlsplit(merchant_url)
+        query_pairs = [(k, v) for k, v in urllib.parse.parse_qsl(parts.query, keep_blank_values=True)
+                       if k.lower() not in ("tag", "ascsubtag", "linkcode", "creative", "creativeasin", "ref_", "ref")]
+        query_pairs.append(("tag", AMAZON_TAG))
+        new_query = urllib.parse.urlencode(query_pairs)
+        return urllib.parse.urlunsplit((parts.scheme, parts.netloc, parts.path, new_query, parts.fragment))
     # Awin deeplink wrapping for approved merchants
     if AWIN_PUBLISHER_ID and name in AWIN_MERCHANT_MAP:
         mid = AWIN_MERCHANT_MAP[name]
