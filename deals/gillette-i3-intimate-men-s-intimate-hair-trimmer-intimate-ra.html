@@ -95,6 +95,23 @@ footer strong{color:#fff}
 <script type="application/ld+json">{"@context": "https://schema.org/", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://invisuale.com/"}, {"@type": "ListItem", "position": 2, "name": "Hot Deals", "item": "https://invisuale.com/"}, {"@type": "ListItem", "position": 3, "name": "Gillette I3 Intimate Men\u2019s Intimate Hair Trimmer / Intimate Razor \u00a33.10 / Intimate Shave Cream and Cleanser \u00a32", "item": "https://invisuale.com/deals/gillette-i3-intimate-men-s-intimate-hair-trimmer-intimate-ra.html"}]}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZW1TWSHM7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4ZW1TWSHM7');</script>
+<style id="mobile-nav-fix">
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;color:#94a3b8;padding:6px;line-height:0}
+@media(max-width:860px){
+  .header-inner nav{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;align-items:stretch;background:#0f172a;padding:6px 0;border-top:1px solid rgba(255,255,255,.1);box-shadow:0 12px 28px rgba(0,0,0,.4);gap:0;z-index:300}
+  .header-inner nav.open{display:flex}
+  .header-inner nav .nav-link{font-size:15px;padding:13px 20px;border-radius:0;width:100%}
+  .menu-toggle{display:flex;align-items:center;justify-content:center}
+  .cat-dropdown{position:static}
+  .cat-dropdown>.nav-link{pointer-events:none;color:#64748b;font-size:12px;text-transform:uppercase;letter-spacing:.6px;padding-bottom:4px}
+  .cat-menu{display:block !important;position:static;box-shadow:none;border:none;background:transparent;padding:0 0 6px;min-width:0}
+  .cat-menu a{color:#94a3b8;padding:10px 34px;font-size:14px}
+  .header-search{display:none}
+  .search-icon-btn{display:flex;align-items:center;justify-content:center}
+  .header-search.open{display:flex;position:absolute;top:60px;left:0;right:0;width:100%;border-radius:0;border-top:none;padding:0 16px;height:44px;background:#0f172a;border-bottom:1px solid rgba(255,255,255,.1);z-index:301}
+  .country-pill{padding:5px 8px;font-size:12px}
+}
+</style>
 </head>
 <body>
 <header>
@@ -130,6 +147,10 @@ footer strong{color:#fff}
       <button class="search-icon-btn" onclick="var s=document.getElementById('hdrSearch');s.classList.toggle('open');if(s.classList.contains('open'))s.querySelector('input').focus()" aria-label="Search">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
+      <div class="country-pill">&#x1F1EC;&#x1F1E7; UK &#9660;</div>
+      <button class="menu-toggle" onclick="document.querySelector('.header-inner nav').classList.toggle('open')" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
 <script>
 function initSearch(){
   var inp=document.querySelector('.header-search input');
@@ -149,7 +170,6 @@ function initSearch(){
 }
 document.readyState==='loading'?document.addEventListener('DOMContentLoaded',initSearch):initSearch();
 </script>
-      <div class="country-pill">&#x1F1EC;&#x1F1E7; UK &#9660;</div>
     </div>
   </div>
 </header>
