@@ -46,11 +46,11 @@ def affiliate_wrap(merchant_url, merchant_name):
         return f"https://www.awin1.com/cread.php?awinmid={mid}&awinaffid={AWIN_PUBLISHER_ID}&ued={encoded}"
     return merchant_url
 
-# Google Analytics 4. Swap G-XXXXXXXXXX for your real Measurement ID once
+# Google Analytics 4. Swap G-4ZW1TWSHM7 for your real Measurement ID once
 # (one global find/replace activates it on every page, static + generated).
-ANALYTICS = ('<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>\n'
+ANALYTICS = ('<script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZW1TWSHM7"></script>\n'
              '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
-             'gtag(\'js\',new Date());gtag(\'config\',\'G-XXXXXXXXXX\');</script>\n')
+             'gtag(\'js\',new Date());gtag(\'config\',\'G-4ZW1TWSHM7\');</script>\n')
 
 HEADER_CSS = """
 header{background:#0f172a;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
