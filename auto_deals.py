@@ -80,6 +80,7 @@ HEADER_HTML = """<header>
     <a href="/" class="logo">IN<span>VISUALE</span></a>
     <nav>
       <a href="/" class="nav-link">Hot Deals</a>
+      <a href="/discount-codes.html" class="nav-link">Codes</a>
       <a href="/guides/" class="nav-link">Guides</a>
       <div class="cat-dropdown">
         <span class="nav-link">Categories &#9660;</span>
@@ -317,8 +318,54 @@ footer{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-
 footer strong{color:#fff}
 """
 
+def price_to_number(price_str):
+    """Extract a numeric price like '34.99' from '£34.99' / '£1,299' etc. Returns '' if none."""
+    if not price_str:
+        return ""
+    m = re.search(r'(\d[\d,]*\.?\d*)', price_str.replace(",", ""))
+    return m.group(1) if m else ""
+
 def make_page(deal, desc, features, merchant_url):
     t = html.escape(deal["title"])
+    page_url = f'https://invisuale.com/deals/{slug(deal["title"])}.html'
+    meta_desc = (desc[:155] + "…") if len(desc) > 156 else desc
+    if not meta_desc:
+        meta_desc = f'{deal["title"]} — deal from {deal.get("merchant","a UK retailer")}. Updated daily on Invisuale.'
+    # --- JSON-LD structured data (Product + Breadcrumb) for Google rich results ---
+    price_num = price_to_number(deal.get("price", ""))
+    schema = {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": deal["title"],
+        "description": desc or f'Deal on {deal["title"]}',
+    }
+    if deal.get("image"):
+        schema["image"] = deal["image"]
+    if deal.get("merchant"):
+        schema["brand"] = {"@type": "Brand", "name": deal["merchant"]}
+    if price_num:
+        schema["offers"] = {
+            "@type": "Offer",
+            "price": price_num,
+            "priceCurrency": "GBP",
+            "availability": "https://schema.org/InStock",
+            "url": page_url,
+        }
+        if deal.get("merchant"):
+            schema["offers"]["seller"] = {"@type": "Organization", "name": deal["merchant"]}
+    breadcrumb = {
+        "@context": "https://schema.org/",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://invisuale.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Hot Deals", "item": "https://invisuale.com/"},
+            {"@type": "ListItem", "position": 3, "name": deal["title"], "item": page_url},
+        ],
+    }
+    jsonld = (
+        '<script type="application/ld+json">' + json.dumps(schema) + '</script>\n'
+        '<script type="application/ld+json">' + json.dumps(breadcrumb) + '</script>\n'
+    )
     img_html = ""
     if deal.get("image"):
         big_img = re.sub(r'/re/\d+x\d+/', '/re/768x768/', deal["image"])
@@ -347,12 +394,14 @@ def make_page(deal, desc, features, merchant_url):
         '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
         '<meta charset="UTF-8">\n'
         '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
+        f'<meta name="description" content="{html.escape(meta_desc)}">\n'
+        f'<link rel="canonical" href="{html.escape(page_url)}">\n'
         '<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n'
         f'<meta property="og:title" content="{html.escape(deal["title"])}">\n'
-        f'<meta property="og:description" content="Get this deal on Invisuale — the best UK deals updated daily.">\n'
+        f'<meta property="og:description" content="{html.escape(meta_desc)}">\n'
         f'<meta property="og:image" content="{html.escape(deal.get("image","") or "https://invisuale.com/og-image.svg")}">\n'
-        f'<meta property="og:url" content="https://invisuale.com/deals/{html.escape(slug(deal["title"]))}.html">\n'
-        '<meta property="og:type" content="website">\n'
+        f'<meta property="og:url" content="{html.escape(page_url)}">\n'
+        '<meta property="og:type" content="product">\n'
         '<meta name="twitter:card" content="summary_large_image">\n'
         f'<meta name="deal-price" content="{html.escape(deal.get("price",""))}">\n'
         f'<meta name="deal-orig-price" content="{html.escape(deal.get("orig_price",""))}">\n'
@@ -367,6 +416,7 @@ def make_page(deal, desc, features, merchant_url):
         '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
         '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
         '<style>' + DEAL_PAGE_CSS + '</style>\n'
+        + jsonld +
         '</head>\n<body>\n'
         + HEADER_HTML +
         f'\n<main>\n'
@@ -383,13 +433,23 @@ def make_page(deal, desc, features, merchant_url):
         f'    </div>\n  </div>\n'
         f'  <div class="desc-section"><h2>About this deal</h2><p>{html.escape(desc)}</p></div>\n'
         '  <div class="trust-strip">'
-        '<div class="trust-item"><span class="trust-icon">🔒</span><div class="trust-text"><strong>100% Secure</strong><span>Safe checkout guaranteed</span></div></div>'
-        '<div class="trust-item"><span class="trust-icon">🚚</span><div class="trust-text"><strong>Free UK Delivery</strong><span>On thousands of deals</span></div></div>'
+        '<div class="trust-item"><span class="trust-icon">✅</span><div class="trust-text"><strong>Community-Rated</strong><span>Sourced from real UK shoppers</span></div></div>'
+        '<div class="trust-item"><span class="trust-icon">🛒</span><div class="trust-text"><strong>Buy Direct</strong><span>Straight to the retailer</span></div></div>'
         '<div class="trust-item"><span class="trust-icon">🔄</span><div class="trust-text"><strong>Daily Updates</strong><span>New deals every day at 9am</span></div></div>'
-        '<div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Best Price Guarantee</strong><span>We find, you save</span></div></div>'
+        '<div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Always Free</strong><span>No fees, no sign-up</span></div></div>'
         '</div>\n'
         '</main>\n'
-        '<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>\n'
+        '<footer style="background:#0f172a;color:#64748b;text-align:center;padding:28px 24px;font-size:13px;font-weight:600">'
+        '<p><strong style="color:#fff">Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</p>'
+        '<p style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">'
+        '<a href="/" style="color:#94a3b8;text-decoration:none">Hot Deals</a>'
+        '<a href="/discount-codes.html" style="color:#94a3b8;text-decoration:none">Discount Codes</a>'
+        '<a href="/guides/" style="color:#94a3b8;text-decoration:none">Guides</a>'
+        '<a href="/about.html" style="color:#94a3b8;text-decoration:none">About</a>'
+        '<a href="/privacy.html" style="color:#94a3b8;text-decoration:none">Privacy</a>'
+        '</p>'
+        '<p style="margin-top:10px;color:#64748b;font-size:11px">We may earn a commission when you buy through links on our site. As an Amazon Associate we earn from qualifying purchases.</p>'
+        '</footer>\n'
         + '\n</body>\n</html>'
     )
 
@@ -608,7 +668,7 @@ def make_category_pages():
 def make_sitemap():
     cat_pages = [f'categories/{f}' for f in os.listdir('categories') if f.endswith('.html')] if os.path.exists('categories') else []
     guide_pages = [f'guides/{f}' for f in os.listdir('guides') if f.endswith('.html')] if os.path.exists('guides') else []
-    static_pages = ['', 'about.html', 'privacy.html', 'guides/']
+    static_pages = ['', 'about.html', 'privacy.html', 'discount-codes.html', 'guides/']
     pages = static_pages + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages + [g for g in guide_pages if g != 'guides/index.html']
     urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc></url>' for p in pages])
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
