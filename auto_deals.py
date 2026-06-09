@@ -933,19 +933,13 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
                 )
             codes_block = f'<div class="codes-grid">{cc}</div>'
         stats = ""
+        # Only buyer-friendly facts (set in MERCHANT_CODES) are ever shown.
+        # Seller-side KPIs from the Awin API (approval rate, EPC, commission,
+        # sector) are intentionally suppressed — they're for the publisher,
+        # not the customer.
         if mc and mc.get("facts"):
-            # Buyer-friendly facts for code merchants (not seller-side affiliate KPIs).
             for strong, span in mc["facts"]:
                 stats += f'<div class="stat"><strong>{html.escape(strong)}</strong><span>{html.escape(span)}</span></div>'
-        elif not mc:
-            if m.get("approval_rate"):
-                stats += f'<div class="stat"><strong>{m["approval_rate"]:.0f}%</strong><span>Approval Rate</span></div>'
-            if m.get("epc") is not None:
-                stats += f'<div class="stat"><strong>£{m["epc"]:.2f}</strong><span>Avg Earnings/Click</span></div>'
-            if m.get("commission"):
-                stats += f'<div class="stat"><strong>{m["commission"]}</strong><span>Commission</span></div>'
-            if m.get("sector"):
-                stats += f'<div class="stat"><strong>{html.escape(m["sector"])}</strong><span>Sector</span></div>'
 
         # Schema for brand page
         schema = json.dumps({
