@@ -19,6 +19,8 @@ AWIN_MERCHANT_MAP = {
     "aatu.co.uk": "17135",
     "8wines": "106707",
     "8wines.com": "106707",
+    "game over": "37282",
+    "gameover": "37282",
     # Add more as Awin merchants approve us:
     # "currys": "1599",
     # "john lewis": "6395",
@@ -41,6 +43,7 @@ LOCAL_LOGOS = {
     "aatu": "/images/aatu-logo.jpg",
     "8wines": "/images/8wines-logo.jpg",
     "bunches": "/images/bunches-logo.jpg",
+    "game over": "/images/gameover-logo.jpg",
 }
 
 def local_logo(merchant_name):
