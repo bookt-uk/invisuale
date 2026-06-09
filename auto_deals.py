@@ -46,6 +46,79 @@ LOCAL_LOGOS = {
     "game over": "/images/gameover-logo.jpg",
 }
 
+# Awin product feed URLs (from Create-a-Feed UI in Awin → Toolbox → Create-a-Feed).
+# Keyed the same way as MERCHANT_CODES. The scraper downloads, parses, and renders
+# up to MAX_FEED_PRODUCTS per merchant on their /codes/{slug}.html page.
+# Awin standard CSV columns include: aw_product_id, product_name, description,
+# aw_deep_link, aw_image_url, search_price, store_price, currency, in_stock,
+# merchant_category, brand_name.
+MERCHANT_FEEDS = {
+    # "bunches": "https://productdata.awin.com/datafeed/download/apikey/.../fid/.../...",
+}
+MAX_FEED_PRODUCTS = 12  # cards per brand page
+
+def fetch_product_feed(url):
+    """Download an Awin CSV product feed and return a list of product dicts.
+    Returns [] on any failure — feeds are optional, never block a scraper run."""
+    if not url: return []
+    try:
+        import csv, io
+        req = urllib.request.Request(url, headers={"User-Agent":"Mozilla/5.0"})
+        raw = urllib.request.urlopen(req, timeout=60).read()
+        # Awin feeds can be gzipped
+        if raw[:2] == b'\x1f\x8b':
+            import gzip
+            raw = gzip.decompress(raw)
+        text = raw.decode("utf-8", "ignore")
+        rows = list(csv.DictReader(io.StringIO(text)))
+        out = []
+        for r in rows[:MAX_FEED_PRODUCTS * 3]:  # over-fetch so we can filter
+            name = (r.get("product_name") or r.get("Product Name") or "").strip()
+            link = (r.get("aw_deep_link") or r.get("merchant_deep_link") or "").strip()
+            img = (r.get("aw_image_url") or r.get("merchant_image_url") or "").strip()
+            price = (r.get("search_price") or r.get("store_price") or "").strip()
+            orig = (r.get("rrp_price") or r.get("base_price") or "").strip()
+            if not (name and link): continue
+            if r.get("in_stock","1") == "0": continue
+            out.append({"name":name,"link":link,"image":img,"price":price,"orig":orig})
+            if len(out) >= MAX_FEED_PRODUCTS: break
+        return out
+    except Exception as e:
+        print(f"product feed failed for {url[:60]}...: {e}")
+        return []
+
+def render_feed_products(merchant_name, products):
+    """Build a 'Featured Products' grid HTML block for a brand page."""
+    if not products: return ""
+    cards = ""
+    for p in products:
+        img = (f'<img src="{html.escape(p["image"])}" alt="" loading="lazy">'
+               if p["image"] else '<div class="fp-ph">🏷️</div>')
+        price_html = ""
+        if p["price"]:
+            try:
+                pn = float(p["price"])
+                orig_html = ""
+                if p["orig"]:
+                    try:
+                        on = float(p["orig"])
+                        if on > pn:
+                            orig_html = f'<s>£{on:.2f}</s>'
+                    except: pass
+                price_html = f'<div class="fp-price">£{pn:.2f} {orig_html}</div>'
+            except: pass
+        cards += (
+            f'<a href="{html.escape(p["link"])}" rel="nofollow sponsored" target="_blank" class="fp-card">'
+            f'<div class="fp-img">{img}</div>'
+            f'<div class="fp-name">{html.escape(p["name"][:80])}</div>'
+            f'{price_html}</a>'
+        )
+    return (
+        f'<h2 style="font-family:\'Barlow Condensed\',sans-serif;font-size:24px;font-weight:800;color:#0f172a;'
+        f'margin:32px 0 16px">Featured products from {html.escape(merchant_name)}</h2>'
+        f'<div class="fp-grid">{cards}</div>'
+    )
+
 def local_logo(merchant_name):
     n = (merchant_name or "").lower().strip()
     if n in LOCAL_LOGOS: return LOCAL_LOGOS[n]
@@ -876,6 +949,16 @@ main{max-width:1200px;margin:0 auto;padding:36px 20px 64px}
 .seo-block h2{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#0f172a;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
 .back-link{display:inline-block;margin-bottom:18px;color:#64748b;font-size:13px;font-weight:700;text-decoration:none}
 .back-link:hover{color:#ef4444}
+.fp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.fp-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;text-decoration:none;color:#1e293b;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.fp-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.fp-img{background:#f8f9fa;height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid #e2e8f0;padding:10px}
+.fp-img img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
+.fp-ph{font-size:28px;color:#cbd5e1}
+.fp-name{padding:10px 12px 4px;font-size:12px;font-weight:700;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:50px}
+.fp-price{padding:0 12px 12px;font-size:15px;font-weight:800;color:#ef4444}
+.fp-price s{color:#94a3b8;font-weight:600;font-size:11px;margin-left:6px}
+@media(max-width:600px){.fp-grid{grid-template-columns:repeat(2,1fr);gap:10px}.fp-img{height:120px}.fp-name{font-size:11px}}
 .codes-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:24px}
 .code-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;display:flex;align-items:stretch}
 .code-card .accent{width:6px;background:linear-gradient(180deg,#d4af37,#a07820);flex-shrink:0}
@@ -983,6 +1066,9 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
             + '</div></div></div>'
             + (f'<div class="stats">{stats}</div>' if stats else "")
             + codes_block
+            + render_feed_products(m["name"], fetch_product_feed(
+                next((MERCHANT_FEEDS[k] for k in MERCHANT_FEEDS
+                      if k in m["name"].lower()), "")))
             + '<div class="seo-block"><h2>About this offer page</h2>'
             + (f'<p>The codes above are verified through our official {html.escape(m["name"])} Awin partnership. We only list codes confirmed by the merchant — no fake or expired codes.</p>'
                if mc else
