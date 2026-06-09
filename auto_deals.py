@@ -17,6 +17,8 @@ AWIN_MERCHANT_MAP = {
     "bunches.co.uk": "488",
     "aatu": "17135",
     "aatu.co.uk": "17135",
+    "8wines": "106707",
+    "8wines.com": "106707",
     # Add more as Awin merchants approve us:
     # "currys": "1599",
     # "john lewis": "6395",
