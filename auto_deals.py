@@ -762,6 +762,14 @@ FEATURED_CARDS = [
         "chips": [("£8 OFF", "New customers, orders £88+"), ("FREE SHIP", "On orders over £400")],
         "cta": "https://www.awin1.com/cread.php?awinmid=106707&awinaffid=2926769&ued=https%3A%2F%2F8wines.com%2Fwines%3Fam_on_sale%3D1",
     },
+    {
+        "logo": "/images/bunches-logo.jpg", "name": "BUNCHES", "label": "Flowers",
+        "verified": "Verified partner",
+        "head": "Fresh flowers delivered anywhere in the UK",
+        "feats": ["From £20.25", "Letterbox & bouquets", "Trusted UK florist"],
+        "chips": [("FROM £20.25", "Flowers by post"), ("UK-WIDE", "Any UK address")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=488&awinaffid=2926769&ued=https%3A%2F%2Fwww.bunches.co.uk%2F",
+    },
 ]
 
 def render_featured_card(c):
@@ -786,7 +794,7 @@ FEATURED_CARD_HTML = "".join(render_featured_card(c) for c in FEATURED_CARDS)
 
 def update_index(new_deals):
     all_files = sorted(os.listdir('deals')) if os.path.exists('deals') else []
-    cards = ""
+    deal_cards = []
     for fname in reversed(all_files):
         if not fname.endswith('.html'): continue
         title = fname.replace('.html','').replace('-',' ').title()
@@ -811,7 +819,21 @@ def update_index(new_deals):
                 im = re.search(r'<img[^>]+src="([^"]+)"', content)
                 if im: img_src = im.group(1)
         except: pass
-        cards += build_card(fname, title, img_src, price, merchant, features, shipping)
+        deal_cards.append(build_card(fname, title, img_src, price, merchant, features, shipping))
+
+    # Blend featured brand cards into the deal grid (not stacked at the top).
+    # Spread them out: first after a few deals, then evenly apart.
+    featured = [render_featured_card(c) for c in FEATURED_CARDS]
+    slots = [3 + i * 6 for i in range(len(featured))]  # e.g. positions 3, 9, 15
+    out = []
+    fi = 0
+    for i, dc in enumerate(deal_cards):
+        if fi < len(featured) and i == slots[fi]:
+            out.append(featured[fi]); fi += 1
+        out.append(dc)
+    while fi < len(featured):  # any leftovers if there were few deals
+        out.append(featured[fi]); fi += 1
+    cards = "".join(out)
 
     try:
         with open("index.html") as f: base = f.read()
@@ -821,7 +843,7 @@ def update_index(new_deals):
     if marker_start in base and marker_end in base:
         start = base.index(marker_start) + len(marker_start)
         end = base.index(marker_end, start)
-        base = base[:start] + '\n' + FEATURED_CARD_HTML + cards + base[end:]
+        base = base[:start] + '\n' + cards + base[end:]
     with open("index.html", "w") as f: f.write(base)
 
 CATEGORY_ICONS = {
