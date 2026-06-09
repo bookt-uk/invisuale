@@ -618,14 +618,18 @@ AWIN_AFFID = "2926769"  # Awin publisher ID (same as AWIN_PUBLISHER_ID but hardc
 
 # AATU featured card — navy + gold, matches site palette. Styling lives in index.html
 # <style> (.fc rules), which update_index() preserves; this is just the markup it re-injects.
-FEATURED_CARD_HTML = """<div class="deal featured fc">
-  <div class="fc-top"><div class="fc-brand">AATU<small>PET FOOD</small></div><div class="fc-tag">FEATURED</div></div>
-  <div class="fc-head">Up to 30% off RRP + free delivery on your first AATU order</div>
-  <div class="fc-chips">
-    <div class="fc-chip"><b>HELLO10</b><span>10% off your first order</span></div>
-    <div class="fc-chip"><b>FIRSTSUB</b><span>30% off your first subscription</span></div>
+FEATURED_CARD_HTML = """<div class="deal featured ff">
+  <div class="ff-brand"><img src="/images/aatu-logo.jpg" alt="AATU logo"><span class="ff-pet">Pet Food</span></div>
+  <div class="ff-body">
+    <div class="ff-top"><span class="ff-tag">FEATURED</span><span class="ff-verified">&#10003; Verified codes</span></div>
+    <div class="ff-head">Up to 30% off RRP + free delivery on your first AATU order</div>
+    <div class="ff-feats"><span>&#10003; 80% meat or fish</span><span>&#10003; No fillers or grains</span><span>&#10003; Free delivery over &pound;30</span></div>
+    <div class="ff-chips">
+      <div class="ff-chip"><b>HELLO10</b><small>10% off your first order</small></div>
+      <div class="ff-chip"><b>FIRSTSUB</b><small>30% off your first subscription</small></div>
+    </div>
+    <a class="ff-cta" href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank">Shop AATU &rarr;</a>
   </div>
-  <a class="fc-cta" href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank">Shop AATU &rarr;</a>
 </div>
 """
 

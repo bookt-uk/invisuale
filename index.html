@@ -163,23 +163,34 @@ main{max-width:1400px;margin:0 auto;padding:28px 24px 56px}
   }
 }
 
-/* FEATURED CARD (AATU — navy + gold, matches site) */
+/* FEATURED CARD (AATU — white, filled, brand panel + logo) */
 .deal.featured{grid-column:span 2}
-.fc{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);border:none;color:#fff;padding:18px 20px;position:relative;overflow:hidden}
-.fc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(201,162,39,.18) 0%,transparent 55%)}
-.fc>*{position:relative}
-.fc .fc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.fc .fc-brand{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:800;color:#d4af37;letter-spacing:2px;line-height:1}
-.fc .fc-brand small{display:block;font-size:8px;color:#94a3b8;letter-spacing:3px;font-weight:700;margin-top:2px}
-.fc .fc-tag{font-size:9px;font-weight:800;letter-spacing:1px;background:#ef4444;color:#fff;padding:4px 9px;border-radius:5px}
-.fc .fc-head{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px}
-.fc .fc-chips{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
-.fc .fc-chip{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(212,175,55,.4);border-radius:7px;padding:7px 11px}
-.fc .fc-chip b{font-size:13px;font-weight:800;color:#d4af37;letter-spacing:1px}
-.fc .fc-chip span{font-size:11px;color:#cbd5e1;font-weight:600}
-.fc .fc-cta{display:block;background:#ef4444;color:#fff;font-weight:700;font-size:13px;padding:10px;border-radius:8px;text-decoration:none;text-align:center;margin-top:auto}
-.fc .fc-cta:hover{background:#dc2626}
-@media(max-width:600px){.deal.featured{grid-column:span 2}.fc .fc-brand{font-size:26px}.fc .fc-head{font-size:16px}}
+.ff{background:#fff;border:1px solid var(--border);flex-direction:row;padding:0;align-items:stretch}
+.ff .ff-brand{flex:0 0 142px;background:linear-gradient(160deg,#0f172a,#1e3a5f);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;position:relative;overflow:hidden}
+.ff .ff-brand::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 25%,rgba(212,175,55,.22),transparent 60%)}
+.ff .ff-brand img{width:88px;height:88px;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.4);position:relative}
+.ff .ff-pet{font-size:9px;letter-spacing:2px;color:#cbd5e1;font-weight:800;text-transform:uppercase;position:relative}
+.ff .ff-body{flex:1;padding:15px 18px 12px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.ff .ff-top{display:flex;align-items:center;gap:10px}
+.ff .ff-tag{font-size:9px;font-weight:800;letter-spacing:1px;background:#ef4444;color:#fff;padding:4px 9px;border-radius:5px}
+.ff .ff-verified{font-size:10px;font-weight:800;color:#16a34a;text-transform:uppercase;letter-spacing:.5px}
+.ff .ff-head{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:800;color:#0f172a;line-height:1.12}
+.ff .ff-feats{display:flex;flex-wrap:wrap;gap:3px 14px}
+.ff .ff-feats span{font-size:11px;color:#16a34a;font-weight:700}
+.ff .ff-chips{display:flex;flex-direction:column;gap:6px;margin-top:auto;margin-bottom:auto}
+.ff .ff-chip{display:flex;align-items:center;gap:8px;background:#fdf9ec;border:1px solid #ecd9a0;border-radius:7px;padding:7px 11px}
+.ff .ff-chip b{font-size:13px;font-weight:800;color:#a07820;letter-spacing:1px}
+.ff .ff-chip small{font-size:11px;color:#64748b;font-weight:600}
+.ff .ff-cta{display:block;background:#ef4444;color:#fff;font-weight:700;font-size:13px;padding:10px;border-radius:8px;text-decoration:none;text-align:center}
+.ff .ff-cta:hover{background:#dc2626}
+@media(max-width:600px){
+  .deal.featured{grid-column:span 2}
+  .ff{flex-direction:column}
+  .ff .ff-brand{flex:0 0 auto;flex-direction:row;justify-content:flex-start;gap:14px;padding:12px 16px}
+  .ff .ff-brand img{width:52px;height:52px;border-radius:11px}
+  .ff .ff-pet{font-size:11px}
+  .ff .ff-chips{margin:6px 0}
+}
 
 /* TRUST STRIP */
 .trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:36px}
@@ -345,14 +356,18 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',ini
     </div>
   </div>
   <div id="deals">
-<div class="deal featured fc">
-  <div class="fc-top"><div class="fc-brand">AATU<small>PET FOOD</small></div><div class="fc-tag">FEATURED</div></div>
-  <div class="fc-head">Up to 30% off RRP + free delivery on your first AATU order</div>
-  <div class="fc-chips">
-    <div class="fc-chip"><b>HELLO10</b><span>10% off your first order</span></div>
-    <div class="fc-chip"><b>FIRSTSUB</b><span>30% off your first subscription</span></div>
+<div class="deal featured ff">
+  <div class="ff-brand"><img src="/images/aatu-logo.jpg" alt="AATU logo"><span class="ff-pet">Pet Food</span></div>
+  <div class="ff-body">
+    <div class="ff-top"><span class="ff-tag">FEATURED</span><span class="ff-verified">✓ Verified codes</span></div>
+    <div class="ff-head">Up to 30% off RRP + free delivery on your first AATU order</div>
+    <div class="ff-feats"><span>✓ 80% meat or fish</span><span>✓ No fillers or grains</span><span>✓ Free delivery over £30</span></div>
+    <div class="ff-chips">
+      <div class="ff-chip"><b>HELLO10</b><small>10% off your first order</small></div>
+      <div class="ff-chip"><b>FIRSTSUB</b><small>30% off your first subscription</small></div>
+    </div>
+    <a class="ff-cta" href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank">Shop AATU →</a>
   </div>
-  <a class="fc-cta" href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank">Shop AATU →</a>
 </div>
 
 
