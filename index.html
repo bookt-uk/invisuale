@@ -163,14 +163,23 @@ main{max-width:1400px;margin:0 auto;padding:28px 24px 56px}
   }
 }
 
-/* FEATURED CARD */
-.deal.featured{grid-column:span 3}
-@media(max-width:600px){
-  .deal.featured{grid-column:span 2 !important}
-  .deal.featured>div{flex-direction:column !important}
-  .deal.featured>div>div:first-child{flex-direction:row !important;padding:12px 16px !important;border-right:none !important;border-bottom:1px solid rgba(184,144,42,.25) !important;align-self:auto !important;justify-content:flex-start !important;gap:12px}
-  .deal.featured>div>div:last-child{padding:10px 16px !important}
-}
+/* FEATURED CARD (AATU — navy + gold, matches site) */
+.deal.featured{grid-column:span 2}
+.fc{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);border:none;color:#fff;padding:18px 20px;position:relative;overflow:hidden}
+.fc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(201,162,39,.18) 0%,transparent 55%)}
+.fc>*{position:relative}
+.fc .fc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.fc .fc-brand{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:800;color:#d4af37;letter-spacing:2px;line-height:1}
+.fc .fc-brand small{display:block;font-size:8px;color:#94a3b8;letter-spacing:3px;font-weight:700;margin-top:2px}
+.fc .fc-tag{font-size:9px;font-weight:800;letter-spacing:1px;background:#ef4444;color:#fff;padding:4px 9px;border-radius:5px}
+.fc .fc-head{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px}
+.fc .fc-chips{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.fc .fc-chip{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(212,175,55,.4);border-radius:7px;padding:7px 11px}
+.fc .fc-chip b{font-size:13px;font-weight:800;color:#d4af37;letter-spacing:1px}
+.fc .fc-chip span{font-size:11px;color:#cbd5e1;font-weight:600}
+.fc .fc-cta{display:block;background:#ef4444;color:#fff;font-weight:700;font-size:13px;padding:10px;border-radius:8px;text-decoration:none;text-align:center;margin-top:auto}
+.fc .fc-cta:hover{background:#dc2626}
+@media(max-width:600px){.deal.featured{grid-column:span 2}.fc .fc-brand{font-size:26px}.fc .fc-head{font-size:16px}}
 
 /* TRUST STRIP */
 .trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:36px}
@@ -336,40 +345,14 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',ini
     </div>
   </div>
   <div id="deals">
-<div class="deal featured" style="grid-column:span 3;background:linear-gradient(135deg,#1c1a14 0%,#2e2410 100%);border:1.5px solid #b8902a;color:#fff;overflow:hidden">
-  <div style="display:flex;flex-direction:row;align-items:center;gap:0;height:100%">
-    <div style="background:rgba(0,0,0,.35);padding:18px 20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;align-self:stretch;border-right:1px solid rgba(184,144,42,.25)">
-      <div style="text-align:center">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:#c9a227;letter-spacing:1px;line-height:1">AATU</div>
-        <div style="font-size:9px;color:#a0936a;font-weight:700;letter-spacing:2px;margin-top:3px">PET FOOD</div>
-        <div style="margin-top:10px;font-size:9px;font-weight:800;letter-spacing:1px;background:rgba(184,144,42,.25);border:1px solid rgba(184,144,42,.4);color:#c9a227;padding:3px 8px;border-radius:4px">FEATURED</div>
-      </div>
-    </div>
-    <div style="padding:16px 18px;flex:1;min-width:0">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(15px,2vw,21px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:10px">Up to 30% off RRP + Free delivery<br>on your first AATU order</div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px 10px;margin-bottom:10px">
-        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ 80% fresh meat</span>
-        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ No fillers or grains</span>
-        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ 30-day cookie</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:7px">
-        <div style="background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.4);border-radius:6px;padding:5px 10px;display:flex;align-items:center;gap:7px">
-          <span style="font-size:10px;color:#a0936a;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Code</span>
-          <span style="font-size:13px;font-weight:800;color:#c9a227;letter-spacing:1px">HELLO10</span>
-          <span style="font-size:10px;color:#a0936a;font-weight:600">10% off first order</span>
-        </div>
-        <div style="background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.4);border-radius:6px;padding:5px 10px;display:flex;align-items:center;gap:7px">
-          <span style="font-size:10px;color:#a0936a;font-weight:700;text-transform:uppercase;letter-spacing:.5px">Code</span>
-          <span style="font-size:13px;font-weight:800;color:#c9a227;letter-spacing:1px">FIRSTSUB</span>
-          <span style="font-size:10px;color:#a0936a;font-weight:600">30% off first subscription</span>
-        </div>
-      </div>
-    </div>
-    <div style="padding:16px 18px;flex-shrink:0">
-      <a href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank" style="display:block;background:linear-gradient(135deg,#c9a227,#a07820);color:#fff;font-weight:800;font-size:13px;padding:11px 18px;border-radius:8px;text-decoration:none;white-space:nowrap;text-align:center;box-shadow:0 4px 14px rgba(184,144,42,.4)">Shop AATU →</a>
-      <div style="font-size:10px;color:#6b5d3a;text-align:center;margin-top:6px;font-weight:600">Free delivery over £30</div>
-    </div>
+<div class="deal featured fc">
+  <div class="fc-top"><div class="fc-brand">AATU<small>PET FOOD</small></div><div class="fc-tag">FEATURED</div></div>
+  <div class="fc-head">Up to 30% off RRP + free delivery on your first AATU order</div>
+  <div class="fc-chips">
+    <div class="fc-chip"><b>HELLO10</b><span>10% off your first order</span></div>
+    <div class="fc-chip"><b>FIRSTSUB</b><span>30% off your first subscription</span></div>
   </div>
+  <a class="fc-cta" href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank">Shop AATU →</a>
 </div>
 
 

@@ -26,6 +26,34 @@ AWIN_MERCHANT_MAP = {
 AMAZON_TAG = os.environ.get("AMAZON_ASSOCIATES_TAG", "")  # e.g. "invisuale-21"
 AWIN_API_TOKEN = os.environ.get("AWIN_API_TOKEN", "")  # OAuth token for Awin Publisher API
 
+# Real voucher codes per merchant, keyed by lower-cased Awin programme name (or a
+# substring of it). The Awin REST API does NOT expose promotion/voucher data on our
+# plan, so verified codes are added here by hand from each merchant's programme page.
+# When a merchant here matches a joined programme, make_codes_pages() renders a rich
+# codes page (with copy buttons) at the given slug instead of the generic offers page,
+# and the /codes/ index shows an "N Codes Available" badge.
+MERCHANT_CODES = {
+    "aatu": {
+        "slug": "aatu-co-uk",
+        # Buyer-relevant facts shown as the stats bar (not affiliate KPIs).
+        "facts": [("Free", "Delivery over £30"), ("80%", "Meat or fish"), ("New & subs", "Codes apply")],
+        "codes": [
+            ("HELLO10", "10% off your first order", "New customers — 10% off your first AATU order."),
+            ("FIRSTSUB", "30% off your first subscription", "30% off your first AATU Subscribe & Save order."),
+        ],
+    },
+}
+
+def lookup_codes(merchant_name):
+    """Return the MERCHANT_CODES entry for a merchant name (exact or substring match)."""
+    n = (merchant_name or "").lower().strip()
+    if n in MERCHANT_CODES:
+        return MERCHANT_CODES[n]
+    for key, val in MERCHANT_CODES.items():
+        if key in n:
+            return val
+    return None
+
 def awin_fetch_joined_programmes():
     """Pull all joined Awin programmes via the API. Returns list of dicts with
     {id, name, logo, displayUrl, sector, region, deeplink, kpi}.
@@ -588,40 +616,18 @@ def build_card(fname, title, img_src, price, merchant, features, shipping=""):
 
 AWIN_AFFID = "2926769"  # Awin publisher ID (same as AWIN_PUBLISHER_ID but hardcoded for featured card)
 
-FEATURED_CARD_HTML = """<div class="deal featured" style="grid-column:span 3;background:linear-gradient(135deg,#1c1a14 0%,#2e2410 100%);border:1.5px solid #b8902a;color:#fff;overflow:hidden">
-  <div style="display:flex;flex-direction:row;align-items:center;gap:0;height:100%">
-    <div style="background:rgba(0,0,0,.35);padding:18px 20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;align-self:stretch;border-right:1px solid rgba(184,144,42,.25)">
-      <div style="text-align:center">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:#c9a227;letter-spacing:1px;line-height:1">AATU</div>
-        <div style="font-size:9px;color:#a0936a;font-weight:700;letter-spacing:2px;margin-top:3px">PET FOOD</div>
-        <div style="margin-top:10px;font-size:9px;font-weight:800;letter-spacing:1px;background:rgba(184,144,42,.25);border:1px solid rgba(184,144,42,.4);color:#c9a227;padding:3px 8px;border-radius:4px">FEATURED</div>
-      </div>
-    </div>
-    <div style="padding:16px 18px;flex:1;min-width:0">
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(16px,2.2vw,22px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:8px">Up to 30% off RRP + Free delivery<br>on your first AATU order</div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:0">
-        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ 80% fresh meat</span>
-        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ No fillers or grains</span>
-        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ Subscribe &amp; save</span>
-      </div>
-    </div>
-    <div style="padding:16px 18px;flex-shrink:0">
-      <a href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank" style="display:block;background:linear-gradient(135deg,#c9a227,#a07820);color:#fff;font-weight:800;font-size:13px;padding:11px 18px;border-radius:8px;text-decoration:none;white-space:nowrap;text-align:center;box-shadow:0 4px 14px rgba(184,144,42,.4)">Shop AATU →</a>
-      <div style="font-size:10px;color:#6b5d3a;text-align:center;margin-top:6px;font-weight:600">Premium pet nutrition</div>
-    </div>
+# AATU featured card — navy + gold, matches site palette. Styling lives in index.html
+# <style> (.fc rules), which update_index() preserves; this is just the markup it re-injects.
+FEATURED_CARD_HTML = """<div class="deal featured fc">
+  <div class="fc-top"><div class="fc-brand">AATU<small>PET FOOD</small></div><div class="fc-tag">FEATURED</div></div>
+  <div class="fc-head">Up to 30% off RRP + free delivery on your first AATU order</div>
+  <div class="fc-chips">
+    <div class="fc-chip"><b>HELLO10</b><span>10% off your first order</span></div>
+    <div class="fc-chip"><b>FIRSTSUB</b><span>30% off your first subscription</span></div>
   </div>
+  <a class="fc-cta" href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank">Shop AATU &rarr;</a>
 </div>
 """
-
-FEATURED_CARD_HTML_MOBILE = """<style>
-@media(max-width:600px){
-  .deal.featured{grid-column:span 2 !important}
-  .deal.featured>div{flex-direction:column !important}
-  .deal.featured>div>div:first-child{flex-direction:row !important;padding:12px 16px !important;border-right:none !important;border-bottom:1px solid rgba(184,144,42,.25) !important;align-self:auto !important;justify-content:flex-start !important;gap:12px}
-  .deal.featured>div>div:last-child{padding:10px 16px !important}
-  .deal.featured a[href*="awin"]{width:100%;box-sizing:border-box}
-}
-</style>"""
 
 def update_index(new_deals):
     all_files = sorted(os.listdir('deals')) if os.path.exists('deals') else []
@@ -837,9 +843,26 @@ main{max-width:1200px;margin:0 auto;padding:36px 20px 64px}
 .seo-block h2{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#0f172a;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
 .back-link{display:inline-block;margin-bottom:18px;color:#64748b;font-size:13px;font-weight:700;text-decoration:none}
 .back-link:hover{color:#ef4444}
+.codes-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:24px}
+.code-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;display:flex;align-items:stretch}
+.code-card .accent{width:6px;background:linear-gradient(180deg,#d4af37,#a07820);flex-shrink:0}
+.code-card .body{padding:20px 22px;flex:1}
+.code-type{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#16a34a;margin-bottom:6px}
+.code-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:#0f172a;line-height:1.2;margin-bottom:8px}
+.code-desc{font-size:13px;color:#475569;line-height:1.55;margin-bottom:14px}
+.code-box-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.code-box{background:#fefce8;border:2px dashed #d4af37;border-radius:8px;padding:10px 18px;font-size:18px;font-weight:800;color:#92400e;letter-spacing:2px;user-select:all}
+.copy-btn{background:#ef4444;color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:800;font-size:13px;cursor:pointer;transition:background .15s}
+.copy-btn:hover{background:#dc2626}
+.shop-btn{display:inline-block;margin-top:16px;background:#0f172a;color:#fff;padding:11px 22px;border-radius:8px;font-weight:800;font-size:14px;text-decoration:none}
+.shop-btn:hover{background:#1e293b}
+@media(max-width:600px){.code-box-row{flex-direction:column;align-items:flex-start}}
 footer{background:#0f172a;color:#64748b;text-align:center;padding:28px 24px;font-size:13px;font-weight:600;margin-top:48px}
 footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
 """
+    copy_js = ("<script>function copyCode(c,b){navigator.clipboard.writeText(c).then(function(){"
+               "var x=document.getElementById(b),o=x.textContent;x.textContent='Copied!';"
+               "x.style.background='#16a34a';setTimeout(function(){x.textContent=o;x.style.background='';},2000);});}</script>")
     footer_html = (
         '<footer><p><strong style="color:#fff">Invisuale</strong> — Best UK Deals, updated daily.</p>'
         '<p style="margin-top:8px;font-size:11px">We may earn a commission when you buy through links. As an Amazon Associate we earn from qualifying purchases.</p>'
@@ -849,17 +872,42 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
 
     # --- Per-brand pages ---
     for m in merchants:
-        slug_b = re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-')
+        mc = lookup_codes(m["name"])
+        slug_b = (mc["slug"] if mc else re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-'))
         cta_link = m["deeplink"]
+        # Build verified-codes block (only for merchants we have real codes for)
+        codes_block = ""
+        if mc:
+            cc = ""
+            for i, (code, short, desc) in enumerate(mc["codes"]):
+                bid = f"cd{i}"
+                cc += (
+                    '<div class="code-card"><div class="accent"></div><div class="body">'
+                    '<div class="code-type">✅ Verified Code</div>'
+                    f'<div class="code-title">{html.escape(short)}</div>'
+                    f'<div class="code-desc">{html.escape(desc)} Use code <strong>{html.escape(code)}</strong> at checkout.</div>'
+                    '<div class="code-box-row">'
+                    f'<span class="code-box" id="{bid}">{html.escape(code)}</span>'
+                    f'<button class="copy-btn" onclick="copyCode(\'{html.escape(code)}\',\'{bid}\')">Copy Code</button>'
+                    '</div>'
+                    f'<a href="{cta_link}" class="shop-btn" rel="nofollow sponsored" target="_blank">Shop {html.escape(m["name"])} →</a>'
+                    '</div></div>'
+                )
+            codes_block = f'<div class="codes-grid">{cc}</div>'
         stats = ""
-        if m.get("approval_rate"):
-            stats += f'<div class="stat"><strong>{m["approval_rate"]:.0f}%</strong><span>Approval Rate</span></div>'
-        if m.get("epc") is not None:
-            stats += f'<div class="stat"><strong>£{m["epc"]:.2f}</strong><span>Avg Earnings/Click</span></div>'
-        if m.get("commission"):
-            stats += f'<div class="stat"><strong>{m["commission"]}</strong><span>Commission</span></div>'
-        if m.get("sector"):
-            stats += f'<div class="stat"><strong>{html.escape(m["sector"])}</strong><span>Sector</span></div>'
+        if mc and mc.get("facts"):
+            # Buyer-friendly facts for code merchants (not seller-side affiliate KPIs).
+            for strong, span in mc["facts"]:
+                stats += f'<div class="stat"><strong>{html.escape(strong)}</strong><span>{html.escape(span)}</span></div>'
+        elif not mc:
+            if m.get("approval_rate"):
+                stats += f'<div class="stat"><strong>{m["approval_rate"]:.0f}%</strong><span>Approval Rate</span></div>'
+            if m.get("epc") is not None:
+                stats += f'<div class="stat"><strong>£{m["epc"]:.2f}</strong><span>Avg Earnings/Click</span></div>'
+            if m.get("commission"):
+                stats += f'<div class="stat"><strong>{m["commission"]}</strong><span>Commission</span></div>'
+            if m.get("sector"):
+                stats += f'<div class="stat"><strong>{html.escape(m["sector"])}</strong><span>Sector</span></div>'
 
         # Schema for brand page
         schema = json.dumps({
@@ -902,20 +950,29 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
             + (f'<a href="{html.escape(m["displayUrl"])}" class="btn-secondary" target="_blank">Direct site</a>' if m.get("displayUrl") else "")
             + '</div></div></div>'
             + (f'<div class="stats">{stats}</div>' if stats else "")
+            + codes_block
             + '<div class="seo-block"><h2>About this offer page</h2>'
-            f'<p>This page links directly to {html.escape(m["name"])}\'s current offers via our verified Awin partnership. Rather than listing individual codes that often expire within hours, we send you straight to {html.escape(m["name"])}\'s official sale and offers pages where the live discounts are guaranteed to work.</p>'
-            f'<p>Browse <a href="/codes/">all our retailer offer pages</a>, check today\'s <a href="/">hot deals</a>, or read our <a href="/guides/spot-a-real-deal-vs-fake-discount.html">guide on spotting fake discounts</a>.</p>'
-            '</div></main>' + footer_html + '</body></html>'
+            + (f'<p>The codes above are verified through our official {html.escape(m["name"])} Awin partnership. We only list codes confirmed by the merchant — no fake or expired codes.</p>'
+               if mc else
+               f'<p>This page links directly to {html.escape(m["name"])}\'s current offers via our verified Awin partnership. Rather than listing individual codes that often expire within hours, we send you straight to {html.escape(m["name"])}\'s official sale and offers pages where the live discounts are guaranteed to work.</p>')
+            + f'<p>Browse <a href="/codes/">all our retailer offer pages</a>, check today\'s <a href="/">hot deals</a>, or read our <a href="/guides/spot-a-real-deal-vs-fake-discount.html">guide on spotting fake discounts</a>.</p>'
+            + '</div></main>' + footer_html + copy_js + '</body></html>'
         )
         with open(f"codes/{slug_b}.html", "w") as f: f.write(page)
 
     # --- Codes index page ---
     cards = ""
     for m in sorted(merchants, key=lambda x: x["name"].lower()):
-        slug_b = re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-')
+        mc = lookup_codes(m["name"])
+        slug_b = (mc["slug"] if mc else re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-'))
         logo = f'<img src="{html.escape(m["logo"])}" alt="{html.escape(m["name"])} logo" class="brand-logo" loading="lazy">' if m.get("logo") else '<div class="brand-logo" style="display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:8px;font-weight:800;color:#475569">' + html.escape(m["name"][:2].upper()) + '</div>'
-        meta = "Verified Partner"
-        comm = f'<div class="brand-comm">Up to {m["commission"]} commission</div>' if m.get("commission") else ""
+        if mc:
+            n = len(mc["codes"])
+            meta = f'{n} Code{"s" if n != 1 else ""} Available'
+            comm = f'<div class="brand-comm">{" · ".join(c[0] for c in mc["codes"])}</div>'
+        else:
+            meta = "Verified Partner"
+            comm = f'<div class="brand-comm">Up to {m["commission"]} commission</div>' if m.get("commission") else ""
         cards += (
             f'<a href="/codes/{slug_b}.html" class="brand-card">'
             f'{logo}<div class="brand-name">{html.escape(m["name"])}</div>'
