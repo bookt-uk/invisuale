@@ -741,22 +741,48 @@ def build_card(fname, title, img_src, price, merchant, features, shipping=""):
 
 AWIN_AFFID = "2926769"  # Awin publisher ID (same as AWIN_PUBLISHER_ID but hardcoded for featured card)
 
-# AATU featured card — navy + gold, matches site palette. Styling lives in index.html
-# <style> (.fc rules), which update_index() preserves; this is just the markup it re-injects.
-FEATURED_CARD_HTML = """<div class="deal featured ff">
-  <div class="ff-brand"><img src="/images/aatu-logo.jpg" alt="AATU logo"><span class="ff-pet">Pet Food</span></div>
-  <div class="ff-body">
-    <div class="ff-top"><span class="ff-tag">FEATURED</span><span class="ff-verified">&#10003; Verified codes</span></div>
-    <div class="ff-head">Up to 30% off RRP + free delivery on your first AATU order</div>
-    <div class="ff-feats"><span>&#10003; 80% meat or fish</span><span>&#10003; No fillers or grains</span><span>&#10003; Free delivery over &pound;30</span></div>
-    <div class="ff-chips">
-      <div class="ff-chip"><b>HELLO10</b><small>10% off your first order</small></div>
-      <div class="ff-chip"><b>FIRSTSUB</b><small>30% off your first subscription</small></div>
-    </div>
-    <a class="ff-cta" href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank">Shop AATU &rarr;</a>
-  </div>
-</div>
-"""
+# Homepage featured brand cards (the white ".ff" design — styling lives in index.html
+# <style>, which update_index() preserves). Data-driven: add a dict here and it shows
+# on the homepage automatically. Each card spans 2 grid columns and pins to the top.
+#   chips = list of (bold, small) — works for codes (HELLO10 / "10% off") or offers (£8 OFF / "...")
+FEATURED_CARDS = [
+    {
+        "logo": "/images/aatu-logo.jpg", "name": "AATU", "label": "Pet Food",
+        "verified": "Verified codes",
+        "head": "Up to 30% off RRP + free delivery on your first AATU order",
+        "feats": ["80% meat or fish", "No fillers or grains", "Free delivery over £30"],
+        "chips": [("HELLO10", "10% off your first order"), ("FIRSTSUB", "30% off your first subscription")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F",
+    },
+    {
+        "logo": "/images/8wines-logo.jpg", "name": "8WINES", "label": "Wine",
+        "verified": "Verified offers",
+        "head": "£8 off your first order + free UK shipping over £400",
+        "feats": ["Award-winning wines", "Gold 7 years running", "Delivered across the UK"],
+        "chips": [("£8 OFF", "New customers, orders £88+"), ("FREE SHIP", "On orders over £400")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=106707&awinaffid=2926769&ued=https%3A%2F%2F8wines.com%2Fwines%3Fam_on_sale%3D1",
+    },
+]
+
+def render_featured_card(c):
+    feats = "".join(f'<span>&#10003; {html.escape(f)}</span>' for f in c["feats"])
+    chips = "".join(f'<div class="ff-chip"><b>{html.escape(b)}</b><small>{html.escape(s)}</small></div>'
+                    for b, s in c["chips"])
+    return (
+        '<div class="deal featured ff">'
+        f'<div class="ff-brand"><img src="{c["logo"]}" alt="{html.escape(c["name"])} logo">'
+        f'<span class="ff-pet">{html.escape(c["label"])}</span></div>'
+        '<div class="ff-body">'
+        f'<div class="ff-top"><span class="ff-tag">FEATURED</span>'
+        f'<span class="ff-verified">&#10003; {html.escape(c["verified"])}</span></div>'
+        f'<div class="ff-head">{html.escape(c["head"])}</div>'
+        f'<div class="ff-feats">{feats}</div>'
+        f'<div class="ff-chips">{chips}</div>'
+        f'<a class="ff-cta" href="{c["cta"]}" rel="nofollow sponsored" target="_blank">Shop {html.escape(c["name"])} &rarr;</a>'
+        '</div></div>\n'
+    )
+
+FEATURED_CARD_HTML = "".join(render_featured_card(c) for c in FEATURED_CARDS)
 
 def update_index(new_deals):
     all_files = sorted(os.listdir('deals')) if os.path.exists('deals') else []
