@@ -51,11 +51,9 @@ LOCAL_LOGOS = {
 # once per scraper run; products are filtered per brand using merchant_id below.
 AWIN_FEED_URL = ("https://productdata.awin.com/datafeed/download/apikey/41436bc2f70215f1f5ddb5dbec0c83a4/"
                  "language/en/fid/488,100644/rid/0/hasEnhancedFeeds/0/columns/"
-                 "aw_deep_link,product_name,aw_product_id,merchant_product_id,merchant_image_url,"
-                 "description,merchant_category,search_price,merchant_name,merchant_id,category_name,"
-                 "category_id,aw_image_url,currency,store_price,delivery_cost,merchant_deep_link,"
-                 "language,last_updated,display_price,data_feed_id/format/csv/delimiter/%2C/"
-                 "compression/gzip/adultcontent/1/")
+                 "aw_deep_link,product_name,merchant_image_url,search_price,merchant_id,"
+                 "aw_image_url,store_price,rrp_price,base_price,product_price_old,savings_percent,"
+                 "merchant_deep_link/format/csv/delimiter/%2C/compression/gzip/adultcontent/1/")
 MAX_FEED_PRODUCTS = 12  # cards per brand page
 _feed_cache = None  # populated once per scraper run
 
@@ -79,20 +77,33 @@ def fetch_product_feed():
             link = (r.get("aw_deep_link") or r.get("merchant_deep_link") or "").strip()
             img = (r.get("aw_image_url") or r.get("merchant_image_url") or "").strip()
             price = (r.get("search_price") or r.get("store_price") or "").strip()
+            orig = (r.get("rrp_price") or r.get("base_price") or r.get("product_price_old") or "").strip()
             mid = (r.get("merchant_id") or "").strip()
             if not (name and link and mid): continue
             _feed_cache.append({"name":name,"link":link,"image":img,"price":price,
-                                "orig":"","merchant_id":mid})
+                                "orig":orig,"merchant_id":mid})
         print(f"Awin feed: loaded {len(_feed_cache)} products")
     except Exception as e:
         print(f"product feed failed: {e}")
     return _feed_cache
 
 def products_for_merchant(merchant_id, limit=MAX_FEED_PRODUCTS):
-    """Pick up to N products for a specific merchant from the cached feed."""
+    """Pick up to N *genuinely discounted* products for a merchant (orig > price).
+    Returns [] when the merchant's feed carries no discount data, so the grid
+    only ever shows real deals — never a misleading full-price catalogue."""
     if not merchant_id: return []
     target = str(merchant_id)
-    return [p for p in fetch_product_feed() if p["merchant_id"] == target][:limit]
+    out = []
+    for p in fetch_product_feed():
+        if p["merchant_id"] != target: continue
+        try:
+            sp = float(p["price"]); op = float(p["orig"])
+            if op > sp > 0:
+                out.append(p)
+        except (ValueError, TypeError):
+            continue
+        if len(out) >= limit: break
+    return out
 
 def render_feed_products(merchant_name, products):
     """Build a 'Featured Products' grid HTML block for a brand page."""
@@ -145,11 +156,16 @@ MERCHANT_CODES = {
     },
     "8wines": {
         "slug": "8wines",
-        # No public voucher codes — the merchant runs a live sale page instead.
-        # offers_url overrides the deeplink target so buyers land directly on discounted products.
+        # offers_url overrides the deeplink target so buyers land directly on the sale page.
         "offers_url": "https://8wines.com/wines?am_on_sale=1&product_list_order=sale_percent",
-        "facts": [("Live sale", "Updated daily"), ("Sorted", "By % off"), ("UK delivery", "Available")],
-        "codes": [],  # No codes — page will show the offers CTA only
+        "facts": [("£8 off", "New customers"), ("Free ship", "Orders £400+"), ("Gold", "7 yrs running")],
+        "codes": [],  # No public voucher codes
+        # Code-less promotions (entered by hand from the advertiser's Awin offers).
+        # Rendered as offer cards with a Shop button — applied automatically via our link.
+        "offers": [
+            ("£8 off your first order", "New customers get £8 off orders over £88 — applied through our link, no code needed."),
+            ("Free UK shipping on orders over £400", "Stock up for the cellar and pay nothing for delivery."),
+        ],
     },
 }
 
@@ -1003,10 +1019,11 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
             cta_link = f"https://www.awin1.com/cread.php?awinmid={m['id']}&awinaffid={AWIN_PUBLISHER_ID}&ued={urllib.parse.quote(mc['offers_url'], safe='')}"
         else:
             cta_link = m["deeplink"]
-        # Build verified-codes block (only for merchants we have real codes for)
+        # Build offers/codes block. Codes have a copy button; offers don't (they
+        # apply automatically via our affiliate link).
         codes_block = ""
+        cc = ""
         if mc and mc.get("codes"):
-            cc = ""
             for i, (code, short, desc) in enumerate(mc["codes"]):
                 bid = f"cd{i}"
                 cc += (
@@ -1021,6 +1038,17 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
                     f'<a href="{cta_link}" class="shop-btn" rel="nofollow sponsored" target="_blank">Shop {html.escape(m["name"])} →</a>'
                     '</div></div>'
                 )
+        if mc and mc.get("offers"):
+            for title, desc in mc["offers"]:
+                cc += (
+                    '<div class="code-card"><div class="accent"></div><div class="body">'
+                    '<div class="code-type">🎁 Verified Offer</div>'
+                    f'<div class="code-title">{html.escape(title)}</div>'
+                    f'<div class="code-desc">{html.escape(desc)}</div>'
+                    f'<a href="{cta_link}" class="shop-btn" rel="nofollow sponsored" target="_blank">Shop {html.escape(m["name"])} →</a>'
+                    '</div></div>'
+                )
+        if cc:
             codes_block = f'<div class="codes-grid">{cc}</div>'
         stats = ""
         # Only buyer-friendly facts (set in MERCHANT_CODES) are ever shown.
