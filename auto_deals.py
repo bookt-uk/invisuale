@@ -46,46 +46,53 @@ LOCAL_LOGOS = {
     "game over": "/images/gameover-logo.jpg",
 }
 
-# Awin product feed URLs (from Create-a-Feed UI in Awin → Toolbox → Create-a-Feed).
-# Keyed the same way as MERCHANT_CODES. The scraper downloads, parses, and renders
-# up to MAX_FEED_PRODUCTS per merchant on their /codes/{slug}.html page.
-# Awin standard CSV columns include: aw_product_id, product_name, description,
-# aw_deep_link, aw_image_url, search_price, store_price, currency, in_stock,
-# merchant_category, brand_name.
-MERCHANT_FEEDS = {
-    # "bunches": "https://productdata.awin.com/datafeed/download/apikey/.../fid/.../...",
-}
+# Single Awin Create-a-Feed URL bundling multiple advertisers' products in one CSV.
+# Generated via Awin Toolbox → Create-a-Feed. fetch_product_feed() downloads it
+# once per scraper run; products are filtered per brand using merchant_id below.
+AWIN_FEED_URL = ("https://productdata.awin.com/datafeed/download/apikey/41436bc2f70215f1f5ddb5dbec0c83a4/"
+                 "language/en/fid/488,100644/rid/0/hasEnhancedFeeds/0/columns/"
+                 "aw_deep_link,product_name,aw_product_id,merchant_product_id,merchant_image_url,"
+                 "description,merchant_category,search_price,merchant_name,merchant_id,category_name,"
+                 "category_id,aw_image_url,currency,store_price,delivery_cost,merchant_deep_link,"
+                 "language,last_updated,display_price,data_feed_id/format/csv/delimiter/%2C/"
+                 "compression/gzip/adultcontent/1/")
 MAX_FEED_PRODUCTS = 12  # cards per brand page
+_feed_cache = None  # populated once per scraper run
 
-def fetch_product_feed(url):
-    """Download an Awin CSV product feed and return a list of product dicts.
-    Returns [] on any failure — feeds are optional, never block a scraper run."""
-    if not url: return []
+def fetch_product_feed():
+    """Download the multi-merchant Awin CSV feed once. Returns list of dicts
+    with merchant_id so callers can filter per brand. Cached for the run."""
+    global _feed_cache
+    if _feed_cache is not None: return _feed_cache
+    _feed_cache = []
+    if not AWIN_FEED_URL: return _feed_cache
     try:
         import csv, io
-        req = urllib.request.Request(url, headers={"User-Agent":"Mozilla/5.0"})
-        raw = urllib.request.urlopen(req, timeout=60).read()
-        # Awin feeds can be gzipped
+        req = urllib.request.Request(AWIN_FEED_URL, headers={"User-Agent":"Mozilla/5.0"})
+        raw = urllib.request.urlopen(req, timeout=120).read()
         if raw[:2] == b'\x1f\x8b':
             import gzip
             raw = gzip.decompress(raw)
         text = raw.decode("utf-8", "ignore")
-        rows = list(csv.DictReader(io.StringIO(text)))
-        out = []
-        for r in rows[:MAX_FEED_PRODUCTS * 3]:  # over-fetch so we can filter
-            name = (r.get("product_name") or r.get("Product Name") or "").strip()
+        for r in csv.DictReader(io.StringIO(text)):
+            name = (r.get("product_name") or "").strip()
             link = (r.get("aw_deep_link") or r.get("merchant_deep_link") or "").strip()
             img = (r.get("aw_image_url") or r.get("merchant_image_url") or "").strip()
             price = (r.get("search_price") or r.get("store_price") or "").strip()
-            orig = (r.get("rrp_price") or r.get("base_price") or "").strip()
-            if not (name and link): continue
-            if r.get("in_stock","1") == "0": continue
-            out.append({"name":name,"link":link,"image":img,"price":price,"orig":orig})
-            if len(out) >= MAX_FEED_PRODUCTS: break
-        return out
+            mid = (r.get("merchant_id") or "").strip()
+            if not (name and link and mid): continue
+            _feed_cache.append({"name":name,"link":link,"image":img,"price":price,
+                                "orig":"","merchant_id":mid})
+        print(f"Awin feed: loaded {len(_feed_cache)} products")
     except Exception as e:
-        print(f"product feed failed for {url[:60]}...: {e}")
-        return []
+        print(f"product feed failed: {e}")
+    return _feed_cache
+
+def products_for_merchant(merchant_id, limit=MAX_FEED_PRODUCTS):
+    """Pick up to N products for a specific merchant from the cached feed."""
+    if not merchant_id: return []
+    target = str(merchant_id)
+    return [p for p in fetch_product_feed() if p["merchant_id"] == target][:limit]
 
 def render_feed_products(merchant_name, products):
     """Build a 'Featured Products' grid HTML block for a brand page."""
@@ -1066,9 +1073,7 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
             + '</div></div></div>'
             + (f'<div class="stats">{stats}</div>' if stats else "")
             + codes_block
-            + render_feed_products(m["name"], fetch_product_feed(
-                next((MERCHANT_FEEDS[k] for k in MERCHANT_FEEDS
-                      if k in m["name"].lower()), "")))
+            + render_feed_products(m["name"], products_for_merchant(m["id"]))
             + '<div class="seo-block"><h2>About this offer page</h2>'
             + (f'<p>The codes above are verified through our official {html.escape(m["name"])} Awin partnership. We only list codes confirmed by the merchant — no fake or expired codes.</p>'
                if mc else
