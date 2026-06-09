@@ -44,6 +44,14 @@ MERCHANT_CODES = {
             ("FIRSTSUB", "30% off your first subscription", "30% off your first AATU Subscribe & Save order."),
         ],
     },
+    "8wines": {
+        "slug": "8wines",
+        # No public voucher codes — the merchant runs a live sale page instead.
+        # offers_url overrides the deeplink target so buyers land directly on discounted products.
+        "offers_url": "https://8wines.com/wines?am_on_sale=1&product_list_order=sale_percent",
+        "facts": [("Live sale", "Updated daily"), ("Sorted", "By % off"), ("UK delivery", "Available")],
+        "codes": [],  # No codes — page will show the offers CTA only
+    },
 }
 
 def lookup_codes(merchant_name):
@@ -880,10 +888,15 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
     for m in merchants:
         mc = lookup_codes(m["name"])
         slug_b = (mc["slug"] if mc else re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-'))
-        cta_link = m["deeplink"]
+        # If MERCHANT_CODES entry supplies offers_url, deeplink wraps the sale page
+        # (not the homepage) — buyers land directly on the live discounts.
+        if mc and mc.get("offers_url"):
+            cta_link = f"https://www.awin1.com/cread.php?awinmid={m['id']}&awinaffid={AWIN_PUBLISHER_ID}&ued={urllib.parse.quote(mc['offers_url'], safe='')}"
+        else:
+            cta_link = m["deeplink"]
         # Build verified-codes block (only for merchants we have real codes for)
         codes_block = ""
-        if mc:
+        if mc and mc.get("codes"):
             cc = ""
             for i, (code, short, desc) in enumerate(mc["codes"]):
                 bid = f"cd{i}"
@@ -972,10 +985,13 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
         mc = lookup_codes(m["name"])
         slug_b = (mc["slug"] if mc else re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-'))
         logo = f'<img src="{html.escape(m["logo"])}" alt="{html.escape(m["name"])} logo" class="brand-logo" loading="lazy">' if m.get("logo") else '<div class="brand-logo" style="display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:8px;font-weight:800;color:#475569">' + html.escape(m["name"][:2].upper()) + '</div>'
-        if mc:
+        if mc and mc.get("codes"):
             n = len(mc["codes"])
             meta = f'{n} Code{"s" if n != 1 else ""} Available'
             comm = f'<div class="brand-comm">{" · ".join(c[0] for c in mc["codes"])}</div>'
+        elif mc and mc.get("offers_url"):
+            meta = "Live Sale Page"
+            comm = '<div class="brand-comm">Direct to discounted products</div>'
         else:
             meta = "Verified Partner"
             comm = f'<div class="brand-comm">Up to {m["commission"]} commission</div>' if m.get("commission") else ""
