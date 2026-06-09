@@ -34,6 +34,22 @@ AWIN_API_TOKEN = os.environ.get("AWIN_API_TOKEN", "")  # OAuth token for Awin Pu
 # When a merchant here matches a joined programme, make_codes_pages() renders a rich
 # codes page (with copy buttons) at the given slug instead of the generic offers page,
 # and the /codes/ index shows an "N Codes Available" badge.
+# Local logo cache, keyed the same way as MERCHANT_CODES/AWIN_MERCHANT_MAP.
+# Used as fallback when the Awin API returns no logoUrl (or a broken one) so
+# /codes/ cards and per-brand pages always show real branding.
+LOCAL_LOGOS = {
+    "aatu": "/images/aatu-logo.jpg",
+    "8wines": "/images/8wines-logo.jpg",
+    "bunches": "/images/bunches-logo.jpg",
+}
+
+def local_logo(merchant_name):
+    n = (merchant_name or "").lower().strip()
+    if n in LOCAL_LOGOS: return LOCAL_LOGOS[n]
+    for key, val in LOCAL_LOGOS.items():
+        if key in n: return val
+    return ""
+
 MERCHANT_CODES = {
     "aatu": {
         "slug": "aatu-co-uk",
@@ -962,7 +978,7 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
             '<main>'
             '<a href="/codes/" class="back-link">&larr; All retailers</a>'
             '<div class="brand-page-hero">'
-            + (f'<img src="{html.escape(m["logo"])}" alt="{html.escape(m["name"])} logo">' if m.get("logo") else '')
+            + ((lambda lg: f'<img src="{html.escape(lg)}" alt="{html.escape(m["name"])} logo">' if lg else '')(m.get("logo") or local_logo(m["name"])))
             + f'<div class="info"><h1>{html.escape(m["name"])}</h1>'
             + (f'<p>{html.escape(m["description"])}</p>' if m.get("description") else "")
             + f'<div class="cta-row"><a href="{cta_link}" class="btn-primary" rel="nofollow sponsored" target="_blank">Visit {html.escape(m["name"])} →</a>'
@@ -984,7 +1000,9 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
     for m in sorted(merchants, key=lambda x: x["name"].lower()):
         mc = lookup_codes(m["name"])
         slug_b = (mc["slug"] if mc else re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-'))
-        logo = f'<img src="{html.escape(m["logo"])}" alt="{html.escape(m["name"])} logo" class="brand-logo" loading="lazy">' if m.get("logo") else '<div class="brand-logo" style="display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:8px;font-weight:800;color:#475569">' + html.escape(m["name"][:2].upper()) + '</div>'
+        lg = m.get("logo") or local_logo(m["name"])
+        logo = (f'<img src="{html.escape(lg)}" alt="{html.escape(m["name"])} logo" class="brand-logo" loading="lazy">' if lg
+                else '<div class="brand-logo" style="display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:8px;font-weight:800;color:#475569">' + html.escape(m["name"][:2].upper()) + '</div>')
         if mc and mc.get("codes"):
             n = len(mc["codes"])
             meta = f'{n} Code{"s" if n != 1 else ""} Available'
