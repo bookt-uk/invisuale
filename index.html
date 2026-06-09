@@ -647,31 +647,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function sortDeals(val) {
   var grid = document.getElementById('deals');
-  var cards = Array.from(grid.querySelectorAll('.deal'));
-  cards.sort(function(a, b) {
-    function getPrice(el) {
-      var t = (el.querySelector('.price')||{}).textContent || '';
-      var n = parseFloat(t.replace(/[^0-9.]/g,''));
-      return isNaN(n) ? 99999 : n;
-    }
-    function getTitle(el) {
-      return ((el.querySelector('h2')||{}).textContent||'').trim().toLowerCase();
-    }
-    function getIndex(el) {
-      return Array.from(grid.children).indexOf(el);
-    }
-    if (val === 'price-asc')  return getPrice(a) - getPrice(b);
-    if (val === 'price-desc') return getPrice(b) - getPrice(a);
-    if (val === 'newest')     return getIndex(b) - getIndex(a);
-    if (val === 'oldest')     return getIndex(a) - getIndex(b);
-    if (val === 'az')         return getTitle(a) > getTitle(b) ? 1 : -1;
-    if (val === 'featured' && _originalOrder) {
-      _originalOrder.forEach(function(c){ grid.appendChild(c); }); return;
-    }
-    return 0;
+  // Featured card (AATU) is pinned to position 0 and never sorted.
+  var featured = grid.querySelector('.deal.featured');
+  // Sortable cards = everything except the featured one. Snapshot original
+  // homepage order BEFORE sorting (so we can restore "Featured").
+  var sortable = (_originalOrder || Array.from(grid.querySelectorAll('.deal')))
+                   .filter(function(c){ return !c.classList.contains('featured'); });
+  // Capture original positions once, so newest/oldest are stable.
+  var origIndex = new Map();
+  sortable.forEach(function(c, i){ origIndex.set(c, i); });
+
+  function getPrice(el) {
+    var t = (el.querySelector('.price')||{}).textContent || '';
+    var n = parseFloat(t.replace(/[^0-9.]/g,''));
+    return isNaN(n) ? Infinity : n;
+  }
+  function getTitle(el) {
+    return ((el.querySelector('h2')||{}).textContent||'').trim().toLowerCase();
+  }
+
+  var arr = sortable.slice();  // copy so we don't mutate the snapshot
+  if (val === 'price-asc')  arr.sort(function(a,b){ return getPrice(a) - getPrice(b); });
+  else if (val === 'price-desc') arr.sort(function(a,b){
+    var pa = getPrice(a), pb = getPrice(b);
+    // Push priceless cards to the end on desc too
+    if (pa === Infinity) return 1; if (pb === Infinity) return -1;
+    return pb - pa;
   });
-  // Re-append in new order
-  cards.forEach(function(c){ grid.appendChild(c); });
+  else if (val === 'newest') {
+    // homepage already lists newest-first in the DOM, so original order = newest first
+    // (no sort needed)
+  }
+  else if (val === 'oldest') arr.reverse();
+  else if (val === 'az')     arr.sort(function(a,b){ return getTitle(a).localeCompare(getTitle(b)); });
+  // 'featured' = leave arr as original order
+
+  // Re-append: featured first, then the sorted cards
+  if (featured) grid.appendChild(featured);
+  arr.forEach(function(c){ grid.appendChild(c); });
 }
 </script>
 </body>
