@@ -30,11 +30,27 @@ nav{display:flex;align-items:center;gap:2px;flex:1}
 .header-search input{background:none;border:none;outline:none;color:#fff;font-size:16px;font-family:inherit;width:100%}
 .header-search input::placeholder{color:#64748b;font-size:14px}
 .search-icon-btn{display:none;background:none;border:none;cursor:pointer;color:#94a3b8;padding:6px;line-height:0}
-@media(max-width:960px){
-  nav{gap:0}.nav-link{font-size:12px;padding:5px 8px}.cat-menu{left:-10px}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;color:#94a3b8;padding:6px;line-height:0}
+.chev{display:inline-block;transition:transform .25s}
+.nav-backdrop{display:none}
+@media(max-width:860px){
+  .header-right{margin-left:auto}
+  .header-inner nav{display:flex;position:fixed;top:0;right:0;bottom:0;height:100vh;width:80%;max-width:330px;flex-direction:column;align-items:stretch;background:#0f172a;padding:70px 0 28px;gap:0;overflow-y:auto;transform:translateX(100%);transition:transform .3s ease;box-shadow:-12px 0 34px rgba(0,0,0,.5);z-index:400}
+  .header-inner nav.open{transform:translateX(0)}
+  .header-inner nav .nav-link{font-size:16px;padding:15px 24px;border-radius:0;width:100%;border-bottom:1px solid rgba(255,255,255,.06)}
+  .menu-toggle{display:flex;align-items:center;justify-content:center}
+  .cat-dropdown{position:static}
+  .cat-dropdown>.cat-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+  .cat-dropdown.cat-open .chev{transform:rotate(180deg)}
+  .cat-menu{display:none;position:static;box-shadow:none;border:none;background:rgba(0,0,0,.25);padding:0;min-width:0}
+  .cat-dropdown.cat-open .cat-menu{display:block}
+  .cat-menu a{color:#94a3b8;padding:12px 34px;font-size:14px;border-bottom:1px solid rgba(255,255,255,.04)}
+  .nav-backdrop{display:block;position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s;z-index:399}
+  .nav-backdrop.open{opacity:1;pointer-events:auto}
   .header-search{display:none}
   .search-icon-btn{display:flex;align-items:center;justify-content:center}
-  .header-search.open{display:flex;position:absolute;top:60px;left:0;right:0;width:100%;border-radius:0;border-left:none;border-right:none;border-top:none;padding:0 16px;height:44px;background:#0f172a;border-bottom:1px solid rgba(255,255,255,.1)}
+  .header-search.open{display:flex;position:absolute;top:60px;left:0;right:0;width:100%;border-radius:0;border-left:none;border-right:none;border-top:none;padding:0 16px;height:44px;background:#0f172a;border-bottom:1px solid rgba(255,255,255,.1);z-index:401}
+  .country-pill{padding:5px 8px;font-size:12px}
 }
 .page-hero{background:linear-gradient(135deg,var(--navy) 0%,#1e3a5f 100%);padding:32px 24px;text-align:center}
 .page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,56px);font-weight:800;color:#fff;letter-spacing:-1px}
@@ -64,30 +80,6 @@ footer strong{color:#fff}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZW1TWSHM7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4ZW1TWSHM7');</script>
-<style id="mobile-nav-fix">
-.menu-toggle{display:none;background:none;border:none;cursor:pointer;color:#94a3b8;padding:6px;line-height:0}
-.chev{display:inline-block;transition:transform .25s}
-.nav-backdrop{display:none}
-@media(max-width:860px){
-  .header-right{margin-left:auto}
-  .header-inner nav{display:flex;position:fixed;top:0;right:0;bottom:0;height:100vh;width:80%;max-width:330px;flex-direction:column;align-items:stretch;background:#0f172a;padding:70px 0 28px;gap:0;overflow-y:auto;transform:translateX(100%);transition:transform .3s ease;box-shadow:-12px 0 34px rgba(0,0,0,.5);z-index:400}
-  .header-inner nav.open{transform:translateX(0)}
-  .header-inner nav .nav-link{font-size:16px;padding:15px 24px;border-radius:0;width:100%;border-bottom:1px solid rgba(255,255,255,.06)}
-  .menu-toggle{display:flex;align-items:center;justify-content:center}
-  .cat-dropdown{position:static}
-  .cat-dropdown>.cat-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
-  .cat-dropdown.cat-open .chev{transform:rotate(180deg)}
-  .cat-menu{display:none !important;position:static;box-shadow:none;border:none;background:rgba(0,0,0,.25);padding:0;min-width:0}
-  .cat-dropdown.cat-open .cat-menu{display:block !important}
-  .cat-menu a{color:#94a3b8;padding:12px 34px;font-size:14px;border-bottom:1px solid rgba(255,255,255,.04)}
-  .nav-backdrop{display:block;position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s;z-index:399}
-  .nav-backdrop.open{opacity:1;pointer-events:auto}
-  .header-search{display:none}
-  .search-icon-btn{display:flex;align-items:center;justify-content:center}
-  .header-search.open{display:flex;position:absolute;top:60px;left:0;right:0;width:100%;border-radius:0;border-top:none;padding:0 16px;height:44px;background:#0f172a;border-bottom:1px solid rgba(255,255,255,.1);z-index:401}
-  .country-pill{padding:5px 8px;font-size:12px}
-}
-</style>
 </head>
 <body>
 <header>
@@ -182,7 +174,6 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',ini
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/UvpEN/4905624_1/re/300x300/qt/55/4905624_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/electriq-iqool-9000-btu-smart-a-wall-mounted-split-air-condi.html">ElectriQ IQool 9000 BTU Smart A+++ Wall Mounted Split Air Conditioner With Heat Pump - 5m Pipe Kit Included</a></h2><div class="price-row"><span class="price">£499.98</span></div><ul class="features"><li>A+++ energy efficiency rating</li><li>Smart phone app control</li><li>9000 BTU cooling capacity</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Check delivery</span><span class="merchant">AirCon Direct</span></div><a href="/deals/electriq-iqool-9000-btu-smart-a-wall-mounted-split-air-condi.html" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/vRYSB/4905246_1/re/300x300/qt/55/4905246_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/pukka-pad-a4-metallic-jotta-book-3-pack-21-x-30cm-wirebound.html">Pukka Pad, A4 Metallic Jotta Book 3 Pack – 21 x 30cm – Wirebound Notebook 8mm Lines 80GSM Paper 200 page – 4-Hole Punch Margins</a></h2><div class="price-row"><span class="price">£7.99</span></div><ul class="features"><li>Wirebound A4 notebooks, three pack</li><li>Fashionable metallic covers</li><li>Perforated tear-out pages</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Check delivery</span><span class="merchant">Amazon</span></div><a href="/deals/pukka-pad-a4-metallic-jotta-book-3-pack-21-x-30cm-wirebound.html" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/50I8V/4906098_1/re/300x300/qt/55/4906098_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/free-father-s-day-greetings-card-just-pay-postage.html">Free Father&#x27;s Day Greetings Card - Just Pay Postage</a></h2><ul class="features"><li>Free Father&#x27;s Day card included</li><li>Pay only postage costs</li><li>Quick delivery option available</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Check delivery</span><span class="merchant">Bunches</span></div><a href="/deals/free-father-s-day-greetings-card-just-pay-postage.html" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>
-<div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/ox1Iv/4906872_1/re/300x300/qt/55/4906872_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/songmics-fabric-wardrobe-45-x-127-x-176-cm-2-hanging-compart.html">SONGMICS Fabric Wardrobe 45 x 127 x 176 cm, 2 Hanging Compartments with Shelves Sold &amp; Shipped by SONGMICS HOME UK</a></h2><div class="price-row"><span class="price">£19.79</span></div><ul class="features"><li>Sturdy steel tube construction</li><li>Two hanging compartments</li><li>Built-in shelves and pockets</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Free delivery</span><span class="merchant">Amazon</span></div><a href="/deals/songmics-fabric-wardrobe-45-x-127-x-176-cm-2-hanging-compart.html" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/E2iAM/4905123_1/re/300x300/qt/55/4905123_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/niko-velvet-clic-clac-sofa-bed-blue.html">Niko Velvet Clic Clac Sofa Bed - Blue</a></h2><div class="price-row"><span class="price">£132.30</span></div><ul class="features"><li>Soft velvet upholstery with piping</li><li>Clic clac mechanism for easy</li><li>Converts sofa to bed instantly</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Check delivery</span><span class="merchant">Dunelm</span></div><a href="/deals/niko-velvet-clic-clac-sofa-bed-blue.html" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/MCU1U/4907444_1/re/300x300/qt/55/4907444_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/bedsure-fleece-throw-blanket-for-sofa-130x150cm-with-checkou.html">Bedsure Fleece Throw Blanket for Sofa 130x150cm with checkout discount - Sold by Bedsure EU / FBA (Prime Price)</a></h2><div class="price-row"><span class="price">£5.45</span></div><ul class="features"><li>Award-winning softness and quality</li><li>Versatile for sofa, bed, travel</li><li>40% automatic checkout discount applied</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Free delivery</span><span class="merchant">Amazon</span></div><a href="/deals/bedsure-fleece-throw-blanket-for-sofa-130x150cm-with-checkou.html" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/IqJA2/4907076_1/re/300x300/qt/55/4907076_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/avenli-lounger-and-stool-sold-by-avenli-free-c-c-only.html">Avenli Lounger And Stool - Sold By Avenli - Free C&amp;C Only</a></h2><div class="price-row"><span class="price">£14.99</span></div><ul class="features"><li>Soft flocked vinyl surface</li><li>Easy to fold and store</li><li>Includes lounger and stool</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Check delivery</span><span class="merchant">The Range</span></div><a href="/deals/avenli-lounger-and-stool-sold-by-avenli-free-c-c-only.html" style="display:block;background:#ef4444;color:#fff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto">View Deal →</a></div></div>
