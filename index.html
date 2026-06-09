@@ -163,6 +163,15 @@ main{max-width:1400px;margin:0 auto;padding:28px 24px 56px}
   }
 }
 
+/* FEATURED CARD */
+.deal.featured{grid-column:span 3}
+@media(max-width:600px){
+  .deal.featured{grid-column:span 2 !important}
+  .deal.featured>div{flex-direction:column !important}
+  .deal.featured>div>div:first-child{flex-direction:row !important;padding:12px 16px !important;border-right:none !important;border-bottom:1px solid rgba(184,144,42,.25) !important;align-self:auto !important;justify-content:flex-start !important;gap:12px}
+  .deal.featured>div>div:last-child{padding:10px 16px !important}
+}
+
 /* TRUST STRIP */
 .trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:36px}
 .trust-item{background:var(--white);padding:18px 20px;display:flex;align-items:center;gap:12px}
@@ -327,6 +336,30 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',ini
     </div>
   </div>
   <div id="deals">
+<div class="deal featured" style="grid-column:span 3;background:linear-gradient(135deg,#1c1a14 0%,#2e2410 100%);border:1.5px solid #b8902a;color:#fff;overflow:hidden">
+  <div style="display:flex;flex-direction:row;align-items:center;gap:0;height:100%">
+    <div style="background:rgba(0,0,0,.35);padding:18px 20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;align-self:stretch;border-right:1px solid rgba(184,144,42,.25)">
+      <div style="text-align:center">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:#c9a227;letter-spacing:1px;line-height:1">AATU</div>
+        <div style="font-size:9px;color:#a0936a;font-weight:700;letter-spacing:2px;margin-top:3px">PET FOOD</div>
+        <div style="margin-top:10px;font-size:9px;font-weight:800;letter-spacing:1px;background:rgba(184,144,42,.25);border:1px solid rgba(184,144,42,.4);color:#c9a227;padding:3px 8px;border-radius:4px">FEATURED</div>
+      </div>
+    </div>
+    <div style="padding:16px 18px;flex:1;min-width:0">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(16px,2.2vw,22px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:8px">Up to 30% off RRP + Free delivery<br>on your first AATU order</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:0">
+        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ 80% fresh meat</span>
+        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ No fillers or grains</span>
+        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ Subscribe &amp; save</span>
+      </div>
+    </div>
+    <div style="padding:16px 18px;flex-shrink:0">
+      <a href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank" style="display:block;background:linear-gradient(135deg,#c9a227,#a07820);color:#fff;font-weight:800;font-size:13px;padding:11px 18px;border-radius:8px;text-decoration:none;white-space:nowrap;text-align:center;box-shadow:0 4px 14px rgba(184,144,42,.4)">Shop AATU →</a>
+      <div style="font-size:10px;color:#6b5d3a;text-align:center;margin-top:6px;font-weight:600">Premium pet nutrition</div>
+    </div>
+  </div>
+</div>
+
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/arwZw/4905216_1/re/300x300/qt/55/4905216_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/yves-saint-laurent-y-eau-de-parfum-spray-60ml-100ml-74-48.html">Yves Saint Laurent Y Eau de Parfum Spray 60ml / 100ml £74.48</a></h2><div class="price-row"><span class="price">£49.74</span></div><ul class="features"><li>Fresh bergamot and ginger opening</li><li>Aromatic fougère heart notes</li><li>Warm woody base with tonka</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Free delivery</span><span class="merchant">Parfumdreams</span></div><a href="/deals/yves-saint-laurent-y-eau-de-parfum-spray-60ml-100ml-74-48.html" class="btn" style="display:block;background:#ef4444;color:#ffffff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto;width:100%;box-sizing:border-box">View Deal →</a></div></div>
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/hz757/4905942_1/re/300x300/qt/55/4905942_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/xiaomi-smart-band-10-fitness-tracker-1-72-amoled-display-21d.html">XIAOMI Smart Band 10 Fitness Tracker, 1.72&quot; AMOLED Display, 21Day Battery Life, 150 Sports Modes,Sleep Monitoring, 5ATM</a></h2><div class="price-row"><span class="price">£34.99</span></div><ul class="features"><li>1.72&quot; AMOLED display 212x520</li><li>Up to 21 days battery</li><li>150+ sports modes</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Check delivery</span><span class="merchant">Amazon</span></div><a href="/deals/xiaomi-smart-band-10-fitness-tracker-1-72-amoled-display-21d.html" class="btn" style="display:block;background:#ef4444;color:#ffffff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto;width:100%;box-sizing:border-box">View Deal →</a></div></div>
 <div class="deal"><div class="hot-badge">🔥 HOT DEAL</div><div class="card-img"><img src="https://images.hotukdeals.com/threads/raw/yhWn5/4906962_1/re/300x300/qt/55/4906962_1.jpg" alt="" loading="lazy"></div><div class="card-body"><h2><a href="/deals/xbox-game-pass-addition-halo-campaign-evolved-play-day-one.html">[XBOX Game Pass Addition] Halo: Campaign Evolved - Play Day One</a></h2><ul class="features"><li>Modernized remake with HD visuals</li><li>Three new prequel missions included</li><li>Optional Skulls modifiers for replayability</li></ul><div class="delivery-row"><span class="free-delivery">🚚 Check delivery</span><span class="merchant">Xbox</span></div><a href="/deals/xbox-game-pass-addition-halo-campaign-evolved-play-day-one.html" class="btn" style="display:block;background:#ef4444;color:#ffffff;padding:10px;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:13px;margin-top:auto;width:100%;box-sizing:border-box">View Deal →</a></div></div>

@@ -15,6 +15,8 @@ AWIN_PUBLISHER_ID = os.environ.get("AWIN_PUBLISHER_ID", "")
 AWIN_MERCHANT_MAP = {
     "bunches": "488",
     "bunches.co.uk": "488",
+    "aatu": "17135",
+    "aatu.co.uk": "17135",
     # Add more as Awin merchants approve us:
     # "currys": "1599",
     # "john lewis": "6395",
@@ -584,6 +586,43 @@ def build_card(fname, title, img_src, price, merchant, features, shipping=""):
         f'</div>\n'
     )
 
+AWIN_AFFID = "2926769"  # Awin publisher ID (same as AWIN_PUBLISHER_ID but hardcoded for featured card)
+
+FEATURED_CARD_HTML = """<div class="deal featured" style="grid-column:span 3;background:linear-gradient(135deg,#1c1a14 0%,#2e2410 100%);border:1.5px solid #b8902a;color:#fff;overflow:hidden">
+  <div style="display:flex;flex-direction:row;align-items:center;gap:0;height:100%">
+    <div style="background:rgba(0,0,0,.35);padding:18px 20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;align-self:stretch;border-right:1px solid rgba(184,144,42,.25)">
+      <div style="text-align:center">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:#c9a227;letter-spacing:1px;line-height:1">AATU</div>
+        <div style="font-size:9px;color:#a0936a;font-weight:700;letter-spacing:2px;margin-top:3px">PET FOOD</div>
+        <div style="margin-top:10px;font-size:9px;font-weight:800;letter-spacing:1px;background:rgba(184,144,42,.25);border:1px solid rgba(184,144,42,.4);color:#c9a227;padding:3px 8px;border-radius:4px">FEATURED</div>
+      </div>
+    </div>
+    <div style="padding:16px 18px;flex:1;min-width:0">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(16px,2.2vw,22px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:8px">Up to 30% off RRP + Free delivery<br>on your first AATU order</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:0">
+        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ 80% fresh meat</span>
+        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ No fillers or grains</span>
+        <span style="font-size:11px;color:#c9a227;font-weight:700">✓ Subscribe &amp; save</span>
+      </div>
+    </div>
+    <div style="padding:16px 18px;flex-shrink:0">
+      <a href="https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F" rel="nofollow sponsored" target="_blank" style="display:block;background:linear-gradient(135deg,#c9a227,#a07820);color:#fff;font-weight:800;font-size:13px;padding:11px 18px;border-radius:8px;text-decoration:none;white-space:nowrap;text-align:center;box-shadow:0 4px 14px rgba(184,144,42,.4)">Shop AATU →</a>
+      <div style="font-size:10px;color:#6b5d3a;text-align:center;margin-top:6px;font-weight:600">Premium pet nutrition</div>
+    </div>
+  </div>
+</div>
+"""
+
+FEATURED_CARD_HTML_MOBILE = """<style>
+@media(max-width:600px){
+  .deal.featured{grid-column:span 2 !important}
+  .deal.featured>div{flex-direction:column !important}
+  .deal.featured>div>div:first-child{flex-direction:row !important;padding:12px 16px !important;border-right:none !important;border-bottom:1px solid rgba(184,144,42,.25) !important;align-self:auto !important;justify-content:flex-start !important;gap:12px}
+  .deal.featured>div>div:last-child{padding:10px 16px !important}
+  .deal.featured a[href*="awin"]{width:100%;box-sizing:border-box}
+}
+</style>"""
+
 def update_index(new_deals):
     all_files = sorted(os.listdir('deals')) if os.path.exists('deals') else []
     cards = ""
@@ -621,7 +660,7 @@ def update_index(new_deals):
     if marker_start in base and marker_end in base:
         start = base.index(marker_start) + len(marker_start)
         end = base.index(marker_end, start)
-        base = base[:start] + '\n' + cards + base[end:]
+        base = base[:start] + '\n' + FEATURED_CARD_HTML + cards + base[end:]
     with open("index.html", "w") as f: f.write(base)
 
 CATEGORY_ICONS = {
