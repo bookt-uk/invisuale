@@ -857,6 +857,21 @@ CATEGORY_ICONS = {
 def cat_slug(cat):
     return re.sub(r'[^a-z0-9]+', '-', cat.lower()).strip('-')
 
+# Unique intro copy per category — gives Google real text to rank for "X deals UK"
+CATEGORY_SEO = {
+    "Gaming": ("Gaming Deals UK", "The best UK gaming deals today — discounted consoles, PS5 and Xbox games, Nintendo Switch bundles, PC gaming gear and accessories. Every deal is hand-picked from across UK retailers and refreshed daily, so you only see offers that are genuinely live."),
+    "Electronics": ("Electronics Deals UK", "Today's best UK electronics deals — laptops, TVs, headphones, smart home tech and more at genuine discounts. We check prices across major UK retailers every day and only list offers that beat the usual price."),
+    "Groceries": ("Grocery Deals & Offers UK", "Save on your weekly shop with the best UK grocery deals — supermarket offers, multibuys, household essentials and food cupboard bargains, updated every morning."),
+    "Fashion & Accessories": ("Fashion Deals UK", "The best UK fashion deals today — discounted clothing, trainers, watches and accessories from trusted UK retailers. New markdowns added daily."),
+    "Health & Beauty": ("Health & Beauty Deals UK", "Today's best UK health and beauty deals — skincare, fragrance, grooming and wellness offers at real discounts, checked and refreshed every day."),
+    "Home & Living": ("Home & Living Deals UK", "The best UK home deals today — furniture, kitchen appliances, bedding and homeware at genuine discounts from major UK retailers, updated daily."),
+    "Garden & Do It Yourself": ("Garden & DIY Deals UK", "Today's best UK garden and DIY deals — power tools, garden furniture, BBQs and outdoor gear at real discounts, refreshed every morning."),
+    "Family & Kids": ("Family & Kids Deals UK", "The best UK deals for families — toys, baby essentials, kids' clothing and days out at genuine discounts, hand-picked and updated daily."),
+    "Car & Motorcycle": ("Car & Motorcycle Deals UK", "Today's best UK motoring deals — car accessories, dash cams, tools and motorcycle gear at real discounts from trusted UK retailers."),
+    "Broadband & Phone Contracts": ("Broadband & Phone Deals UK", "Compare today's best UK broadband and phone contract deals — SIM-only offers, fibre broadband discounts and handset bundles, updated daily."),
+    "Services & Contracts": ("Services & Contracts Deals UK", "The best UK deals on services and contracts — insurance, subscriptions, utilities and more, checked daily so you never overpay."),
+}
+
 def make_category_pages():
     if not os.path.exists("deals"): return
     # Seed all known categories so pages always exist
@@ -925,17 +940,42 @@ def make_category_pages():
             "footer{background:var(--navy);color:#64748b;text-align:center;padding:24px;font-size:13px}\n"
             "footer strong{color:#fff}\n"
         )
+        seo_title, seo_intro = CATEGORY_SEO.get(cat, (f"{cat} Deals UK", f"The best UK {cat} deals today, hand-picked and updated daily."))
+        today = time.strftime("%-d %B %Y")
+        n = len(deals)
+        meta_desc = f"{seo_intro[:120].rsplit(' ',1)[0]}… {n} live deals today." if n else seo_intro[:150]
+        itemlist = json.dumps({
+            "@context": "https://schema.org", "@type": "ItemList",
+            "name": seo_title, "numberOfItems": n,
+            "itemListElement": [
+                {"@type": "ListItem", "position": i + 1, "url": f"https://invisuale.com/deals/{d[0]}", "name": d[1]}
+                for i, d in enumerate(deals[:30])
+            ]})
+        breadcrumb = json.dumps({
+            "@context": "https://schema.org", "@type": "BreadcrumbList",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://invisuale.com/"},
+                {"@type": "ListItem", "position": 2, "name": "Categories", "item": "https://invisuale.com/categories/"},
+                {"@type": "ListItem", "position": 3, "name": cat, "item": f"https://invisuale.com/categories/{slug}.html"},
+            ]})
         page = (
             '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
             '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n'
-            f'<title>{icon} {html.escape(cat)} Deals | Invisuale</title>\n'
-            f'<meta name="description" content="Best UK {html.escape(cat)} deals updated daily.">\n'
+            f'<title>{html.escape(seo_title)} — Today\'s Best Offers | Invisuale</title>\n'
+            f'<meta name="description" content="{html.escape(meta_desc)}">\n'
+            f'<link rel="canonical" href="https://invisuale.com/categories/{slug}.html">\n'
+            f'<script type="application/ld+json">{itemlist}</script>\n'
+            f'<script type="application/ld+json">{breadcrumb}</script>\n'
             '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
             '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
-            '<style>' + cat_css + '</style>\n' + ANALYTICS +
+            '<style>' + cat_css +
+            ".cat-intro{max-width:760px;margin:0 auto;color:#cbd5e1;font-size:14px;line-height:1.6;margin-top:12px}\n"
+            '</style>\n' + ANALYTICS +
             '</head>\n<body>\n'
             + HEADER_HTML +
-            f'\n<div class="page-hero"><h1>{icon} {html.escape(cat)}</h1><p>Best UK {html.escape(cat)} deals updated daily</p></div>\n'
+            f'\n<div class="page-hero"><h1>{icon} {html.escape(seo_title)}</h1>'
+            f'<p>{n} live deals · Updated {today}</p>'
+            f'<p class="cat-intro">{html.escape(seo_intro)}</p></div>\n'
             f'<main><div id="deals">{cards}</div></main>\n'
             '<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>\n'
             '</body></html>'
@@ -969,8 +1009,9 @@ def make_category_pages():
     index = (
         '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
         '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n'
-        '<title>Deal Categories | Invisuale</title>\n'
-        '<meta name="description" content="Browse UK deals by category — Gaming, Electronics, Groceries and more.">\n'
+        '<title>UK Deals by Category — Gaming, Electronics, Groceries & More | Invisuale</title>\n'
+        '<meta name="description" content="Browse today\'s best UK deals by category — Gaming, Electronics, Groceries, Fashion, Home and more. Hand-picked offers updated every day.">\n'
+        '<link rel="canonical" href="https://invisuale.com/categories/">\n'
         '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
         '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
         '<style>' + idx_css + '</style>\n' + ANALYTICS +
