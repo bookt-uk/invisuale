@@ -303,6 +303,19 @@ nav{display:flex;align-items:center;gap:2px;flex:1}
 }
 """
 
+FOOTER_HTML = """<footer style="background:#0f172a;color:#64748b;text-align:center;padding:28px 24px;font-size:13px;font-weight:600">
+<p><strong style="color:#fff">Invisuale</strong> &mdash; Best UK Deals. Prices correct at time of posting.</p>
+<p style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+<a href="/" style="color:#94a3b8;text-decoration:none">Hot Deals</a>
+<a href="/codes/" style="color:#94a3b8;text-decoration:none">Codes</a>
+<a href="/categories/" style="color:#94a3b8;text-decoration:none">Categories</a>
+<a href="/guides/" style="color:#94a3b8;text-decoration:none">Guides</a>
+<a href="/about.html" style="color:#94a3b8;text-decoration:none">About</a>
+<a href="/privacy.html" style="color:#94a3b8;text-decoration:none">Privacy</a>
+</p>
+<p style="margin-top:10px;color:#64748b;font-size:11px">We may earn a commission when you buy through links on our site. As an Amazon Associate we earn from qualifying purchases.</p>
+</footer>"""
+
 HEADER_HTML = """<header>
   <div class="header-inner" style="position:relative">
     <a href="/" class="logo">IN<span>VISUALE</span></a>
@@ -691,17 +704,7 @@ def make_page(deal, desc, features, merchant_url):
         '<div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Always Free</strong><span>No fees, no sign-up</span></div></div>'
         '</div>\n'
         '</main>\n'
-        '<footer style="background:#0f172a;color:#64748b;text-align:center;padding:28px 24px;font-size:13px;font-weight:600">'
-        '<p><strong style="color:#fff">Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</p>'
-        '<p style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">'
-        '<a href="/" style="color:#94a3b8;text-decoration:none">Hot Deals</a>'
-        '<a href="/discount-codes.html" style="color:#94a3b8;text-decoration:none">Discount Codes</a>'
-        '<a href="/guides/" style="color:#94a3b8;text-decoration:none">Guides</a>'
-        '<a href="/about.html" style="color:#94a3b8;text-decoration:none">About</a>'
-        '<a href="/privacy.html" style="color:#94a3b8;text-decoration:none">Privacy</a>'
-        '</p>'
-        '<p style="margin-top:10px;color:#64748b;font-size:11px">We may earn a commission when you buy through links on our site. As an Amazon Associate we earn from qualifying purchases.</p>'
-        '</footer>\n'
+        + FOOTER_HTML +
         + '\n</body>\n</html>'
     )
 
@@ -977,7 +980,7 @@ def make_category_pages():
             f'<p>{n} live deals · Updated {today}</p>'
             f'<p class="cat-intro">{html.escape(seo_intro)}</p></div>\n'
             f'<main><div id="deals">{cards}</div></main>\n'
-            '<footer><strong>Invisuale</strong> — Best UK Deals. Prices correct at time of posting.</footer>\n'
+            + FOOTER_HTML +
             '</body></html>'
         )
         with open(f"categories/{slug}.html", "w") as f: f.write(page)
@@ -1091,12 +1094,7 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
     copy_js = ("<script>function copyCode(c,b){navigator.clipboard.writeText(c).then(function(){"
                "var x=document.getElementById(b),o=x.textContent;x.textContent='Copied!';"
                "x.style.background='#16a34a';setTimeout(function(){x.textContent=o;x.style.background='';},2000);});}</script>")
-    footer_html = (
-        '<footer><p><strong style="color:#fff">Invisuale</strong> — Best UK Deals, updated daily.</p>'
-        '<p style="margin-top:8px;font-size:11px">We may earn a commission when you buy through links. As an Amazon Associate we earn from qualifying purchases.</p>'
-        '<p style="margin-top:12px"><a href="/">Hot Deals</a><a href="/codes/">Codes</a><a href="/guides/">Guides</a>'
-        '<a href="/about.html">About</a><a href="/privacy.html">Privacy</a></p></footer>'
-    )
+    footer_html = FOOTER_HTML
 
     # --- Per-brand pages ---
     for m in merchants:
