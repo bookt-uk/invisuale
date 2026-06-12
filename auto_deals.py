@@ -704,7 +704,7 @@ def make_page(deal, desc, features, merchant_url):
         '<div class="trust-item"><span class="trust-icon">🏷️</span><div class="trust-text"><strong>Always Free</strong><span>No fees, no sign-up</span></div></div>'
         '</div>\n'
         '</main>\n'
-        + FOOTER_HTML +
+        + FOOTER_HTML
         + '\n</body>\n</html>'
     )
 
