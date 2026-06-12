@@ -1315,6 +1315,10 @@ def main():
         if count >= MAX_PER_RUN: break
         did = hashlib.md5((deal["title"]+deal["link"]).encode()).hexdigest()
         if did in posted: continue
+        if not deal.get("image"):
+            print(f"skip (no image): {deal['title'][:50]}")
+            posted.add(did)
+            continue
         try:
             print(f"resolving merchant URL for: {deal['title'][:50]}")
             merchant_url, expired, shipping_label = resolve_merchant_url(deal["link"])
