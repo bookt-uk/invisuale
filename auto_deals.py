@@ -5,6 +5,7 @@ from datetime import datetime
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 FEED_URL = "https://www.hotukdeals.com/rss/deals"
 MAX_PER_RUN = 25
+MAX_HOMEPAGE = 60  # cap deal cards shown on the homepage (mobile weight); categories + sitemap still list all
 STATE_FILE = "posted.json"
 
 # Affiliate config. When AWIN_PUBLISHER_ID is set in env, merchant URLs are wrapped
@@ -796,9 +797,17 @@ def render_featured_card(c):
 FEATURED_CARD_HTML = "".join(render_featured_card(c) for c in FEATURED_CARDS)
 
 def update_index(new_deals):
-    all_files = sorted(os.listdir('deals')) if os.path.exists('deals') else []
+    if os.path.exists('deals'):
+        all_files = [f for f in os.listdir('deals') if f.endswith('.html')]
+        # Newest first by file mtime (when the bot wrote it), then cap for mobile
+        # page weight. Category pages + sitemap iterate the folder separately, so
+        # every deal stays discoverable — only the homepage is trimmed.
+        all_files.sort(key=lambda f: os.path.getmtime(f'deals/{f}'), reverse=True)
+        all_files = all_files[:MAX_HOMEPAGE]
+    else:
+        all_files = []
     deal_cards = []
-    for fname in reversed(all_files):
+    for fname in all_files:
         if not fname.endswith('.html'): continue
         title = fname.replace('.html','').replace('-',' ').title()
         img_src = price = merchant = shipping = ""
