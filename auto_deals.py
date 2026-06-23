@@ -755,7 +755,7 @@ AWIN_AFFID = "2926769"  # Awin publisher ID (same as AWIN_PUBLISHER_ID but hardc
 #   chips = list of (bold, small) — works for codes (HELLO10 / "10% off") or offers (£8 OFF / "...")
 FEATURED_CARDS = [
     {
-        "logo": "/images/aatu-logo.jpg", "name": "AATU", "label": "Pet Food",
+        "logo": "/images/aatu-logo.jpg", "name": "AATU", "label": "Pet Food", "cat": None,
         "verified": "Verified codes",
         "head": "Up to 30% off RRP + free delivery on your first AATU order",
         "feats": ["80% meat or fish", "No fillers or grains", "Free delivery over £30"],
@@ -763,7 +763,7 @@ FEATURED_CARDS = [
         "cta": "https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F",
     },
     {
-        "logo": "/images/8wines-logo.jpg", "name": "8WINES", "label": "Wine",
+        "logo": "/images/8wines-logo.jpg", "name": "8WINES", "label": "Wine", "cat": "Groceries",
         "verified": "Verified offers",
         "head": "£8 off your first order + free UK shipping over £400",
         "feats": ["Award-winning wines", "Gold 7 years running", "Delivered across the UK"],
@@ -771,7 +771,7 @@ FEATURED_CARDS = [
         "cta": "https://www.awin1.com/cread.php?awinmid=106707&awinaffid=2926769&ued=https%3A%2F%2F8wines.com%2Fwines%3Fam_on_sale%3D1",
     },
     {
-        "logo": "/images/bunches-logo.jpg", "name": "BUNCHES", "label": "Flowers",
+        "logo": "/images/bunches-logo.jpg", "name": "BUNCHES", "label": "Flowers", "cat": "Garden & Do It Yourself",
         "verified": "Verified partner",
         "head": "Fresh flowers delivered anywhere in the UK",
         "feats": ["From £20.25", "Letterbox & bouquets", "Trusted UK florist"],
@@ -779,7 +779,7 @@ FEATURED_CARDS = [
         "cta": "https://www.awin1.com/cread.php?awinmid=488&awinaffid=2926769&ued=https%3A%2F%2Fwww.bunches.co.uk%2F",
     },
     {
-        "logo": "/images/cpp-logo.jpg", "name": "COMPARE PARKING PRICES", "label": "Travel",
+        "logo": "/images/cpp-logo.jpg", "name": "COMPARE PARKING PRICES", "label": "Travel", "cat": "Travel",
         "verified": "Verified partner",
         "head": "Compare UK airport parking & save up to 60% — book ahead this summer",
         "feats": ["All major UK airports", "Meet & Greet, Park & Ride", "Pre-book beats turn-up prices"],
@@ -807,6 +807,34 @@ def render_featured_card(c):
     )
 
 FEATURED_CARD_HTML = "".join(render_featured_card(c) for c in FEATURED_CARDS)
+
+# Featured-card styling. The homepage carries this inline in index.html; category
+# pages need it too when a brand card is injected, so it's defined here for reuse.
+FEATURED_CSS = (
+    ".deal.featured{grid-column:span 2}\n"
+    ".ff{background:#fff;border:1px solid var(--border);flex-direction:row;padding:0;align-items:stretch}\n"
+    ".ff .ff-brand{flex:0 0 142px;background:linear-gradient(160deg,#0f172a,#1e3a5f);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;position:relative;overflow:hidden}\n"
+    ".ff .ff-brand::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 25%,rgba(212,175,55,.22),transparent 60%)}\n"
+    ".ff .ff-brand img{width:118px;height:64px;object-fit:contain;background:#fff;padding:10px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.4);position:relative}\n"
+    ".ff .ff-pet{font-size:9px;letter-spacing:2px;color:#cbd5e1;font-weight:800;text-transform:uppercase;position:relative}\n"
+    ".ff .ff-body{flex:1;padding:15px 18px 12px;display:flex;flex-direction:column;gap:10px;min-width:0}\n"
+    ".ff .ff-top{display:flex;align-items:center;gap:10px}\n"
+    ".ff .ff-tag{font-size:9px;font-weight:800;letter-spacing:1px;background:#ef4444;color:#fff;padding:4px 9px;border-radius:5px}\n"
+    ".ff .ff-verified{font-size:10px;font-weight:800;color:#16a34a;text-transform:uppercase;letter-spacing:.5px}\n"
+    ".ff .ff-head{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:800;color:#0f172a;line-height:1.12}\n"
+    ".ff .ff-feats{display:flex;flex-wrap:wrap;gap:3px 14px}\n"
+    ".ff .ff-feats span{font-size:11px;color:#16a34a;font-weight:700}\n"
+    ".ff .ff-chips{display:flex;flex-direction:column;gap:6px;margin-top:auto;margin-bottom:auto}\n"
+    ".ff .ff-chip{display:flex;align-items:center;gap:8px;background:#fdf9ec;border:1px solid #ecd9a0;border-radius:7px;padding:7px 11px}\n"
+    ".ff .ff-chip b{font-size:13px;font-weight:800;color:#a07820;letter-spacing:1px}\n"
+    ".ff .ff-chip small{font-size:11px;color:#64748b;font-weight:600}\n"
+    ".ff .ff-cta{display:block;background:#ef4444;color:#fff;font-weight:700;font-size:13px;padding:10px;border-radius:8px;text-decoration:none;text-align:center}\n"
+    ".ff .ff-cta:hover{background:#dc2626}\n"
+    "@media(max-width:600px){.ff{flex-direction:column}"
+    ".ff .ff-brand{flex:0 0 auto;flex-direction:row;justify-content:flex-start;gap:14px;padding:12px 16px}"
+    ".ff .ff-brand img{width:96px;height:46px;padding:7px;border-radius:9px}"
+    ".ff .ff-pet{font-size:11px}.ff .ff-chips{margin:6px 0}}\n"
+)
 
 def update_index(new_deals):
     if os.path.exists('deals'):
@@ -876,6 +904,8 @@ CATEGORY_ICONS = {
     "Home & Living": "🏠", "Garden & Do It Yourself": "🌱",
     "Family & Kids": "👶", "Car & Motorcycle": "🚗",
     "Services & Contracts": "📋", "Broadband & Phone Contracts": "📱",
+    "Travel": "✈️", "Culture & Leisure": "🎭",
+    "Sports & Outdoors": "⚽", "Other": "📦",
 }
 
 def cat_slug(cat):
@@ -894,6 +924,9 @@ CATEGORY_SEO = {
     "Car & Motorcycle": ("Car & Motorcycle Deals UK", "Today's best UK motoring deals — car accessories, dash cams, tools and motorcycle gear at real discounts from trusted UK retailers."),
     "Broadband & Phone Contracts": ("Broadband & Phone Deals UK", "Compare today's best UK broadband and phone contract deals — SIM-only offers, fibre broadband discounts and handset bundles, updated daily."),
     "Services & Contracts": ("Services & Contracts Deals UK", "The best UK deals on services and contracts — insurance, subscriptions, utilities and more, checked daily so you never overpay."),
+    "Travel": ("Travel Deals UK", "Today's best UK travel deals — airport parking, hotels, flights, city breaks and holiday extras at genuine discounts. Compare and book ahead to save, updated daily."),
+    "Culture & Leisure": ("Culture & Leisure Deals UK", "The best UK deals on days out, cinema, attractions, events and experiences — hand-picked and refreshed every day."),
+    "Sports & Outdoors": ("Sports & Outdoors Deals UK", "Today's best UK sports and outdoor deals — fitness gear, camping, cycling, activewear and equipment at real discounts, updated daily."),
 }
 
 def make_category_pages():
@@ -932,6 +965,10 @@ def make_category_pages():
         if not cards:
             cards = '<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#64748b"><div style="font-size:48px;margin-bottom:16px">' + CATEGORY_ICONS.get(cat,"🏷️") + '</div><p style="font-size:16px;font-weight:700">No deals right now</p><p style="font-size:13px;margin-top:8px">New deals are added daily at 9am — check back soon!</p><a href="/" style="display:inline-block;margin-top:20px;background:#ef4444;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700">Browse all deals</a></div>'
 
+        # Inject any featured brand card whose "cat" matches, pinned to the top of the grid.
+        feat_for_cat = "".join(render_featured_card(c) for c in FEATURED_CARDS if c.get("cat") == cat)
+        cards = feat_for_cat + cards
+
         slug = cat_slug(cat)
         cat_css = (
             "*{box-sizing:border-box;margin:0;padding:0}\n"
@@ -942,8 +979,9 @@ def make_category_pages():
             ".page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,56px);font-weight:800;color:#fff;letter-spacing:-1px}\n"
             ".page-hero p{color:#94a3b8;font-size:14px;margin-top:8px;font-weight:600}\n"
             "main{max-width:1400px;margin:0 auto;padding:28px 24px 64px}\n"
-            "#deals{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}\n"
+            "#deals{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;grid-auto-flow:row dense}\n"
             "@media(max-width:600px){#deals{grid-template-columns:repeat(2,1fr);gap:10px}}\n"
+            + FEATURED_CSS +
             ".deal{background:var(--white);border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column;position:relative;overflow:hidden}\n"
             ".deal:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}\n"
             ".hot-badge{position:absolute;top:9px;left:9px;z-index:2;display:flex;align-items:center;gap:3px;background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:3px 8px;border-radius:100px}\n"
@@ -987,6 +1025,7 @@ def make_category_pages():
             '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n'
             f'<title>{html.escape(seo_title)} — Today\'s Best Offers | Invisuale</title>\n'
             f'<meta name="description" content="{html.escape(meta_desc)}">\n'
+            '<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n'
             f'<link rel="canonical" href="https://invisuale.com/categories/{slug}.html">\n'
             f'<script type="application/ld+json">{itemlist}</script>\n'
             f'<script type="application/ld+json">{breadcrumb}</script>\n'
@@ -1035,6 +1074,7 @@ def make_category_pages():
         '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n'
         '<title>UK Deals by Category — Gaming, Electronics, Groceries & More | Invisuale</title>\n'
         '<meta name="description" content="Browse today\'s best UK deals by category — Gaming, Electronics, Groceries, Fashion, Home and more. Hand-picked offers updated every day.">\n'
+        '<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n'
         '<link rel="canonical" href="https://invisuale.com/categories/">\n'
         '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
         '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
