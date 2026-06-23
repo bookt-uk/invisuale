@@ -22,6 +22,9 @@ AWIN_MERCHANT_MAP = {
     "8wines.com": "106707",
     "game over": "37282",
     "gameover": "37282",
+    "compare parking prices": "118401",
+    "compareparkingprices": "118401",
+    "compareparkingprices.co.uk": "118401",
     # Add more as Awin merchants approve us:
     # "currys": "1599",
     # "john lewis": "6395",
@@ -45,6 +48,7 @@ LOCAL_LOGOS = {
     "8wines": "/images/8wines-logo.jpg",
     "bunches": "/images/bunches-logo.jpg",
     "game over": "/images/gameover-logo.jpg",
+    "compare parking prices": "/images/cpp-logo.jpg",
 }
 
 # Single Awin Create-a-Feed URL bundling multiple advertisers' products in one CSV.
@@ -773,6 +777,14 @@ FEATURED_CARDS = [
         "feats": ["From £20.25", "Letterbox & bouquets", "Trusted UK florist"],
         "chips": [("FROM £20.25", "Flowers by post"), ("UK-WIDE", "Any UK address")],
         "cta": "https://www.awin1.com/cread.php?awinmid=488&awinaffid=2926769&ued=https%3A%2F%2Fwww.bunches.co.uk%2F",
+    },
+    {
+        "logo": "/images/cpp-logo.jpg", "name": "COMPARE PARKING PRICES", "label": "Travel",
+        "verified": "Verified partner",
+        "head": "Compare UK airport parking & save up to 60% — book ahead this summer",
+        "feats": ["All major UK airports", "Meet & Greet, Park & Ride", "Pre-book beats turn-up prices"],
+        "chips": [("UP TO 60% OFF", "vs on-the-day prices"), ("ALL UK AIRPORTS", "Heathrow, Gatwick, Manchester +")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=118401&awinaffid=2926769&ued=https%3A%2F%2Fwww.compareparkingprices.co.uk%2F",
     },
 ]
 
