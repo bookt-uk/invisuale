@@ -848,10 +848,10 @@ FEATURED_CARDS = [
     {
         "logo": "/images/buymeonce-logo.jpg", "name": "BUY ME ONCE", "label": "Buy It For Life", "cat": "Home & Living", "home": False,
         "verified": "Verified partner",
-        "head": "Long-lasting homeware & goods built to be bought once",
+        "head": "Long-lasting homeware on sale — built to be bought once",
         "feats": ["Durability-tested products", "Kitchen, home & lifestyle", "Sustainable — less waste"],
-        "chips": [("BUY IT FOR LIFE", "Built to last"), ("SUSTAINABLE", "Less landfill")],
-        "cta": "https://www.awin1.com/cread.php?awinmid=54235&awinaffid=2926769&ued=https%3A%2F%2Fbuymeonce.com%2F",
+        "chips": [("SALE ON NOW", "Shop discounted items"), ("BUY IT FOR LIFE", "Built to last")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=54235&awinaffid=2926769&ued=https%3A%2F%2Fbuymeonce.com%2Fcollections%2Four-sale",
     },
 ]
 
