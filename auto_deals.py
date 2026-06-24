@@ -229,9 +229,13 @@ def awin_fetch_joined_programmes():
             detail = json.loads(urllib.request.urlopen(dreq, timeout=10).read())
         except Exception:
             pass
-        info = detail.get("programmeInfo", {})
-        kpi = detail.get("kpi", {})
-        comm = detail.get("commissionRange", [{}])[0] if detail.get("commissionRange") else {}
+        # Use `or {}` (not a default arg) so an explicit null in the JSON — which
+        # some newly-approved programmes return for kpi/programmeInfo — becomes {}
+        # rather than None (which would crash on .get()).
+        info = detail.get("programmeInfo") or {}
+        kpi = detail.get("kpi") or {}
+        comm_list = detail.get("commissionRange") or []
+        comm = (comm_list[0] or {}) if comm_list else {}
         out.append({
             "id": mid,
             "name": info.get("name") or p.get("name") or "",
@@ -245,7 +249,9 @@ def awin_fetch_joined_programmes():
             "epc": kpi.get("epc"),
         })
         # Auto-populate the merchant map so deals from this merchant get wrapped too
-        AWIN_MERCHANT_MAP[info.get("name","").lower().strip()] = str(mid)
+        nm = (info.get("name") or "").lower().strip()
+        if nm:
+            AWIN_MERCHANT_MAP[nm] = str(mid)
         if info.get("displayUrl"):
             domain = info["displayUrl"].replace("https://","").replace("http://","").replace("www.","").rstrip("/")
             AWIN_MERCHANT_MAP[domain.lower()] = str(mid)
