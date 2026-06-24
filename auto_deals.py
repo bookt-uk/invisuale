@@ -25,6 +25,17 @@ AWIN_MERCHANT_MAP = {
     "compare parking prices": "118401",
     "compareparkingprices": "118401",
     "compareparkingprices.co.uk": "118401",
+    "mystery box shop": "45189",
+    "mysteryboxshop": "45189",
+    "sedley": "47609",
+    "sedley.com": "47609",
+    "cold town beer": "87545",
+    "coldtownbeer": "87545",
+    "morish snacks": "126437",
+    "morish": "126437",
+    "morishsnacks": "126437",
+    "brickzonehub": "121692",
+    "brick zone hub": "121692",
     # Add more as Awin merchants approve us:
     # "currys": "1599",
     # "john lewis": "6395",
@@ -49,6 +60,10 @@ LOCAL_LOGOS = {
     "bunches": "/images/bunches-logo.jpg",
     "game over": "/images/gameover-logo.jpg",
     "compare parking prices": "/images/cpp-logo.jpg",
+    "mystery box shop": "/images/mysterybox-logo.jpg",
+    "sedley": "/images/sedley-logo.jpg",
+    "morish snacks": "/images/morish-logo.jpg",
+    "morish": "/images/morish-logo.jpg",
 }
 
 # Single Awin Create-a-Feed URL bundling multiple advertisers' products in one CSV.
@@ -786,6 +801,30 @@ FEATURED_CARDS = [
         "chips": [("UP TO 60% OFF", "vs on-the-day prices"), ("ALL UK AIRPORTS", "Heathrow, Gatwick, Manchester +")],
         "cta": "https://www.awin1.com/cread.php?awinmid=118401&awinaffid=2926769&ued=https%3A%2F%2Fwww.compareparkingprices.co.uk%2F",
     },
+    {
+        "logo": "/images/mysterybox-logo.jpg", "name": "MYSTERY BOX SHOP", "label": "Gifts", "cat": None, "home": True,
+        "verified": "Verified partner",
+        "head": "Surprise mystery gift boxes — more inside than you pay for",
+        "feats": ["Birthday & occasion boxes", "Value beats the price tag", "UK warehouse, fast dispatch"],
+        "chips": [("MYSTERY BOXES", "More value than you pay"), ("UK DISPATCH", "Fast UK delivery")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=45189&awinaffid=2926769&ued=https%3A%2F%2Fmysteryboxshop.com%2F",
+    },
+    {
+        "logo": "/images/sedley-logo.jpg", "name": "SEDLEY", "label": "Menswear", "cat": "Fashion & Accessories", "home": False,
+        "verified": "Verified partner",
+        "head": "Well-crafted menswear essentials at excellent value",
+        "feats": ["Easy-to-wear staples", "Clothing & footwear", "Excellent value UK brand"],
+        "chips": [("MENSWEAR", "Everyday essentials"), ("UK BRAND", "Quality basics")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=47609&awinaffid=2926769&ued=https%3A%2F%2Fwww.sedley.com%2F",
+    },
+    {
+        "logo": "/images/morish-logo.jpg", "name": "MORISH", "label": "Healthy Snacks", "cat": "Groceries", "home": False,
+        "verified": "Verified partner",
+        "head": "Snacks with benefits — high protein, fibre & low-carb",
+        "feats": ["No added sugar", "High protein & fibre", "Crispy & moreish"],
+        "chips": [("LOW-CARB", "Snacks with benefits"), ("NO ADDED SUGAR", "Guilt-free snacking")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=126437&awinaffid=2926769&ued=https%3A%2F%2Fmorishsnacks.co.uk%2F",
+    },
 ]
 
 def render_featured_card(c):
@@ -875,7 +914,9 @@ def update_index(new_deals):
 
     # Blend featured brand cards into the deal grid (not stacked at the top).
     # Spread them out: first after a few deals, then evenly apart.
-    featured = [render_featured_card(c) for c in FEATURED_CARDS]
+    # Only cards flagged home=True (default) appear on the homepage; the rest are
+    # surfaced on their matching category page instead, to keep the homepage lean.
+    featured = [render_featured_card(c) for c in FEATURED_CARDS if c.get("home", True)]
     slots = [3 + i * 6 for i in range(len(featured))]  # e.g. positions 3, 9, 15
     out = []
     fi = 0
