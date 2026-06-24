@@ -64,6 +64,8 @@ LOCAL_LOGOS = {
     "sedley": "/images/sedley-logo.jpg",
     "morish snacks": "/images/morish-logo.jpg",
     "morish": "/images/morish-logo.jpg",
+    "brickzonehub": "/images/brickzonehub-logo.jpg",
+    "brick zone hub": "/images/brickzonehub-logo.jpg",
 }
 
 # Single Awin Create-a-Feed URL bundling multiple advertisers' products in one CSV.
@@ -824,6 +826,14 @@ FEATURED_CARDS = [
         "feats": ["No added sugar", "High protein & fibre", "Crispy & moreish"],
         "chips": [("LOW-CARB", "Snacks with benefits"), ("NO ADDED SUGAR", "Guilt-free snacking")],
         "cta": "https://www.awin1.com/cread.php?awinmid=126437&awinaffid=2926769&ued=https%3A%2F%2Fmorishsnacks.co.uk%2F",
+    },
+    {
+        "logo": "/images/brickzonehub-logo.jpg", "name": "BRICKZONEHUB", "label": "LEGO Display", "cat": "Family & Kids", "home": False,
+        "verified": "Verified partner",
+        "head": "Premium UK display frames & cases for your LEGO collection",
+        "feats": ["For Technic, Icons & Speed Champions", "Wall frames & acrylic cases", "Fast UK delivery"],
+        "chips": [("LEGO FRAMES", "Show off your builds"), ("UK DELIVERY", "Made for collectors")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=121692&awinaffid=2926769&ued=https%3A%2F%2Fbrickzonehub.co.uk%2F",
     },
 ]
 
