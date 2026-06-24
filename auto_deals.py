@@ -34,6 +34,9 @@ AWIN_MERCHANT_MAP = {
     "morish snacks": "126437",
     "morish": "126437",
     "morishsnacks": "126437",
+    "buy me once": "54235",
+    "buymeonce": "54235",
+    "buymeonce.com": "54235",
     "brickzonehub": "121692",
     "brick zone hub": "121692",
     # Add more as Awin merchants approve us:
@@ -66,6 +69,7 @@ LOCAL_LOGOS = {
     "morish": "/images/morish-logo.jpg",
     "brickzonehub": "/images/brickzonehub-logo.jpg",
     "brick zone hub": "/images/brickzonehub-logo.jpg",
+    "buy me once": "/images/buymeonce-logo.jpg",
 }
 
 # Single Awin Create-a-Feed URL bundling multiple advertisers' products in one CSV.
@@ -840,6 +844,14 @@ FEATURED_CARDS = [
         "feats": ["For Technic, Icons & Speed Champions", "Wall frames & acrylic cases", "Fast UK delivery"],
         "chips": [("LEGO FRAMES", "Show off your builds"), ("UK DELIVERY", "Made for collectors")],
         "cta": "https://www.awin1.com/cread.php?awinmid=121692&awinaffid=2926769&ued=https%3A%2F%2Fbrickzonehub.co.uk%2F",
+    },
+    {
+        "logo": "/images/buymeonce-logo.jpg", "name": "BUY ME ONCE", "label": "Buy It For Life", "cat": "Home & Living", "home": False,
+        "verified": "Verified partner",
+        "head": "Long-lasting homeware & goods built to be bought once",
+        "feats": ["Durability-tested products", "Kitchen, home & lifestyle", "Sustainable — less waste"],
+        "chips": [("BUY IT FOR LIFE", "Built to last"), ("SUSTAINABLE", "Less landfill")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=54235&awinaffid=2926769&ued=https%3A%2F%2Fbuymeonce.com%2F",
     },
 ]
 
