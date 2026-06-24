@@ -36,7 +36,7 @@ AWIN_MERCHANT_MAP = {
     "morishsnacks": "126437",
     "buy me once": "54235",
     "buymeonce": "54235",
-    "buymeonce.com": "54235",
+    "buymeonce.co.uk": "54235",
     "brickzonehub": "121692",
     "brick zone hub": "121692",
     # Add more as Awin merchants approve us:
@@ -851,7 +851,7 @@ FEATURED_CARDS = [
         "head": "Long-lasting homeware on sale — built to be bought once",
         "feats": ["Durability-tested products", "Kitchen, home & lifestyle", "Sustainable — less waste"],
         "chips": [("SALE ON NOW", "Shop discounted items"), ("BUY IT FOR LIFE", "Built to last")],
-        "cta": "https://www.awin1.com/cread.php?awinmid=54235&awinaffid=2926769&ued=https%3A%2F%2Fbuymeonce.com%2Fcollections%2Four-sale",
+        "cta": "https://www.awin1.com/cread.php?awinmid=54235&awinaffid=2926769&ued=https%3A%2F%2Fwww.buymeonce.co.uk%2Fcollections%2Fsale",
     },
 ]
 
