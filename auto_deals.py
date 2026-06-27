@@ -1091,6 +1091,19 @@ def make_category_pages():
                 {"@type": "ListItem", "position": 2, "name": "Categories", "item": "https://invisuale.com/categories/"},
                 {"@type": "ListItem", "position": 3, "name": cat, "item": f"https://invisuale.com/categories/{slug}.html"},
             ]})
+        # Internal links: brand guides + buying guides relevant to this category
+        nm_slug = lambda nm: re.sub(r'[^a-z0-9]+', '-', nm.lower()).strip('-')
+        rel_links = []
+        for fc in FEATURED_CARDS:
+            if fc.get("cat") == cat and fc["name"] in BRAND_GUIDES:
+                rel_links.append((f'{BRAND_DISPLAY.get(fc["name"], fc["name"])} guide', f'/brands/{nm_slug(fc["name"])}.html'))
+        for bg in BUYING_GUIDES:
+            if any(u == f"/categories/{slug}.html" for _, u in bg["related"]):
+                rel_links.append((re.sub('<[^>]+>', '', bg["title"]), f'/guides/{bg["slug"]}.html'))
+        rel_html = ""
+        if rel_links:
+            items = "".join(f'<a href="{u}">{html.escape(t)} &rarr;</a>' for t, u in rel_links)
+            rel_html = f'<div class="cat-related"><b>Guides &amp; brands</b>{items}</div>'
         page = (
             '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
             '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n'
@@ -1104,6 +1117,9 @@ def make_category_pages():
             '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
             '<style>' + cat_css +
             ".cat-intro{max-width:760px;margin:0 auto;color:#cbd5e1;font-size:14px;line-height:1.6;margin-top:12px}\n"
+            ".cat-related{max-width:1400px;margin:0 auto 8px;padding:16px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}\n"
+            ".cat-related b{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#64748b}\n"
+            ".cat-related a{font-size:14px;font-weight:800;color:#ef4444;text-decoration:none}\n"
             '</style>\n' + ANALYTICS +
             '</head>\n<body>\n'
             + HEADER_HTML +
@@ -1111,6 +1127,7 @@ def make_category_pages():
             f'<p>{n} live deals · Updated {today}</p>'
             f'<p class="cat-intro">{html.escape(seo_intro)}</p></div>\n'
             f'<main><div id="deals">{cards}</div></main>\n'
+            + rel_html
             + FOOTER_HTML +
             '</body></html>'
         )
