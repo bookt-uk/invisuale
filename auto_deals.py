@@ -340,6 +340,7 @@ FOOTER_HTML = """<footer style="background:#0f172a;color:#64748b;text-align:cent
 <p style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
 <a href="/" style="color:#94a3b8;text-decoration:none">Hot Deals</a>
 <a href="/codes/" style="color:#94a3b8;text-decoration:none">Codes</a>
+<a href="/brands/" style="color:#94a3b8;text-decoration:none">Brands</a>
 <a href="/categories/" style="color:#94a3b8;text-decoration:none">Categories</a>
 <a href="/guides/" style="color:#94a3b8;text-decoration:none">Guides</a>
 <a href="/about.html" style="color:#94a3b8;text-decoration:none">About</a>
@@ -354,6 +355,7 @@ HEADER_HTML = """<header>
     <nav>
       <a href="/" class="nav-link">Hot Deals</a>
       <a href="/codes/" class="nav-link">Codes</a>
+      <a href="/brands/" class="nav-link">Brands</a>
       <a href="/guides/" class="nav-link">Guides</a>
       <div class="cat-dropdown">
         <span class="nav-link cat-toggle" onclick="toggleCats(event)">Categories <span class="chev">&#9660;</span></span>
@@ -1381,12 +1383,220 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
     with open("codes/index.html", "w") as f: f.write(idx)
     print(f"Built /codes/ with {len(merchants)} brand pages.")
 
+# Per-merchant editorial guide content. FACTUAL only — what they sell, how to save,
+# honest FAQs. NO invented reviews/ratings/testimonials. Keyed by the FEATURED_CARDS
+# "name". Pages target buyer-intent queries like "<brand> discount code uk".
+BRAND_GUIDES = {
+    "AATU": {
+        "intro": "AATU is a British premium pet food brand built on a simple idea: one main animal protein, packed with meat or fish and free from the fillers, grains and additives found in many supermarket brands.",
+        "about": "AATU makes dry and wet food for both dogs and cats, using an 80/20 recipe — around 80% meat or fish — with no wheat, no soya and no artificial colours or flavours. The single-protein approach makes it a popular choice for pets with sensitive stomachs or allergies.",
+        "save": "New customers can use code <b>HELLO10</b> for 10% off a first order, or <b>FIRSTSUB</b> for 30% off a first Subscribe &amp; Save order. Delivery is free on orders over £30.",
+        "faqs": [("Is AATU good quality pet food?", "AATU uses around 80% meat or fish with no grains or fillers and a single main protein, which puts it in the premium tier of UK pet food."),
+                 ("How do I get an AATU discount?", "Use HELLO10 for 10% off your first order, or FIRSTSUB for 30% off your first subscription order."),
+                 ("Does AATU offer free delivery?", "Yes — delivery is free on orders over £30.")],
+    },
+    "8WINES": {
+        "intro": "8wines is an award-winning online wine merchant shipping a curated range across the UK, with a focus on quality bottles from established and boutique producers.",
+        "about": "8wines stocks a broad range of red, white, rosé, sparkling and fine wines, and has been recognised with industry Gold awards multiple years running. Orders are delivered across the UK.",
+        "save": "New customers get <b>£8 off</b> their first order over £88, applied through our link with no code needed, and <b>free UK shipping</b> on orders over £400. Their live sale page lists current reductions.",
+        "faqs": [("Is 8wines a reputable wine retailer?", "Yes — 8wines is an established UK merchant that has won industry Gold awards several years running."),
+                 ("How do I save at 8wines?", "New customers get £8 off a first order over £88 via our link, plus free UK shipping over £400. Their sale page shows further reductions."),
+                 ("Does 8wines deliver across the UK?", "Yes, 8wines delivers nationwide across the UK.")],
+    },
+    "BUNCHES": {
+        "intro": "Bunches is a long-established UK florist delivering fresh flowers by post and hand-tied bouquets to any address in the country.",
+        "about": "Bunches offers letterbox flowers, bouquets and gift sets for occasions like birthdays, anniversaries and sympathy, with prices starting from around £20.25 and UK-wide delivery.",
+        "save": "Browse current bouquets and gift offers through our link. Bunches runs seasonal promotions around key dates such as Mother's Day, Valentine's and Christmas.",
+        "faqs": [("Does Bunches deliver anywhere in the UK?", "Yes — Bunches delivers fresh flowers to any UK address, including letterbox flowers and bouquets."),
+                 ("How much are flowers from Bunches?", "Prices start from around £20.25 depending on the bouquet or gift set."),
+                 ("Is Bunches a trusted florist?", "Bunches is a long-established UK flowers-by-post specialist.")],
+    },
+    "COMPARE PARKING PRICES": {
+        "intro": "Compare Parking Prices is a UK airport parking comparison service that checks trusted providers across all major airports so you can book the best-value option in advance.",
+        "about": "The service compares Meet &amp; Greet, Park &amp; Ride and on-site parking at airports including Heathrow, Gatwick, Manchester, Stansted and Luton. Booking ahead is almost always cheaper than turning up on the day.",
+        "save": "You can save up to <b>60%</b> versus on-the-day prices by pre-booking through the comparison. Summer holiday periods are when booking early matters most, as spaces fill and prices rise.",
+        "faqs": [("How much can I save on airport parking?", "Pre-booking through a comparison can save up to 60% compared with turning up and paying on the day."),
+                 ("Which airports are covered?", "All major UK airports including Heathrow, Gatwick, Manchester, Stansted and Luton."),
+                 ("What's the difference between Meet & Greet and Park & Ride?", "With Meet & Greet a driver parks your car for you at the terminal; with Park & Ride you park yourself and take a transfer bus.")],
+    },
+    "MYSTERY BOX SHOP": {
+        "intro": "Mystery Box Shop sells surprise gift boxes for birthdays and special occasions, where the contents are worth more than the price you pay.",
+        "about": "Based around a large UK warehouse, Mystery Box Shop curates themed boxes of surprise items dispatched quickly across the UK — a popular gifting option when you want something fun and better value than the sticker price.",
+        "save": "Current mystery boxes and bundles are listed through our link, with the value of contents designed to exceed what you pay.",
+        "faqs": [("What is a mystery box?", "A mystery box is a sealed gift box of surprise items, curated so the total value is higher than the price you pay."),
+                 ("Does Mystery Box Shop deliver fast?", "Yes — boxes are dispatched quickly from a UK warehouse."),
+                 ("Are mystery boxes good value?", "They're designed so the contents are worth more than the box price, which is the main appeal.")],
+    },
+    "SEDLEY": {
+        "intro": "Sedley is a UK menswear brand focused on well-crafted, easy-to-wear essentials that offer strong value for everyday wardrobes.",
+        "about": "Sedley makes men's clothing and footwear designed as versatile staples — pieces that work across smart and casual occasions without a premium price tag.",
+        "save": "Browse the current Sedley range through our link; the brand positions itself around value, with seasonal reductions across clothing and footwear.",
+        "faqs": [("What does Sedley sell?", "Sedley sells men's clothing and footwear — everyday wardrobe essentials."),
+                 ("Is Sedley good value?", "Sedley positions itself around well-made essentials at accessible prices."),
+                 ("Where is Sedley based?", "Sedley is a UK menswear brand.")],
+    },
+    "MORISH": {
+        "intro": "Morish makes healthier snacks designed to give you the moreish taste of a treat without the sugar — high in protein and fibre, and low in carbs.",
+        "about": "Morish snacks are positioned as 'snacks with benefits': no added sugar, higher protein and fibre, and a crispy, savoury texture aimed at people wanting smarter snacking for themselves or their families.",
+        "save": "Browse the current Morish range and bundles through our link. Multi-pack bundles are typically the best value per pack.",
+        "faqs": [("Are Morish snacks healthy?", "Morish snacks are made with no added sugar and are higher in protein and fibre than typical crisps or sweets."),
+                 ("Are Morish snacks low carb?", "Yes — they're formulated to be lower in carbohydrates."),
+                 ("What's the best way to buy Morish?", "Multi-pack bundles usually give the best price per pack.")],
+    },
+    "BRICKZONEHUB": {
+        "intro": "brickzonehub makes premium UK display frames and acrylic cases that protect and show off built LEGO sets.",
+        "about": "Designed for collectors, brickzonehub offers wall-mounted frames and clear display cases sized for popular ranges including LEGO Technic, Icons and Speed Champions, with fast UK delivery.",
+        "save": "Browse the current frame and case range through our link. Sizes are matched to specific LEGO sets, so check the set compatibility before ordering.",
+        "faqs": [("What does brickzonehub sell?", "Premium display frames and acrylic cases for built LEGO sets, made in the UK."),
+                 ("Which LEGO sets are supported?", "Ranges including LEGO Technic, Icons and Speed Champions, with sizes matched to specific sets."),
+                 ("Does brickzonehub deliver in the UK?", "Yes — brickzonehub offers fast UK delivery.")],
+    },
+    "BUY ME ONCE": {
+        "intro": "Buy Me Once is a UK retailer built on a 'buy it for life' philosophy — long-lasting homeware and goods chosen for durability so you replace them less often.",
+        "about": "Buy Me Once curates kitchen, home and lifestyle products that are durability-tested to last, with a focus on reducing waste by buying better-quality items once rather than cheap items repeatedly.",
+        "save": "Buy Me Once runs a dedicated <b>sale section</b> — our link points straight to it so you land on the discounted long-life products.",
+        "faqs": [("What is Buy Me Once?", "A UK retailer that curates long-lasting, durability-tested homeware and goods designed to be bought once."),
+                 ("Does Buy Me Once have a sale?", "Yes — it has a dedicated sale section, which our link points to directly."),
+                 ("Why buy from Buy Me Once?", "The focus is durability and less waste — better-quality items that don't need frequent replacing.")],
+    },
+}
+
+# Proper-cased display names (FEATURED_CARDS "name" is uppercase for the card design)
+BRAND_DISPLAY = {
+    "AATU": "AATU", "8WINES": "8wines", "BUNCHES": "Bunches",
+    "COMPARE PARKING PRICES": "Compare Parking Prices", "MYSTERY BOX SHOP": "Mystery Box Shop",
+    "SEDLEY": "Sedley", "MORISH": "Morish", "BRICKZONEHUB": "brickzonehub", "BUY ME ONCE": "Buy Me Once",
+}
+
+def make_brand_pages():
+    """Generate /brands/ index + /brands/<slug>.html editorial guide per featured
+    merchant. Factual buyer-intent content with FAQPage + Breadcrumb schema."""
+    os.makedirs("brands", exist_ok=True)
+    def bslug(n): return re.sub(r'[^a-z0-9]+', '-', n.lower()).strip('-')
+    def disp(n): return BRAND_DISPLAY.get(n, n.title() if n.isupper() else n)
+    css = (
+        "*{box-sizing:border-box;margin:0;padding:0}\n"
+        ":root{--navy:#0f172a;--red:#ef4444;--bg:#f4f4f4;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--green:#16a34a}\n"
+        "body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text)}\n"
+        + HEADER_CSS +
+        ".page-hero{background:linear-gradient(135deg,var(--navy),#1e3a5f);padding:30px 24px;text-align:center}\n"
+        ".page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,46px);font-weight:800;color:#fff;line-height:1.1}\n"
+        ".page-hero p{color:#94a3b8;font-size:14px;margin-top:8px;font-weight:600}\n"
+        "main{max-width:820px;margin:0 auto;padding:28px 22px 60px}\n"
+        ".brand-head{display:flex;align-items:center;gap:18px;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:22px}\n"
+        ".brand-head img{width:120px;height:66px;object-fit:contain;background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px;flex-shrink:0}\n"
+        ".brand-head .bh-label{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--red);text-transform:uppercase}\n"
+        ".brand-head h2{font-size:15px;color:var(--muted);font-weight:700;margin-top:4px}\n"
+        ".cta-btn{display:inline-block;background:var(--red);color:#fff;font-weight:800;font-size:15px;padding:13px 26px;border-radius:10px;text-decoration:none;margin:6px 0 4px}\n"
+        ".cta-wrap{text-align:center;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;margin:24px 0}\n"
+        ".cta-wrap .feats{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;margin-top:10px}\n"
+        ".cta-wrap .feats span{font-size:12px;color:var(--green);font-weight:700}\n"
+        "article h3{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;color:var(--navy);margin:26px 0 10px}\n"
+        "article p{font-size:15px;line-height:1.7;color:#334155;margin-bottom:12px}\n"
+        ".faq{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:10px}\n"
+        ".faq b{display:block;font-size:15px;color:var(--navy);margin-bottom:5px}\n"
+        ".faq span{font-size:14px;color:#475569;line-height:1.6}\n"
+        ".xref{font-size:13px;color:var(--muted);margin-top:24px}\n"
+        ".xref a{color:var(--red);font-weight:700;text-decoration:none}\n"
+        ".disc{font-size:11px;color:#94a3b8;margin-top:18px;line-height:1.5}\n"
+        "footer a{color:#94a3b8}\n"
+    )
+    built = []
+    for c in FEATURED_CARDS:
+        g = BRAND_GUIDES.get(c["name"])
+        if not g: continue
+        s = bslug(c["name"]); name = disp(c["name"])
+        built.append((s, name, c))
+        title_disp = name
+        feats = "".join(f'<span>&#10003; {html.escape(f)}</span>' for f in c["feats"])
+        faq_html = "".join(f'<div class="faq"><b>{html.escape(q)}</b><span>{a}</span></div>' for q, a in g["faqs"])
+        faq_ld = json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+            {"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}} for q,a in g["faqs"]]})
+        crumb_ld = json.dumps({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://invisuale.com/"},
+            {"@type":"ListItem","position":2,"name":"Brands","item":"https://invisuale.com/brands/"},
+            {"@type":"ListItem","position":3,"name":title_disp,"item":f"https://invisuale.com/brands/{s}.html"}]})
+        cat_xref = (f'<a href="/categories/{cat_slug(c["cat"])}.html">{html.escape(c["cat"])} deals</a>' if c.get("cat") else '<a href="/">today\'s deals</a>')
+        meta_desc = f"{title_disp} UK guide: what they sell, how to save and FAQs. {re.sub('<[^>]+>','',g['save'])[:90]}"
+        page = (
+            '<!DOCTYPE html><html lang="en"><head>'
+            '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+            f'<title>{html.escape(title_disp)} UK — Offers, Discounts &amp; Buyer\'s Guide | Invisuale</title>'
+            f'<meta name="description" content="{html.escape(meta_desc)}">'
+            f'<link rel="canonical" href="https://invisuale.com/brands/{s}.html">'
+            '<link rel="icon" type="image/svg+xml" href="/favicon.svg">'
+            f'<meta property="og:title" content="{html.escape(title_disp)} UK — Offers &amp; Buyer\'s Guide">'
+            f'<meta property="og:description" content="{html.escape(meta_desc)}"><meta property="og:type" content="article">'
+            f'<script type="application/ld+json">{faq_ld}</script>'
+            f'<script type="application/ld+json">{crumb_ld}</script>'
+            '<link rel="preconnect" href="https://fonts.googleapis.com">'
+            '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">'
+            '<style>' + css + '</style>' + ANALYTICS +
+            '</head><body>' + HEADER_HTML +
+            f'<div class="page-hero"><h1>{html.escape(title_disp)} — Offers &amp; Buyer\'s Guide</h1>'
+            f'<p>What they sell, how to save, and the questions people ask — updated regularly</p></div>'
+            '<main>'
+            f'<div class="brand-head"><img src="{c["logo"]}" alt="{html.escape(title_disp)} logo">'
+            f'<div><div class="bh-label">{html.escape(c["label"])}</div><h2>{html.escape(c["head"])}</h2></div></div>'
+            f'<article>'
+            f'<p>{g["intro"]}</p>'
+            f'<h3>About {html.escape(title_disp)}</h3><p>{g["about"]}</p>'
+            f'<h3>How to save at {html.escape(title_disp)}</h3><p>{g["save"]}</p>'
+            f'<div class="cta-wrap"><a class="cta-btn" href="{c["cta"]}" rel="nofollow sponsored" target="_blank">Visit {html.escape(title_disp)} &rarr;</a>'
+            f'<div class="feats">{feats}</div></div>'
+            f'<h3>{html.escape(title_disp)} FAQs</h3>{faq_html}'
+            f'<p class="xref">See more in {cat_xref} &middot; <a href="/codes/">UK discount codes</a> &middot; <a href="/brands/">all brands</a></p>'
+            '<p class="disc">Invisuale may earn a commission when you buy through links on this page, at no extra cost to you. Information is provided as a guide and prices/offers may change — always check the retailer\'s site for current details.</p>'
+            '</article></main>' + FOOTER_HTML + '</body></html>'
+        )
+        with open(f"brands/{s}.html", "w") as f: f.write(page)
+
+    # Brands index
+    grid = ""
+    for s, name, c in sorted(built, key=lambda x: x[1].lower()):
+        grid += (f'<a href="/brands/{s}.html" class="bcard"><img src="{c["logo"]}" alt="{html.escape(name)} logo" loading="lazy">'
+                 f'<span class="bn">{html.escape(name)}</span><span class="bl">{html.escape(c["label"])}</span></a>')
+    idx_css = (
+        "*{box-sizing:border-box;margin:0;padding:0}\n"
+        ":root{--navy:#0f172a;--red:#ef4444;--bg:#f4f4f4;--white:#fff;--border:#e2e8f0;--muted:#64748b}\n"
+        "body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}\n"
+        + HEADER_CSS +
+        ".page-hero{background:linear-gradient(135deg,var(--navy),#1e3a5f);padding:30px 24px;text-align:center}\n"
+        ".page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,46px);font-weight:800;color:#fff}\n"
+        ".page-hero p{color:#94a3b8;font-size:14px;margin-top:8px;font-weight:600}\n"
+        "main{max-width:1000px;margin:0 auto;padding:30px 22px 60px}\n"
+        ".bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}\n"
+        ".bcard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;transition:transform .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.07)}\n"
+        ".bcard:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,.12)}\n"
+        ".bcard img{width:130px;height:54px;object-fit:contain}\n"
+        ".bn{font-size:14px;font-weight:800;color:#1e293b;text-align:center}\n"
+        ".bl{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}\n"
+        "footer a{color:#94a3b8}\n"
+    )
+    idx = (
+        '<!DOCTYPE html><html lang="en"><head>'
+        '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<title>UK Brand Guides — Offers, Discounts &amp; Buyer\'s Guides | Invisuale</title>'
+        '<meta name="description" content="Honest UK buyer\'s guides for trusted retailers — what they sell, how to save and FAQs. AATU, 8wines, Buy Me Once and more.">'
+        '<link rel="canonical" href="https://invisuale.com/brands/">'
+        '<link rel="icon" type="image/svg+xml" href="/favicon.svg">'
+        '<link rel="preconnect" href="https://fonts.googleapis.com">'
+        '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">'
+        '<style>' + idx_css + '</style>' + ANALYTICS +
+        '</head><body>' + HEADER_HTML +
+        '<div class="page-hero"><h1>Brand Guides</h1><p>Honest guides to trusted UK retailers — what they sell and how to save</p></div>'
+        f'<main><div class="bgrid">{grid}</div></main>' + FOOTER_HTML + '</body></html>'
+    )
+    with open("brands/index.html", "w") as f: f.write(idx)
+    print(f"Built {len(built)} brand guide pages.")
+
 def make_sitemap():
     cat_pages = [f'categories/{f}' for f in os.listdir('categories') if f.endswith('.html')] if os.path.exists('categories') else []
+    brand_pages = [f'brands/{f}' for f in os.listdir('brands') if f.endswith('.html')] if os.path.exists('brands') else []
     guide_pages = [f'guides/{f}' for f in os.listdir('guides') if f.endswith('.html')] if os.path.exists('guides') else []
     code_pages = [f'codes/{f}' for f in os.listdir('codes') if f.endswith('.html') and f != 'index.html'] if os.path.exists('codes') else []
-    static_pages = ['', 'about.html', 'privacy.html', 'discount-codes.html', 'guides/', 'codes/']
-    pages = static_pages + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages + [g for g in guide_pages if g != 'guides/index.html'] + code_pages
+    static_pages = ['', 'about.html', 'privacy.html', 'discount-codes.html', 'guides/', 'codes/', 'brands/']
+    pages = static_pages + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages + [g for g in guide_pages if g != 'guides/index.html'] + code_pages + [b for b in brand_pages if b != 'brands/index.html']
     urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc></url>' for p in pages])
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
     with open('sitemap.xml', 'w') as f: f.write(xml)
@@ -1481,6 +1691,7 @@ def main():
         make_codes_pages(merchants)
     update_index(new)
     make_category_pages()
+    make_brand_pages()
     make_sitemap()
     save_posted(posted)
     print(f"Done. {count} deals added.")
