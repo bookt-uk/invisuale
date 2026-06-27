@@ -1590,6 +1590,166 @@ def make_brand_pages():
     with open("brands/index.html", "w") as f: f.write(idx)
     print(f"Built {len(built)} brand guide pages.")
 
+# Long-form buying guides — genuinely useful, factual editorial that targets
+# "best X uk" / "how to choose X" research queries. Each soft-funnels to a relevant
+# brand guide + category. NO fabricated stats; advice only.
+BUYING_GUIDES = [
+    {
+        "slug": "uk-airport-parking-guide",
+        "title": "UK Airport Parking: How to Compare &amp; Save",
+        "desc": "How to find cheap, safe UK airport parking — Meet &amp; Greet vs Park &amp; Ride, why booking ahead saves money, and what to check before you book.",
+        "intro": "Airport parking is one of those costs that quietly balloons if you leave it to the last minute. Turn up on the day and you'll pay the gate's premium rate; plan ahead and you can pay a fraction of it. Here's how to choose the right type of parking and book it for less.",
+        "sections": [
+            ("Why booking ahead saves the most", ["On-the-day prices at the barrier are almost always the most expensive option. Pre-booking can save a large chunk versus turning up — comparison services regularly show savings of up to around 60% against gate prices.", "Prices also climb as your travel date approaches and spaces sell out, which bites hardest during summer holidays and school half-terms. The earlier you lock in a price, the better."]),
+            ("Meet &amp; Greet vs Park &amp; Ride vs on-site", ["<b>Meet &amp; Greet</b> is the most convenient: you drive to the terminal, hand the car to a driver who parks it, and it's waiting when you land. It's the priciest option but saves time and hassle.", "<b>Park &amp; Ride</b> is usually the cheapest: you park at an off-site car park and take a short transfer bus to the terminal. Build in time for the transfer.", "<b>On-site / official airport car parks</b> sit in between — handy and close to the terminal, typically mid-to-high price."]),
+            ("What to check before you book", ["Look for a <b>Park Mark</b> safety accreditation, whether staff keep your keys, how often transfer buses run, and the cancellation or amendment policy in case your plans change. Read recent reviews and double-check the car park serves your exact terminal."]),
+            ("Compare instead of guessing", ["Rather than checking each provider one by one, a comparison service shows every option at your airport and dates side by side, so you can weigh price against convenience in one go."]),
+        ],
+        "faqs": [("What's the cheapest type of airport parking?", "Park &amp; Ride is usually the cheapest, as you park off-site and take a transfer bus. Meet &amp; Greet costs more for the convenience."),
+                 ("Is Meet &amp; Greet airport parking safe?", "It can be — look for a Park Mark safety accreditation and read recent reviews before booking."),
+                 ("How far in advance should I book?", "As early as you can. Prices rise and spaces fill closer to the date, especially in summer and school holidays.")],
+        "related": [("Compare Parking Prices guide", "/brands/compare-parking-prices.html"), ("Travel deals", "/categories/travel.html")],
+    },
+    {
+        "slug": "choosing-premium-dog-food-uk",
+        "title": "How to Choose Premium Dog Food in the UK",
+        "desc": "What separates premium dog food from supermarket brands — meat content, fillers and grains, single-protein recipes, and how to switch foods safely.",
+        "intro": "\"Premium\" gets used loosely on pet food packaging, so it pays to read the label rather than the marketing. Here's what actually distinguishes a higher-quality dog food and how to switch without upsetting your dog's stomach.",
+        "sections": [
+            ("Check the meat content first", ["A named meat (\"chicken\", \"salmon\") should be the first ingredient, and the higher the meat or fish percentage, the better — premium foods often sit well above supermarket levels. Be wary of vague terms like \"meat derivatives\", which tell you little about quality."]),
+            ("Watch for fillers and grains", ["Cheaper foods bulk out recipes with wheat, maize or soya. Some dogs tolerate grains perfectly well; others are sensitive. Note that grain-free isn't automatically \"better\" — it simply suits some dogs more than others, so follow your vet's guidance if in doubt."]),
+            ("Single protein helps with sensitivities", ["A recipe built around one named protein makes it far easier to pin down what your dog does and doesn't react to. If your dog has a sensitive stomach, a single-source, high-meat recipe is a sensible starting point."]),
+            ("Match the food to life stage and size", ["Puppy, adult and senior formulas differ for good reason, and portion sizes should be matched to your dog's weight — overfeeding even a great food undoes the benefit."]),
+            ("Switch foods gradually", ["When you change food, transition over roughly 7&ndash;10 days, mixing an increasing proportion of the new food with the old. A sudden swap is the usual cause of an upset tummy."]),
+        ],
+        "faqs": [("What makes a dog food \"premium\"?", "A high percentage of named meat or fish as the main ingredient, with few or no fillers, and often a single protein source."),
+                 ("Is grain-free dog food better?", "Not automatically — it suits some dogs more than others. If your dog isn't grain-sensitive, a quality grain-inclusive food can be perfectly good. Ask your vet if unsure."),
+                 ("How do I switch my dog's food safely?", "Transition gradually over 7&ndash;10 days, mixing more of the new food in each day to avoid stomach upset.")],
+        "related": [("AATU pet food guide", "/brands/aatu.html"), ("Today's deals", "/")],
+    },
+    {
+        "slug": "buy-it-for-life-homeware-guide",
+        "title": "Buy It For Life: A Guide to Long-Lasting Homeware",
+        "desc": "How to buy homeware that lasts — the materials, repairability and warranties that make 'buy it for life' cheaper in the long run.",
+        "intro": "Buying cheap and replacing often usually costs more than buying well once. The \"buy it for life\" approach is about choosing items built to outlast the throwaway versions — here's how to spot them.",
+        "sections": [
+            ("Think cost-per-use, not sticker price", ["A &pound;120 pan you use for twenty years works out cheaper than five &pound;25 pans that warp and get binned. Before dismissing something as expensive, divide the price by the years of use you'll realistically get from it."]),
+            ("Choose materials that last", ["Some materials simply endure: cast iron and stainless steel for cookware, solid (not veneered) wood for furniture, full-grain leather, and borosilicate glass. Flimsy non-stick coatings, particleboard and thin plastics are the usual first things to fail."]),
+            ("Favour repairable products with spares", ["The best long-life products can be fixed rather than replaced. Check whether parts and spares are available, and whether the maker offers repairs — a brand that sells spares expects its products to last."]),
+            ("Read the warranty", ["A long or lifetime guarantee is a signal the maker is confident in the product. It's not a guarantee of perfection, but a 10-year or lifetime warranty tells you something a 12-month one doesn't."]),
+            ("Buy from retailers who curate for durability", ["Some shops specifically test and select goods for longevity, which saves you doing all the research yourself when you want something built to last."]),
+        ],
+        "faqs": [("Is 'buy it for life' actually cheaper?", "Usually, yes — over time. A durable item with a higher upfront price often costs less per year of use than repeatedly replacing a cheap one."),
+                 ("Which materials last longest?", "Cast iron and stainless steel cookware, solid wood furniture, full-grain leather and borosilicate glass tend to far outlast cheaper alternatives."),
+                 ("How can I tell if something is well made?", "Look at the materials, whether spares are available, and the length of the warranty — long guarantees signal confidence in durability.")],
+        "related": [("Buy Me Once guide", "/brands/buy-me-once.html"), ("Home &amp; Living deals", "/categories/home-living.html")],
+    },
+]
+
+def make_buying_guides():
+    """Generate long-form buying-guide articles in /guides/, then rebuild the
+    /guides/ index listing every article (existing static ones + generated)."""
+    os.makedirs("guides", exist_ok=True)
+    art_css = (
+        "*{box-sizing:border-box;margin:0;padding:0}\n"
+        ":root{--navy:#0f172a;--red:#ef4444;--bg:#f4f4f4;--white:#fff;--border:#e2e8f0;--muted:#64748b}\n"
+        "body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}\n"
+        + HEADER_CSS +
+        ".page-hero{background:linear-gradient(135deg,var(--navy),#1e3a5f);padding:34px 24px;text-align:center}\n"
+        ".page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,46px);font-weight:800;color:#fff;line-height:1.12;max-width:760px;margin:0 auto}\n"
+        "main{max-width:780px;margin:0 auto;padding:30px 22px 60px}\n"
+        ".lead{font-size:17px;line-height:1.7;color:#334155;margin-bottom:8px}\n"
+        "article h2{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;color:var(--navy);margin:30px 0 12px}\n"
+        "article p{font-size:15px;line-height:1.75;color:#334155;margin-bottom:13px}\n"
+        ".faq{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:10px}\n"
+        ".faq b{display:block;font-size:15px;color:var(--navy);margin-bottom:5px}.faq span{font-size:14px;color:#475569;line-height:1.6}\n"
+        ".related{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px;margin-top:26px}\n"
+        ".related b{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}\n"
+        ".related a{display:inline-block;margin:8px 12px 0 0;color:var(--red);font-weight:800;text-decoration:none}\n"
+        ".disc{font-size:11px;color:#94a3b8;margin-top:18px;line-height:1.5}\n"
+        "footer a{color:#94a3b8}\n"
+    )
+    for g in BUYING_GUIDES:
+        body = "".join(f'<h2>{h}</h2>' + "".join(f'<p>{p}</p>' for p in ps) for h, ps in g["sections"])
+        faq_html = "".join(f'<div class="faq"><b>{q}</b><span>{a}</span></div>' for q, a in g["faqs"])
+        rel = "".join(f'<a href="{u}">{t} &rarr;</a>' for t, u in g["related"])
+        faq_ld = json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+            {"@type":"Question","name":re.sub('<[^>]+>','',q),"acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}} for q,a in g["faqs"]]})
+        art_ld = json.dumps({"@context":"https://schema.org","@type":"Article","headline":re.sub('<[^>]+>','',g["title"]),
+            "description":re.sub('<[^>]+>','',g["desc"]),"author":{"@type":"Organization","name":"Invisuale"},
+            "publisher":{"@type":"Organization","name":"Invisuale"},"mainEntityOfPage":f"https://invisuale.com/guides/{g['slug']}.html"})
+        page = (
+            '<!DOCTYPE html><html lang="en"><head>'
+            '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+            f'<title>{g["title"]} | Invisuale</title>'
+            f'<meta name="description" content="{g["desc"]}">'
+            f'<link rel="canonical" href="https://invisuale.com/guides/{g["slug"]}.html">'
+            '<link rel="icon" type="image/svg+xml" href="/favicon.svg">'
+            f'<meta property="og:title" content="{g["title"]}"><meta property="og:type" content="article">'
+            f'<meta property="og:description" content="{g["desc"]}">'
+            f'<script type="application/ld+json">{art_ld}</script>'
+            f'<script type="application/ld+json">{faq_ld}</script>'
+            '<link rel="preconnect" href="https://fonts.googleapis.com">'
+            '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">'
+            '<style>' + art_css + '</style>' + ANALYTICS +
+            '</head><body>' + HEADER_HTML +
+            f'<div class="page-hero"><h1>{g["title"]}</h1></div>'
+            f'<main><p class="lead">{g["intro"]}</p><article>{body}'
+            f'<h2>FAQs</h2>{faq_html}'
+            f'<div class="related"><b>Related</b><br>{rel}</div>'
+            '<p class="disc">Invisuale may earn a commission when you buy through links on this site, at no extra cost to you. This guide is general information, not professional advice.</p>'
+            '</article></main>' + FOOTER_HTML + '</body></html>'
+        )
+        with open(f"guides/{g['slug']}.html", "w") as f: f.write(page)
+
+    # Rebuild the /guides/ index from every article in the folder (old + new)
+    arts = []
+    for f in sorted(os.listdir("guides")):
+        if not f.endswith(".html") or f == "index.html": continue
+        c = open(f"guides/{f}").read()
+        tm = re.search(r'<title>(.*?)(?:\s*\|\s*Invisuale)?</title>', c)
+        dm = re.search(r'<meta name="description" content="([^"]*)"', c)
+        title = html.unescape(tm.group(1).strip()) if tm else f.replace('-', ' ').replace('.html', '').title()
+        desc = html.unescape(dm.group(1)) if dm else ""
+        arts.append((f, title, desc))
+    cards = "".join(
+        f'<a href="/guides/{f}" class="gcard"><span class="gt">{html.escape(t)}</span>'
+        f'<span class="gd">{html.escape(d[:150])}</span><span class="gr">Read guide &rarr;</span></a>'
+        for f, t, d in arts)
+    idx_css = (
+        "*{box-sizing:border-box;margin:0;padding:0}\n"
+        ":root{--navy:#0f172a;--red:#ef4444;--bg:#f4f4f4;--white:#fff;--border:#e2e8f0;--muted:#64748b}\n"
+        "body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:#1e293b}\n"
+        + HEADER_CSS +
+        ".page-hero{background:linear-gradient(135deg,var(--navy),#1e3a5f);padding:30px 24px;text-align:center}\n"
+        ".page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,5vw,46px);font-weight:800;color:#fff}\n"
+        ".page-hero p{color:#94a3b8;font-size:14px;margin-top:8px;font-weight:600}\n"
+        "main{max-width:880px;margin:0 auto;padding:30px 22px 60px}\n"
+        ".glist{display:grid;gap:14px}\n"
+        ".gcard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 22px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:transform .15s,box-shadow .15s;box-shadow:0 1px 4px rgba(0,0,0,.07)}\n"
+        ".gcard:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.12)}\n"
+        ".gt{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:800;color:var(--navy);line-height:1.15}\n"
+        ".gd{font-size:14px;color:#475569;line-height:1.55}\n"
+        ".gr{font-size:13px;color:var(--red);font-weight:800;margin-top:2px}\n"
+        "footer a{color:#94a3b8}\n"
+    )
+    idx = (
+        '<!DOCTYPE html><html lang="en"><head>'
+        '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<title>Buying Guides | Invisuale</title>'
+        '<meta name="description" content="Honest UK buying guides — how to choose, when to buy and how to save on everything from airport parking to dog food and long-lasting homeware.">'
+        '<link rel="canonical" href="https://invisuale.com/guides/">'
+        '<link rel="icon" type="image/svg+xml" href="/favicon.svg">'
+        '<link rel="preconnect" href="https://fonts.googleapis.com">'
+        '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">'
+        '<style>' + idx_css + '</style>' + ANALYTICS +
+        '</head><body>' + HEADER_HTML +
+        '<div class="page-hero"><h1>Buying Guides</h1><p>How to choose, when to buy, and how to save — honest UK guides</p></div>'
+        f'<main><div class="glist">{cards}</div></main>' + FOOTER_HTML + '</body></html>'
+    )
+    with open("guides/index.html", "w") as f: f.write(idx)
+    print(f"Built {len(BUYING_GUIDES)} buying guides; index lists {len(arts)} articles.")
+
 def make_sitemap():
     cat_pages = [f'categories/{f}' for f in os.listdir('categories') if f.endswith('.html')] if os.path.exists('categories') else []
     brand_pages = [f'brands/{f}' for f in os.listdir('brands') if f.endswith('.html')] if os.path.exists('brands') else []
@@ -1692,6 +1852,7 @@ def main():
     update_index(new)
     make_category_pages()
     make_brand_pages()
+    make_buying_guides()
     make_sitemap()
     save_posted(posted)
     print(f"Done. {count} deals added.")
