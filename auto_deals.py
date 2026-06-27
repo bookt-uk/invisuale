@@ -1183,6 +1183,20 @@ def make_codes_pages(merchants):
     if not merchants:
         return
     os.makedirs("codes", exist_ok=True)
+    # /codes/ is for REAL discount codes & offers only — a merchant earns a codes
+    # page only if MERCHANT_CODES gives it actual codes or offers. Everyone else
+    # lives in /brands/ (the full directory), so "Codes" never pads with empty
+    # "Verified Partner" cards. Clear stale per-brand pages first to drop orphans.
+    for _f in os.listdir("codes"):
+        if _f.endswith(".html"):
+            os.remove(f"codes/{_f}")
+    def _has_codes(m):
+        mc = lookup_codes(m["name"])
+        return bool(mc and (mc.get("codes") or mc.get("offers") or mc.get("offers_url")))
+    code_merchants = [m for m in merchants if _has_codes(m)]
+    merchants = code_merchants  # everything below operates on real codes/offers only
+    if not merchants:
+        return
     css = HEADER_CSS + """
 body{font-family:'Nunito Sans',sans-serif;background:#f4f4f4;color:#1e293b;margin:0}
 .page-hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);padding:48px 24px;text-align:center;color:#fff}
