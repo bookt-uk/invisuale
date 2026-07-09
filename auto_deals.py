@@ -347,6 +347,7 @@ FOOTER_HTML = ('<footer style="background:#0f172a;color:#64748b;text-align:cente
 '<a href="/about.html" style="color:#cbd5e1;text-decoration:none">About</a>\n'
 '<a href="/about.html#contact" style="color:#cbd5e1;text-decoration:none">Contact</a>\n'
 '<a href="/privacy.html" style="color:#cbd5e1;text-decoration:none">Privacy</a>\n'
+'<a href="/terms.html" style="color:#cbd5e1;text-decoration:none">Terms</a>\n'
 '</p>\n'
 '<p style="margin-top:16px;color:#64748b;font-size:11px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6">Invisuale may earn a commission when you buy through links on our site, at no extra cost to you. As an Amazon Associate we earn from qualifying purchases.</p>\n'
 '<p style="margin-top:14px;color:#475569;font-size:11px;border-top:1px solid rgba(255,255,255,.06);padding-top:14px">&copy; ' + time.strftime('%Y') + ' Invisuale. All rights reserved.</p>\n'
@@ -1789,7 +1790,7 @@ def make_sitemap():
     brand_pages = [f'brands/{f}' for f in os.listdir('brands') if f.endswith('.html')] if os.path.exists('brands') else []
     guide_pages = [f'guides/{f}' for f in os.listdir('guides') if f.endswith('.html')] if os.path.exists('guides') else []
     code_pages = [f'codes/{f}' for f in os.listdir('codes') if f.endswith('.html') and f != 'index.html'] if os.path.exists('codes') else []
-    static_pages = ['', 'about.html', 'privacy.html', 'discount-codes.html', 'guides/', 'codes/', 'brands/']
+    static_pages = ['', 'about.html', 'privacy.html', 'terms.html', 'discount-codes.html', 'guides/', 'codes/', 'brands/']
     pages = static_pages + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages + [g for g in guide_pages if g != 'guides/index.html'] + code_pages + [b for b in brand_pages if b != 'brands/index.html']
     urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc></url>' for p in pages])
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
