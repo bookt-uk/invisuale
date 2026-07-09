@@ -335,19 +335,22 @@ nav{display:flex;align-items:center;gap:2px;flex:1}
 }
 """
 
-FOOTER_HTML = """<footer style="background:#0f172a;color:#64748b;text-align:center;padding:28px 24px;font-size:13px;font-weight:600">
-<p><strong style="color:#fff">Invisuale</strong> &mdash; Best UK Deals. Prices correct at time of posting.</p>
-<p style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
-<a href="/" style="color:#94a3b8;text-decoration:none">Hot Deals</a>
-<a href="/codes/" style="color:#94a3b8;text-decoration:none">Codes</a>
-<a href="/brands/" style="color:#94a3b8;text-decoration:none">Brands</a>
-<a href="/categories/" style="color:#94a3b8;text-decoration:none">Categories</a>
-<a href="/guides/" style="color:#94a3b8;text-decoration:none">Guides</a>
-<a href="/about.html" style="color:#94a3b8;text-decoration:none">About</a>
-<a href="/privacy.html" style="color:#94a3b8;text-decoration:none">Privacy</a>
-</p>
-<p style="margin-top:10px;color:#64748b;font-size:11px">We may earn a commission when you buy through links on our site. As an Amazon Associate we earn from qualifying purchases.</p>
-</footer>"""
+FOOTER_HTML = ('<footer style="background:#0f172a;color:#64748b;text-align:center;padding:30px 24px;font-size:13px;font-weight:600">\n'
+'<p style="font-family:\'Barlow Condensed\',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.3px"><span style="color:#fff">IN</span><span style="color:#ef4444">VISUALE</span></p>\n'
+'<p style="margin-top:6px;color:#94a3b8">Hand-picked UK deals, updated daily.</p>\n'
+'<p style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px 18px;flex-wrap:wrap">\n'
+'<a href="/" style="color:#cbd5e1;text-decoration:none">Hot Deals</a>\n'
+'<a href="/codes/" style="color:#cbd5e1;text-decoration:none">Codes</a>\n'
+'<a href="/brands/" style="color:#cbd5e1;text-decoration:none">Brands</a>\n'
+'<a href="/categories/" style="color:#cbd5e1;text-decoration:none">Categories</a>\n'
+'<a href="/guides/" style="color:#cbd5e1;text-decoration:none">Guides</a>\n'
+'<a href="/about.html" style="color:#cbd5e1;text-decoration:none">About</a>\n'
+'<a href="/about.html#contact" style="color:#cbd5e1;text-decoration:none">Contact</a>\n'
+'<a href="/privacy.html" style="color:#cbd5e1;text-decoration:none">Privacy</a>\n'
+'</p>\n'
+'<p style="margin-top:16px;color:#64748b;font-size:11px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6">Invisuale may earn a commission when you buy through links on our site, at no extra cost to you. As an Amazon Associate we earn from qualifying purchases.</p>\n'
+'<p style="margin-top:14px;color:#475569;font-size:11px;border-top:1px solid rgba(255,255,255,.06);padding-top:14px">&copy; ' + time.strftime('%Y') + ' Invisuale. All rights reserved.</p>\n'
+'</footer>')
 
 HEADER_HTML = """<header>
   <div class="header-inner" style="position:relative">
