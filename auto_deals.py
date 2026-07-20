@@ -37,6 +37,8 @@ AWIN_MERCHANT_MAP = {
     "buy me once": "54235",
     "buymeonce": "54235",
     "buymeonce.co.uk": "54235",
+    "ttfone": "28737",
+    "ttfone.com": "28737",
     "brickzonehub": "121692",
     "brick zone hub": "121692",
     # Add more as Awin merchants approve us:
@@ -70,6 +72,7 @@ LOCAL_LOGOS = {
     "brickzonehub": "/images/brickzonehub-logo.jpg",
     "brick zone hub": "/images/brickzonehub-logo.jpg",
     "buy me once": "/images/buymeonce-logo.jpg",
+    "ttfone": "/images/ttfone-logo.jpg",
 }
 
 # Single Awin Create-a-Feed URL bundling multiple advertisers' products in one CSV.
@@ -858,6 +861,14 @@ FEATURED_CARDS = [
         "feats": ["Durability-tested products", "Kitchen, home & lifestyle", "Sustainable — less waste"],
         "chips": [("SALE ON NOW", "Shop discounted items"), ("BUY IT FOR LIFE", "Built to last")],
         "cta": "https://www.awin1.com/cread.php?awinmid=54235&awinaffid=2926769&ued=https%3A%2F%2Fwww.buymeonce.co.uk%2Fcollections%2Fsale",
+    },
+    {
+        "logo": "/images/ttfone-logo.jpg", "name": "TTFONE", "label": "Easy Phones", "cat": "Broadband & Phone Contracts", "home": False,
+        "verified": "Verified partner",
+        "head": "Big-button mobile phones designed for older & less techy users",
+        "feats": ["Loud volume & clear displays", "SOS emergency button", "Simple menus, easy to use"],
+        "chips": [("BIG BUTTON", "Easy-to-use phones"), ("SOS BUTTON", "One-press for help")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=28737&awinaffid=2926769&ued=https%3A%2F%2Fwww.ttfone.com%2F",
     },
 ]
 
