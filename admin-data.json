@@ -2,7 +2,12 @@
   "range": "Last 28 days",
   "updated": "2026-07 snapshot (pending live wiring)",
   "totals": { "visitors": 41, "pageviews": 57, "sessions": 50, "views24h": 9 },
-  "today": { "visitors": 1, "views": 9, "sessions": 1 },
+  "today": {
+    "visitors": 1, "views": 9, "sessions": 1,
+    "pages": [["/", 4], ["/codes/", 2], ["/brands/", 1], ["/categories/gaming.html", 1], ["/about.html", 1]],
+    "sources": [["Direct", 1]],
+    "countries": [["United Kingdom", 1, "GB"]]
+  },
   "sources": [
     ["Direct", 18], ["Bing", 3], ["Google", 3], ["google.com", 3],
     ["ChatGPT", 2], ["Sony's Phone Shop", 2], ["Awin", 1], ["Yahoo", 1]

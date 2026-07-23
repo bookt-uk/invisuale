@@ -123,6 +123,18 @@ svg.spark{width:100%;height:170px;display:block}
       <span class="since" id="todaySince"></span>
     </div>
     <div class="today">
+      <div class="col"><div class="chdr">Pages</div><div id="dtPages"></div></div>
+      <div class="col"><div class="chdr">Where from &middot; visitors</div><div id="dtSources"></div></div>
+      <div class="col"><div class="chdr">Countries</div><div id="dtCountries"></div></div>
+    </div>
+  </div>
+
+  <div class="panel today-panel" style="margin-bottom:18px">
+    <div class="today-head">
+      <h2 id="periodHead">Last 28 days</h2>
+      <span class="since">full-period breakdown</span>
+    </div>
+    <div class="today">
       <div class="col"><div class="chdr">Pages</div><div id="tPages"></div></div>
       <div class="col"><div class="chdr">Where from &middot; visitors</div><div id="tSources"></div></div>
       <div class="col"><div class="chdr">Countries</div><div id="tCountries"></div></div>
@@ -148,7 +160,7 @@ svg.spark{width:100%;height:170px;display:block}
 const FALLBACK = {
   range:"Last 28 days", updated:"snapshot",
   totals:{visitors:41,pageviews:57,sessions:50,views24h:9},
-  today:{visitors:1,views:9,sessions:1},
+  today:{visitors:1,views:9,sessions:1,pages:[["/",4],["/codes/",2],["/brands/",1],["/categories/gaming.html",1],["/about.html",1]],sources:[["Direct",1]],countries:[["United Kingdom",1,"GB"]]},
   sources:[["Direct",18],["Bing",3],["Google",3],["google.com",3],["ChatGPT",2],["Sony's Phone Shop",2],["Awin",1],["Yahoo",1]],
   countries:[["United States",13,"US"],["United Kingdom",11,"GB"],["Brazil",6,"BR"],["China",5,"CN"],["Germany",2,"DE"],["Spain",2,"ES"],["France",2,"FR"]],
   pages:[["/",37],["/categories/gaming.html",4],["/categories/health-beauty.html",4],["/codes/",4],["/about.html",3],["/categories/groceries.html",3],["/categories/broadband-phone-contracts.html",2],["/brands/",2]],
@@ -163,6 +175,11 @@ function bars(el, rows, cls){
       <div class="rt"><span class="k">${extra?flag(extra)+' ':''}${k}</span><span class="v">${nf(v)}</span></div>
       <div class="track ${cls||''}"><span style="width:${Math.max(4,v/max*100)}%"></span></div>
     </div>`).join('');
+}
+function fillBars(id, rows, cls){
+  const el = document.getElementById(id);
+  if(rows && rows.length) bars(el, rows, cls);
+  else el.innerHTML = '<div style="color:var(--dim);font-size:13px;font-weight:700;padding:4px 0">No visits yet</div>';
 }
 const ICON = {
   visitors:'<circle cx="9" cy="7" r="4"/><path d="M17 11v-1a4 4 0 0 0-3-3.87M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/>',
@@ -183,9 +200,16 @@ function render(d){
     stat('Pageviews (24h)','live',d.totals.views24h,'last 24 hours');
   document.getElementById('todaySince').innerHTML =
     'since midnight (UK) &middot; <b style="color:#cbd6e8">'+d.today.visitors+'</b> visitors &middot; <b style="color:#cbd6e8">'+d.today.views+'</b> views &middot; <b style="color:#cbd6e8">'+d.today.sessions+'</b> sessions';
-  bars(document.getElementById('tPages'), d.pages.slice(0,5));
-  bars(document.getElementById('tSources'), d.sources.slice(0,5), 'blue');
-  bars(document.getElementById('tCountries'), d.countries.slice(0,5).map(c=>[c[0],c[1],c[2]]), 'amber');
+  // Today so far (real today breakdown)
+  const t = d.today || {};
+  fillBars('dtPages',     (t.pages||[]).slice(0,5));
+  fillBars('dtSources',   (t.sources||[]).slice(0,5), 'blue');
+  fillBars('dtCountries', (t.countries||[]).slice(0,5).map(c=>[c[0],c[1],c[2]]), 'amber');
+  // Last 28 days (period breakdown, top 5)
+  document.getElementById('periodHead').textContent = d.range;
+  fillBars('tPages',     d.pages.slice(0,5));
+  fillBars('tSources',   d.sources.slice(0,5), 'blue');
+  fillBars('tCountries', d.countries.slice(0,5).map(c=>[c[0],c[1],c[2]]), 'amber');
   bars(document.getElementById('topPages'), d.pages);
   bars(document.getElementById('topSources'), d.sources, 'blue');
   bars(document.getElementById('topCountries'), d.countries.map(c=>[c[0],c[1],c[2]]), 'amber');
