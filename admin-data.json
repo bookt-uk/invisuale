@@ -1,0 +1,20 @@
+{
+  "range": "Last 28 days",
+  "updated": "2026-07 snapshot (pending live wiring)",
+  "totals": { "visitors": 41, "pageviews": 57, "sessions": 50, "views24h": 9 },
+  "today": { "visitors": 1, "views": 9, "sessions": 1 },
+  "sources": [
+    ["Direct", 18], ["Bing", 3], ["Google", 3], ["google.com", 3],
+    ["ChatGPT", 2], ["Sony's Phone Shop", 2], ["Awin", 1], ["Yahoo", 1]
+  ],
+  "countries": [
+    ["United States", 13, "US"], ["United Kingdom", 11, "GB"], ["Brazil", 6, "BR"],
+    ["China", 5, "CN"], ["Germany", 2, "DE"], ["Spain", 2, "ES"], ["France", 2, "FR"]
+  ],
+  "pages": [
+    ["/", 37], ["/categories/gaming.html", 4], ["/categories/health-beauty.html", 4],
+    ["/codes/", 4], ["/about.html", 3], ["/categories/groceries.html", 3],
+    ["/categories/broadband-phone-contracts.html", 2], ["/brands/", 2]
+  ],
+  "daily": [1,0,2,1,1,0,2,1,0,1,2,1,3,1,0,2,1,1,2,1,0,3,8,2,1,1,2,1]
+}

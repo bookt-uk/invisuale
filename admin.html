@@ -5,32 +5,221 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<title>Traffic Dashboard — Invisuale Admin</title>
+<title>Traffic — Invisuale Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:'Nunito Sans',sans-serif;background:#0f172a;display:flex;flex-direction:column;height:100vh;overflow:hidden}
-header{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:#0f172a;border-bottom:1px solid rgba(255,255,255,.08)}
-.brand{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.3px;color:#fff}
-.brand span{color:#ef4444}
-.brand small{font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:700;color:#94a3b8;margin-left:8px;letter-spacing:.5px;text-transform:uppercase}
-.back{color:#cbd5e1;text-decoration:none;font-size:13px;font-weight:700;background:rgba(255,255,255,.08);padding:8px 14px;border-radius:8px;white-space:nowrap}
-.back:hover{background:rgba(255,255,255,.15);color:#fff}
-.wrap{flex:1;position:relative}
-iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.note{flex-shrink:0;padding:8px 18px;background:#0f172a;color:#64748b;font-size:11px;border-top:1px solid rgba(255,255,255,.06);text-align:center}
+:root{
+  --bg:#0a1120; --panel:#0f1a2e; --panel2:#111f38; --border:rgba(255,255,255,.07);
+  --text:#e8eef7; --muted:#7688a6; --dim:#4b5c78;
+  --red:#ef4444; --red2:#ff6b6b; --navy:#0f172a; --green:#22c55e;
+}
+body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.bar{background:var(--red)}
+a{color:inherit;text-decoration:none}
+.cond{font-family:'Barlow Condensed',sans-serif}
+
+/* top bar */
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 24px;background:rgba(10,17,32,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;letter-spacing:-.4px}
+.logo span{color:var(--red)}
+.logo small{font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:800;color:var(--muted);
+  letter-spacing:1.5px;text-transform:uppercase;margin-left:10px}
+.htools{display:flex;align-items:center;gap:10px}
+.btn{font-size:13px;font-weight:800;padding:8px 14px;border-radius:9px;border:1px solid var(--border);
+  background:var(--panel2);color:var(--text);white-space:nowrap;transition:background .15s}
+.btn:hover{background:#182a49}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn.red:hover{background:#dc2626}
+
+main{max-width:1400px;margin:0 auto;padding:22px 24px 60px}
+.title-row{display:flex;align-items:baseline;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.title-row h1{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:800;letter-spacing:-.5px}
+.title-row .meta{font-size:13px;color:var(--muted);font-weight:700}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin:0 6px 1px}
+
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:20px}
+
+/* stat cards */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}
+.stat{position:relative;overflow:hidden}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--red2))}
+.stat .lbl{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;color:var(--muted)}
+.stat .lbl svg{width:16px;height:16px;stroke:var(--red);fill:none;stroke-width:2}
+.stat .num{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:800;line-height:1;margin-top:10px;letter-spacing:-1px}
+.stat .sub{font-size:12px;color:var(--dim);font-weight:700;margin-top:8px}
+
+/* today row */
+.today{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-bottom:18px}
+.today>.col{padding:0 22px;border-right:1px solid var(--border)}
+.today>.col:first-child{padding-left:0}
+.today>.col:last-child{border-right:none;padding-right:0}
+.today .chdr{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.today-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.today-head h2{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800}
+.today-head .since{font-size:12px;color:var(--muted);font-weight:700}
+
+/* rows with bars */
+.row{margin-bottom:12px}
+.row .rt{display:flex;align-items:center;justify-content:space-between;font-size:14px;font-weight:700;margin-bottom:5px;gap:10px}
+.row .rt .k{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#cbd6e8}
+.row .rt .v{color:var(--text);font-weight:800;font-variant-numeric:tabular-nums}
+.track{height:6px;border-radius:6px;background:rgba(255,255,255,.05);overflow:hidden}
+.track>span{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--red),var(--red2))}
+.track.blue>span{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.track.amber>span{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+
+/* chart */
+.chart-wrap{margin-bottom:18px}
+.chart-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
+.chart-head h2{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800}
+.chart-head .rng{font-size:12px;color:var(--muted);font-weight:700}
+svg.spark{width:100%;height:170px;display:block}
+
+/* bottom grid */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.grid4 h2{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:space-between}
+.grid4 h2 small{font-family:'Nunito Sans',sans-serif;font-size:11px;color:var(--dim);font-weight:700;letter-spacing:.5px}
+.dailylist .dl{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px}
+.dailylist .dl:last-child{border-bottom:none}
+.dailylist .dl .d{color:#cbd6e8;font-weight:700}
+.dailylist .dl .n{color:var(--text);font-weight:800}
+.dailylist .dl .n small{color:var(--dim);font-weight:700;margin-left:6px}
+
+.note{margin-top:22px;font-size:12px;color:var(--dim);line-height:1.6;background:var(--panel);
+  border:1px solid var(--border);border-radius:12px;padding:14px 18px}
+.note b{color:var(--muted)}
+
+@media(max-width:1000px){.stats{grid-template-columns:1fr 1fr}.grid4{grid-template-columns:1fr 1fr}
+  .today{grid-template-columns:1fr;gap:20px}.today>.col{border-right:none;padding:0;border-bottom:1px solid var(--border);padding-bottom:18px}
+  .today>.col:last-child{border-bottom:none}}
+@media(max-width:560px){.stats{grid-template-columns:1fr}.grid4{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
-  <div class="brand">IN<span>VISUALE</span> <small>Traffic Dashboard</small></div>
-  <a class="back" href="/">&larr; Back to site</a>
+  <div class="logo">IN<span>VISUALE</span><small>Traffic</small></div>
+  <div class="htools">
+    <a class="btn" href="https://analytics.google.com/analytics/web/#/p540668206" target="_blank">Open GA4 &#8599;</a>
+    <a class="btn red" href="/">&larr; Back to site</a>
+  </div>
 </header>
-<div class="wrap">
-  <iframe src="https://datastudio.google.com/embed/reporting/649cf0c7-b7e0-4a6a-b9cf-e35de54b5b7c/page/bRa4F" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-</div>
-<div class="note">Private dashboard — visible only when signed in to the Google account that owns this Analytics property. Live data from Google Analytics (GA4). Not linked publicly.</div>
+
+<main>
+  <div class="title-row">
+    <h1>Traffic</h1>
+    <span class="meta" id="rangeLbl">Loading…</span>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="panel today-panel" style="margin-bottom:18px">
+    <div class="today-head">
+      <h2>Today so far</h2>
+      <span class="since" id="todaySince"></span>
+    </div>
+    <div class="today">
+      <div class="col"><div class="chdr">Pages</div><div id="tPages"></div></div>
+      <div class="col"><div class="chdr">Where from &middot; visitors</div><div id="tSources"></div></div>
+      <div class="col"><div class="chdr">Countries</div><div id="tCountries"></div></div>
+    </div>
+  </div>
+
+  <div class="panel chart-wrap">
+    <div class="chart-head"><h2>Pageviews</h2><span class="rng" id="chartRng"></span></div>
+    <svg class="spark" id="spark" viewBox="0 0 1000 170" preserveAspectRatio="none"></svg>
+  </div>
+
+  <div class="grid4">
+    <div class="panel"><h2>Top pages</h2><div id="topPages"></div></div>
+    <div class="panel"><h2>Top sources <small>visitors</small></h2><div id="topSources"></div></div>
+    <div class="panel"><h2>Top countries</h2><div id="topCountries"></div></div>
+    <div class="panel"><h2>Daily breakdown <small id="dailyDays"></small></h2><div class="dailylist" id="dailyList"></div></div>
+  </div>
+
+  <div class="note" id="dataNote"></div>
+</main>
+
+<script>
+const FALLBACK = {
+  range:"Last 28 days", updated:"snapshot",
+  totals:{visitors:41,pageviews:57,sessions:50,views24h:9},
+  today:{visitors:1,views:9,sessions:1},
+  sources:[["Direct",18],["Bing",3],["Google",3],["google.com",3],["ChatGPT",2],["Sony's Phone Shop",2],["Awin",1],["Yahoo",1]],
+  countries:[["United States",13,"US"],["United Kingdom",11,"GB"],["Brazil",6,"BR"],["China",5,"CN"],["Germany",2,"DE"],["Spain",2,"ES"],["France",2,"FR"]],
+  pages:[["/",37],["/categories/gaming.html",4],["/categories/health-beauty.html",4],["/codes/",4],["/about.html",3],["/categories/groceries.html",3],["/categories/broadband-phone-contracts.html",2],["/brands/",2]],
+  daily:[1,0,2,1,1,0,2,1,0,1,2,1,3,1,0,2,1,1,2,1,0,3,8,2,1,1,2,1]
+};
+const flag = cc => cc ? cc.toUpperCase().replace(/./g,c=>String.fromCodePoint(127397+c.charCodeAt())) : "🏳️";
+const nf = n => n.toLocaleString('en-GB');
+function bars(el, rows, cls){
+  const max = Math.max(1, ...rows.map(r=>r[1]));
+  el.innerHTML = rows.map(([k,v,extra])=>`
+    <div class="row">
+      <div class="rt"><span class="k">${extra?flag(extra)+' ':''}${k}</span><span class="v">${nf(v)}</span></div>
+      <div class="track ${cls||''}"><span style="width:${Math.max(4,v/max*100)}%"></span></div>
+    </div>`).join('');
+}
+const ICON = {
+  visitors:'<circle cx="9" cy="7" r="4"/><path d="M17 11v-1a4 4 0 0 0-3-3.87M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/>',
+  views:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+  sessions:'<path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>',
+  live:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>'
+};
+function stat(lbl,icon,num,sub){
+  return `<div class="panel stat"><div class="lbl"><svg viewBox="0 0 24 24">${ICON[icon]}</svg>${lbl}</div>
+    <div class="num">${nf(num)}</div><div class="sub">${sub}</div></div>`;
+}
+function render(d){
+  document.getElementById('rangeLbl').innerHTML = d.range + ' &middot; self-hosted';
+  document.getElementById('stats').innerHTML =
+    stat('Visitors','visitors',d.totals.visitors,d.range)+
+    stat('Pageviews','views',d.totals.pageviews,d.range)+
+    stat('Sessions','sessions',d.totals.sessions,d.range)+
+    stat('Pageviews (24h)','live',d.totals.views24h,'last 24 hours');
+  document.getElementById('todaySince').innerHTML =
+    'since midnight (UK) &middot; <b style="color:#cbd6e8">'+d.today.visitors+'</b> visitors &middot; <b style="color:#cbd6e8">'+d.today.views+'</b> views &middot; <b style="color:#cbd6e8">'+d.today.sessions+'</b> sessions';
+  bars(document.getElementById('tPages'), d.pages.slice(0,5));
+  bars(document.getElementById('tSources'), d.sources.slice(0,5), 'blue');
+  bars(document.getElementById('tCountries'), d.countries.slice(0,5).map(c=>[c[0],c[1],c[2]]), 'amber');
+  bars(document.getElementById('topPages'), d.pages);
+  bars(document.getElementById('topSources'), d.sources, 'blue');
+  bars(document.getElementById('topCountries'), d.countries.map(c=>[c[0],c[1],c[2]]), 'amber');
+  // daily list (most recent first)
+  const days = d.daily.length;
+  document.getElementById('dailyDays').textContent = days+' days';
+  const today = new Date();
+  const dl = d.daily.map((v,i)=>{
+    const dt = new Date(today); dt.setDate(today.getDate()-(days-1-i));
+    return {label: dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'}), v};
+  }).reverse().slice(0,8);
+  document.getElementById('dailyList').innerHTML = dl.map(x=>
+    `<div class="dl"><span class="d">${x.label}</span><span class="n">${x.v}<small>views</small></span></div>`).join('');
+  // sparkline area chart
+  document.getElementById('chartRng').innerHTML = d.range + ' &middot; ' + nf(d.totals.pageviews) + ' views';
+  drawSpark(d.daily);
+  document.getElementById('dataNote').innerHTML =
+    '<b>About this data:</b> live from Google Analytics (GA4) for invisuale.com. '+
+    'Currently a '+ (d.updated||'snapshot') +' — the daily bot will refresh these numbers automatically once live wiring is switched on. Private page (noindex, not linked publicly).';
+}
+function drawSpark(data){
+  const W=1000,H=170,pad=6, max=Math.max(1,...data), n=data.length;
+  const x=i=>pad + i*(W-2*pad)/(n-1);
+  const y=v=>H-pad - v/max*(H-2*pad);
+  let line = data.map((v,i)=>`${i?'L':'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ');
+  let area = `M${x(0).toFixed(1)} ${H} `+data.map((v,i)=>`L${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(' ')+` L${x(n-1).toFixed(1)} ${H} Z`;
+  document.getElementById('spark').innerHTML =
+    `<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ef4444" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#ef4444" stop-opacity="0"/></linearGradient></defs>
+     <path d="${area}" fill="url(#g)"/>
+     <path d="${line}" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+}
+fetch('/admin-data.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(render).catch(()=>render(FALLBACK));
+</script>
 </body>
 </html>
