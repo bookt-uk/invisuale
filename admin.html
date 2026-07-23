@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Traffic Dashboard — Invisuale Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Nunito Sans',sans-serif;background:#0f172a;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+header{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:#0f172a;border-bottom:1px solid rgba(255,255,255,.08)}
+.brand{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.3px;color:#fff}
+.brand span{color:#ef4444}
+.brand small{font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:700;color:#94a3b8;margin-left:8px;letter-spacing:.5px;text-transform:uppercase}
+.back{color:#cbd5e1;text-decoration:none;font-size:13px;font-weight:700;background:rgba(255,255,255,.08);padding:8px 14px;border-radius:8px;white-space:nowrap}
+.back:hover{background:rgba(255,255,255,.15);color:#fff}
+.wrap{flex:1;position:relative}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.note{flex-shrink:0;padding:8px 18px;background:#0f172a;color:#64748b;font-size:11px;border-top:1px solid rgba(255,255,255,.06);text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">IN<span>VISUALE</span> <small>Traffic Dashboard</small></div>
+  <a class="back" href="/">&larr; Back to site</a>
+</header>
+<div class="wrap">
+  <iframe src="https://datastudio.google.com/embed/reporting/649cf0c7-b7e0-4a6a-b9cf-e35de54b5b7c/page/bRa4F" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+</div>
+<div class="note">Private dashboard — visible only when signed in to the Google account that owns this Analytics property. Live data from Google Analytics (GA4). Not linked publicly.</div>
+</body>
+</html>
