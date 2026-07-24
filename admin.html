@@ -160,7 +160,7 @@ svg.spark{width:100%;height:170px;display:block}
 const FALLBACK = {
   range:"Last 28 days", updated:"snapshot",
   totals:{visitors:41,pageviews:57,sessions:50,views24h:9},
-  today:{visitors:1,views:9,sessions:1,pages:[["/",4],["/codes/",2],["/brands/",1],["/categories/gaming.html",1],["/about.html",1]],sources:[["Direct",1]],countries:[["United Kingdom",1,"GB"]]},
+  today:{date:"2026-07-24",visitors:1,views:9,sessions:1,pages:[["/",4],["/codes/",2],["/brands/",1],["/categories/gaming.html",1],["/about.html",1]],sources:[["Direct",1]],countries:[["United Kingdom",1,"GB"]]},
   sources:[["Direct",18],["Bing",3],["Google",3],["google.com",3],["ChatGPT",2],["Sony's Phone Shop",2],["Awin",1],["Yahoo",1]],
   countries:[["United States",13,"US"],["United Kingdom",11,"GB"],["Brazil",6,"BR"],["China",5,"CN"],["Germany",2,"DE"],["Spain",2,"ES"],["France",2,"FR"]],
   pages:[["/",37],["/categories/gaming.html",4],["/categories/health-beauty.html",4],["/codes/",4],["/about.html",3],["/categories/groceries.html",3],["/categories/broadband-phone-contracts.html",2],["/brands/",2]],
@@ -168,6 +168,16 @@ const FALLBACK = {
 };
 const flag = cc => cc ? cc.toUpperCase().replace(/./g,c=>String.fromCodePoint(127397+c.charCodeAt())) : "🏳️";
 const nf = n => n.toLocaleString('en-GB');
+// Current date in UK time (Europe/London handles GMT/BST automatically). en-CA => YYYY-MM-DD
+const ukDate = () => new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+// ms remaining until the next 00:00 Europe/London
+function msToUkMidnight(){
+  const parts = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false})
+    .formatToParts(new Date()).filter(p=>p.type!=='literal');
+  const p = Object.fromEntries(parts.map(x=>[x.type, parseInt(x.value,10)]));
+  const secsIntoDay = (p.hour%24)*3600 + p.minute*60 + p.second;
+  return (86400 - secsIntoDay)*1000 + 2000; // +2s buffer past midnight
+}
 function bars(el, rows, cls){
   const max = Math.max(1, ...rows.map(r=>r[1]));
   el.innerHTML = rows.map(([k,v,extra])=>`
@@ -198,10 +208,14 @@ function render(d){
     stat('Pageviews','views',d.totals.pageviews,d.range)+
     stat('Sessions','sessions',d.totals.sessions,d.range)+
     stat('Pageviews (24h)','live',d.totals.views24h,'last 24 hours');
+  // Today so far — resets at 00:00 Europe/London.
+  // If the stored day isn't the current UK day, the data is stale, so show a clean zeroed day.
+  let t = d.today || {};
+  const isToday = !t.date || t.date === ukDate();
+  if(!isToday) t = {date:ukDate(), visitors:0, views:0, sessions:0, pages:[], sources:[], countries:[]};
+  const ukNow = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',day:'numeric',month:'short'}).format(new Date());
   document.getElementById('todaySince').innerHTML =
-    'since midnight (UK) &middot; <b style="color:#cbd6e8">'+d.today.visitors+'</b> visitors &middot; <b style="color:#cbd6e8">'+d.today.views+'</b> views &middot; <b style="color:#cbd6e8">'+d.today.sessions+'</b> sessions';
-  // Today so far (real today breakdown)
-  const t = d.today || {};
+    'since 00:00 UK &middot; '+ukNow+' &middot; <b style="color:#cbd6e8">'+(t.visitors||0)+'</b> visitors &middot; <b style="color:#cbd6e8">'+(t.views||0)+'</b> views &middot; <b style="color:#cbd6e8">'+(t.sessions||0)+'</b> sessions';
   fillBars('dtPages',     (t.pages||[]).slice(0,5));
   fillBars('dtSources',   (t.sources||[]).slice(0,5), 'blue');
   fillBars('dtCountries', (t.countries||[]).slice(0,5).map(c=>[c[0],c[1],c[2]]), 'amber');
@@ -244,6 +258,8 @@ function drawSpark(data){
      <path d="${line}" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
 }
 fetch('/admin-data.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(render).catch(()=>render(FALLBACK));
+// Roll the day over automatically at 00:00 Europe/London if the page is left open.
+setTimeout(()=>location.reload(), msToUkMidnight());
 </script>
 </body>
 </html>
