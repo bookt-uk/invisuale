@@ -920,9 +920,19 @@ FEATURED_CSS = (
     ".ff .ff-pet{font-size:11px}.ff .ff-chips{margin:6px 0}}\n"
 )
 
+def is_expired_file(fpath):
+    """True if a deal page has been marked as ended (see mark_expired)."""
+    try:
+        with open(fpath) as f:
+            return is_expired_page(f.read())
+    except Exception:
+        return False
+
 def update_index(new_deals):
     if os.path.exists('deals'):
-        all_files = [f for f in os.listdir('deals') if f.endswith('.html')]
+        # Only LIVE deals are listed. Ended deals keep their page (for SEO/long-tail)
+        # but must never appear in the grid, or the homepage fills with dead deals.
+        all_files = [f for f in os.listdir('deals') if f.endswith('.html') and not is_expired_file(f'deals/{f}')]
         # Newest first by file mtime (when the bot wrote it), then cap for mobile
         # page weight. Category pages + sitemap iterate the folder separately, so
         # every deal stays discoverable — only the homepage is trimmed.
@@ -1023,6 +1033,7 @@ def make_category_pages():
         if not fname.endswith(".html"): continue
         try:
             with open(f"deals/{fname}") as f: content = f.read()
+            if is_expired_page(content): continue  # ended deals keep their page but leave the listings
             mm = re.search(r'<meta name="deal-category" content="([^"]*)"', content)
             cat = html.unescape(mm.group(1)) if mm else "Other"
             if not cat: cat = "Other"
@@ -1807,22 +1818,69 @@ def make_sitemap():
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
     with open('sitemap.xml', 'w') as f: f.write(xml)
 
-def purge_old_deals(days=7):
-    cutoff = time.time() - days * 86400
-    removed = 0
+def is_expired_page(content):
+    return '<meta name="deal-expired" content="1">' in content
+
+def mark_expired(fpath):
+    """Turn a live deal page into an 'ended' page INSTEAD of deleting it.
+
+    Deleting deal pages meant Google indexed a URL and then hit a 404 a week
+    later, ~800 times over, which teaches Google the site is unstable and
+    wastes crawl budget. Keeping the page alive preserves the indexed URL and
+    its age, still catches long-tail searches, and funnels the visitor to live
+    deals rather than a dead end. (This is what the big deal sites do.)
+    Idempotent: safe to run repeatedly.
+    """
+    try:
+        with open(fpath) as f:
+            c = f.read()
+    except Exception:
+        return False
+    if is_expired_page(c):
+        return False
+
+    cm = re.search(r'<meta name="deal-category" content="([^"]*)"', c)
+    cat = html.unescape(cm.group(1)) if cm else ""
+    cat_url = f"/categories/{cat_slug(cat)}.html" if cat and cat in CATEGORY_ICONS else "/"
+    cat_label = f"{html.escape(cat)} deals" if cat_url != "/" else "today's deals"
+
+    # Mark it so listings skip it and future runs don't re-process it.
+    c = c.replace('<meta charset="UTF-8">',
+                  '<meta charset="UTF-8">\n<meta name="deal-expired" content="1">', 1)
+    # Badge: HOT DEAL -> DEAL ENDED
+    c = c.replace('<span class="hot-badge">&#128293; HOT DEAL</span>',
+                  '<span class="hot-badge" style="background:#64748b">DEAL ENDED</span>')
+    c = c.replace('<span class="hot-badge">🔥 HOT DEAL</span>',
+                  '<span class="hot-badge" style="background:#64748b">DEAL ENDED</span>')
+    # Replace the affiliate CTA with a route to live deals (no dead outbound click)
+    c = re.sub(
+        r'<a href="[^"]*" class="btn-cta"[^>]*>.*?</a>',
+        f'<div style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:10px;padding:16px;margin-top:6px">'
+        f'<p style="font-weight:800;color:#0f172a;margin-bottom:6px">This deal has ended</p>'
+        f'<p style="font-size:14px;color:#475569;line-height:1.6">Prices and stock change fast. '
+        f'See what&rsquo;s live right now:</p></div>'
+        f'<a href="{cat_url}" class="btn-cta" style="background:#0f172a;margin-top:12px">Browse {cat_label} &rarr;</a>',
+        c, count=1, flags=re.DOTALL)
+    with open(fpath, "w") as f:
+        f.write(c)
+    return True
+
+def expire_old_deals(days=7):
+    """Mark deals older than `days` as ended. Pages are KEPT, never deleted."""
     if not os.path.exists("deals"): return
+    cutoff = time.time() - days * 86400
+    n = 0
     for fname in os.listdir("deals"):
         if not fname.endswith(".html"): continue
         fpath = f"deals/{fname}"
-        if os.path.getmtime(fpath) < cutoff:
-            os.remove(fpath)
-            print(f"purged: {fname}")
-            removed += 1
-    if removed:
-        print(f"Purged {removed} expired deals.")
+        if os.path.getmtime(fpath) < cutoff and mark_expired(fpath):
+            n += 1
+    if n:
+        print(f"Marked {n} deals as ended (kept, not deleted).")
 
 def purge_expired_deals():
-    """Check all existing deal files against HUKD and delete any that are now expired."""
+    """Check live deal files against HUKD and mark any now-expired ones as ended.
+    Pages are kept (see mark_expired) so indexed URLs never turn into 404s."""
     if not os.path.exists("deals"): return
     removed = 0
     files = [f for f in os.listdir("deals") if f.endswith(".html")]
@@ -1831,6 +1889,7 @@ def purge_expired_deals():
         fpath = f"deals/{fname}"
         try:
             with open(fpath) as f: content = f.read()
+            if is_expired_page(content): continue  # already ended, skip the HUKD lookup
             # Get HUKD URL from meta tag
             m = re.search(r'<meta name="deal-hukd-url" content="([^"]*)"', content)
             if not m:
@@ -1841,19 +1900,18 @@ def purge_expired_deals():
             else:
                 hukd_url = html.unescape(m.group(1))
             _, expired, _shipping = resolve_merchant_url(hukd_url)
-            if expired:
-                os.remove(fpath)
-                print(f"expired+removed: {fname}")
+            if expired and mark_expired(fpath):
+                print(f"marked ended: {fname}")
                 removed += 1
             time.sleep(0.5)
         except Exception as e:
             print(f"expiry check error {fname}: {e}")
     if removed:
-        print(f"Removed {removed} expired deals.")
+        print(f"Marked {removed} deals as ended (kept, not deleted).")
 
 def main():
     os.makedirs("deals", exist_ok=True)
-    purge_old_deals(days=7)
+    expire_old_deals(days=7)
     posted = load_posted()
     deals = fetch_deals()
     new, count = [], 0
