@@ -1528,6 +1528,24 @@ BRAND_GUIDES = {
                  ("Does Buy Me Once have a sale?", "Yes — it has a dedicated sale section, which our link points to directly."),
                  ("Why buy from Buy Me Once?", "The focus is durability and less waste — better-quality items that don't need frequent replacing.")],
     },
+    "TTFONE": {
+        "intro": "TTfone makes simple, big-button mobile phones designed for older people, and for anyone who finds a smartphone fiddly, hard to see or hard to hear.",
+        "about": "The range covers basic bar phones and flip phones with large physical buttons, high-contrast displays, loud earpiece and ringer volume, hearing-aid compatibility on some models, and a docking charger so there is no fumbling with a cable. Most models include an SOS emergency button on the back that dials pre-set contacts at one press.",
+        "save": "Prices sit well below smartphone level and most models are pay-as-you-go friendly, so there is no contract to sign. Browse the current range through our link to see what is reduced.",
+        "faqs": [("What is a big button mobile phone?", "A phone with large, widely spaced physical keys and a high-contrast display, made to be easy to use without good eyesight or fine dexterity."),
+                 ("Are TTfone phones good for elderly parents?", "That is the audience they are built for: simple menus, loud volume, a charging dock and an SOS button for emergencies."),
+                 ("What does the SOS button do?", "One press dials contacts you have programmed in advance, so help can be reached without navigating menus.")],
+        "related": [("Broadband & Phone deals", "/categories/broadband-phone-contracts.html")],
+    },
+    "MYCHWAY": {
+        "intro": "myChway is a manufacturer of professional beauty and salon machines, supplying equipment to salons, therapists and home users since 2009.",
+        "about": "The range covers body and facial treatment equipment including cavitation and radio frequency machines, IPL and diode laser hair removal, YAG laser tattoo removal, vacuum and skin treatment devices. They manufacture directly rather than reselling, and hold stock in a UK warehouse alongside US and Australian sites.",
+        "save": "Because they are the manufacturer rather than a middleman, pricing is generally below salon-supplier rates. There is a 30-day returns policy and free shipping over a minimum spend. Check the current offers through our link.",
+        "faqs": [("What does myChway sell?", "Professional beauty and salon machines: cavitation, radio frequency, IPL and diode laser hair removal, YAG tattoo removal, and skin treatment devices."),
+                 ("Is myChway equipment for salons or home use?", "Both. The range runs from professional salon-grade machines to smaller units aimed at home users."),
+                 ("Do they ship from the UK?", "Yes, myChway holds UK stock and dispatches domestically, which keeps delivery times and import costs down.")],
+        "related": [("Health & Beauty deals", "/categories/health-beauty.html")],
+    },
 }
 
 # Proper-cased display names (FEATURED_CARDS "name" is uppercase for the card design)
@@ -1535,6 +1553,7 @@ BRAND_DISPLAY = {
     "AATU": "AATU", "8WINES": "8wines", "BUNCHES": "Bunches",
     "COMPARE PARKING PRICES": "Compare Parking Prices", "MYSTERY BOX SHOP": "Mystery Box Shop",
     "SEDLEY": "Sedley", "MORISH": "Morish", "BRICKZONEHUB": "brickzonehub", "BUY ME ONCE": "Buy Me Once",
+    "TTFONE": "TTfone", "MYCHWAY": "myChway",
 }
 
 def make_brand_pages():

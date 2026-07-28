@@ -189,7 +189,8 @@ function bars(el, rows, cls){
 function fillBars(id, rows, cls){
   const el = document.getElementById(id);
   if(rows && rows.length) bars(el, rows, cls);
-  else el.innerHTML = '<div style="color:var(--dim);font-size:13px;font-weight:700;padding:4px 0">No visits yet</div>';
+  else el.innerHTML = '<div style="color:var(--dim);font-size:13px;font-weight:700;padding:4px 0">'
+    + (window.__stale ? 'Waiting for today&rsquo;s update' : 'No visits yet') + '</div>';
 }
 const ICON = {
   visitors:'<circle cx="9" cy="7" r="4"/><path d="M17 11v-1a4 4 0 0 0-3-3.87M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/>',
@@ -212,10 +213,13 @@ function render(d){
   // If the stored day isn't the current UK day, the data is stale, so show a clean zeroed day.
   let t = d.today || {};
   const isToday = !t.date || t.date === ukDate();
+  const stale = d.stale || !isToday;   // data not refreshed today, so "0 visits" would be a lie
   if(!isToday) t = {date:ukDate(), visitors:0, views:0, sessions:0, pages:[], sources:[], countries:[]};
   const ukNow = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',day:'numeric',month:'short'}).format(new Date());
-  document.getElementById('todaySince').innerHTML =
-    'since 00:00 UK &middot; '+ukNow+' &middot; <b style="color:#cbd6e8">'+(t.visitors||0)+'</b> visitors &middot; <b style="color:#cbd6e8">'+(t.views||0)+'</b> views &middot; <b style="color:#cbd6e8">'+(t.sessions||0)+'</b> sessions';
+  document.getElementById('todaySince').innerHTML = stale
+    ? '<span style="color:#f59e0b">&#9888; not updated yet &middot; last refreshed '+(t.date&&!isToday?d.today.date:(d.updated||'unknown'))+'</span>'
+    : 'since 00:00 UK &middot; '+ukNow+' &middot; <b style="color:#cbd6e8">'+(t.visitors||0)+'</b> visitors &middot; <b style="color:#cbd6e8">'+(t.views||0)+'</b> views &middot; <b style="color:#cbd6e8">'+(t.sessions||0)+'</b> sessions';
+  window.__stale = stale;
   fillBars('dtPages',     (t.pages||[]).slice(0,5));
   fillBars('dtSources',   (t.sources||[]).slice(0,5), 'blue');
   fillBars('dtCountries', (t.countries||[]).slice(0,5).map(c=>[c[0],c[1],c[2]]), 'amber');
