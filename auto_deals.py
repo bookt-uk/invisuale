@@ -39,6 +39,9 @@ AWIN_MERCHANT_MAP = {
     "buymeonce.co.uk": "54235",
     "ttfone": "28737",
     "ttfone.com": "28737",
+    "mychway": "98487",
+    "mychway uk": "98487",
+    "mychway.co.uk": "98487",
     "brickzonehub": "121692",
     "brick zone hub": "121692",
     # Add more as Awin merchants approve us:
@@ -73,6 +76,7 @@ LOCAL_LOGOS = {
     "brick zone hub": "/images/brickzonehub-logo.jpg",
     "buy me once": "/images/buymeonce-logo.jpg",
     "ttfone": "/images/ttfone-logo.jpg",
+    "mychway": "/images/mychway-logo.jpg",
 }
 
 # Single Awin Create-a-Feed URL bundling multiple advertisers' products in one CSV.
@@ -869,6 +873,14 @@ FEATURED_CARDS = [
         "feats": ["Loud volume & clear displays", "SOS emergency button", "Simple menus, easy to use"],
         "chips": [("BIG BUTTON", "Easy-to-use phones"), ("SOS BUTTON", "One-press for help")],
         "cta": "https://www.awin1.com/cread.php?awinmid=28737&awinaffid=2926769&ued=https%3A%2F%2Fwww.ttfone.com%2F",
+    },
+    {
+        "logo": "/images/mychway-logo.jpg", "name": "MYCHWAY", "label": "Beauty Tech", "cat": "Health & Beauty", "home": False,
+        "verified": "Verified partner",
+        "head": "Professional beauty and salon machines, direct from the maker",
+        "feats": ["Manufacturer since 2009", "UK warehouse dispatch", "30-day returns"],
+        "chips": [("SALON GRADE", "Cavitation, RF, IPL & laser"), ("UK STOCK", "Fast UK delivery")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=98487&awinaffid=2926769&ued=https%3A%2F%2Fmychway.co.uk%2F",
     },
 ]
 
