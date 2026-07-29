@@ -357,7 +357,7 @@ FOOTER_HTML = ('<footer style="background:#0f172a;color:#64748b;text-align:cente
 '<a href="/terms.html" style="color:#cbd5e1;text-decoration:none">Terms</a>\n'
 '</p>\n'
 '<p style="margin-top:16px;color:#64748b;font-size:11px;max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6">Invisuale may earn a commission when you buy through links on our site, at no extra cost to you. As an Amazon Associate we earn from qualifying purchases.</p>\n'
-'<p style="margin-top:14px;color:#475569;font-size:11px;border-top:1px solid rgba(255,255,255,.06);padding-top:14px">&copy; ' + time.strftime('%Y') + ' Invisuale. All rights reserved.</p>\n'
+'<p style="margin-top:14px;color:#475569;font-size:11px;border-top:1px solid rgba(255,255,255,.06);padding-top:14px">&copy; <a href="/admin" style="color:inherit;text-decoration:none">' + time.strftime('%Y') + '</a> Invisuale. All rights reserved.</p>\n'
 '</footer>')
 
 HEADER_HTML = """<header>
