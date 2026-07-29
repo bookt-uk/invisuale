@@ -69,10 +69,18 @@ def rows(res, n=1):
 
 
 def total(res, idx=0):
-    t = res.get("totals", [])
-    if not t:
-        return 0
-    return int(t[0].get("metricValues", [])[idx].get("value", 0) or 0)
+    """Read a metric from a no-dimension report.
+
+    GA4 only returns a `totals` block if you explicitly ask for
+    metricAggregations, so rely on the single data row (which IS the total for
+    a dimensionless query) and fall back to `totals` if it happens to be there.
+    """
+    for block in (res.get("rows") or [], res.get("totals") or []):
+        if block:
+            mv = block[0].get("metricValues") or []
+            if idx < len(mv):
+                return int(float(mv[idx].get("value") or 0))
+    return 0
 
 
 def pretty_source(s):
