@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-07-29 03:42 UTC",
+  "updated": "2026-07-29 03:43 UTC",
   "stale": false,
   "totals": {
-    "visitors": 0,
-    "pageviews": 0,
-    "sessions": 0,
-    "views24h": 0
+    "visitors": 62,
+    "pageviews": 78,
+    "sessions": 65,
+    "views24h": 8
   },
   "today": {
     "date": "2026-07-29",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
+    "visitors": 2,
+    "views": 6,
+    "sessions": 3,
     "pages": [
       [
         "/",
