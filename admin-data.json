@@ -1,22 +1,22 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-07-29 06:40 UTC",
+  "updated": "2026-07-29 10:47 UTC",
   "stale": false,
   "totals": {
-    "visitors": 62,
-    "pageviews": 78,
-    "sessions": 65,
-    "views24h": 8
+    "visitors": 63,
+    "pageviews": 79,
+    "sessions": 66,
+    "views24h": 9
   },
   "today": {
     "date": "2026-07-29",
-    "visitors": 2,
-    "views": 6,
-    "sessions": 3,
+    "visitors": 3,
+    "views": 7,
+    "sessions": 4,
     "pages": [
       [
         "/",
-        3
+        4
       ],
       [
         "/brands/",
@@ -33,12 +33,12 @@
     ],
     "sources": [
       [
-        "(not set)",
+        "Direct",
         2
       ],
       [
-        "Direct",
-        1
+        "(not set)",
+        2
       ],
       [
         "Awin",
@@ -55,13 +55,18 @@
         "United Kingdom",
         1,
         "GB"
+      ],
+      [
+        "United States",
+        1,
+        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      53
+      54
     ],
     [
       "Google",
@@ -91,7 +96,7 @@
   "countries": [
     [
       "United States",
-      18,
+      19,
       "US"
     ],
     [
@@ -128,7 +133,7 @@
   "pages": [
     [
       "/",
-      33
+      34
     ],
     [
       "/categories/health-beauty.html",
@@ -180,6 +185,6 @@
     1,
     4,
     2,
-    6
+    7
   ]
 }
