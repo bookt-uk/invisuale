@@ -1,17 +1,17 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-07-29 17:24 UTC",
+  "updated": "2026-07-29 19:38 UTC",
   "stale": false,
   "totals": {
     "visitors": 64,
-    "pageviews": 80,
+    "pageviews": 81,
     "sessions": 67,
-    "views24h": 10
+    "views24h": 11
   },
   "today": {
     "date": "2026-07-29",
     "visitors": 4,
-    "views": 8,
+    "views": 9,
     "sessions": 5,
     "pages": [
       [
@@ -21,6 +21,10 @@
       [
         "/brands/",
         2
+      ],
+      [
+        "/brands/ttfone.html",
+        1
       ],
       [
         "/categories/health-beauty.html",
@@ -185,6 +189,6 @@
     1,
     4,
     2,
-    8
+    9
   ]
 }
