@@ -1,46 +1,56 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-07 snapshot (pending live wiring)",
+  "updated": "2026-07-29 03:42 UTC",
+  "stale": false,
   "totals": {
-    "visitors": 41,
-    "pageviews": 57,
-    "sessions": 50,
-    "views24h": 9
+    "visitors": 0,
+    "pageviews": 0,
+    "sessions": 0,
+    "views24h": 0
   },
   "today": {
-    "date": "2026-07-24",
-    "visitors": 1,
-    "views": 9,
-    "sessions": 1,
+    "date": "2026-07-29",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
     "pages": [
       [
         "/",
-        4
-      ],
-      [
-        "/codes/",
-        2
+        3
       ],
       [
         "/brands/",
         1
       ],
       [
-        "/categories/gaming.html",
+        "/categories/health-beauty.html",
         1
       ],
       [
-        "/about.html",
+        "/codes/",
         1
       ]
     ],
     "sources": [
       [
+        "(not set)",
+        2
+      ],
+      [
         "Direct",
+        1
+      ],
+      [
+        "Awin",
         1
       ]
     ],
     "countries": [
+      [
+        "France",
+        1,
+        "FR"
+      ],
       [
         "United Kingdom",
         1,
@@ -51,46 +61,42 @@
   "sources": [
     [
       "Direct",
-      18
-    ],
-    [
-      "Bing",
-      3
+      53
     ],
     [
       "Google",
+      4
+    ],
+    [
+      "(not set)",
       3
     ],
     [
       "google.com",
-      3
-    ],
-    [
-      "ChatGPT",
-      2
-    ],
-    [
-      "Sony's Phone Shop",
       2
     ],
     [
       "Awin",
+      2
+    ],
+    [
+      "ChatGPT",
       1
     ],
     [
-      "Yahoo",
+      "sonnysphoneshop",
       1
     ]
   ],
   "countries": [
     [
       "United States",
-      13,
+      18,
       "US"
     ],
     [
       "United Kingdom",
-      11,
+      8,
       "GB"
     ],
     [
@@ -100,52 +106,52 @@
     ],
     [
       "China",
-      5,
+      3,
       "CN"
     ],
     [
-      "Germany",
+      "(not set)",
       2,
-      "DE"
-    ],
-    [
-      "Spain",
-      2,
-      "ES"
+      "(not set)"
     ],
     [
       "France",
       2,
       "FR"
+    ],
+    [
+      "Germany",
+      2,
+      "DE"
     ]
   ],
   "pages": [
     [
       "/",
-      37
+      33
+    ],
+    [
+      "/categories/health-beauty.html",
+      5
+    ],
+    [
+      "/codes/",
+      5
+    ],
+    [
+      "/about.html",
+      4
     ],
     [
       "/categories/gaming.html",
       4
     ],
     [
-      "/categories/health-beauty.html",
-      4
-    ],
-    [
-      "/codes/",
-      4
-    ],
-    [
-      "/about.html",
-      3
-    ],
-    [
       "/categories/groceries.html",
       3
     ],
     [
-      "/categories/broadband-phone-contracts.html",
+      "//checkout/",
       2
     ],
     [
@@ -154,35 +160,26 @@
     ]
   ],
   "daily": [
-    1,
-    0,
+    6,
     2,
-    1,
-    1,
-    0,
-    2,
-    1,
-    0,
-    1,
-    2,
-    1,
     3,
     1,
-    0,
     2,
-    1,
-    1,
-    2,
-    1,
-    0,
-    3,
     8,
     2,
-    1,
-    1,
     2,
-    1
-  ],
-  "stale": true,
-  "stale_reason": "auth failed: The requests library is not installed from please install the requests package to use the requests transport."
+    10,
+    2,
+    1,
+    4,
+    13,
+    4,
+    3,
+    1,
+    1,
+    1,
+    4,
+    2,
+    6
+  ]
 }
