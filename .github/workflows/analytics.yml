@@ -1,10 +1,12 @@
 name: Refresh Traffic Dashboard
 
-# Kept separate from Auto Deals so the /admin dashboard can refresh several times
-# a day and is never blocked by (or waiting on) the ~25min deal scrape.
+# Kept separate from Auto Deals so the /admin dashboard refreshes on its own cadence
+# and is never blocked by (or waiting on) the ~25min deal scrape.
+# Every 2h is the sweet spot: the repo is private so Actions minutes are metered
+# (2000/mo free, the deal scraper already uses ~800). 2h costs ~240/mo.
 on:
   schedule:
-    - cron: "5 */6 * * *"   # every 6 hours, just past the hour
+    - cron: "5 */2 * * *"   # every 2 hours, just past the hour
   workflow_dispatch: {}
 
 jobs:
