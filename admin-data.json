@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-07-29 14:27 UTC",
+  "updated": "2026-07-29 17:24 UTC",
   "stale": false,
   "totals": {
-    "visitors": 63,
-    "pageviews": 79,
-    "sessions": 66,
-    "views24h": 9
+    "visitors": 64,
+    "pageviews": 80,
+    "sessions": 67,
+    "views24h": 10
   },
   "today": {
     "date": "2026-07-29",
-    "visitors": 3,
-    "views": 7,
-    "sessions": 4,
+    "visitors": 4,
+    "views": 8,
+    "sessions": 5,
     "pages": [
       [
         "/",
@@ -20,7 +20,7 @@
       ],
       [
         "/brands/",
-        1
+        2
       ],
       [
         "/categories/health-beauty.html",
@@ -33,11 +33,11 @@
     ],
     "sources": [
       [
-        "Direct",
-        2
+        "(not set)",
+        3
       ],
       [
-        "(not set)",
+        "Direct",
         2
       ],
       [
@@ -47,14 +47,14 @@
     ],
     "countries": [
       [
+        "United Kingdom",
+        2,
+        "GB"
+      ],
+      [
         "France",
         1,
         "FR"
-      ],
-      [
-        "United Kingdom",
-        1,
-        "GB"
       ],
       [
         "United States",
@@ -74,7 +74,7 @@
     ],
     [
       "(not set)",
-      2
+      3
     ],
     [
       "google.com",
@@ -101,7 +101,7 @@
     ],
     [
       "United Kingdom",
-      8,
+      9,
       "GB"
     ],
     [
@@ -152,15 +152,15 @@
       4
     ],
     [
+      "/brands/",
+      3
+    ],
+    [
       "/categories/groceries.html",
       3
     ],
     [
       "//checkout/",
-      2
-    ],
-    [
-      "/brands/",
       2
     ]
   ],
@@ -185,6 +185,6 @@
     1,
     4,
     2,
-    7
+    8
   ]
 }
