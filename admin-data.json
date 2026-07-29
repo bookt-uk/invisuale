@@ -184,5 +184,5 @@
     1
   ],
   "stale": true,
-  "stale_reason": "GA4_SA_KEY not set"
+  "stale_reason": "auth failed: The requests library is not installed from please install the requests package to use the requests transport."
 }
