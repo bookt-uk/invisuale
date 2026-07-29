@@ -18,7 +18,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install deps
-        run: pip install --quiet google-auth
+        run: pip install --quiet google-auth requests
 
       - name: Pull GA4 numbers
         env:
@@ -29,8 +29,8 @@ jobs:
         run: |
           git config user.name "deal-bot"
           git config user.email "bot@invisuale.com"
+          git pull --rebase origin main || true
           git add admin-data.json
           git diff --staged --quiet && echo "no change" && exit 0
-          git pull --rebase origin main || true
           git commit -m "refresh traffic dashboard"
           git push
