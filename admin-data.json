@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-07-30 10:32 UTC",
+  "updated": "2026-07-30 14:26 UTC",
   "stale": false,
   "totals": {
     "visitors": 59,
-    "pageviews": 76,
+    "pageviews": 79,
     "sessions": 62,
-    "views24h": 10
+    "views24h": 13
   },
   "today": {
     "date": "2026-07-30",
@@ -36,15 +36,11 @@
   "sources": [
     [
       "Direct",
-      49
+      50
     ],
     [
       "Google",
       4
-    ],
-    [
-      "(not set)",
-      3
     ],
     [
       "google.com",
@@ -103,7 +99,7 @@
   "pages": [
     [
       "/",
-      32
+      35
     ],
     [
       "/codes/",
@@ -154,7 +150,7 @@
     1,
     4,
     2,
-    9,
+    12,
     1
   ]
 }
