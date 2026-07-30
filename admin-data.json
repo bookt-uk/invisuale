@@ -1,65 +1,31 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-07-29 23:08 UTC",
+  "updated": "2026-07-30 03:17 UTC",
   "stale": false,
   "totals": {
-    "visitors": 64,
-    "pageviews": 81,
-    "sessions": 67,
-    "views24h": 11
+    "visitors": 59,
+    "pageviews": 76,
+    "sessions": 62,
+    "views24h": 10
   },
   "today": {
     "date": "2026-07-30",
-    "visitors": 4,
-    "views": 9,
-    "sessions": 5,
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
     "pages": [
       [
         "/",
-        4
-      ],
-      [
-        "/brands/",
-        2
-      ],
-      [
-        "/brands/ttfone.html",
-        1
-      ],
-      [
-        "/categories/health-beauty.html",
-        1
-      ],
-      [
-        "/codes/",
         1
       ]
     ],
     "sources": [
       [
-        "(not set)",
-        3
-      ],
-      [
         "Direct",
-        2
-      ],
-      [
-        "Awin",
         1
       ]
     ],
     "countries": [
-      [
-        "United Kingdom",
-        2,
-        "GB"
-      ],
-      [
-        "France",
-        1,
-        "FR"
-      ],
       [
         "United States",
         1,
@@ -70,7 +36,7 @@
   "sources": [
     [
       "Direct",
-      54
+      49
     ],
     [
       "Google",
@@ -100,7 +66,7 @@
   "countries": [
     [
       "United States",
-      19,
+      15,
       "US"
     ],
     [
@@ -137,11 +103,7 @@
   "pages": [
     [
       "/",
-      34
-    ],
-    [
-      "/categories/health-beauty.html",
-      5
+      32
     ],
     [
       "/codes/",
@@ -156,20 +118,23 @@
       4
     ],
     [
-      "/brands/",
-      3
+      "/categories/health-beauty.html",
+      4
     ],
     [
-      "/categories/groceries.html",
+      "/brands/",
       3
     ],
     [
       "//checkout/",
       2
+    ],
+    [
+      "/categories/broadband-phone-contracts.html",
+      2
     ]
   ],
   "daily": [
-    6,
     2,
     3,
     1,
@@ -189,6 +154,7 @@
     1,
     4,
     2,
-    9
+    9,
+    1
   ]
 }
