@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-01 21:05 UTC",
+  "updated": "2026-08-01 23:03 UTC",
   "stale": false,
   "totals": {
-    "visitors": 60,
-    "pageviews": 80,
-    "sessions": 63,
-    "views24h": 1
+    "visitors": 61,
+    "pageviews": 81,
+    "sessions": 64,
+    "views24h": 2
   },
   "today": {
-    "date": "2026-08-01",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "date": "2026-08-02",
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "France",
+        1,
+        "FR"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      51
+      52
     ],
     [
       "Google",
@@ -65,14 +81,14 @@
       "CN"
     ],
     [
+      "France",
+      3,
+      "FR"
+    ],
+    [
       "(not set)",
       2,
       "(not set)"
-    ],
-    [
-      "France",
-      2,
-      "FR"
     ],
     [
       "Germany",
@@ -83,7 +99,7 @@
   "pages": [
     [
       "/",
-      36
+      37
     ],
     [
       "/codes/",
@@ -135,6 +151,7 @@
     4,
     2,
     12,
+    1,
     1,
     1
   ]
