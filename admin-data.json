@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-01 23:03 UTC",
+  "updated": "2026-08-02 03:44 UTC",
   "stale": false,
   "totals": {
     "visitors": 61,
     "pageviews": 81,
     "sessions": 64,
-    "views24h": 2
+    "views24h": 3
   },
   "today": {
     "date": "2026-08-02",
@@ -23,24 +23,32 @@
       [
         "Direct",
         1
+      ],
+      [
+        "(not set)",
+        1
       ]
     ],
     "countries": [
       [
-        "France",
+        "Germany",
         1,
-        "FR"
+        "DE"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      52
+      53
     ],
     [
       "Google",
       4
+    ],
+    [
+      "(not set)",
+      2
     ],
     [
       "google.com",
@@ -49,10 +57,6 @@
     [
       "Awin",
       2
-    ],
-    [
-      "ChatGPT",
-      1
     ],
     [
       "sonnysphoneshop",
@@ -67,7 +71,7 @@
     ],
     [
       "United Kingdom",
-      9,
+      8,
       "GB"
     ],
     [
@@ -76,14 +80,14 @@
       "BR"
     ],
     [
-      "China",
-      3,
-      "CN"
-    ],
-    [
       "France",
       3,
       "FR"
+    ],
+    [
+      "Germany",
+      3,
+      "DE"
     ],
     [
       "(not set)",
@@ -91,15 +95,15 @@
       "(not set)"
     ],
     [
-      "Germany",
+      "China",
       2,
-      "DE"
+      "CN"
     ]
   ],
   "pages": [
     [
       "/",
-      37
+      39
     ],
     [
       "/codes/",
@@ -110,15 +114,15 @@
       4
     ],
     [
-      "/categories/gaming.html",
-      4
-    ],
-    [
       "/categories/health-beauty.html",
       4
     ],
     [
       "/brands/",
+      3
+    ],
+    [
+      "/categories/gaming.html",
       3
     ],
     [
@@ -131,7 +135,6 @@
     ]
   ],
   "daily": [
-    2,
     3,
     1,
     2,
@@ -153,6 +156,7 @@
     12,
     1,
     1,
+    2,
     1
   ]
 }
