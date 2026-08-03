@@ -1,50 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-02 23:03 UTC",
+  "updated": "2026-08-03 03:47 UTC",
   "stale": false,
   "totals": {
-    "visitors": 61,
-    "pageviews": 81,
-    "sessions": 64,
-    "views24h": 3
+    "visitors": 59,
+    "pageviews": 78,
+    "sessions": 62,
+    "views24h": 1
   },
   "today": {
     "date": "2026-08-03",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ],
-      [
-        "(not set)",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Germany",
-        1,
-        "DE"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      53
+      52
     ],
     [
       "Google",
-      4
+      3
     ],
     [
       "google.com",
@@ -71,7 +51,7 @@
     ],
     [
       "United Kingdom",
-      8,
+      7,
       "GB"
     ],
     [
@@ -103,7 +83,7 @@
   "pages": [
     [
       "/",
-      39
+      38
     ],
     [
       "/codes/",
@@ -135,7 +115,6 @@
     ]
   ],
   "daily": [
-    3,
     1,
     2,
     8,
