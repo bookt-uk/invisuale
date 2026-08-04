@@ -1,42 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-03 23:14 UTC",
+  "updated": "2026-08-04 03:30 UTC",
   "stale": false,
   "totals": {
-    "visitors": 60,
-    "pageviews": 79,
-    "sessions": 63,
-    "views24h": 2
+    "visitors": 59,
+    "pageviews": 78,
+    "sessions": 62,
+    "views24h": 1
   },
   "today": {
     "date": "2026-08-04",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      53
+      52
     ],
     [
       "Google",
@@ -127,7 +111,6 @@
     ]
   ],
   "daily": [
-    1,
     2,
     8,
     2,
