@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-05 10:44 UTC",
+  "updated": "2026-08-05 14:28 UTC",
   "stale": false,
   "totals": {
-    "visitors": 59,
-    "pageviews": 78,
-    "sessions": 62,
-    "views24h": 2
+    "visitors": 60,
+    "pageviews": 79,
+    "sessions": 63,
+    "views24h": 3
   },
   "today": {
     "date": "2026-08-05",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "United States",
+        1,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      52
+      53
     ],
     [
       "Google",
@@ -35,10 +51,6 @@
       2
     ],
     [
-      "(not set)",
-      1
-    ],
-    [
       "sonnysphoneshop",
       1
     ]
@@ -46,7 +58,7 @@
   "countries": [
     [
       "United States",
-      16,
+      17,
       "US"
     ],
     [
@@ -83,7 +95,7 @@
   "pages": [
     [
       "/",
-      38
+      39
     ],
     [
       "/codes/",
@@ -136,6 +148,7 @@
     2,
     1,
     1,
-    2
+    2,
+    1
   ]
 }
