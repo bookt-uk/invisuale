@@ -1,46 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-04 23:13 UTC",
+  "updated": "2026-08-05 03:25 UTC",
   "stale": false,
   "totals": {
-    "visitors": 60,
-    "pageviews": 79,
-    "sessions": 63,
+    "visitors": 59,
+    "pageviews": 78,
+    "sessions": 62,
     "views24h": 2
   },
   "today": {
     "date": "2026-08-05",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ],
-      [
-        "(not set)",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Hong Kong",
-        1,
-        "HK"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      53
+      52
     ],
     [
       "Google",
@@ -66,7 +46,7 @@
   "countries": [
     [
       "United States",
-      17,
+      16,
       "US"
     ],
     [
@@ -76,8 +56,13 @@
     ],
     [
       "Brazil",
-      6,
+      5,
       "BR"
+    ],
+    [
+      "Hong Kong",
+      4,
+      "HK"
     ],
     [
       "France",
@@ -90,11 +75,6 @@
       "DE"
     ],
     [
-      "Hong Kong",
-      3,
-      "HK"
-    ],
-    [
       "(not set)",
       2,
       "(not set)"
@@ -103,7 +83,7 @@
   "pages": [
     [
       "/",
-      40
+      38
     ],
     [
       "/codes/",
@@ -135,7 +115,6 @@
     ]
   ],
   "daily": [
-    2,
     8,
     2,
     2,
@@ -157,6 +136,6 @@
     2,
     1,
     1,
-    1
+    2
   ]
 }
