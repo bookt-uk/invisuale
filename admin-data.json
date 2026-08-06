@@ -1,42 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-05 23:12 UTC",
+  "updated": "2026-08-06 03:28 UTC",
   "stale": false,
   "totals": {
-    "visitors": 60,
-    "pageviews": 79,
-    "sessions": 63,
-    "views24h": 3
+    "visitors": 52,
+    "pageviews": 71,
+    "sessions": 55,
+    "views24h": 1
   },
   "today": {
     "date": "2026-08-06",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      53
+      45
     ],
     [
       "Google",
@@ -58,18 +42,13 @@
   "countries": [
     [
       "United States",
-      17,
+      16,
       "US"
     ],
     [
       "United Kingdom",
       7,
       "GB"
-    ],
-    [
-      "Brazil",
-      5,
-      "BR"
     ],
     [
       "Hong Kong",
@@ -90,23 +69,24 @@
       "(not set)",
       2,
       "(not set)"
+    ],
+    [
+      "Brazil",
+      2,
+      "BR"
     ]
   ],
   "pages": [
     [
       "/",
-      39
-    ],
-    [
-      "/codes/",
-      5
+      37
     ],
     [
       "/about.html",
       4
     ],
     [
-      "/categories/health-beauty.html",
+      "/codes/",
       4
     ],
     [
@@ -114,7 +94,7 @@
       3
     ],
     [
-      "/categories/gaming.html",
+      "/categories/health-beauty.html",
       3
     ],
     [
@@ -122,12 +102,15 @@
       2
     ],
     [
-      "/categories/broadband-phone-contracts.html",
+      "/categories/gaming.html",
+      2
+    ],
+    [
+      "/categories/services-contracts.html",
       2
     ]
   ],
   "daily": [
-    8,
     2,
     2,
     10,
