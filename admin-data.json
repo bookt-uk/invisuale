@@ -1,15 +1,15 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-06 14:30 UTC",
+  "updated": "2026-08-07 00:11 UTC",
   "stale": false,
   "totals": {
-    "visitors": 52,
-    "pageviews": 71,
-    "sessions": 55,
+    "visitors": 51,
+    "pageviews": 70,
+    "sessions": 54,
     "views24h": 1
   },
   "today": {
-    "date": "2026-08-06",
+    "date": "2026-08-07",
     "visitors": 0,
     "views": 0,
     "sessions": 0,
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      45
+      44
     ],
     [
       "Google",
@@ -42,7 +42,7 @@
   "countries": [
     [
       "United States",
-      16,
+      17,
       "US"
     ],
     [
@@ -79,7 +79,7 @@
   "pages": [
     [
       "/",
-      37
+      38
     ],
     [
       "/about.html",
@@ -112,7 +112,6 @@
   ],
   "daily": [
     2,
-    2,
     10,
     2,
     1,
@@ -132,6 +131,7 @@
     1,
     1,
     2,
+    1,
     1
   ]
 }
