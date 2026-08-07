@@ -1,32 +1,32 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-07 13:24 UTC",
+  "updated": "2026-08-07 15:03 UTC",
   "stale": false,
   "totals": {
-    "visitors": 54,
-    "pageviews": 72,
-    "sessions": 57,
-    "views24h": 3
+    "visitors": 55,
+    "pageviews": 73,
+    "sessions": 58,
+    "views24h": 4
   },
   "today": {
     "date": "2026-08-07",
-    "visitors": 3,
-    "views": 2,
-    "sessions": 3,
+    "visitors": 4,
+    "views": 3,
+    "sessions": 4,
     "pages": [
       [
         "/",
-        2
+        3
       ]
     ],
     "sources": [
       [
-        "(not set)",
+        "Direct",
         2
       ],
       [
-        "Direct",
-        1
+        "(not set)",
+        2
       ],
       [
         "Awin",
@@ -36,7 +36,7 @@
     "countries": [
       [
         "United States",
-        2,
+        3,
         "US"
       ],
       [
@@ -49,7 +49,7 @@
   "sources": [
     [
       "Direct",
-      45
+      46
     ],
     [
       "Google",
@@ -75,7 +75,7 @@
   "countries": [
     [
       "United States",
-      19,
+      20,
       "US"
     ],
     [
@@ -112,7 +112,7 @@
   "pages": [
     [
       "/",
-      40
+      41
     ],
     [
       "/about.html",
@@ -166,6 +166,6 @@
     2,
     1,
     1,
-    2
+    3
   ]
 }
