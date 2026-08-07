@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-07 20:52 UTC",
+  "updated": "2026-08-07 22:49 UTC",
   "stale": false,
   "totals": {
-    "visitors": 55,
+    "visitors": 56,
     "pageviews": 73,
-    "sessions": 58,
+    "sessions": 59,
     "views24h": 4
   },
   "today": {
     "date": "2026-08-07",
-    "visitors": 4,
+    "visitors": 5,
     "views": 3,
-    "sessions": 4,
+    "sessions": 5,
     "pages": [
       [
         "/",
@@ -21,11 +21,11 @@
     ],
     "sources": [
       [
-        "Direct",
-        2
+        "(not set)",
+        3
       ],
       [
-        "(not set)",
+        "Direct",
         2
       ],
       [
@@ -40,6 +40,11 @@
         "US"
       ],
       [
+        "Estonia",
+        1,
+        "EE"
+      ],
+      [
         "Philippines",
         1,
         "PH"
@@ -52,16 +57,16 @@
       46
     ],
     [
+      "(not set)",
+      3
+    ],
+    [
       "Google",
       3
     ],
     [
       "Awin",
       3
-    ],
-    [
-      "(not set)",
-      2
     ],
     [
       "google.com",
