@@ -1,22 +1,22 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-07 11:02 UTC",
+  "updated": "2026-08-07 13:24 UTC",
   "stale": false,
   "totals": {
     "visitors": 54,
-    "pageviews": 71,
+    "pageviews": 72,
     "sessions": 57,
-    "views24h": 2
+    "views24h": 3
   },
   "today": {
     "date": "2026-08-07",
     "visitors": 3,
-    "views": 1,
+    "views": 2,
     "sessions": 3,
     "pages": [
       [
         "/",
-        1
+        2
       ]
     ],
     "sources": [
@@ -26,6 +26,10 @@
       ],
       [
         "Direct",
+        1
+      ],
+      [
+        "Awin",
         1
       ]
     ],
@@ -52,15 +56,15 @@
       3
     ],
     [
+      "Awin",
+      3
+    ],
+    [
       "(not set)",
       2
     ],
     [
       "google.com",
-      2
-    ],
-    [
-      "Awin",
       2
     ],
     [
@@ -108,7 +112,7 @@
   "pages": [
     [
       "/",
-      39
+      40
     ],
     [
       "/about.html",
@@ -162,6 +166,6 @@
     2,
     1,
     1,
-    1
+    2
   ]
 }
