@@ -722,6 +722,7 @@ def make_page(deal, desc, features, merchant_url):
         f'<meta name="deal-hukd-url" content="{html.escape(deal.get("link",""))}">\n'
         f'<meta name="deal-category" content="{html.escape(deal.get("category",""))}">\n'
         f'<meta name="deal-shipping" content="{html.escape(deal.get("shipping",""))}">\n'
+        f'<meta name="deal-added" content="{time.strftime("%Y-%m-%d")}">\n'
         f'<title>{t} | Invisuale Deals</title>\n'
         '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
         '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">\n'
@@ -1896,15 +1897,35 @@ def mark_expired(fpath):
         f.write(c)
     return True
 
+def deal_age_days(content, fpath):
+    """Age of a deal in days from its embedded 'deal-added' date. Falls back to
+    file mtime for legacy pages with no stamp. IMPORTANT: mtime alone is useless
+    in CI — actions/checkout resets every file's mtime to 'now', so age must come
+    from the page content, not the filesystem."""
+    m = re.search(r'<meta name="deal-added" content="(\d{4}-\d{2}-\d{2})"', content)
+    if m:
+        try:
+            added = datetime.strptime(m.group(1), "%Y-%m-%d")
+            return (datetime.now() - added).days  # day-granular, so local vs UTC is irrelevant
+        except Exception:
+            pass
+    return (time.time() - os.path.getmtime(fpath)) / 86400
+
 def expire_old_deals(days=7):
-    """Mark deals older than `days` as ended. Pages are KEPT, never deleted."""
+    """Mark deals older than `days` as ended (by embedded date, not mtime).
+    Pages are KEPT, never deleted."""
     if not os.path.exists("deals"): return
-    cutoff = time.time() - days * 86400
     n = 0
     for fname in os.listdir("deals"):
         if not fname.endswith(".html"): continue
         fpath = f"deals/{fname}"
-        if os.path.getmtime(fpath) < cutoff and mark_expired(fpath):
+        try:
+            with open(fpath) as f: content = f.read()
+        except Exception:
+            continue
+        if is_expired_page(content):
+            continue
+        if deal_age_days(content, fpath) >= days and mark_expired(fpath):
             n += 1
     if n:
         print(f"Marked {n} deals as ended (kept, not deleted).")
