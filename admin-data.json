@@ -1,60 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-07 22:49 UTC",
+  "updated": "2026-08-08 02:12 UTC",
   "stale": false,
   "totals": {
-    "visitors": 56,
-    "pageviews": 73,
-    "sessions": 59,
+    "visitors": 55,
+    "pageviews": 72,
+    "sessions": 58,
     "views24h": 4
   },
   "today": {
-    "date": "2026-08-07",
-    "visitors": 5,
-    "views": 3,
-    "sessions": 5,
-    "pages": [
-      [
-        "/",
-        3
-      ]
-    ],
-    "sources": [
-      [
-        "(not set)",
-        3
-      ],
-      [
-        "Direct",
-        2
-      ],
-      [
-        "Awin",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        3,
-        "US"
-      ],
-      [
-        "Estonia",
-        1,
-        "EE"
-      ],
-      [
-        "Philippines",
-        1,
-        "PH"
-      ]
-    ]
+    "date": "2026-08-08",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      46
+      45
     ],
     [
       "(not set)",
@@ -80,7 +46,7 @@
   "countries": [
     [
       "United States",
-      20,
+      19,
       "US"
     ],
     [
@@ -94,9 +60,9 @@
       "HK"
     ],
     [
-      "France",
+      "Brazil",
       3,
-      "FR"
+      "BR"
     ],
     [
       "Germany",
@@ -109,15 +75,15 @@
       "(not set)"
     ],
     [
-      "Brazil",
+      "China",
       2,
-      "BR"
+      "CN"
     ]
   ],
   "pages": [
     [
       "/",
-      41
+      40
     ],
     [
       "/about.html",
@@ -149,7 +115,6 @@
     ]
   ],
   "daily": [
-    2,
     10,
     2,
     1,
@@ -171,6 +136,6 @@
     2,
     1,
     1,
-    3
+    4
   ]
 }
