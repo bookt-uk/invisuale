@@ -1,30 +1,50 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-08 05:06 UTC",
+  "updated": "2026-08-08 07:07 UTC",
   "stale": false,
   "totals": {
-    "visitors": 55,
-    "pageviews": 72,
-    "sessions": 58,
-    "views24h": 4
+    "visitors": 57,
+    "pageviews": 73,
+    "sessions": 60,
+    "views24h": 5
   },
   "today": {
     "date": "2026-08-08",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 2,
+    "views": 1,
+    "sessions": 2,
+    "pages": [
+      [
+        "/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ],
+      [
+        "(not set)",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "United States",
+        2,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      45
+      46
     ],
     [
       "(not set)",
-      3
+      4
     ],
     [
       "Google",
@@ -46,7 +66,7 @@
   "countries": [
     [
       "United States",
-      19,
+      21,
       "US"
     ],
     [
@@ -83,7 +103,7 @@
   "pages": [
     [
       "/",
-      40
+      41
     ],
     [
       "/about.html",
@@ -136,6 +156,7 @@
     2,
     1,
     1,
-    4
+    4,
+    1
   ]
 }
