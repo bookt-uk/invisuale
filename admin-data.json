@@ -1,28 +1,28 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-08 10:44 UTC",
+  "updated": "2026-08-08 13:06 UTC",
   "stale": false,
   "totals": {
-    "visitors": 57,
-    "pageviews": 73,
-    "sessions": 60,
-    "views24h": 5
+    "visitors": 59,
+    "pageviews": 77,
+    "sessions": 62,
+    "views24h": 9
   },
   "today": {
     "date": "2026-08-08",
-    "visitors": 2,
-    "views": 1,
-    "sessions": 2,
+    "visitors": 3,
+    "views": 2,
+    "sessions": 3,
     "pages": [
       [
         "/",
-        1
+        2
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        2
       ],
       [
         "(not set)",
@@ -32,7 +32,7 @@
     "countries": [
       [
         "United States",
-        2,
+        3,
         "US"
       ]
     ]
@@ -40,10 +40,10 @@
   "sources": [
     [
       "Direct",
-      46
+      48
     ],
     [
-      "(not set)",
+      "Awin",
       4
     ],
     [
@@ -51,12 +51,16 @@
       3
     ],
     [
-      "Awin",
-      3
-    ],
-    [
       "google.com",
       2
+    ],
+    [
+      "(not set)",
+      1
+    ],
+    [
+      "geedo.lv",
+      1
     ],
     [
       "sonnysphoneshop",
@@ -66,7 +70,7 @@
   "countries": [
     [
       "United States",
-      21,
+      23,
       "US"
     ],
     [
@@ -103,7 +107,7 @@
   "pages": [
     [
       "/",
-      41
+      44
     ],
     [
       "/about.html",
@@ -156,7 +160,7 @@
     2,
     1,
     1,
-    4,
-    1
+    7,
+    2
   ]
 }
