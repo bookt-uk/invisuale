@@ -1,46 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-08 22:39 UTC",
+  "updated": "2026-08-09 02:22 UTC",
   "stale": false,
   "totals": {
-    "visitors": 59,
-    "pageviews": 77,
-    "sessions": 62,
-    "views24h": 9
+    "visitors": 50,
+    "pageviews": 68,
+    "sessions": 53,
+    "views24h": 3
   },
   "today": {
-    "date": "2026-08-08",
-    "visitors": 3,
-    "views": 2,
-    "sessions": 3,
-    "pages": [
-      [
-        "/",
-        2
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ],
-      [
-        "(not set)",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        3,
-        "US"
-      ]
-    ]
+    "date": "2026-08-09",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      48
+      40
     ],
     [
       "Awin",
@@ -48,7 +28,7 @@
     ],
     [
       "Google",
-      3
+      2
     ],
     [
       "google.com",
@@ -75,8 +55,13 @@
     ],
     [
       "United Kingdom",
-      7,
+      6,
       "GB"
+    ],
+    [
+      "Brazil",
+      4,
+      "BR"
     ],
     [
       "Hong Kong",
@@ -84,23 +69,18 @@
       "HK"
     ],
     [
-      "Brazil",
-      3,
-      "BR"
-    ],
-    [
-      "Germany",
-      3,
-      "DE"
-    ],
-    [
       "(not set)",
       2,
       "(not set)"
     ],
     [
-      "China",
+      "France",
       2,
+      "FR"
+    ],
+    [
+      "China",
+      1,
       "CN"
     ]
   ],
@@ -114,15 +94,11 @@
       4
     ],
     [
-      "/codes/",
-      4
-    ],
-    [
       "/brands/",
       3
     ],
     [
-      "/categories/health-beauty.html",
+      "/codes/",
       3
     ],
     [
@@ -130,16 +106,19 @@
       2
     ],
     [
-      "/categories/gaming.html",
+      "/categories/health-beauty.html",
       2
     ],
     [
       "/categories/services-contracts.html",
       2
+    ],
+    [
+      "/brands/ttfone.html",
+      1
     ]
   ],
   "daily": [
-    10,
     2,
     1,
     4,
@@ -161,6 +140,6 @@
     1,
     1,
     7,
-    2
+    3
   ]
 }
