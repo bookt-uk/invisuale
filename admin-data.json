@@ -1,21 +1,37 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-10 11:16 UTC",
+  "updated": "2026-08-10 13:36 UTC",
   "stale": false,
   "totals": {
-    "visitors": 50,
-    "pageviews": 68,
-    "sessions": 53,
-    "views24h": 0
+    "visitors": 51,
+    "pageviews": 69,
+    "sessions": 54,
+    "views24h": 1
   },
   "today": {
     "date": "2026-08-10",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Awin",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Ukraine",
+        1,
+        "UA"
+      ]
+    ]
   },
   "sources": [
     [
@@ -24,7 +40,7 @@
     ],
     [
       "Awin",
-      4
+      5
     ],
     [
       "Google",
@@ -87,7 +103,7 @@
   "pages": [
     [
       "/",
-      44
+      45
     ],
     [
       "/about.html",
@@ -140,6 +156,7 @@
     1,
     1,
     7,
-    3
+    3,
+    1
   ]
 }
