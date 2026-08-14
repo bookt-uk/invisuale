@@ -1,15 +1,15 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-13 22:55 UTC",
+  "updated": "2026-08-14 02:37 UTC",
   "stale": false,
   "totals": {
-    "visitors": 53,
-    "pageviews": 71,
-    "sessions": 56,
-    "views24h": 2
+    "visitors": 52,
+    "pageviews": 70,
+    "sessions": 55,
+    "views24h": 0
   },
   "today": {
-    "date": "2026-08-13",
+    "date": "2026-08-14",
     "visitors": 0,
     "views": 0,
     "sessions": 0,
@@ -31,15 +31,15 @@
       3
     ],
     [
-      "google.com",
-      2
-    ],
-    [
       "(not set)",
       1
     ],
     [
       "geedo.lv",
+      1
+    ],
+    [
+      "google.com",
       1
     ],
     [
@@ -54,14 +54,14 @@
       "US"
     ],
     [
-      "United Kingdom",
-      6,
-      "GB"
-    ],
-    [
       "Hong Kong",
       5,
       "HK"
+    ],
+    [
+      "United Kingdom",
+      5,
+      "GB"
     ],
     [
       "Brazil",
@@ -102,10 +102,6 @@
       3
     ],
     [
-      "//checkout/",
-      2
-    ],
-    [
       "/categories/health-beauty.html",
       2
     ],
@@ -114,12 +110,15 @@
       2
     ],
     [
+      "//checkout/",
+      1
+    ],
+    [
       "/brands/ttfone.html",
       1
     ]
   ],
   "daily": [
-    1,
     4,
     13,
     4,
