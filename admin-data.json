@@ -1,26 +1,46 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-14 07:45 UTC",
+  "updated": "2026-08-14 09:15 UTC",
   "stale": false,
   "totals": {
-    "visitors": 52,
-    "pageviews": 70,
-    "sessions": 55,
-    "views24h": 0
+    "visitors": 53,
+    "pageviews": 71,
+    "sessions": 56,
+    "views24h": 1
   },
   "today": {
     "date": "2026-08-14",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ],
+      [
+        "(not set)",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "India",
+        1,
+        "IN"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      41
+      42
     ],
     [
       "Awin",
@@ -32,7 +52,7 @@
     ],
     [
       "(not set)",
-      1
+      2
     ],
     [
       "geedo.lv",
@@ -87,7 +107,7 @@
   "pages": [
     [
       "/",
-      46
+      47
     ],
     [
       "/about.html",
@@ -140,6 +160,7 @@
     7,
     3,
     3,
-    2
+    2,
+    1
   ]
 }
