@@ -1,28 +1,28 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-14 09:15 UTC",
+  "updated": "2026-08-14 11:05 UTC",
   "stale": false,
   "totals": {
-    "visitors": 53,
-    "pageviews": 71,
-    "sessions": 56,
-    "views24h": 1
+    "visitors": 54,
+    "pageviews": 72,
+    "sessions": 57,
+    "views24h": 2
   },
   "today": {
     "date": "2026-08-14",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
     "pages": [
       [
         "/",
-        1
+        2
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        2
       ],
       [
         "(not set)",
@@ -30,6 +30,11 @@
       ]
     ],
     "countries": [
+      [
+        "China",
+        1,
+        "CN"
+      ],
       [
         "India",
         1,
@@ -40,7 +45,7 @@
   "sources": [
     [
       "Direct",
-      42
+      43
     ],
     [
       "Awin",
@@ -94,20 +99,20 @@
       "(not set)"
     ],
     [
+      "China",
+      2,
+      "CN"
+    ],
+    [
       "France",
       2,
       "FR"
-    ],
-    [
-      "Canada",
-      1,
-      "CA"
     ]
   ],
   "pages": [
     [
       "/",
-      47
+      48
     ],
     [
       "/about.html",
@@ -161,6 +166,6 @@
     3,
     3,
     2,
-    1
+    2
   ]
 }
