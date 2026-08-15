@@ -1,60 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-14 22:33 UTC",
+  "updated": "2026-08-15 01:44 UTC",
   "stale": false,
   "totals": {
     "visitors": 57,
-    "pageviews": 75,
-    "sessions": 60,
+    "pageviews": 71,
+    "sessions": 59,
     "views24h": 5
   },
   "today": {
-    "date": "2026-08-14",
-    "visitors": 5,
-    "views": 5,
-    "sessions": 5,
-    "pages": [
-      [
-        "/",
-        4
-      ],
-      [
-        "/categories/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        5
-      ],
-      [
-        "(not set)",
-        2
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        3,
-        "US"
-      ],
-      [
-        "China",
-        1,
-        "CN"
-      ],
-      [
-        "India",
-        1,
-        "IN"
-      ]
-    ]
+    "date": "2026-08-15",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      46
+      45
     ],
     [
       "Awin",
@@ -121,18 +87,14 @@
   "pages": [
     [
       "/",
-      50
+      48
     ],
     [
       "/about.html",
-      4
-    ],
-    [
-      "/brands/",
       3
     ],
     [
-      "/codes/",
+      "/brands/",
       3
     ],
     [
@@ -148,12 +110,15 @@
       2
     ],
     [
+      "/codes/",
+      2
+    ],
+    [
       "//checkout/",
       1
     ]
   ],
   "daily": [
-    4,
     13,
     4,
     3,
