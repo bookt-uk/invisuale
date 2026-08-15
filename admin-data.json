@@ -1,6 +1,6 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-15 10:32 UTC",
+  "updated": "2026-08-15 12:54 UTC",
   "stale": false,
   "totals": {
     "visitors": 58,
@@ -43,12 +43,12 @@
       5
     ],
     [
-      "(not set)",
+      "Google",
       3
     ],
     [
-      "Google",
-      3
+      "(not set)",
+      1
     ],
     [
       "geedo.lv",
