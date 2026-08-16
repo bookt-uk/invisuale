@@ -1,21 +1,37 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-16 06:54 UTC",
+  "updated": "2026-08-16 08:40 UTC",
   "stale": false,
   "totals": {
-    "visitors": 58,
-    "pageviews": 72,
-    "sessions": 60,
-    "views24h": 1
+    "visitors": 59,
+    "pageviews": 73,
+    "sessions": 61,
+    "views24h": 2
   },
   "today": {
     "date": "2026-08-16",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/deals/huawei-watch-fit-5-smart-watch-1-82-amoled-display-nfc-gps-3.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Google",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "United Kingdom",
+        1,
+        "GB"
+      ]
+    ]
   },
   "sources": [
     [
@@ -28,7 +44,7 @@
     ],
     [
       "Google",
-      3
+      4
     ],
     [
       "(not set)",
@@ -60,7 +76,7 @@
     ],
     [
       "United Kingdom",
-      5,
+      6,
       "GB"
     ],
     [
@@ -141,6 +157,7 @@
     3,
     2,
     5,
+    1,
     1
   ]
 }
