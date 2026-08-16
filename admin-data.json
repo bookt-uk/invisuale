@@ -1,37 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-15 22:32 UTC",
+  "updated": "2026-08-16 01:53 UTC",
   "stale": false,
   "totals": {
     "visitors": 58,
     "pageviews": 72,
     "sessions": 60,
-    "views24h": 6
+    "views24h": 1
   },
   "today": {
-    "date": "2026-08-15",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Hong Kong",
-        1,
-        "HK"
-      ]
-    ]
+    "date": "2026-08-16",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
