@@ -1,42 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-16 22:31 UTC",
+  "updated": "2026-08-17 01:50 UTC",
   "stale": false,
   "totals": {
-    "visitors": 59,
-    "pageviews": 73,
-    "sessions": 61,
-    "views24h": 2
+    "visitors": 50,
+    "pageviews": 60,
+    "sessions": 52,
+    "views24h": 1
   },
   "today": {
-    "date": "2026-08-16",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/deals/huawei-watch-fit-5-smart-watch-1-82-amoled-display-nfc-gps-3.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Google",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United Kingdom",
-        1,
-        "GB"
-      ]
-    ]
+    "date": "2026-08-17",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      46
+      38
     ],
     [
       "Awin",
@@ -55,10 +39,6 @@
       1
     ],
     [
-      "google.com",
-      1
-    ],
-    [
       "sonnysphoneshop",
       1
     ]
@@ -66,7 +46,7 @@
   "countries": [
     [
       "United States",
-      26,
+      23,
       "US"
     ],
     [
@@ -76,18 +56,13 @@
     ],
     [
       "United Kingdom",
-      6,
+      5,
       "GB"
     ],
     [
       "Brazil",
-      4,
-      "BR"
-    ],
-    [
-      "(not set)",
       2,
-      "(not set)"
+      "BR"
     ],
     [
       "China",
@@ -98,44 +73,48 @@
       "France",
       2,
       "FR"
+    ],
+    [
+      "Canada",
+      1,
+      "CA"
     ]
   ],
   "pages": [
     [
       "/",
-      49
-    ],
-    [
-      "/about.html",
-      3
+      48
     ],
     [
       "/brands/",
-      3
+      2
+    ],
+    [
+      "/about.html",
+      1
+    ],
+    [
+      "/brands/ttfone.html",
+      1
     ],
     [
       "/categories/",
-      2
+      1
+    ],
+    [
+      "/categories/electronics.html",
+      1
     ],
     [
       "/categories/health-beauty.html",
-      2
-    ],
-    [
-      "/categories/services-contracts.html",
-      2
+      1
     ],
     [
       "/codes/",
-      2
-    ],
-    [
-      "//checkout/",
       1
     ]
   ],
   "daily": [
-    13,
     4,
     3,
     1,
