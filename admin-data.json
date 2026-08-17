@@ -1,21 +1,37 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-17 07:10 UTC",
+  "updated": "2026-08-17 08:55 UTC",
   "stale": false,
   "totals": {
-    "visitors": 50,
-    "pageviews": 60,
-    "sessions": 52,
-    "views24h": 1
+    "visitors": 51,
+    "pageviews": 61,
+    "sessions": 53,
+    "views24h": 2
   },
   "today": {
     "date": "2026-08-17",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "//checkout/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "google.com",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "United Kingdom",
+        1,
+        "GB"
+      ]
+    ]
   },
   "sources": [
     [
@@ -39,6 +55,10 @@
       1
     ],
     [
+      "google.com",
+      1
+    ],
+    [
       "sonnysphoneshop",
       1
     ]
@@ -56,7 +76,7 @@
     ],
     [
       "United Kingdom",
-      5,
+      6,
       "GB"
     ],
     [
@@ -90,6 +110,10 @@
       2
     ],
     [
+      "//checkout/",
+      1
+    ],
+    [
       "/about.html",
       1
     ],
@@ -107,10 +131,6 @@
     ],
     [
       "/categories/health-beauty.html",
-      1
-    ],
-    [
-      "/codes/",
       1
     ]
   ],
@@ -136,6 +156,7 @@
     3,
     2,
     5,
+    1,
     1,
     1
   ]
