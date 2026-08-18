@@ -1,37 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-17 22:34 UTC",
+  "updated": "2026-08-18 01:45 UTC",
   "stale": false,
   "totals": {
     "visitors": 51,
     "pageviews": 61,
     "sessions": 53,
-    "views24h": 2
+    "views24h": 1
   },
   "today": {
-    "date": "2026-08-17",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "//checkout/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "google.com",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United Kingdom",
-        1,
-        "GB"
-      ]
-    ]
+    "date": "2026-08-18",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
