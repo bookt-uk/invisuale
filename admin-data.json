@@ -1,37 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-20 22:37 UTC",
+  "updated": "2026-08-21 01:51 UTC",
   "stale": false,
   "totals": {
-    "visitors": 51,
-    "pageviews": 61,
-    "sessions": 53,
-    "views24h": 4
+    "visitors": 50,
+    "pageviews": 58,
+    "sessions": 52,
+    "views24h": 1
   },
   "today": {
-    "date": "2026-08-20",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/about",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "date": "2026-08-21",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
@@ -39,12 +23,12 @@
       38
     ],
     [
-      "Google",
+      "Awin",
       4
     ],
     [
-      "Awin",
-      4
+      "Google",
+      3
     ],
     [
       "sonnysphoneshop",
@@ -66,7 +50,7 @@
   "countries": [
     [
       "United States",
-      24,
+      23,
       "US"
     ],
     [
@@ -103,7 +87,7 @@
   "pages": [
     [
       "/",
-      47
+      46
     ],
     [
       "/brands/",
@@ -118,10 +102,6 @@
       1
     ],
     [
-      "/about.html",
-      1
-    ],
-    [
       "/brands/ttfone.html",
       1
     ],
@@ -130,12 +110,15 @@
       1
     ],
     [
-      "/categories/electronics.html",
+      "/categories/health-beauty.html",
+      1
+    ],
+    [
+      "/codes/",
       1
     ]
   ],
   "daily": [
-    3,
     1,
     1,
     1,
