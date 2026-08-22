@@ -1,26 +1,63 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-22 10:33 UTC",
+  "updated": "2026-08-22 12:55 UTC",
   "stale": false,
   "totals": {
-    "visitors": 49,
-    "pageviews": 57,
-    "sessions": 51,
-    "views24h": 0
+    "visitors": 54,
+    "pageviews": 62,
+    "sessions": 56,
+    "views24h": 5
   },
   "today": {
     "date": "2026-08-22",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 5,
+    "views": 5,
+    "sessions": 5,
+    "pages": [
+      [
+        "/brands/",
+        1
+      ],
+      [
+        "/categories/gaming.html",
+        1
+      ],
+      [
+        "/categories/health-beauty.html",
+        1
+      ],
+      [
+        "/codes/",
+        1
+      ],
+      [
+        "/guides/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        5
+      ]
+    ],
+    "countries": [
+      [
+        "United States",
+        4,
+        "US"
+      ],
+      [
+        "Lithuania",
+        1,
+        "LT"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      37
+      42
     ],
     [
       "Awin",
@@ -50,7 +87,7 @@
   "countries": [
     [
       "United States",
-      23,
+      27,
       "US"
     ],
     [
@@ -91,6 +128,14 @@
     ],
     [
       "/brands/",
+      3
+    ],
+    [
+      "/categories/health-beauty.html",
+      2
+    ],
+    [
+      "/codes/",
       2
     ],
     [
@@ -107,14 +152,6 @@
     ],
     [
       "/categories/",
-      1
-    ],
-    [
-      "/categories/health-beauty.html",
-      1
-    ],
-    [
-      "/codes/",
       1
     ]
   ],
@@ -141,6 +178,7 @@
     1,
     1,
     3,
-    1
+    1,
+    5
   ]
 }
