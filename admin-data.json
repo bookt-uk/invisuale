@@ -1,21 +1,37 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-23 20:34 UTC",
+  "updated": "2026-08-23 22:32 UTC",
   "stale": false,
   "totals": {
-    "visitors": 54,
-    "pageviews": 61,
-    "sessions": 55,
-    "views24h": 5
+    "visitors": 55,
+    "pageviews": 62,
+    "sessions": 56,
+    "views24h": 6
   },
   "today": {
     "date": "2026-08-23",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/deals/huawei-watch-fit-5-smart-watch-1-82-amoled-display-nfc-gps-3.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Google",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "United Kingdom",
+        1,
+        "GB"
+      ]
+    ]
   },
   "sources": [
     [
@@ -23,12 +39,12 @@
       42
     ],
     [
-      "Awin",
+      "Google",
       4
     ],
     [
-      "Google",
-      3
+      "Awin",
+      4
     ],
     [
       "sonnysphoneshop",
@@ -55,7 +71,7 @@
     ],
     [
       "United Kingdom",
-      7,
+      8,
       "GB"
     ],
     [
@@ -102,6 +118,10 @@
       2
     ],
     [
+      "/deals/huawei-watch-fit-5-smart-watch-1-82-amoled-display-nfc-gps-3.html",
+      2
+    ],
+    [
       "//checkout/",
       1
     ],
@@ -111,10 +131,6 @@
     ],
     [
       "/brands/ttfone.html",
-      1
-    ],
-    [
-      "/categories/",
       1
     ]
   ],
@@ -141,6 +157,7 @@
     1,
     3,
     1,
-    5
+    5,
+    1
   ]
 }
