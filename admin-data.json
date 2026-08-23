@@ -1,58 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-22 22:32 UTC",
+  "updated": "2026-08-23 01:55 UTC",
   "stale": false,
   "totals": {
     "visitors": 54,
-    "pageviews": 62,
-    "sessions": 56,
+    "pageviews": 61,
+    "sessions": 55,
     "views24h": 5
   },
   "today": {
-    "date": "2026-08-22",
-    "visitors": 5,
-    "views": 5,
-    "sessions": 5,
-    "pages": [
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/categories/gaming.html",
-        1
-      ],
-      [
-        "/categories/health-beauty.html",
-        1
-      ],
-      [
-        "/codes/",
-        1
-      ],
-      [
-        "/guides/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        5
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        4,
-        "US"
-      ],
-      [
-        "Lithuania",
-        1,
-        "LT"
-      ]
-    ]
+    "date": "2026-08-23",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
@@ -124,7 +87,7 @@
   "pages": [
     [
       "/",
-      45
+      44
     ],
     [
       "/brands/",
@@ -156,7 +119,6 @@
     ]
   ],
   "daily": [
-    1,
     1,
     4,
     2,
