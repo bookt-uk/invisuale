@@ -1,65 +1,37 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-24 22:37 UTC",
+  "updated": "2026-08-25 01:46 UTC",
   "stale": false,
   "totals": {
-    "visitors": 56,
-    "pageviews": 65,
-    "sessions": 57,
+    "visitors": 53,
+    "pageviews": 62,
+    "sessions": 54,
     "views24h": 5
   },
   "today": {
-    "date": "2026-08-24",
-    "visitors": 2,
-    "views": 4,
-    "sessions": 2,
-    "pages": [
-      [
-        "/",
-        3
-      ],
-      [
-        "/codes/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ],
-      [
-        "(not set)",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Canada",
-        2,
-        "CA"
-      ]
-    ]
+    "date": "2026-08-25",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      43
-    ],
-    [
-      "Google",
-      4
+      42
     ],
     [
       "Awin",
       4
     ],
     [
-      "(not set)",
-      2
+      "Google",
+      3
     ],
     [
-      "sonnysphoneshop",
+      "(not set)",
       2
     ],
     [
@@ -69,17 +41,21 @@
     [
       "google.com",
       1
+    ],
+    [
+      "sonnysphoneshop",
+      1
     ]
   ],
   "countries": [
     [
       "United States",
-      26,
+      24,
       "US"
     ],
     [
       "United Kingdom",
-      8,
+      7,
       "GB"
     ],
     [
@@ -111,7 +87,7 @@
   "pages": [
     [
       "/",
-      46
+      43
     ],
     [
       "/brands/",
@@ -143,7 +119,6 @@
     ]
   ],
   "daily": [
-    4,
     2,
     12,
     1,
@@ -166,6 +141,6 @@
     1,
     5,
     1,
-    4
+    5
   ]
 }
