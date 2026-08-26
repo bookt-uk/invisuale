@@ -1,42 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-25 22:37 UTC",
+  "updated": "2026-08-26 01:52 UTC",
   "stale": false,
   "totals": {
-    "visitors": 54,
-    "pageviews": 63,
-    "sessions": 55,
-    "views24h": 6
+    "visitors": 52,
+    "pageviews": 61,
+    "sessions": 53,
+    "views24h": 1
   },
   "today": {
-    "date": "2026-08-25",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United Kingdom",
-        1,
-        "GB"
-      ]
-    ]
+    "date": "2026-08-26",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      43
+      41
     ],
     [
       "Awin",
@@ -66,7 +50,7 @@
   "countries": [
     [
       "United States",
-      24,
+      23,
       "US"
     ],
     [
@@ -76,7 +60,7 @@
     ],
     [
       "Hong Kong",
-      5,
+      4,
       "HK"
     ],
     [
@@ -103,7 +87,7 @@
   "pages": [
     [
       "/",
-      44
+      42
     ],
     [
       "/brands/",
@@ -135,7 +119,6 @@
     ]
   ],
   "daily": [
-    2,
     12,
     1,
     1,
