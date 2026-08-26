@@ -1,11 +1,11 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-26 04:50 UTC",
+  "updated": "2026-08-26 07:02 UTC",
   "stale": false,
   "totals": {
-    "visitors": 52,
-    "pageviews": 61,
-    "sessions": 53,
+    "visitors": 60,
+    "pageviews": 68,
+    "sessions": 61,
     "views24h": 1
   },
   "today": {
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      41
+      48
     ],
     [
       "Awin",
@@ -59,6 +59,11 @@
       "GB"
     ],
     [
+      "China",
+      4,
+      "CN"
+    ],
+    [
       "Hong Kong",
       4,
       "HK"
@@ -69,19 +74,14 @@
       "CA"
     ],
     [
-      "China",
+      "Vietnam",
       3,
-      "CN"
+      "VN"
     ],
     [
       "Brazil",
       2,
       "BR"
-    ],
-    [
-      "France",
-      2,
-      "FR"
     ]
   ],
   "pages": [
@@ -90,12 +90,20 @@
       42
     ],
     [
+      "/codes/",
+      4
+    ],
+    [
       "/brands/",
       3
     ],
     [
-      "/codes/",
-      3
+      "/categories/",
+      2
+    ],
+    [
+      "/categories/gaming.html",
+      2
     ],
     [
       "/categories/health-beauty.html",
@@ -106,16 +114,8 @@
       2
     ],
     [
-      "//checkout/",
-      1
-    ],
-    [
-      "/about",
-      1
-    ],
-    [
-      "/brands/ttfone.html",
-      1
+      "/guides/",
+      2
     ]
   ],
   "daily": [
@@ -140,7 +140,7 @@
     1,
     5,
     1,
-    5,
+    12,
     1
   ]
 }
