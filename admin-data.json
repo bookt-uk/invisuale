@@ -1,26 +1,51 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-26 19:58 UTC",
+  "updated": "2026-08-26 23:21 UTC",
   "stale": false,
   "totals": {
-    "visitors": 60,
-    "pageviews": 68,
-    "sessions": 61,
-    "views24h": 1
+    "visitors": 61,
+    "pageviews": 70,
+    "sessions": 62,
+    "views24h": 3
   },
   "today": {
-    "date": "2026-08-26",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "date": "2026-08-27",
+    "visitors": 1,
+    "views": 2,
+    "sessions": 1,
+    "pages": [
+      [
+        "/",
+        1
+      ],
+      [
+        "/deals/lego-donkey-kong-arcade-building-set-for-adults-72051-with-c.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Canada",
+        1,
+        "CA"
+      ],
+      [
+        "France",
+        1,
+        "FR"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      48
+      49
     ],
     [
       "Awin",
@@ -59,6 +84,11 @@
       "GB"
     ],
     [
+      "Canada",
+      4,
+      "CA"
+    ],
+    [
       "China",
       4,
       "CN"
@@ -69,25 +99,20 @@
       "HK"
     ],
     [
-      "Canada",
+      "France",
       3,
-      "CA"
+      "FR"
     ],
     [
       "Vietnam",
       3,
       "VN"
-    ],
-    [
-      "Brazil",
-      2,
-      "BR"
     ]
   ],
   "pages": [
     [
       "/",
-      42
+      43
     ],
     [
       "/codes/",
@@ -141,6 +166,7 @@
     5,
     1,
     12,
-    1
+    1,
+    2
   ]
 }
