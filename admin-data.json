@@ -1,58 +1,33 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-26 23:21 UTC",
+  "updated": "2026-08-27 09:28 UTC",
   "stale": false,
   "totals": {
-    "visitors": 61,
-    "pageviews": 70,
-    "sessions": 62,
-    "views24h": 3
+    "visitors": 57,
+    "pageviews": 58,
+    "sessions": 57,
+    "views24h": 2
   },
   "today": {
     "date": "2026-08-27",
-    "visitors": 1,
-    "views": 2,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/deals/lego-donkey-kong-arcade-building-set-for-adults-72051-with-c.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Canada",
-        1,
-        "CA"
-      ],
-      [
-        "France",
-        1,
-        "FR"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      49
-    ],
-    [
-      "Awin",
-      4
+      46
     ],
     [
       "Google",
+      3
+    ],
+    [
+      "Awin",
       3
     ],
     [
@@ -75,12 +50,12 @@
   "countries": [
     [
       "United States",
-      23,
+      22,
       "US"
     ],
     [
       "United Kingdom",
-      8,
+      6,
       "GB"
     ],
     [
@@ -99,27 +74,23 @@
       "HK"
     ],
     [
-      "France",
-      3,
-      "FR"
-    ],
-    [
       "Vietnam",
       3,
       "VN"
+    ],
+    [
+      "Brazil",
+      2,
+      "BR"
     ]
   ],
   "pages": [
     [
       "/",
-      43
+      36
     ],
     [
       "/codes/",
-      4
-    ],
-    [
-      "/brands/",
       3
     ],
     [
@@ -131,20 +102,23 @@
       2
     ],
     [
-      "/categories/health-beauty.html",
-      2
-    ],
-    [
       "/deals/huawei-watch-fit-5-smart-watch-1-82-amoled-display-nfc-gps-3.html",
       2
     ],
     [
       "/guides/",
       2
+    ],
+    [
+      "//checkout/",
+      1
+    ],
+    [
+      "/about",
+      1
     ]
   ],
   "daily": [
-    12,
     1,
     1,
     2,
