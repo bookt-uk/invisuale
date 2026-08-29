@@ -1,26 +1,50 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-28 18:36 UTC",
+  "updated": "2026-08-29 02:47 UTC",
   "stale": false,
   "totals": {
     "visitors": 56,
     "pageviews": 57,
     "sessions": 56,
-    "views24h": 0
+    "views24h": 1
   },
   "today": {
-    "date": "2026-08-28",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "date": "2026-08-29",
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/brands/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ],
+      [
+        "(not set)",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "United States",
+        1,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
       45
+    ],
+    [
+      "(not set)",
+      3
     ],
     [
       "Google",
@@ -29,10 +53,6 @@
     [
       "Awin",
       3
-    ],
-    [
-      "(not set)",
-      2
     ],
     [
       "geedo.lv",
@@ -87,11 +107,15 @@
   "pages": [
     [
       "/",
-      35
+      34
     ],
     [
       "/codes/",
       3
+    ],
+    [
+      "/brands/",
+      2
     ],
     [
       "/categories/",
@@ -112,14 +136,9 @@
     [
       "//checkout/",
       1
-    ],
-    [
-      "/about",
-      1
     ]
   ],
   "daily": [
-    1,
     2,
     1,
     1,
@@ -140,6 +159,7 @@
     1,
     12,
     1,
-    2
+    2,
+    1
   ]
 }
