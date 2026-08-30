@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-30 08:14 UTC",
+  "updated": "2026-08-30 14:48 UTC",
   "stale": false,
   "totals": {
     "visitors": 57,
-    "pageviews": 57,
+    "pageviews": 58,
     "sessions": 57,
-    "views24h": 3
+    "views24h": 4
   },
   "today": {
     "date": "2026-08-30",
@@ -36,11 +36,7 @@
   "sources": [
     [
       "Direct",
-      45
-    ],
-    [
-      "(not set)",
-      4
+      46
     ],
     [
       "Google",
@@ -49,6 +45,10 @@
     [
       "Awin",
       3
+    ],
+    [
+      "(not set)",
+      2
     ],
     [
       "geedo.lv",
@@ -110,6 +110,10 @@
       4
     ],
     [
+      "/guides/",
+      3
+    ],
+    [
       "/brands/",
       2
     ],
@@ -123,10 +127,6 @@
     ],
     [
       "/deals/huawei-watch-fit-5-smart-watch-1-82-amoled-display-nfc-gps-3.html",
-      2
-    ],
-    [
-      "/guides/",
       2
     ],
     [
@@ -155,7 +155,7 @@
     12,
     1,
     2,
-    2,
+    3,
     1
   ]
 }
