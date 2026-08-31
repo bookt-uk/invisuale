@@ -1,19 +1,23 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-08-31 19:57 UTC",
+  "updated": "2026-08-31 23:45 UTC",
   "stale": false,
   "totals": {
-    "visitors": 58,
-    "pageviews": 59,
-    "sessions": 58,
-    "views24h": 3
+    "visitors": 59,
+    "pageviews": 60,
+    "sessions": 59,
+    "views24h": 4
   },
   "today": {
-    "date": "2026-08-31",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "date": "2026-09-01",
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
     "pages": [
+      [
+        "/deals/citizen-zenshin-automatic-super-titanium-watch-sapphire-crys.html",
+        1
+      ],
       [
         "/guides/",
         1
@@ -23,9 +27,22 @@
       [
         "Direct",
         1
+      ],
+      [
+        "(not set)",
+        1
+      ],
+      [
+        "Google",
+        1
       ]
     ],
     "countries": [
+      [
+        "United Kingdom",
+        1,
+        "GB"
+      ],
       [
         "United States",
         1,
@@ -40,15 +57,15 @@
     ],
     [
       "Google",
+      4
+    ],
+    [
+      "(not set)",
       3
     ],
     [
       "Awin",
       3
-    ],
-    [
-      "(not set)",
-      2
     ],
     [
       "geedo.lv",
@@ -71,7 +88,7 @@
     ],
     [
       "United Kingdom",
-      6,
+      7,
       "GB"
     ],
     [
@@ -156,6 +173,6 @@
     2,
     3,
     2,
-    1
+    2
   ]
 }
