@@ -1,25 +1,33 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-04 16:15 UTC",
+  "updated": "2026-09-04 20:41 UTC",
   "stale": false,
   "totals": {
-    "visitors": 59,
-    "pageviews": 59,
-    "sessions": 59,
-    "views24h": 1
+    "visitors": 61,
+    "pageviews": 61,
+    "sessions": 61,
+    "views24h": 3
   },
   "today": {
     "date": "2026-09-04",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 3,
+    "views": 3,
+    "sessions": 3,
     "pages": [
       [
         "/",
+        2
+      ],
+      [
+        "/brands/",
         1
       ]
     ],
     "sources": [
+      [
+        "Direct",
+        2
+      ],
       [
         "(not set)",
         1
@@ -31,16 +39,26 @@
     ],
     "countries": [
       [
+        "Germany",
+        1,
+        "DE"
+      ],
+      [
         "Pakistan",
         1,
         "PK"
+      ],
+      [
+        "United States",
+        1,
+        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      45
+      47
     ],
     [
       "(not set)",
@@ -70,7 +88,7 @@
   "countries": [
     [
       "United States",
-      23,
+      24,
       "US"
     ],
     [
@@ -89,6 +107,11 @@
       "CN"
     ],
     [
+      "Germany",
+      3,
+      "DE"
+    ],
+    [
       "Hong Kong",
       3,
       "HK"
@@ -97,29 +120,24 @@
       "Vietnam",
       3,
       "VN"
-    ],
-    [
-      "Brazil",
-      2,
-      "BR"
     ]
   ],
   "pages": [
     [
       "/",
-      31
+      32
     ],
     [
       "/codes/",
       5
     ],
     [
-      "/guides/",
+      "/brands/",
       4
     ],
     [
-      "/brands/",
-      3
+      "/guides/",
+      4
     ],
     [
       "/categories/",
@@ -159,6 +177,6 @@
     2,
     1,
     2,
-    1
+    3
   ]
 }
