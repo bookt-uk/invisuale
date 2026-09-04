@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-03 23:58 UTC",
+  "updated": "2026-09-04 04:20 UTC",
   "stale": false,
   "totals": {
-    "visitors": 59,
-    "pageviews": 59,
-    "sessions": 59,
-    "views24h": 2
+    "visitors": 58,
+    "pageviews": 58,
+    "sessions": 58,
+    "views24h": 0
   },
   "today": {
     "date": "2026-09-04",
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      46
+      45
     ],
     [
       "Google",
@@ -50,7 +50,7 @@
   "countries": [
     [
       "United States",
-      24,
+      23,
       "US"
     ],
     [
@@ -87,7 +87,7 @@
   "pages": [
     [
       "/",
-      31
+      30
     ],
     [
       "/codes/",
@@ -119,7 +119,6 @@
     ]
   ],
   "daily": [
-    1,
     7,
     3,
     3,
