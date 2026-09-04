@@ -1,21 +1,32 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-04 04:20 UTC",
+  "updated": "2026-09-04 11:08 UTC",
   "stale": false,
   "totals": {
-    "visitors": 58,
+    "visitors": 59,
     "pageviews": 58,
-    "sessions": 58,
+    "sessions": 59,
     "views24h": 0
   },
   "today": {
     "date": "2026-09-04",
-    "visitors": 0,
+    "visitors": 1,
     "views": 0,
-    "sessions": 0,
+    "sessions": 1,
     "pages": [],
-    "sources": [],
-    "countries": []
+    "sources": [
+      [
+        "(not set)",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Pakistan",
+        1,
+        "PK"
+      ]
+    ]
   },
   "sources": [
     [
@@ -23,12 +34,12 @@
       45
     ],
     [
-      "Google",
+      "(not set)",
       4
     ],
     [
-      "(not set)",
-      3
+      "Google",
+      4
     ],
     [
       "Awin",
