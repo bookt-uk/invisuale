@@ -1,22 +1,31 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-04 11:08 UTC",
+  "updated": "2026-09-04 16:15 UTC",
   "stale": false,
   "totals": {
     "visitors": 59,
-    "pageviews": 58,
+    "pageviews": 59,
     "sessions": 59,
-    "views24h": 0
+    "views24h": 1
   },
   "today": {
     "date": "2026-09-04",
     "visitors": 1,
-    "views": 0,
+    "views": 1,
     "sessions": 1,
-    "pages": [],
+    "pages": [
+      [
+        "/",
+        1
+      ]
+    ],
     "sources": [
       [
         "(not set)",
+        1
+      ],
+      [
+        "Awin",
         1
       ]
     ],
@@ -43,7 +52,7 @@
     ],
     [
       "Awin",
-      3
+      4
     ],
     [
       "geedo.lv",
@@ -98,7 +107,7 @@
   "pages": [
     [
       "/",
-      30
+      31
     ],
     [
       "/codes/",
@@ -149,6 +158,7 @@
     2,
     2,
     1,
-    2
+    2,
+    1
   ]
 }
