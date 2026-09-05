@@ -1,39 +1,31 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-04 23:57 UTC",
+  "updated": "2026-09-05 04:15 UTC",
   "stale": false,
   "totals": {
-    "visitors": 61,
-    "pageviews": 61,
-    "sessions": 61,
-    "views24h": 3
+    "visitors": 56,
+    "pageviews": 56,
+    "sessions": 56,
+    "views24h": 5
   },
   "today": {
     "date": "2026-09-05",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
     "pages": [
       [
         "/",
-        2
-      ],
-      [
-        "/brands/",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        2
-      ],
-      [
-        "(not set)",
         1
       ],
       [
-        "Awin",
+        "(not set)",
         1
       ]
     ],
@@ -42,27 +34,17 @@
         "Germany",
         1,
         "DE"
-      ],
-      [
-        "Pakistan",
-        1,
-        "PK"
-      ],
-      [
-        "United States",
-        1,
-        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      47
+      45
     ],
     [
       "(not set)",
-      4
+      5
     ],
     [
       "Google",
@@ -70,11 +52,7 @@
     ],
     [
       "Awin",
-      4
-    ],
-    [
-      "geedo.lv",
-      1
+      2
     ],
     [
       "google.com",
@@ -88,7 +66,7 @@
   "countries": [
     [
       "United States",
-      24,
+      21,
       "US"
     ],
     [
@@ -108,7 +86,7 @@
     ],
     [
       "Germany",
-      3,
+      4,
       "DE"
     ],
     [
@@ -125,7 +103,7 @@
   "pages": [
     [
       "/",
-      32
+      28
     ],
     [
       "/codes/",
@@ -157,7 +135,6 @@
     ]
   ],
   "daily": [
-    7,
     3,
     3,
     2,
@@ -177,6 +154,7 @@
     2,
     1,
     2,
-    3
+    4,
+    1
   ]
 }
