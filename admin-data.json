@@ -1,31 +1,40 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-06 10:48 UTC",
+  "updated": "2026-09-06 15:23 UTC",
   "stale": false,
   "totals": {
-    "visitors": 53,
-    "pageviews": 54,
-    "sessions": 53,
-    "views24h": 2
+    "visitors": 54,
+    "pageviews": 55,
+    "sessions": 54,
+    "views24h": 3
   },
   "today": {
     "date": "2026-09-06",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
     "pages": [
       [
         "/",
+        1
+      ],
+      [
+        "/brands/",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        2
       ]
     ],
     "countries": [
+      [
+        "Germany",
+        1,
+        "DE"
+      ],
       [
         "United States",
         1,
@@ -36,7 +45,7 @@
   "sources": [
     [
       "Direct",
-      43
+      44
     ],
     [
       "Google",
@@ -44,7 +53,7 @@
     ],
     [
       "(not set)",
-      3
+      2
     ],
     [
       "Awin",
@@ -71,6 +80,11 @@
       "GB"
     ],
     [
+      "Germany",
+      5,
+      "DE"
+    ],
+    [
       "Canada",
       4,
       "CA"
@@ -79,11 +93,6 @@
       "China",
       4,
       "CN"
-    ],
-    [
-      "Germany",
-      4,
-      "DE"
     ],
     [
       "Hong Kong",
@@ -102,12 +111,12 @@
       26
     ],
     [
-      "/codes/",
+      "/brands/",
       5
     ],
     [
-      "/brands/",
-      4
+      "/codes/",
+      5
     ],
     [
       "/guides/",
@@ -151,6 +160,6 @@
     2,
     4,
     1,
-    1
+    2
   ]
 }
