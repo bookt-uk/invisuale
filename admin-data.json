@@ -1,63 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-06 22:05 UTC",
+  "updated": "2026-09-07 04:24 UTC",
   "stale": false,
   "totals": {
     "visitors": 55,
     "pageviews": 56,
     "sessions": 55,
-    "views24h": 4
+    "views24h": 3
   },
   "today": {
-    "date": "2026-09-06",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/deals/puma-deviate-nitro-4-mens-running-shoes-in-hyrox-pink-or-yel.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ],
-      [
-        "(not set)",
-        1
-      ],
-      [
-        "Google",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Germany",
-        1,
-        "DE"
-      ],
-      [
-        "United Kingdom",
-        1,
-        "GB"
-      ],
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "date": "2026-09-07",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
