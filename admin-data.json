@@ -1,19 +1,23 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-08 16:33 UTC",
+  "updated": "2026-09-08 21:03 UTC",
   "stale": false,
   "totals": {
-    "visitors": 59,
-    "pageviews": 60,
-    "sessions": 59,
-    "views24h": 6
+    "visitors": 60,
+    "pageviews": 61,
+    "sessions": 60,
+    "views24h": 7
   },
   "today": {
     "date": "2026-09-08",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
     "pages": [
+      [
+        "/deals/samsung-galaxy-a57-256gb-5g-smartphone-claim-tab-a11-64gb-ta.html",
+        1
+      ],
       [
         "/guides/",
         1
@@ -21,11 +25,20 @@
     ],
     "sources": [
       [
+        "(data not available)",
+        1
+      ],
+      [
         "Direct",
         1
       ]
     ],
     "countries": [
+      [
+        "United Kingdom",
+        1,
+        "GB"
+      ],
       [
         "United States",
         1,
@@ -45,6 +58,10 @@
     [
       "(not set)",
       2
+    ],
+    [
+      "(data not available)",
+      1
     ],
     [
       "google.com",
@@ -67,7 +84,7 @@
     ],
     [
       "United Kingdom",
-      8,
+      9,
       "GB"
     ],
     [
@@ -152,6 +169,6 @@
     1,
     4,
     5,
-    1
+    2
   ]
 }
