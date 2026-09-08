@@ -1,74 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-07 22:45 UTC",
+  "updated": "2026-09-08 04:24 UTC",
   "stale": false,
   "totals": {
-    "visitors": 61,
-    "pageviews": 61,
-    "sessions": 61,
-    "views24h": 8
+    "visitors": 58,
+    "pageviews": 58,
+    "sessions": 58,
+    "views24h": 4
   },
   "today": {
-    "date": "2026-09-07",
-    "visitors": 5,
-    "views": 4,
-    "sessions": 5,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/categories/groceries.html",
-        1
-      ],
-      [
-        "/codes/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        4
-      ],
-      [
-        "(not set)",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Bangladesh",
-        1,
-        "BD"
-      ],
-      [
-        "Brazil",
-        1,
-        "BR"
-      ],
-      [
-        "India",
-        1,
-        "IN"
-      ],
-      [
-        "Singapore",
-        1,
-        "SG"
-      ],
-      [
-        "T\u00fcrkiye",
-        1,
-        "TR"
-      ]
-    ]
+    "date": "2026-09-08",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      49
+      47
     ],
     [
       "Google",
@@ -79,15 +31,15 @@
       3
     ],
     [
-      "Awin",
-      2
-    ],
-    [
       "google.com",
       1
     ],
     [
       "sonnysphoneshop",
+      1
+    ],
+    [
+      "Awin",
       1
     ]
   ],
@@ -108,30 +60,30 @@
       "DE"
     ],
     [
-      "Canada",
-      4,
-      "CA"
-    ],
-    [
       "China",
       4,
       "CN"
     ],
     [
-      "Hong Kong",
+      "Canada",
       3,
-      "HK"
+      "CA"
     ],
     [
       "Vietnam",
       3,
       "VN"
+    ],
+    [
+      "Hong Kong",
+      2,
+      "HK"
     ]
   ],
   "pages": [
     [
       "/",
-      28
+      25
     ],
     [
       "/codes/",
@@ -163,7 +115,6 @@
     ]
   ],
   "daily": [
-    3,
     2,
     5,
     1,
