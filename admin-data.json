@@ -1,19 +1,23 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-10 07:15 UTC",
+  "updated": "2026-09-10 12:52 UTC",
   "stale": false,
   "totals": {
-    "visitors": 61,
-    "pageviews": 63,
-    "sessions": 61,
-    "views24h": 3
+    "visitors": 62,
+    "pageviews": 64,
+    "sessions": 62,
+    "views24h": 4
   },
   "today": {
     "date": "2026-09-10",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
     "pages": [
+      [
+        "/",
+        1
+      ],
       [
         "/categories/home-living.html",
         1
@@ -22,10 +26,15 @@
     "sources": [
       [
         "Direct",
-        1
+        2
       ]
     ],
     "countries": [
+      [
+        "China",
+        1,
+        "CN"
+      ],
       [
         "Singapore",
         1,
@@ -36,7 +45,7 @@
   "sources": [
     [
       "Direct",
-      50
+      51
     ],
     [
       "Google",
@@ -75,14 +84,14 @@
       "GB"
     ],
     [
+      "China",
+      5,
+      "CN"
+    ],
+    [
       "Germany",
       5,
       "DE"
-    ],
-    [
-      "China",
-      4,
-      "CN"
     ],
     [
       "Canada",
@@ -103,7 +112,7 @@
   "pages": [
     [
       "/",
-      26
+      27
     ],
     [
       "/codes/",
@@ -157,6 +166,6 @@
     5,
     3,
     2,
-    1
+    2
   ]
 }
