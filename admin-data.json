@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-10 00:05 UTC",
+  "updated": "2026-09-10 07:15 UTC",
   "stale": false,
   "totals": {
-    "visitors": 60,
-    "pageviews": 62,
-    "sessions": 60,
-    "views24h": 2
+    "visitors": 61,
+    "pageviews": 63,
+    "sessions": 61,
+    "views24h": 3
   },
   "today": {
     "date": "2026-09-10",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/categories/home-living.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        1,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      49
+      50
     ],
     [
       "Google",
@@ -114,7 +130,7 @@
       2
     ],
     [
-      "/deals/huawei-watch-fit-5-smart-watch-1-82-amoled-display-nfc-gps-3.html",
+      "/categories/home-living.html",
       2
     ]
   ],
@@ -140,6 +156,7 @@
     4,
     5,
     3,
-    2
+    2,
+    1
   ]
 }
