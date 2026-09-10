@@ -1,55 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-09 20:52 UTC",
+  "updated": "2026-09-10 00:05 UTC",
   "stale": false,
   "totals": {
-    "visitors": 62,
-    "pageviews": 64,
-    "sessions": 62,
-    "views24h": 5
+    "visitors": 60,
+    "pageviews": 62,
+    "sessions": 60,
+    "views24h": 2
   },
   "today": {
-    "date": "2026-09-09",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/codes/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ]
-    ],
-    "countries": [
-      [
-        "Belarus",
-        1,
-        "BY"
-      ],
-      [
-        "China",
-        1,
-        "CN"
-      ]
-    ]
+    "date": "2026-09-10",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      50
+      49
     ],
     [
       "Google",
-      6
+      5
     ],
     [
       "(not set)",
@@ -80,18 +55,18 @@
     ],
     [
       "United Kingdom",
-      9,
+      8,
       "GB"
-    ],
-    [
-      "China",
-      5,
-      "CN"
     ],
     [
       "Germany",
       5,
       "DE"
+    ],
+    [
+      "China",
+      4,
+      "CN"
     ],
     [
       "Canada",
@@ -112,7 +87,7 @@
   "pages": [
     [
       "/",
-      27
+      26
     ],
     [
       "/codes/",
@@ -144,7 +119,6 @@
     ]
   ],
   "daily": [
-    2,
     5,
     1,
     1,
