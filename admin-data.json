@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-11 11:09 UTC",
+  "updated": "2026-09-11 16:22 UTC",
   "stale": false,
   "totals": {
-    "visitors": 68,
-    "pageviews": 70,
-    "sessions": 69,
-    "views24h": 8
+    "visitors": 69,
+    "pageviews": 72,
+    "sessions": 70,
+    "views24h": 10
   },
   "today": {
     "date": "2026-09-11",
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      55
+      57
     ],
     [
       "Google",
@@ -28,15 +28,11 @@
     ],
     [
       "(not set)",
-      3
+      2
     ],
     [
       "ChatGPT",
       2
-    ],
-    [
-      "(data not available)",
-      1
     ],
     [
       "google.com",
@@ -64,7 +60,7 @@
     ],
     [
       "China",
-      5,
+      6,
       "CN"
     ],
     [
@@ -91,19 +87,19 @@
   "pages": [
     [
       "/",
-      30
+      31
     ],
     [
       "/codes/",
       7
     ],
     [
-      "/guides/",
+      "/brands/",
       6
     ],
     [
-      "/brands/",
-      5
+      "/guides/",
+      6
     ],
     [
       "/categories/gaming.html",
@@ -145,6 +141,6 @@
     5,
     3,
     2,
-    8
+    10
   ]
 }
