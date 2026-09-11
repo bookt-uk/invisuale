@@ -1,72 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-10 20:47 UTC",
+  "updated": "2026-09-11 00:01 UTC",
   "stale": false,
   "totals": {
-    "visitors": 66,
-    "pageviews": 67,
-    "sessions": 66,
+    "visitors": 68,
+    "pageviews": 69,
+    "sessions": 68,
     "views24h": 7
   },
   "today": {
-    "date": "2026-09-10",
-    "visitors": 6,
-    "views": 5,
-    "sessions": 6,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/categories/gaming.html",
-        1
-      ],
-      [
-        "/categories/health-beauty.html",
-        1
-      ],
-      [
-        "/categories/home-living.html",
-        1
-      ],
-      [
-        "/categories/services-contracts.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        5
-      ],
-      [
-        "(not set)",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        4,
-        "SG"
-      ],
-      [
-        "China",
-        1,
-        "CN"
-      ],
-      [
-        "Japan",
-        1,
-        "JP"
-      ]
-    ]
+    "date": "2026-09-11",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      54
+      55
     ],
     [
       "Google",
@@ -75,6 +29,10 @@
     [
       "(not set)",
       3
+    ],
+    [
+      "(data not available)",
+      1
     ],
     [
       "ChatGPT",
@@ -96,12 +54,12 @@
   "countries": [
     [
       "United States",
-      22,
+      23,
       "US"
     ],
     [
       "United Kingdom",
-      8,
+      9,
       "GB"
     ],
     [
@@ -133,7 +91,7 @@
   "pages": [
     [
       "/",
-      27
+      29
     ],
     [
       "/codes/",
@@ -187,6 +145,6 @@
     5,
     3,
     2,
-    5
+    7
   ]
 }
