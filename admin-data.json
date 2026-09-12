@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-12 16:59 UTC",
+  "updated": "2026-09-12 20:28 UTC",
   "stale": false,
   "totals": {
-    "visitors": 65,
+    "visitors": 66,
     "pageviews": 69,
-    "sessions": 67,
+    "sessions": 68,
     "views24h": 2
   },
   "today": {
     "date": "2026-09-12",
-    "visitors": 1,
+    "visitors": 2,
     "views": 1,
-    "sessions": 1,
+    "sessions": 2,
     "pages": [
       [
         "/guides/",
@@ -23,9 +23,18 @@
       [
         "Direct",
         1
+      ],
+      [
+        "(not set)",
+        1
       ]
     ],
     "countries": [
+      [
+        "United Kingdom",
+        1,
+        "GB"
+      ],
       [
         "United States",
         1,
@@ -44,7 +53,7 @@
     ],
     [
       "(not set)",
-      2
+      3
     ],
     [
       "ChatGPT",
@@ -71,7 +80,7 @@
     ],
     [
       "United Kingdom",
-      9,
+      10,
       "GB"
     ],
     [
