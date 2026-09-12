@@ -1,15 +1,15 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-11 20:53 UTC",
+  "updated": "2026-09-12 00:09 UTC",
   "stale": false,
   "totals": {
-    "visitors": 69,
-    "pageviews": 72,
-    "sessions": 70,
-    "views24h": 10
+    "visitors": 64,
+    "pageviews": 68,
+    "sessions": 66,
+    "views24h": 1
   },
   "today": {
-    "date": "2026-09-11",
+    "date": "2026-09-12",
     "visitors": 0,
     "views": 0,
     "sessions": 0,
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      57
+      52
     ],
     [
       "Google",
@@ -50,7 +50,7 @@
   "countries": [
     [
       "United States",
-      23,
+      20,
       "US"
     ],
     [
@@ -60,7 +60,7 @@
     ],
     [
       "China",
-      6,
+      5,
       "CN"
     ],
     [
@@ -87,7 +87,7 @@
   "pages": [
     [
       "/",
-      31
+      28
     ],
     [
       "/codes/",
@@ -106,20 +106,19 @@
       3
     ],
     [
-      "/categories/",
-      2
-    ],
-    [
       "/categories/groceries.html",
       2
     ],
     [
       "/categories/health-beauty.html",
       2
+    ],
+    [
+      "/categories/home-living.html",
+      2
     ]
   ],
   "daily": [
-    5,
     1,
     1,
     1,
@@ -141,6 +140,7 @@
     5,
     3,
     2,
-    10
+    10,
+    1
   ]
 }
