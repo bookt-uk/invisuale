@@ -1,63 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-12 23:56 UTC",
+  "updated": "2026-09-13 04:37 UTC",
   "stale": false,
   "totals": {
-    "visitors": 68,
-    "pageviews": 71,
-    "sessions": 71,
-    "views24h": 4
+    "visitors": 67,
+    "pageviews": 70,
+    "sessions": 70,
+    "views24h": 3
   },
   "today": {
     "date": "2026-09-13",
-    "visitors": 4,
-    "views": 3,
-    "sessions": 5,
-    "pages": [
-      [
-        "/about.html",
-        1
-      ],
-      [
-        "/categories/electronics.html",
-        1
-      ],
-      [
-        "/guides/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ],
-      [
-        "(not set)",
-        2
-      ],
-      [
-        "Google",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United Kingdom",
-        2,
-        "GB"
-      ],
-      [
-        "United States",
-        2,
-        "US"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      54
+      53
     ],
     [
       "Google",
@@ -124,7 +87,7 @@
   "pages": [
     [
       "/",
-      28
+      27
     ],
     [
       "/codes/",
@@ -156,7 +119,6 @@
     ]
   ],
   "daily": [
-    1,
     1,
     1,
     3,
