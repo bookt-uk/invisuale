@@ -1,21 +1,29 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-13 11:40 UTC",
+  "updated": "2026-09-13 16:09 UTC",
   "stale": false,
   "totals": {
-    "visitors": 69,
-    "pageviews": 72,
-    "sessions": 72,
-    "views24h": 5
+    "visitors": 71,
+    "pageviews": 75,
+    "sessions": 74,
+    "views24h": 8
   },
   "today": {
     "date": "2026-09-13",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
+    "visitors": 4,
+    "views": 4,
+    "sessions": 4,
     "pages": [
       [
+        "/",
+        1
+      ],
+      [
         "/brands/",
+        1
+      ],
+      [
+        "/categories/garden-do-it-yourself.html",
         1
       ],
       [
@@ -26,7 +34,7 @@
     "sources": [
       [
         "Direct",
-        2
+        4
       ],
       [
         "(not set)",
@@ -34,6 +42,16 @@
       ]
     ],
     "countries": [
+      [
+        "Japan",
+        1,
+        "JP"
+      ],
+      [
+        "Jordan",
+        1,
+        "JO"
+      ],
       [
         "Singapore",
         1,
@@ -49,7 +67,7 @@
   "sources": [
     [
       "Direct",
-      55
+      58
     ],
     [
       "Google",
@@ -57,7 +75,7 @@
     ],
     [
       "(not set)",
-      5
+      3
     ],
     [
       "ChatGPT",
@@ -108,15 +126,15 @@
       "CA"
     ],
     [
-      "Vietnam",
+      "Japan",
       3,
-      "VN"
+      "JP"
     ]
   ],
   "pages": [
     [
       "/",
-      27
+      28
     ],
     [
       "/codes/",
@@ -170,7 +188,7 @@
     2,
     10,
     1,
-    3,
-    2
+    4,
+    4
   ]
 }
