@@ -1,77 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-13 20:41 UTC",
+  "updated": "2026-09-14 00:05 UTC",
   "stale": false,
   "totals": {
-    "visitors": 71,
-    "pageviews": 75,
-    "sessions": 74,
-    "views24h": 8
+    "visitors": 72,
+    "pageviews": 76,
+    "sessions": 75,
+    "views24h": 6
   },
   "today": {
-    "date": "2026-09-13",
-    "visitors": 4,
-    "views": 4,
-    "sessions": 4,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/categories/garden-do-it-yourself.html",
-        1
-      ],
-      [
-        "/codes/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        4
-      ],
-      [
-        "(not set)",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Japan",
-        1,
-        "JP"
-      ],
-      [
-        "Jordan",
-        1,
-        "JO"
-      ],
-      [
-        "Singapore",
-        1,
-        "SG"
-      ],
-      [
-        "South Korea",
-        1,
-        "KR"
-      ]
-    ]
+    "date": "2026-09-14",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      58
+      60
     ],
     [
       "Google",
-      6
+      5
     ],
     [
       "(not set)",
@@ -102,12 +55,12 @@
     ],
     [
       "United Kingdom",
-      11,
+      10,
       "GB"
     ],
     [
       "Singapore",
-      6,
+      8,
       "SG"
     ],
     [
@@ -134,7 +87,7 @@
   "pages": [
     [
       "/",
-      28
+      29
     ],
     [
       "/codes/",
@@ -167,7 +120,6 @@
   ],
   "daily": [
     1,
-    1,
     3,
     1,
     5,
@@ -189,6 +141,6 @@
     10,
     1,
     4,
-    4
+    6
   ]
 }
