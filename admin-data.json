@@ -1,26 +1,63 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-14 04:49 UTC",
+  "updated": "2026-09-14 12:34 UTC",
   "stale": false,
   "totals": {
-    "visitors": 72,
-    "pageviews": 76,
-    "sessions": 75,
-    "views24h": 6
+    "visitors": 75,
+    "pageviews": 81,
+    "sessions": 78,
+    "views24h": 11
   },
   "today": {
     "date": "2026-09-14",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 2,
+    "views": 4,
+    "sessions": 2,
+    "pages": [
+      [
+        "/",
+        2
+      ],
+      [
+        "/about.html",
+        1
+      ],
+      [
+        "/deals/pragmata-xbox-series-x-s-w-code.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ],
+      [
+        "(not set)",
+        1
+      ],
+      [
+        "Awin",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Philippines",
+        1,
+        "PH"
+      ],
+      [
+        "United Kingdom",
+        1,
+        "GB"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      60
+      62
     ],
     [
       "Google",
@@ -35,15 +72,15 @@
       2
     ],
     [
+      "Awin",
+      2
+    ],
+    [
       "google.com",
       1
     ],
     [
       "sonnysphoneshop",
-      1
-    ],
-    [
-      "Awin",
       1
     ]
   ],
@@ -55,12 +92,12 @@
     ],
     [
       "United Kingdom",
-      10,
+      11,
       "GB"
     ],
     [
       "Singapore",
-      8,
+      9,
       "SG"
     ],
     [
@@ -87,7 +124,7 @@
   "pages": [
     [
       "/",
-      29
+      31
     ],
     [
       "/codes/",
@@ -106,15 +143,15 @@
       3
     ],
     [
+      "/about.html",
+      2
+    ],
+    [
       "/categories/groceries.html",
       2
     ],
     [
       "/categories/health-beauty.html",
-      2
-    ],
-    [
-      "/categories/home-living.html",
       2
     ]
   ],
@@ -141,6 +178,7 @@
     10,
     1,
     4,
-    6
+    7,
+    4
   ]
 }
