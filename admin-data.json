@@ -1,19 +1,27 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-15 11:36 UTC",
+  "updated": "2026-09-15 16:50 UTC",
   "stale": false,
   "totals": {
-    "visitors": 79,
-    "pageviews": 86,
-    "sessions": 82,
-    "views24h": 10
+    "visitors": 81,
+    "pageviews": 89,
+    "sessions": 84,
+    "views24h": 13
   },
   "today": {
     "date": "2026-09-15",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
+    "visitors": 4,
+    "views": 5,
+    "sessions": 4,
     "pages": [
+      [
+        "/",
+        2
+      ],
+      [
+        "/categories/",
+        1
+      ],
       [
         "/deals/dove-original-beauty-bar-10-pack.html",
         1
@@ -26,7 +34,15 @@
     "sources": [
       [
         "Direct",
-        2
+        3
+      ],
+      [
+        "(not set)",
+        1
+      ],
+      [
+        "Awin",
+        1
       ]
     ],
     "countries": [
@@ -34,13 +50,23 @@
         "Hong Kong",
         2,
         "HK"
+      ],
+      [
+        "Canada",
+        1,
+        "CA"
+      ],
+      [
+        "Pakistan",
+        1,
+        "PK"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      65
+      66
     ],
     [
       "Google",
@@ -48,19 +74,19 @@
     ],
     [
       "(not set)",
-      4
-    ],
-    [
-      "(data not available)",
-      2
+      3
     ],
     [
       "ChatGPT",
-      2
+      3
     ],
     [
       "Awin",
-      2
+      3
+    ],
+    [
+      "appca.act.com",
+      1
     ],
     [
       "sonnysphoneshop",
@@ -95,7 +121,7 @@
     ],
     [
       "Canada",
-      3,
+      4,
       "CA"
     ],
     [
@@ -107,7 +133,7 @@
   "pages": [
     [
       "/",
-      34
+      36
     ],
     [
       "/codes/",
@@ -130,11 +156,11 @@
       2
     ],
     [
-      "/categories/groceries.html",
+      "/categories/",
       2
     ],
     [
-      "/categories/health-beauty.html",
+      "/categories/groceries.html",
       2
     ]
   ],
@@ -162,6 +188,6 @@
     4,
     7,
     8,
-    2
+    5
   ]
 }
