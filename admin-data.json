@@ -1,71 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-14 23:04 UTC",
+  "updated": "2026-09-15 04:44 UTC",
   "stale": false,
   "totals": {
-    "visitors": 78,
-    "pageviews": 85,
-    "sessions": 81,
-    "views24h": 15
+    "visitors": 77,
+    "pageviews": 84,
+    "sessions": 80,
+    "views24h": 8
   },
   "today": {
     "date": "2026-09-15",
-    "visitors": 5,
-    "views": 8,
-    "sessions": 5,
-    "pages": [
-      [
-        "/",
-        5
-      ],
-      [
-        "/about.html",
-        1
-      ],
-      [
-        "/deals/pragmata-xbox-series-x-s-w-code.html",
-        1
-      ],
-      [
-        "/guides/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "(data not available)",
-        2
-      ],
-      [
-        "Direct",
-        2
-      ],
-      [
-        "(not set)",
-        2
-      ],
-      [
-        "Awin",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Philippines",
-        2,
-        "PH"
-      ],
-      [
-        "United Kingdom",
-        2,
-        "GB"
-      ],
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
@@ -93,10 +43,6 @@
       2
     ],
     [
-      "google.com",
-      1
-    ],
-    [
       "sonnysphoneshop",
       1
     ]
@@ -109,7 +55,7 @@
     ],
     [
       "United Kingdom",
-      12,
+      11,
       "GB"
     ],
     [
@@ -173,7 +119,6 @@
     ]
   ],
   "daily": [
-    1,
     3,
     1,
     5,
