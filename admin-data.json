@@ -1,67 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-15 21:15 UTC",
+  "updated": "2026-09-16 00:10 UTC",
   "stale": false,
   "totals": {
     "visitors": 81,
     "pageviews": 89,
     "sessions": 84,
-    "views24h": 13
+    "views24h": 5
   },
   "today": {
-    "date": "2026-09-15",
-    "visitors": 4,
-    "views": 5,
-    "sessions": 4,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/categories/",
-        1
-      ],
-      [
-        "/deals/dove-original-beauty-bar-10-pack.html",
-        1
-      ],
-      [
-        "/deals/star-drops-the-pink-stuff-the-miracle-cleaning-paste-850g.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        3
-      ],
-      [
-        "(not set)",
-        1
-      ],
-      [
-        "Awin",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Hong Kong",
-        2,
-        "HK"
-      ],
-      [
-        "Canada",
-        1,
-        "CA"
-      ],
-      [
-        "Pakistan",
-        1,
-        "PK"
-      ]
-    ]
+    "date": "2026-09-16",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
