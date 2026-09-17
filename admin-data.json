@@ -1,30 +1,59 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-17 04:43 UTC",
+  "updated": "2026-09-17 11:31 UTC",
   "stale": false,
   "totals": {
-    "visitors": 81,
-    "pageviews": 90,
-    "sessions": 84,
-    "views24h": 3
+    "visitors": 83,
+    "pageviews": 91,
+    "sessions": 86,
+    "views24h": 4
   },
   "today": {
     "date": "2026-09-17",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 2,
+    "views": 1,
+    "sessions": 2,
+    "pages": [
+      [
+        "/categories/culture-leisure.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ],
+      [
+        "(not set)",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Latvia",
+        1,
+        "LV"
+      ],
+      [
+        "Singapore",
+        1,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      66
+      67
     ],
     [
       "Google",
       6
+    ],
+    [
+      "(not set)",
+      3
     ],
     [
       "ChatGPT",
@@ -33,10 +62,6 @@
     [
       "Awin",
       3
-    ],
-    [
-      "(not set)",
-      2
     ],
     [
       "appca.act.com",
@@ -50,14 +75,14 @@
       "US"
     ],
     [
+      "Singapore",
+      10,
+      "SG"
+    ],
+    [
       "United Kingdom",
       10,
       "GB"
-    ],
-    [
-      "Singapore",
-      9,
-      "SG"
     ],
     [
       "Canada",
@@ -138,6 +163,7 @@
     7,
     8,
     6,
-    3
+    3,
+    1
   ]
 }
