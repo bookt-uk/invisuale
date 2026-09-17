@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-17 16:51 UTC",
+  "updated": "2026-09-17 21:16 UTC",
   "stale": false,
   "totals": {
-    "visitors": 90,
-    "pageviews": 99,
-    "sessions": 94,
-    "views24h": 12
+    "visitors": 91,
+    "pageviews": 100,
+    "sessions": 95,
+    "views24h": 13
   },
   "today": {
     "date": "2026-09-17",
-    "visitors": 10,
-    "views": 9,
-    "sessions": 10,
+    "visitors": 11,
+    "views": 10,
+    "sessions": 11,
     "pages": [
       [
         "/",
@@ -38,7 +38,7 @@
     "sources": [
       [
         "Direct",
-        8
+        9
       ],
       [
         "(not set)",
@@ -71,16 +71,16 @@
         "CN"
       ],
       [
-        "Latvia",
+        "Hong Kong",
         1,
-        "LV"
+        "HK"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      74
+      75
     ],
     [
       "Google",
@@ -136,7 +136,7 @@
     ],
     [
       "Hong Kong",
-      4,
+      5,
       "HK"
     ]
   ],
@@ -199,6 +199,6 @@
     8,
     6,
     3,
-    9
+    10
   ]
 }
