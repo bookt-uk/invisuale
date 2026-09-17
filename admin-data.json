@@ -1,51 +1,86 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-17 11:31 UTC",
+  "updated": "2026-09-17 16:51 UTC",
   "stale": false,
   "totals": {
-    "visitors": 83,
-    "pageviews": 91,
-    "sessions": 86,
-    "views24h": 4
+    "visitors": 90,
+    "pageviews": 99,
+    "sessions": 94,
+    "views24h": 12
   },
   "today": {
     "date": "2026-09-17",
-    "visitors": 2,
-    "views": 1,
-    "sessions": 2,
+    "visitors": 10,
+    "views": 9,
+    "sessions": 10,
     "pages": [
       [
+        "/",
+        3
+      ],
+      [
+        "/brands/",
+        1
+      ],
+      [
+        "/categories/car-motorcycle.html",
+        1
+      ],
+      [
         "/categories/culture-leisure.html",
+        1
+      ],
+      [
+        "/categories/fashion-accessories.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        8
       ],
       [
         "(not set)",
+        1
+      ],
+      [
+        "Google",
         1
       ]
     ],
     "countries": [
       [
+        "Singapore",
+        6,
+        "SG"
+      ],
+      [
+        "",
+        1,
+        ""
+      ],
+      [
+        "Canada",
+        1,
+        "CA"
+      ],
+      [
+        "China",
+        1,
+        "CN"
+      ],
+      [
         "Latvia",
         1,
         "LV"
-      ],
-      [
-        "Singapore",
-        1,
-        "SG"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      67
+      74
     ],
     [
       "Google",
@@ -76,7 +111,7 @@
     ],
     [
       "Singapore",
-      10,
+      15,
       "SG"
     ],
     [
@@ -90,14 +125,14 @@
       "CA"
     ],
     [
+      "China",
+      5,
+      "CN"
+    ],
+    [
       "Germany",
       5,
       "DE"
-    ],
-    [
-      "China",
-      4,
-      "CN"
     ],
     [
       "Hong Kong",
@@ -108,10 +143,14 @@
   "pages": [
     [
       "/",
-      36
+      39
     ],
     [
       "/codes/",
+      9
+    ],
+    [
+      "/brands/",
       8
     ],
     [
@@ -119,11 +158,11 @@
       8
     ],
     [
-      "/brands/",
-      7
+      "/categories/gaming.html",
+      3
     ],
     [
-      "/categories/gaming.html",
+      "/categories/health-beauty.html",
       3
     ],
     [
@@ -132,10 +171,6 @@
     ],
     [
       "/categories/",
-      2
-    ],
-    [
-      "/categories/groceries.html",
       2
     ]
   ],
@@ -164,6 +199,6 @@
     8,
     6,
     3,
-    1
+    9
   ]
 }
