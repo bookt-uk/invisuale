@@ -1,86 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-17 21:16 UTC",
+  "updated": "2026-09-18 00:06 UTC",
   "stale": false,
   "totals": {
-    "visitors": 91,
-    "pageviews": 100,
-    "sessions": 95,
-    "views24h": 13
+    "visitors": 90,
+    "pageviews": 99,
+    "sessions": 94,
+    "views24h": 10
   },
   "today": {
-    "date": "2026-09-17",
-    "visitors": 11,
-    "views": 10,
-    "sessions": 11,
-    "pages": [
-      [
-        "/",
-        3
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/categories/car-motorcycle.html",
-        1
-      ],
-      [
-        "/categories/culture-leisure.html",
-        1
-      ],
-      [
-        "/categories/fashion-accessories.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        9
-      ],
-      [
-        "(not set)",
-        1
-      ],
-      [
-        "Google",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        6,
-        "SG"
-      ],
-      [
-        "",
-        1,
-        ""
-      ],
-      [
-        "Canada",
-        1,
-        "CA"
-      ],
-      [
-        "China",
-        1,
-        "CN"
-      ],
-      [
-        "Hong Kong",
-        1,
-        "HK"
-      ]
-    ]
+    "date": "2026-09-18",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      75
+      74
     ],
     [
       "Google",
@@ -106,7 +46,7 @@
   "countries": [
     [
       "United States",
-      22,
+      21,
       "US"
     ],
     [
@@ -175,7 +115,6 @@
     ]
   ],
   "daily": [
-    1,
     5,
     1,
     12,
