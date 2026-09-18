@@ -1,19 +1,23 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-18 07:20 UTC",
+  "updated": "2026-09-18 12:55 UTC",
   "stale": false,
   "totals": {
     "visitors": 91,
-    "pageviews": 100,
-    "sessions": 95,
-    "views24h": 11
+    "pageviews": 103,
+    "sessions": 97,
+    "views24h": 14
   },
   "today": {
     "date": "2026-09-18",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 2,
+    "views": 3,
+    "sessions": 3,
     "pages": [
+      [
+        "/",
+        2
+      ],
       [
         "/categories/groceries.html",
         1
@@ -22,7 +26,7 @@
     "sources": [
       [
         "Direct",
-        1
+        2
       ]
     ],
     "countries": [
@@ -30,6 +34,11 @@
         "Singapore",
         1,
         "SG"
+      ],
+      [
+        "United Kingdom",
+        1,
+        "GB"
       ]
     ]
   },
@@ -43,10 +52,6 @@
       6
     ],
     [
-      "(not set)",
-      3
-    ],
-    [
       "ChatGPT",
       3
     ],
@@ -55,7 +60,15 @@
       3
     ],
     [
+      "(not set)",
+      2
+    ],
+    [
       "appca.act.com",
+      1
+    ],
+    [
+      "geedo.lv",
       1
     ]
   ],
@@ -99,7 +112,7 @@
   "pages": [
     [
       "/",
-      39
+      41
     ],
     [
       "/codes/",
@@ -154,7 +167,7 @@
     8,
     6,
     3,
-    10,
-    1
+    11,
+    3
   ]
 }
