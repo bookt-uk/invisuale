@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-18 00:06 UTC",
+  "updated": "2026-09-18 07:20 UTC",
   "stale": false,
   "totals": {
-    "visitors": 90,
-    "pageviews": 99,
-    "sessions": 94,
-    "views24h": 10
+    "visitors": 91,
+    "pageviews": 100,
+    "sessions": 95,
+    "views24h": 11
   },
   "today": {
     "date": "2026-09-18",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/categories/groceries.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        1,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      74
+      75
     ],
     [
       "Google",
@@ -51,7 +67,7 @@
     ],
     [
       "Singapore",
-      15,
+      16,
       "SG"
     ],
     [
@@ -102,15 +118,15 @@
       3
     ],
     [
+      "/categories/groceries.html",
+      3
+    ],
+    [
       "/categories/health-beauty.html",
       3
     ],
     [
       "/about.html",
-      2
-    ],
-    [
-      "/categories/",
       2
     ]
   ],
@@ -138,6 +154,7 @@
     8,
     6,
     3,
-    10
+    10,
+    1
   ]
 }
