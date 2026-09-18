@@ -1,22 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-18 12:55 UTC",
+  "updated": "2026-09-18 17:38 UTC",
   "stale": false,
   "totals": {
-    "visitors": 91,
-    "pageviews": 103,
-    "sessions": 97,
-    "views24h": 14
+    "visitors": 93,
+    "pageviews": 105,
+    "sessions": 99,
+    "views24h": 16
   },
   "today": {
     "date": "2026-09-18",
-    "visitors": 2,
-    "views": 3,
-    "sessions": 3,
+    "visitors": 4,
+    "views": 5,
+    "sessions": 5,
     "pages": [
       [
         "/",
         2
+      ],
+      [
+        "/brands/",
+        1
+      ],
+      [
+        "/categories/family-kids.html",
+        1
       ],
       [
         "/categories/groceries.html",
@@ -26,14 +34,19 @@
     "sources": [
       [
         "Direct",
-        2
+        4
       ]
     ],
     "countries": [
       [
         "Singapore",
-        1,
+        2,
         "SG"
+      ],
+      [
+        "Japan",
+        1,
+        "JP"
       ],
       [
         "United Kingdom",
@@ -45,7 +58,7 @@
   "sources": [
     [
       "Direct",
-      75
+      77
     ],
     [
       "Google",
@@ -80,7 +93,7 @@
     ],
     [
       "Singapore",
-      16,
+      17,
       "SG"
     ],
     [
@@ -115,12 +128,12 @@
       41
     ],
     [
-      "/codes/",
+      "/brands/",
       9
     ],
     [
-      "/brands/",
-      8
+      "/codes/",
+      9
     ],
     [
       "/guides/",
@@ -168,6 +181,6 @@
     6,
     3,
     11,
-    3
+    5
   ]
 }
