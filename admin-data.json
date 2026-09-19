@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-19 12:27 UTC",
+  "updated": "2026-09-19 17:11 UTC",
   "stale": false,
   "totals": {
-    "visitors": 102,
-    "pageviews": 114,
-    "sessions": 108,
-    "views24h": 14
+    "visitors": 103,
+    "pageviews": 115,
+    "sessions": 109,
+    "views24h": 15
   },
   "today": {
     "date": "2026-09-19",
-    "visitors": 4,
-    "views": 4,
-    "sessions": 4,
+    "visitors": 5,
+    "views": 5,
+    "sessions": 5,
     "pages": [
       [
         "/categories/other.html",
@@ -29,12 +29,16 @@
       [
         "/categories/travel.html",
         1
+      ],
+      [
+        "/deals/game-of-thrones-the-complete-first-second-third-seasons-blu.html",
+        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        4
+        5
       ]
     ],
     "countries": [
@@ -42,13 +46,18 @@
         "Singapore",
         4,
         "SG"
+      ],
+      [
+        "Pakistan",
+        1,
+        "PK"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      86
+      87
     ],
     [
       "Google",
@@ -172,6 +181,6 @@
     3,
     11,
     10,
-    4
+    5
   ]
 }
