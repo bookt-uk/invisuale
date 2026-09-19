@@ -1,68 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-18 20:50 UTC",
+  "updated": "2026-09-19 00:11 UTC",
   "stale": false,
   "totals": {
-    "visitors": 95,
-    "pageviews": 107,
-    "sessions": 101,
-    "views24h": 18
+    "visitors": 96,
+    "pageviews": 108,
+    "sessions": 102,
+    "views24h": 8
   },
   "today": {
-    "date": "2026-09-18",
-    "visitors": 6,
-    "views": 7,
-    "sessions": 7,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/categories/electronics.html",
-        1
-      ],
-      [
-        "/categories/family-kids.html",
-        1
-      ],
-      [
-        "/categories/groceries.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        6
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        4,
-        "SG"
-      ],
-      [
-        "Japan",
-        1,
-        "JP"
-      ],
-      [
-        "United Kingdom",
-        1,
-        "GB"
-      ]
-    ]
+    "date": "2026-09-19",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      79
+      80
     ],
     [
       "Google",
@@ -97,7 +55,7 @@
     ],
     [
       "Singapore",
-      19,
+      20,
       "SG"
     ],
     [
@@ -141,7 +99,7 @@
     ],
     [
       "/guides/",
-      8
+      9
     ],
     [
       "/categories/gaming.html",
@@ -185,6 +143,6 @@
     6,
     3,
     11,
-    7
+    8
   ]
 }
