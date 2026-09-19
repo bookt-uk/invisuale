@@ -1,34 +1,46 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-19 07:16 UTC",
+  "updated": "2026-09-19 12:27 UTC",
   "stale": false,
   "totals": {
-    "visitors": 97,
-    "pageviews": 109,
-    "sessions": 103,
-    "views24h": 9
+    "visitors": 102,
+    "pageviews": 114,
+    "sessions": 108,
+    "views24h": 14
   },
   "today": {
     "date": "2026-09-19",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 4,
+    "views": 4,
+    "sessions": 4,
     "pages": [
       [
+        "/categories/other.html",
+        1
+      ],
+      [
         "/categories/services-contracts.html",
+        1
+      ],
+      [
+        "/categories/sports-outdoors.html",
+        1
+      ],
+      [
+        "/categories/travel.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        4
       ]
     ],
     "countries": [
       [
         "Singapore",
-        1,
+        4,
         "SG"
       ]
     ]
@@ -36,7 +48,7 @@
   "sources": [
     [
       "Direct",
-      81
+      86
     ],
     [
       "Google",
@@ -66,7 +78,7 @@
   "countries": [
     [
       "Singapore",
-      21,
+      26,
       "SG"
     ],
     [
@@ -118,6 +130,10 @@
       9
     ],
     [
+      "/categories/",
+      3
+    ],
+    [
       "/categories/gaming.html",
       3
     ],
@@ -128,10 +144,6 @@
     [
       "/categories/health-beauty.html",
       3
-    ],
-    [
-      "/about.html",
-      2
     ]
   ],
   "daily": [
@@ -159,7 +171,7 @@
     6,
     3,
     11,
-    8,
-    1
+    10,
+    4
   ]
 }
