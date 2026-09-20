@@ -1,19 +1,23 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-20 11:12 UTC",
+  "updated": "2026-09-20 15:57 UTC",
   "stale": false,
   "totals": {
-    "visitors": 100,
-    "pageviews": 112,
-    "sessions": 106,
-    "views24h": 7
+    "visitors": 101,
+    "pageviews": 113,
+    "sessions": 107,
+    "views24h": 8
   },
   "today": {
     "date": "2026-09-20",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
+    "visitors": 3,
+    "views": 3,
+    "sessions": 3,
     "pages": [
+      [
+        "/categories/culture-leisure.html",
+        1
+      ],
       [
         "/categories/other.html",
         1
@@ -26,13 +30,13 @@
     "sources": [
       [
         "Direct",
-        2
+        3
       ]
     ],
     "countries": [
       [
         "Singapore",
-        2,
+        3,
         "SG"
       ]
     ]
@@ -40,7 +44,7 @@
   "sources": [
     [
       "Direct",
-      84
+      85
     ],
     [
       "Google",
@@ -70,7 +74,7 @@
   "countries": [
     [
       "Singapore",
-      28,
+      29,
       "SG"
     ],
     [
@@ -164,6 +168,6 @@
     11,
     10,
     5,
-    2
+    3
   ]
 }
