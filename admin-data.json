@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-20 18:42 UTC",
+  "updated": "2026-09-20 22:22 UTC",
   "stale": false,
   "totals": {
-    "visitors": 101,
-    "pageviews": 113,
-    "sessions": 107,
-    "views24h": 8
+    "visitors": 102,
+    "pageviews": 114,
+    "sessions": 108,
+    "views24h": 9
   },
   "today": {
     "date": "2026-09-20",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
+    "visitors": 4,
+    "views": 4,
+    "sessions": 4,
     "pages": [
       [
         "/categories/culture-leisure.html",
@@ -25,18 +25,22 @@
       [
         "/categories/sports-outdoors.html",
         1
+      ],
+      [
+        "/codes/",
+        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        3
+        4
       ]
     ],
     "countries": [
       [
         "Singapore",
-        3,
+        4,
         "SG"
       ]
     ]
@@ -44,7 +48,7 @@
   "sources": [
     [
       "Direct",
-      85
+      86
     ],
     [
       "Google",
@@ -74,7 +78,7 @@
   "countries": [
     [
       "Singapore",
-      29,
+      30,
       "SG"
     ],
     [
@@ -114,11 +118,11 @@
       41
     ],
     [
-      "/brands/",
-      8
+      "/codes/",
+      9
     ],
     [
-      "/codes/",
+      "/brands/",
       8
     ],
     [
@@ -168,6 +172,6 @@
     11,
     10,
     5,
-    3
+    4
   ]
 }
