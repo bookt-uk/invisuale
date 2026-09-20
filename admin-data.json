@@ -1,26 +1,46 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-20 04:48 UTC",
+  "updated": "2026-09-20 11:12 UTC",
   "stale": false,
   "totals": {
-    "visitors": 98,
-    "pageviews": 110,
-    "sessions": 104,
-    "views24h": 5
+    "visitors": 100,
+    "pageviews": 112,
+    "sessions": 106,
+    "views24h": 7
   },
   "today": {
     "date": "2026-09-20",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
+    "pages": [
+      [
+        "/categories/other.html",
+        1
+      ],
+      [
+        "/categories/sports-outdoors.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        2
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        2,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      82
+      84
     ],
     [
       "Google",
@@ -50,7 +70,7 @@
   "countries": [
     [
       "Singapore",
-      26,
+      28,
       "SG"
     ],
     [
@@ -143,6 +163,7 @@
     3,
     11,
     10,
-    5
+    5,
+    2
   ]
 }
