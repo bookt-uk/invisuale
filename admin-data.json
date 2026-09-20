@@ -1,63 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-19 20:31 UTC",
+  "updated": "2026-09-20 00:04 UTC",
   "stale": false,
   "totals": {
-    "visitors": 103,
-    "pageviews": 115,
-    "sessions": 109,
-    "views24h": 15
+    "visitors": 98,
+    "pageviews": 110,
+    "sessions": 104,
+    "views24h": 5
   },
   "today": {
-    "date": "2026-09-19",
-    "visitors": 5,
-    "views": 5,
-    "sessions": 5,
-    "pages": [
-      [
-        "/categories/other.html",
-        1
-      ],
-      [
-        "/categories/services-contracts.html",
-        1
-      ],
-      [
-        "/categories/sports-outdoors.html",
-        1
-      ],
-      [
-        "/categories/travel.html",
-        1
-      ],
-      [
-        "/deals/game-of-thrones-the-complete-first-second-third-seasons-blu.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        5
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        4,
-        "SG"
-      ],
-      [
-        "Pakistan",
-        1,
-        "PK"
-      ]
-    ]
+    "date": "2026-09-20",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      87
+      82
     ],
     [
       "Google",
@@ -92,7 +55,7 @@
     ],
     [
       "United States",
-      21,
+      17,
       "US"
     ],
     [
@@ -128,22 +91,18 @@
     ],
     [
       "/brands/",
-      9
+      8
     ],
     [
       "/codes/",
-      9
+      8
     ],
     [
       "/guides/",
-      9
+      8
     ],
     [
       "/categories/",
-      3
-    ],
-    [
-      "/categories/gaming.html",
       3
     ],
     [
@@ -151,12 +110,15 @@
       3
     ],
     [
-      "/categories/health-beauty.html",
-      3
+      "/about.html",
+      2
+    ],
+    [
+      "/categories/broadband-phone-contracts.html",
+      2
     ]
   ],
   "daily": [
-    5,
     1,
     12,
     1,
