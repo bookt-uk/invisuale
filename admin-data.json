@@ -1,49 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-20 22:22 UTC",
+  "updated": "2026-09-21 04:45 UTC",
   "stale": false,
   "totals": {
-    "visitors": 102,
-    "pageviews": 114,
-    "sessions": 108,
-    "views24h": 9
+    "visitors": 101,
+    "pageviews": 113,
+    "sessions": 107,
+    "views24h": 4
   },
   "today": {
-    "date": "2026-09-20",
-    "visitors": 4,
-    "views": 4,
-    "sessions": 4,
-    "pages": [
-      [
-        "/categories/culture-leisure.html",
-        1
-      ],
-      [
-        "/categories/other.html",
-        1
-      ],
-      [
-        "/categories/sports-outdoors.html",
-        1
-      ],
-      [
-        "/codes/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        4
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        4,
-        "SG"
-      ]
-    ]
+    "date": "2026-09-21",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
@@ -52,7 +24,7 @@
     ],
     [
       "Google",
-      6
+      5
     ],
     [
       "ChatGPT",
@@ -88,7 +60,7 @@
     ],
     [
       "United Kingdom",
-      10,
+      9,
       "GB"
     ],
     [
@@ -147,7 +119,6 @@
     ]
   ],
   "daily": [
-    1,
     12,
     1,
     2,
