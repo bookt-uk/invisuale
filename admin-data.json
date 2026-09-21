@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-21 04:45 UTC",
+  "updated": "2026-09-21 12:39 UTC",
   "stale": false,
   "totals": {
-    "visitors": 101,
-    "pageviews": 113,
-    "sessions": 107,
-    "views24h": 4
+    "visitors": 102,
+    "pageviews": 114,
+    "sessions": 108,
+    "views24h": 5
   },
   "today": {
     "date": "2026-09-21",
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      86
+      87
     ],
     [
       "Google",
@@ -64,6 +64,11 @@
       "GB"
     ],
     [
+      "Germany",
+      6,
+      "DE"
+    ],
+    [
       "Canada",
       5,
       "CA"
@@ -72,11 +77,6 @@
       "China",
       5,
       "CN"
-    ],
-    [
-      "Germany",
-      5,
-      "DE"
     ],
     [
       "Hong Kong",
@@ -94,11 +94,11 @@
       9
     ],
     [
-      "/brands/",
-      8
+      "/guides/",
+      9
     ],
     [
-      "/guides/",
+      "/brands/",
       8
     ],
     [
@@ -143,6 +143,6 @@
     11,
     10,
     5,
-    4
+    5
   ]
 }
