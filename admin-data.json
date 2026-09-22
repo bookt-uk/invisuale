@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-21 23:12 UTC",
+  "updated": "2026-09-22 04:42 UTC",
   "stale": false,
   "totals": {
-    "visitors": 103,
-    "pageviews": 115,
-    "sessions": 109,
-    "views24h": 6
+    "visitors": 93,
+    "pageviews": 104,
+    "sessions": 99,
+    "views24h": 2
   },
   "today": {
     "date": "2026-09-22",
@@ -27,16 +27,16 @@
     ],
     "countries": [
       [
-        "United Kingdom",
+        "Hong Kong",
         1,
-        "GB"
+        "HK"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      88
+      79
     ],
     [
       "Google",
@@ -52,7 +52,7 @@
     ],
     [
       "(not set)",
-      2
+      1
     ],
     [
       "appca.act.com",
@@ -71,7 +71,7 @@
     ],
     [
       "United States",
-      17,
+      16,
       "US"
     ],
     [
@@ -85,57 +85,56 @@
       "DE"
     ],
     [
-      "Canada",
-      5,
-      "CA"
+      "Hong Kong",
+      6,
+      "HK"
     ],
     [
       "China",
-      5,
+      4,
       "CN"
     ],
     [
-      "Hong Kong",
-      5,
-      "HK"
+      "Japan",
+      4,
+      "JP"
     ]
   ],
   "pages": [
     [
       "/",
-      42
-    ],
-    [
-      "/codes/",
-      9
-    ],
-    [
-      "/guides/",
-      9
+      39
     ],
     [
       "/brands/",
       8
     ],
     [
-      "/categories/",
-      3
+      "/guides/",
+      8
     ],
     [
-      "/categories/groceries.html",
-      3
+      "/codes/",
+      7
     ],
     [
       "/about.html",
       2
     ],
     [
+      "/categories/",
+      2
+    ],
+    [
       "/categories/broadband-phone-contracts.html",
+      2
+    ],
+    [
+      "/categories/car-motorcycle.html",
       2
     ]
   ],
   "daily": [
-    12,
     1,
     2,
     3,
@@ -160,6 +159,7 @@
     10,
     5,
     5,
+    1,
     1
   ]
 }
