@@ -1,28 +1,28 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-23 07:40 UTC",
+  "updated": "2026-09-23 13:34 UTC",
   "stale": false,
   "totals": {
-    "visitors": 96,
-    "pageviews": 107,
-    "sessions": 102,
-    "views24h": 5
+    "visitors": 98,
+    "pageviews": 109,
+    "sessions": 104,
+    "views24h": 7
   },
   "today": {
     "date": "2026-09-23",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
     "pages": [
       [
         "/",
-        1
+        2
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        2
       ]
     ],
     "countries": [
@@ -30,17 +30,22 @@
         "",
         1,
         ""
+      ],
+      [
+        "China",
+        1,
+        "CN"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      81
+      83
     ],
     [
       "Google",
-      5
+      6
     ],
     [
       "ChatGPT",
@@ -52,10 +57,6 @@
     ],
     [
       "(not set)",
-      2
-    ],
-    [
-      "(data not available)",
       1
     ],
     [
@@ -95,7 +96,7 @@
     ],
     [
       "China",
-      4,
+      5,
       "CN"
     ],
     [
@@ -107,7 +108,7 @@
   "pages": [
     [
       "/",
-      40
+      42
     ],
     [
       "/guides/",
@@ -163,7 +164,7 @@
     5,
     5,
     1,
-    4,
-    1
+    5,
+    2
   ]
 }
