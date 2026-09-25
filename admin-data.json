@@ -1,26 +1,55 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-25 07:40 UTC",
+  "updated": "2026-09-25 13:38 UTC",
   "stale": false,
   "totals": {
-    "visitors": 97,
-    "pageviews": 107,
-    "sessions": 103,
-    "views24h": 0
+    "visitors": 100,
+    "pageviews": 110,
+    "sessions": 106,
+    "views24h": 3
   },
   "today": {
     "date": "2026-09-25",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 3,
+    "views": 3,
+    "sessions": 3,
+    "pages": [
+      [
+        "/brands/",
+        1
+      ],
+      [
+        "/categories/groceries.html",
+        1
+      ],
+      [
+        "/categories/home-living.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        3
+      ]
+    ],
+    "countries": [
+      [
+        "United States",
+        2,
+        "US"
+      ],
+      [
+        "Lithuania",
+        1,
+        "LT"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      82
+      85
     ],
     [
       "Google",
@@ -55,7 +84,7 @@
     ],
     [
       "United States",
-      17,
+      19,
       "US"
     ],
     [
@@ -90,16 +119,20 @@
       41
     ],
     [
+      "/brands/",
+      9
+    ],
+    [
       "/guides/",
       9
     ],
     [
-      "/brands/",
-      8
-    ],
-    [
       "/codes/",
       7
+    ],
+    [
+      "/categories/groceries.html",
+      3
     ],
     [
       "/about.html",
@@ -111,10 +144,6 @@
     ],
     [
       "/categories/broadband-phone-contracts.html",
-      2
-    ],
-    [
-      "/categories/car-motorcycle.html",
       2
     ]
   ],
@@ -143,6 +172,7 @@
     5,
     1,
     5,
-    2
+    2,
+    3
   ]
 }
