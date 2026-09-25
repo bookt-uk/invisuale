@@ -1,21 +1,25 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-25 13:38 UTC",
+  "updated": "2026-09-25 18:29 UTC",
   "stale": false,
   "totals": {
-    "visitors": 100,
-    "pageviews": 110,
-    "sessions": 106,
-    "views24h": 3
+    "visitors": 101,
+    "pageviews": 111,
+    "sessions": 107,
+    "views24h": 4
   },
   "today": {
     "date": "2026-09-25",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
+    "visitors": 4,
+    "views": 4,
+    "sessions": 4,
     "pages": [
       [
         "/brands/",
+        1
+      ],
+      [
+        "/categories/electronics.html",
         1
       ],
       [
@@ -30,13 +34,13 @@
     "sources": [
       [
         "Direct",
-        3
+        4
       ]
     ],
     "countries": [
       [
         "United States",
-        2,
+        3,
         "US"
       ],
       [
@@ -49,7 +53,7 @@
   "sources": [
     [
       "Direct",
-      85
+      86
     ],
     [
       "Google",
@@ -84,7 +88,7 @@
     ],
     [
       "United States",
-      19,
+      20,
       "US"
     ],
     [
@@ -131,6 +135,10 @@
       7
     ],
     [
+      "/categories/electronics.html",
+      3
+    ],
+    [
       "/categories/groceries.html",
       3
     ],
@@ -140,10 +148,6 @@
     ],
     [
       "/categories/",
-      2
-    ],
-    [
-      "/categories/broadband-phone-contracts.html",
       2
     ]
   ],
@@ -173,6 +177,6 @@
     1,
     5,
     2,
-    3
+    4
   ]
 }
