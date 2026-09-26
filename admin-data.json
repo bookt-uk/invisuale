@@ -1,59 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-25 23:15 UTC",
+  "updated": "2026-09-26 04:46 UTC",
   "stale": false,
   "totals": {
-    "visitors": 101,
-    "pageviews": 111,
-    "sessions": 107,
-    "views24h": 4
+    "visitors": 103,
+    "pageviews": 114,
+    "sessions": 109,
+    "views24h": 7
   },
   "today": {
     "date": "2026-09-26",
-    "visitors": 4,
-    "views": 4,
-    "sessions": 4,
-    "pages": [
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/categories/electronics.html",
-        1
-      ],
-      [
-        "/categories/groceries.html",
-        1
-      ],
-      [
-        "/categories/home-living.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        4
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        3,
-        "US"
-      ],
-      [
-        "Lithuania",
-        1,
-        "LT"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      86
+      88
     ],
     [
       "Google",
@@ -88,7 +55,7 @@
     ],
     [
       "United States",
-      20,
+      22,
       "US"
     ],
     [
@@ -120,11 +87,11 @@
   "pages": [
     [
       "/",
-      41
+      43
     ],
     [
       "/brands/",
-      9
+      10
     ],
     [
       "/guides/",
@@ -177,6 +144,6 @@
     1,
     5,
     2,
-    4
+    7
   ]
 }
