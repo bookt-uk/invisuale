@@ -1,42 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-26 21:02 UTC",
+  "updated": "2026-09-27 00:27 UTC",
   "stale": false,
   "totals": {
-    "visitors": 104,
-    "pageviews": 115,
-    "sessions": 110,
-    "views24h": 8
+    "visitors": 101,
+    "pageviews": 112,
+    "sessions": 107,
+    "views24h": 1
   },
   "today": {
-    "date": "2026-09-26",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "date": "2026-09-27",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      89
+      86
     ],
     [
       "Google",
@@ -71,7 +55,7 @@
     ],
     [
       "United States",
-      23,
+      21,
       "US"
     ],
     [
@@ -95,9 +79,9 @@
       "CN"
     ],
     [
-      "Japan",
-      4,
-      "JP"
+      "(not set)",
+      3,
+      "(not set)"
     ]
   ],
   "pages": [
@@ -107,15 +91,15 @@
     ],
     [
       "/brands/",
-      10
-    ],
-    [
-      "/guides/",
       9
     ],
     [
+      "/guides/",
+      8
+    ],
+    [
       "/codes/",
-      7
+      6
     ],
     [
       "/categories/electronics.html",
@@ -135,7 +119,6 @@
     ]
   ],
   "daily": [
-    3,
     2,
     2,
     1,
