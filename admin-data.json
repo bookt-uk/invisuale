@@ -1,60 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-28 20:30 UTC",
+  "updated": "2026-09-29 01:48 UTC",
   "stale": false,
   "totals": {
-    "visitors": 107,
-    "pageviews": 118,
-    "sessions": 113,
-    "views24h": 8
+    "visitors": 105,
+    "pageviews": 116,
+    "sessions": 111,
+    "views24h": 3
   },
   "today": {
-    "date": "2026-09-28",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/codes/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        3
-      ]
-    ],
-    "countries": [
-      [
-        "",
-        1,
-        ""
-      ],
-      [
-        "United Kingdom",
-        1,
-        "GB"
-      ],
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "date": "2026-09-29",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      92
+      91
     ],
     [
       "Google",
-      6
+      5
     ],
     [
       "ChatGPT",
@@ -85,12 +55,12 @@
     ],
     [
       "United States",
-      25,
+      24,
       "US"
     ],
     [
       "United Kingdom",
-      12,
+      11,
       "GB"
     ],
     [
@@ -124,11 +94,11 @@
       10
     ],
     [
-      "/guides/",
-      9
+      "/codes/",
+      8
     ],
     [
-      "/codes/",
+      "/guides/",
       8
     ],
     [
@@ -149,7 +119,6 @@
     ]
   ],
   "daily": [
-    2,
     1,
     2,
     4,
