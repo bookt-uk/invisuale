@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-29 16:27 UTC",
+  "updated": "2026-09-29 22:10 UTC",
   "stale": false,
   "totals": {
-    "visitors": 105,
-    "pageviews": 116,
-    "sessions": 111,
-    "views24h": 3
+    "visitors": 106,
+    "pageviews": 118,
+    "sessions": 112,
+    "views24h": 5
   },
   "today": {
     "date": "2026-09-29",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 2,
+    "sessions": 1,
+    "pages": [
+      [
+        "/",
+        2
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Canada",
+        1,
+        "CA"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      91
+      92
     ],
     [
       "Google",
@@ -87,7 +103,7 @@
   "pages": [
     [
       "/",
-      46
+      48
     ],
     [
       "/brands/",
@@ -144,6 +160,7 @@
     7,
     1,
     5,
-    3
+    3,
+    2
   ]
 }
