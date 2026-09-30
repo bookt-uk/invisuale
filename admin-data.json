@@ -1,21 +1,41 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-30 12:25 UTC",
+  "updated": "2026-09-30 19:07 UTC",
   "stale": false,
   "totals": {
-    "visitors": 106,
-    "pageviews": 118,
-    "sessions": 112,
-    "views24h": 3
+    "visitors": 107,
+    "pageviews": 120,
+    "sessions": 113,
+    "views24h": 5
   },
   "today": {
     "date": "2026-09-30",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 2,
+    "sessions": 1,
+    "pages": [
+      [
+        "/",
+        1
+      ],
+      [
+        "/categories/fashion-accessories.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Awin",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Sri Lanka",
+        1,
+        "LK"
+      ]
+    ]
   },
   "sources": [
     [
@@ -27,11 +47,11 @@
       5
     ],
     [
-      "ChatGPT",
-      3
+      "Awin",
+      4
     ],
     [
-      "Awin",
+      "ChatGPT",
       3
     ],
     [
@@ -87,7 +107,7 @@
   "pages": [
     [
       "/",
-      47
+      48
     ],
     [
       "/brands/",
@@ -144,6 +164,7 @@
     1,
     5,
     3,
-    3
+    3,
+    2
   ]
 }
