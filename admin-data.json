@@ -1,46 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-09-30 23:40 UTC",
+  "updated": "2026-10-01 05:39 UTC",
   "stale": false,
   "totals": {
-    "visitors": 107,
+    "visitors": 104,
     "pageviews": 120,
-    "sessions": 113,
-    "views24h": 5
+    "sessions": 111,
+    "views24h": 4
   },
   "today": {
     "date": "2026-10-01",
-    "visitors": 1,
-    "views": 2,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/categories/fashion-accessories.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Awin",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Sri Lanka",
-        1,
-        "LK"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      92
+      90
     ],
     [
       "Google",
@@ -53,10 +33,6 @@
     [
       "ChatGPT",
       3
-    ],
-    [
-      "(not set)",
-      1
     ],
     [
       "appca.act.com",
@@ -75,7 +51,7 @@
     ],
     [
       "United States",
-      24,
+      23,
       "US"
     ],
     [
@@ -84,34 +60,34 @@
       "GB"
     ],
     [
-      "Hong Kong",
-      6,
-      "HK"
-    ],
-    [
       "China",
       5,
       "CN"
     ],
     [
-      "Germany",
+      "Hong Kong",
       5,
-      "DE"
+      "HK"
     ],
     [
       "(not set)",
       4,
       "(not set)"
+    ],
+    [
+      "Germany",
+      4,
+      "DE"
     ]
   ],
   "pages": [
     [
       "/",
-      48
+      50
     ],
     [
       "/brands/",
-      10
+      9
     ],
     [
       "/guides/",
@@ -119,7 +95,7 @@
     ],
     [
       "/codes/",
-      8
+      7
     ],
     [
       "/categories/electronics.html",
@@ -139,7 +115,6 @@
     ]
   ],
   "daily": [
-    2,
     4,
     1,
     4,
@@ -165,6 +140,6 @@
     5,
     3,
     3,
-    2
+    4
   ]
 }
