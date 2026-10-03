@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-02 23:42 UTC",
+  "updated": "2026-10-03 05:07 UTC",
   "stale": false,
   "totals": {
-    "visitors": 107,
-    "pageviews": 124,
-    "sessions": 115,
-    "views24h": 4
+    "visitors": 103,
+    "pageviews": 120,
+    "sessions": 111,
+    "views24h": 0
   },
   "today": {
     "date": "2026-10-03",
@@ -20,18 +20,18 @@
   "sources": [
     [
       "Direct",
-      90
+      87
     ],
     [
       "Google",
       8
     ],
     [
-      "Awin",
-      4
+      "ChatGPT",
+      3
     ],
     [
-      "ChatGPT",
+      "Awin",
       3
     ],
     [
@@ -51,7 +51,7 @@
     ],
     [
       "United States",
-      26,
+      24,
       "US"
     ],
     [
@@ -75,23 +75,23 @@
       "(not set)"
     ],
     [
-      "Germany",
-      4,
-      "DE"
+      "Canada",
+      3,
+      "CA"
     ]
   ],
   "pages": [
     [
       "/",
-      54
-    ],
-    [
-      "/brands/",
-      9
+      51
     ],
     [
       "/guides/",
       9
+    ],
+    [
+      "/brands/",
+      8
     ],
     [
       "/codes/",
@@ -115,7 +115,6 @@
     ]
   ],
   "daily": [
-    4,
     1,
     4,
     5,
