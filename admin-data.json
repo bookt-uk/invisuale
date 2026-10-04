@@ -1,15 +1,15 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-03 21:07 UTC",
+  "updated": "2026-10-04 00:30 UTC",
   "stale": false,
   "totals": {
-    "visitors": 103,
-    "pageviews": 120,
-    "sessions": 111,
+    "visitors": 102,
+    "pageviews": 119,
+    "sessions": 110,
     "views24h": 0
   },
   "today": {
-    "date": "2026-10-03",
+    "date": "2026-10-04",
     "visitors": 0,
     "views": 0,
     "sessions": 0,
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      87
+      86
     ],
     [
       "Google",
@@ -83,7 +83,7 @@
   "pages": [
     [
       "/",
-      51
+      50
     ],
     [
       "/guides/",
@@ -115,7 +115,6 @@
     ]
   ],
   "daily": [
-    1,
     4,
     5,
     3,
