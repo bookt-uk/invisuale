@@ -1,46 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-04 23:00 UTC",
+  "updated": "2026-10-05 05:25 UTC",
   "stale": false,
   "totals": {
-    "visitors": 103,
-    "pageviews": 120,
-    "sessions": 111,
-    "views24h": 1
+    "visitors": 100,
+    "pageviews": 117,
+    "sessions": 108,
+    "views24h": 2
   },
   "today": {
     "date": "2026-10-05",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/brands/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      87
+      85
     ],
     [
       "Google",
-      8
+      7
     ],
     [
       "ChatGPT",
@@ -62,17 +46,17 @@
   "countries": [
     [
       "Singapore",
-      30,
+      31,
       "SG"
     ],
     [
       "United States",
-      25,
+      23,
       "US"
     ],
     [
       "United Kingdom",
-      11,
+      10,
       "GB"
     ],
     [
@@ -103,11 +87,11 @@
     ],
     [
       "/brands/",
-      9
+      8
     ],
     [
       "/guides/",
-      9
+      8
     ],
     [
       "/codes/",
@@ -131,7 +115,6 @@
     ]
   ],
   "daily": [
-    4,
     5,
     3,
     2,
@@ -156,6 +139,6 @@
     3,
     4,
     4,
-    1
+    2
   ]
 }
