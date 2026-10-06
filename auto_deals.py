@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import json, os, re, html, time, hashlib, urllib.request, urllib.error, urllib.parse
-from datetime import datetime
+import json, os, re, html, time, hashlib, traceback, urllib.request, urllib.error, urllib.parse
+from datetime import datetime, timedelta
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 FEED_URL = "https://www.hotukdeals.com/rss/deals"
@@ -177,14 +177,16 @@ def local_logo(merchant_name):
         if key in n: return val
     return ""
 
+# Hand-entered codes are only a FALLBACK now: when the Awin Offers API returns live
+# offers for a merchant (see awin_fetch_offers), those are shown instead, so codes
+# can't go stale here again (HELLO10 died and FIRSTSUB changed from 30% to 40%).
 MERCHANT_CODES = {
     "aatu": {
         "slug": "aatu-co-uk",
         # Buyer-relevant facts shown as the stats bar (not affiliate KPIs).
-        "facts": [("Free", "Delivery over £30"), ("80%", "Meat or fish"), ("New & subs", "Codes apply")],
+        "facts": [("Free", "Next-day delivery £50+"), ("80%", "Meat or fish"), ("20% off", "Repeat subscriptions")],
         "codes": [
-            ("HELLO10", "10% off your first order", "New customers — 10% off your first AATU order."),
-            ("FIRSTSUB", "30% off your first subscription", "30% off your first AATU Subscribe & Save order."),
+            ("FIRSTSUB", "40% off your first subscription", "40% off RRP on your first AATU subscription order, then 20% off every order after. Excludes subscription trial products."),
         ],
     },
     "8wines": {
@@ -192,11 +194,11 @@ MERCHANT_CODES = {
         # offers_url overrides the deeplink target so buyers land directly on the sale page.
         "offers_url": "https://8wines.com/wines?am_on_sale=1&product_list_order=sale_percent",
         "facts": [("£8 off", "New customers"), ("Free ship", "Orders £400+"), ("Gold", "7 yrs running")],
-        "codes": [],  # No public voucher codes
-        # Code-less promotions (entered by hand from the advertiser's Awin offers).
-        # Rendered as offer cards with a Shop button — applied automatically via our link.
+        "codes": [
+            ("NEWCUST8J", "£8 off your first order", "New customers get £8 off a first wine order of £88 or more."),
+        ],
+        # Code-less promotions, rendered as offer cards with a Shop button.
         "offers": [
-            ("£8 off your first order", "New customers get £8 off orders over £88 — applied through our link, no code needed."),
             ("Free UK shipping on orders over £400", "Stock up for the cellar and pay nothing for delivery."),
         ],
     },
@@ -211,6 +213,11 @@ def lookup_codes(merchant_name):
         if key in n:
             return val
     return None
+
+def codes_slug(merchant_name):
+    """Slug of a merchant's /codes/ page (MERCHANT_CODES can pin a legacy slug)."""
+    mc = lookup_codes(merchant_name)
+    return mc["slug"] if mc else re.sub(r'[^a-z0-9]+', '-', (merchant_name or "").lower()).strip('-')
 
 def awin_fetch_joined_programmes():
     """Pull all joined Awin programmes via the API. Returns list of dicts with
@@ -267,6 +274,118 @@ def awin_fetch_joined_programmes():
             domain = info["displayUrl"].replace("https://","").replace("http://","").replace("www.","").rstrip("/")
             AWIN_MERCHANT_MAP[domain.lower()] = str(mid)
     return out
+
+# Awin Offers API: live promotions + voucher codes from joined advertisers.
+# It's a POST to /publisher/{id}/promotions (singular "publisher"), and the
+# response wraps offers in "data", not "promotions" as the docs claim. A GET or
+# the plural /publishers/ path 404s, which is why this once looked "not enabled".
+OFFER_SAVING_RE = re.compile(r"\d\s*%|£\s*\d|\boff\b|\bfree\b|\bsave\b|\bsale\b|\bdiscount|\bdeals?\b|half price|clearance", re.I)
+OFFER_AMOUNT_RE = re.compile(r"\d\s*%|£\s*\d")
+OFFER_PRIVATE_RE = re.compile(r"may not be shared|must not be shared|not to be shared|non-transferable", re.I)
+BF_RE = re.compile(r"black\s*friday|cyber\s*monday|black\s*week|cyber\s*week", re.I)
+# Some advertisers attach their global .com URL to UK offers; keep UK buyers on the UK store.
+OFFER_HOST_FIXES = {"www.mychway.com": "mychway.co.uk", "mychway.com": "mychway.co.uk"}
+_offers_cache = None  # populated once per scraper run
+
+def _clip(s, n):
+    s = (s or "").strip()
+    return s if len(s) <= n else s[:n].rsplit(" ", 1)[0].rstrip(",.;:-") + "…"
+
+def _normalise_offer(p):
+    adv = p.get("advertiser") or {}
+    aid = str(adv.get("id") or "")
+    title = (p.get("title") or "").replace("￡", "£").strip()
+    if not (aid and title):
+        return None
+    code = ((p.get("voucher") or {}).get("code") or "").strip()
+    terms = p.get("terms") or ""
+    if OFFER_PRIVATE_RE.search(terms):
+        return None  # single-customer codes (e.g. Game Over's GAMEON5) must not be published
+    if not code and not OFFER_SAVING_RE.search(title):
+        return None  # brand slogans filed as promotions ("Family owned since 1989")
+    desc = (p.get("description") or "").replace("￡", "£").strip()
+    if desc.lower().startswith(title.lower()):
+        desc = desc[len(title):].lstrip(" .,:;-")  # advertisers often repeat the title
+    if desc.endswith("£"):
+        desc = ""  # truncated by the advertiser
+    url = (p.get("url") or "").strip()
+    for bad, good in OFFER_HOST_FIXES.items():
+        url = url.replace(f"//{bad}", f"//{good}")
+    link = f"https://www.awin1.com/cread.php?awinmid={aid}&awinaffid={AWIN_PUBLISHER_ID}"
+    if url:
+        link += "&ued=" + urllib.parse.quote(url, safe="")
+    return {"adv_id": aid, "merchant": adv.get("name") or "", "code": code, "title": title,
+            "desc": desc, "end": (p.get("endDate") or "")[:10], "link": link,
+            "bf": bool(BF_RE.search(f"{title} {desc}"))}
+
+def _offer_rank(o):
+    """Black Friday first, then codes, then offers whose title states an actual saving."""
+    return (not o["bf"], not o["code"], not OFFER_AMOUNT_RE.search(o["title"]))
+
+def awin_fetch_offers():
+    """Live UK offers and voucher codes from joined Awin advertisers, keyed by
+    advertiser id (str) and best first (see _offer_rank). Cached per run; {}
+    when the API is unavailable."""
+    global _offers_cache
+    if _offers_cache is not None:
+        return _offers_cache
+    _offers_cache = {}
+    if not (AWIN_API_TOKEN and AWIN_PUBLISHER_ID):
+        return _offers_cache
+    page = 1
+    while page <= 10:
+        body = json.dumps({"filters": {"membership": "joined", "status": "active", "type": "all", "regionCodes": ["GB"]},
+                           "pagination": {"page": page, "pageSize": 200}}).encode()
+        req = urllib.request.Request(
+            f"https://api.awin.com/publisher/{AWIN_PUBLISHER_ID}/promotions", data=body, method="POST",
+            headers={"Authorization": f"Bearer {AWIN_API_TOKEN}", "Content-Type": "application/json", "Accept": "application/json"})
+        try:
+            res = json.loads(urllib.request.urlopen(req, timeout=30).read())
+        except Exception as e:
+            print(f"Awin offers fetch failed: {e}")
+            break
+        rows = res.get("data") or []
+        for p in rows:
+            o = _normalise_offer(p)
+            if o:
+                _offers_cache.setdefault(o["adv_id"], []).append(o)
+        if not rows or page * 200 >= ((res.get("pagination") or {}).get("total") or 0):
+            break
+        page += 1
+    for lst in _offers_cache.values():
+        lst.sort(key=_offer_rank)
+    print(f"Awin offers: {sum(len(v) for v in _offers_cache.values())} live across {len(_offers_cache)} merchants")
+    return _offers_cache
+
+def render_offer_cards(offers, merchant_name, id_prefix="oc"):
+    """Code cards (with copy button) and offer cards for Awin offers. Needs the
+    .code-card CSS and the copyCode() script shipped with the codes pages."""
+    out = ""
+    for i, o in enumerate(offers):
+        end = ""
+        try:
+            ed = datetime.strptime(o["end"], "%Y-%m-%d")
+            if (ed - datetime.now()).days <= 120:  # far-off end dates are placeholders
+                end = f' <span class="code-end">Ends {ed.day} {ed.strftime("%b %Y")}</span>'
+        except Exception:
+            pass
+        if o["bf"]:
+            kind = "🖤 Black Friday " + ("code" if o["code"] else "offer")
+        else:
+            kind = "✅ Verified Code" if o["code"] else "🎁 Verified Offer"
+        desc = f'<div class="code-desc">{html.escape(_clip(o["desc"], 220))}</div>' if o["desc"] else ""
+        box = ""
+        if o["code"]:
+            bid = f"{id_prefix}{i}"
+            box = ('<div class="code-box-row">'
+                   f'<span class="code-box" id="{bid}">{html.escape(o["code"])}</span>'
+                   f'<button class="copy-btn" onclick="copyCode(\'{html.escape(o["code"])}\',\'{bid}\')">Copy Code</button></div>')
+        out += ('<div class="code-card"><div class="accent"></div><div class="body">'
+                f'<div class="code-type">{kind}{end}</div>'
+                f'<div class="code-title">{html.escape(o["title"])}</div>{desc}{box}'
+                f'<a href="{html.escape(o["link"])}" class="shop-btn" rel="nofollow sponsored" target="_blank">Shop {html.escape(merchant_name)} &rarr;</a>'
+                '</div></div>')
+    return f'<div class="codes-grid">{out}</div>' if out else ""
 
 def affiliate_wrap(merchant_url, merchant_name):
     """Wrap a raw merchant URL with the appropriate affiliate tracking, if available."""
@@ -351,6 +470,7 @@ FOOTER_HTML = ('<footer style="background:#0f172a;color:#64748b;text-align:cente
 '<a href="/brands/" style="color:#cbd5e1;text-decoration:none">Brands</a>\n'
 '<a href="/categories/" style="color:#cbd5e1;text-decoration:none">Categories</a>\n'
 '<a href="/guides/" style="color:#cbd5e1;text-decoration:none">Guides</a>\n'
+'<a href="/black-friday/" style="color:#cbd5e1;text-decoration:none">Black Friday</a>\n'
 '<a href="/about.html" style="color:#cbd5e1;text-decoration:none">About</a>\n'
 '<a href="/about.html#contact" style="color:#cbd5e1;text-decoration:none">Contact</a>\n'
 '<a href="/privacy.html" style="color:#cbd5e1;text-decoration:none">Privacy</a>\n'
@@ -704,6 +824,11 @@ def make_page(deal, desc, features, merchant_url):
         '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
         '<meta charset="UTF-8">\n'
         '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
+        # Deal pages republish HotUKDeals listings, so they stay out of Google's index:
+        # thousands of them made the whole site look low-value. Visitors still use them
+        # and their links are followed; categories, guides, brands, codes and
+        # /black-friday/ are the pages meant to rank. Not in the sitemap either.
+        '<meta name="robots" content="noindex, follow">\n'
         f'<meta name="description" content="{html.escape(meta_desc)}">\n'
         f'<link rel="canonical" href="{html.escape(page_url)}">\n'
         '<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n'
@@ -797,34 +922,34 @@ AWIN_AFFID = "2926769"  # Awin publisher ID (same as AWIN_PUBLISHER_ID but hardc
 FEATURED_CARDS = [
     {
         "logo": "/images/aatu-logo.jpg", "name": "AATU", "label": "Pet Food", "cat": None,
-        "verified": "Verified codes",
-        "head": "Up to 30% off RRP + free delivery on your first AATU order",
-        "feats": ["80% meat or fish", "No fillers or grains", "Free delivery over £30"],
-        "chips": [("HELLO10", "10% off your first order"), ("FIRSTSUB", "30% off your first subscription")],
+        "verified": "Verified code",
+        "head": "40% off your first AATU subscription order, then 20% off every order after",
+        "feats": ["80% meat or fish", "No fillers or grains", "Free next-day delivery over £50"],
+        "chips": [("FIRSTSUB", "40% off RRP, first subscription"), ("20% OFF", "Every subscription order after")],
         "cta": "https://www.awin1.com/cread.php?awinmid=17135&awinaffid=2926769&ued=https%3A%2F%2Fwww.aatu.co.uk%2F",
     },
     {
         "logo": "/images/8wines-logo.jpg", "name": "8WINES", "label": "Wine", "cat": "Groceries",
-        "verified": "Verified offers",
+        "verified": "Verified code",
         "head": "£8 off your first order + free UK shipping over £400",
         "feats": ["Award-winning wines", "Gold 7 years running", "Delivered across the UK"],
-        "chips": [("£8 OFF", "New customers, orders £88+"), ("FREE SHIP", "On orders over £400")],
+        "chips": [("NEWCUST8J", "£8 off first order of £88+"), ("FREE SHIP", "On orders over £400")],
         "cta": "https://www.awin1.com/cread.php?awinmid=106707&awinaffid=2926769&ued=https%3A%2F%2F8wines.com%2Fwines%3Fam_on_sale%3D1",
     },
     {
         "logo": "/images/bunches-logo.jpg", "name": "BUNCHES", "label": "Flowers", "cat": "Garden & Do It Yourself",
-        "verified": "Verified partner",
-        "head": "Fresh flowers delivered anywhere in the UK",
+        "verified": "Verified code",
+        "head": "Save 15% on fresh flowers delivered anywhere in the UK",
         "feats": ["From £20.25", "Letterbox & bouquets", "Trusted UK florist"],
-        "chips": [("FROM £20.25", "Flowers by post"), ("UK-WIDE", "Any UK address")],
-        "cta": "https://www.awin1.com/cread.php?awinmid=488&awinaffid=2926769&ued=https%3A%2F%2Fwww.bunches.co.uk%2F",
+        "chips": [("SAVE15", "15% off flowers & plants"), ("UK-WIDE", "Any UK address")],
+        "cta": "https://www.awin1.com/cread.php?awinmid=488&awinaffid=2926769&ued=https%3A%2F%2Fwww.bunches.co.uk%2F%3Faff%3DSAVE15",
     },
     {
         "logo": "/images/cpp-logo.jpg", "name": "COMPARE PARKING PRICES", "label": "Travel", "cat": "Travel",
-        "verified": "Verified partner",
-        "head": "Compare UK airport parking & save up to 60% — book ahead this summer",
+        "verified": "Verified code",
+        "head": "Compare UK airport parking and save up to 60% by booking ahead",
         "feats": ["All major UK airports", "Meet & Greet, Park & Ride", "Pre-book beats turn-up prices"],
-        "chips": [("UP TO 60% OFF", "vs on-the-day prices"), ("ALL UK AIRPORTS", "Heathrow, Gatwick, Manchester +")],
+        "chips": [("Big15-Awin0", "Up to 25% off selected parking"), ("ALL UK AIRPORTS", "Heathrow, Gatwick, Manchester +")],
         "cta": "https://www.awin1.com/cread.php?awinmid=118401&awinaffid=2926769&ued=https%3A%2F%2Fwww.compareparkingprices.co.uk%2F",
     },
     {
@@ -845,10 +970,10 @@ FEATURED_CARDS = [
     },
     {
         "logo": "/images/morish-logo.jpg", "name": "MORISH", "label": "Healthy Snacks", "cat": "Groceries", "home": False,
-        "verified": "Verified partner",
+        "verified": "Verified code",
         "head": "Snacks with benefits — high protein, fibre & low-carb",
         "feats": ["No added sugar", "High protein & fibre", "Crispy & moreish"],
-        "chips": [("LOW-CARB", "Snacks with benefits"), ("NO ADDED SUGAR", "Guilt-free snacking")],
+        "chips": [("MORISH15", "15% off your order"), ("NO ADDED SUGAR", "Guilt-free snacking")],
         "cta": "https://www.awin1.com/cread.php?awinmid=126437&awinaffid=2926769&ued=https%3A%2F%2Fmorishsnacks.co.uk%2F",
     },
     {
@@ -861,10 +986,10 @@ FEATURED_CARDS = [
     },
     {
         "logo": "/images/buymeonce-logo.jpg", "name": "BUY ME ONCE", "label": "Buy It For Life", "cat": "Home & Living", "home": False,
-        "verified": "Verified partner",
+        "verified": "Verified code",
         "head": "Long-lasting homeware on sale — built to be bought once",
         "feats": ["Durability-tested products", "Kitchen, home & lifestyle", "Sustainable — less waste"],
-        "chips": [("SALE ON NOW", "Shop discounted items"), ("BUY IT FOR LIFE", "Built to last")],
+        "chips": [("HIGH5", "£5 off any £60 order"), ("BUY IT FOR LIFE", "Built to last")],
         "cta": "https://www.awin1.com/cread.php?awinmid=54235&awinaffid=2926769&ued=https%3A%2F%2Fwww.buymeonce.co.uk%2Fcollections%2Fsale",
     },
     {
@@ -1005,6 +1130,14 @@ def update_index(new_deals):
         start = base.index(marker_start) + len(marker_start)
         end = base.index(marker_end, start)
         base = base[:start] + '\n' + cards + base[end:]
+    # Seasonal Black Friday strip under the hero; emptied out of season.
+    bf_start, bf_end = '<!--bf-banner-->', '<!--/bf-banner-->'
+    if bf_start not in base and '\n<main>' in base:
+        base = base.replace('\n<main>', f'\n{bf_start}{bf_end}\n<main>', 1)
+    if bf_start in base and bf_end in base:
+        start = base.index(bf_start) + len(bf_start)
+        end = base.index(bf_end, start)
+        base = base[:start] + (bf_banner_html() if bf_in_season() else '') + base[end:]
     with open("index.html", "w") as f: f.write(base)
 
 CATEGORY_ICONS = {
@@ -1139,6 +1272,9 @@ def make_category_pages():
         for bg in BUYING_GUIDES:
             if any(u == f"/categories/{slug}.html" for _, u in bg["related"]):
                 rel_links.append((re.sub('<[^>]+>', '', bg["title"]), f'/guides/{bg["slug"]}.html'))
+        bfc = next((b for b in BF_CATEGORIES if cat in b["cats"]), None)
+        if bfc and bf_in_season():
+            rel_links.insert(0, (f'Black Friday {bfc["name"]} deals', f'/black-friday/{bfc["slug"]}.html'))
         rel_html = ""
         if rel_links:
             items = "".join(f'<a href="{u}">{html.escape(t)} &rarr;</a>' for t, u in rel_links)
@@ -1229,7 +1365,10 @@ def make_codes_pages(merchants):
     for _f in os.listdir("codes"):
         if _f.endswith(".html"):
             os.remove(f"codes/{_f}")
+    offers = awin_fetch_offers()
     def _has_codes(m):
+        if offers.get(str(m["id"])):
+            return True
         mc = lookup_codes(m["name"])
         return bool(mc and (mc.get("codes") or mc.get("offers") or mc.get("offers_url")))
     code_merchants = [m for m in merchants if _has_codes(m)]
@@ -1285,6 +1424,7 @@ main{max-width:1200px;margin:0 auto;padding:36px 20px 64px}
 .code-desc{font-size:13px;color:#475569;line-height:1.55;margin-bottom:14px}
 .code-box-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .code-box{background:#fefce8;border:2px dashed #d4af37;border-radius:8px;padding:10px 18px;font-size:18px;font-weight:800;color:#92400e;letter-spacing:2px;user-select:all}
+.code-end{color:#64748b;margin-left:6px;text-transform:none;letter-spacing:0}
 .copy-btn{background:#ef4444;color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:800;font-size:13px;cursor:pointer;transition:background .15s}
 .copy-btn:hover{background:#dc2626}
 .shop-btn{display:inline-block;margin-top:16px;background:#0f172a;color:#fff;padding:11px 22px;border-radius:8px;font-weight:800;font-size:14px;text-decoration:none}
@@ -1301,7 +1441,8 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
     # --- Per-brand pages ---
     for m in merchants:
         mc = lookup_codes(m["name"])
-        slug_b = (mc["slug"] if mc else re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-'))
+        slug_b = codes_slug(m["name"])
+        api_offers = offers.get(str(m["id"])) or []
         # If MERCHANT_CODES entry supplies offers_url, deeplink wraps the sale page
         # (not the homepage) — buyers land directly on the live discounts.
         if mc and mc.get("offers_url"):
@@ -1309,10 +1450,11 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
         else:
             cta_link = m["deeplink"]
         # Build offers/codes block. Codes have a copy button; offers don't (they
-        # apply automatically via our affiliate link).
-        codes_block = ""
+        # apply automatically via our affiliate link). Live Awin offers win; the
+        # hand-entered MERCHANT_CODES are only used when the API has none.
+        codes_block = render_offer_cards(api_offers, m["name"])
         cc = ""
-        if mc and mc.get("codes"):
+        if not api_offers and mc and mc.get("codes"):
             for i, (code, short, desc) in enumerate(mc["codes"]):
                 bid = f"cd{i}"
                 cc += (
@@ -1327,7 +1469,7 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
                     f'<a href="{cta_link}" class="shop-btn" rel="nofollow sponsored" target="_blank">Shop {html.escape(m["name"])} →</a>'
                     '</div></div>'
                 )
-        if mc and mc.get("offers"):
+        if not api_offers and mc and mc.get("offers"):
             for title, desc in mc["offers"]:
                 cc += (
                     '<div class="code-card"><div class="accent"></div><div class="body">'
@@ -1392,7 +1534,9 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
             + codes_block
             + render_feed_products(m["name"], products_for_merchant(m["id"]))
             + '<div class="seo-block"><h2>About this offer page</h2>'
-            + (f'<p>The codes above are verified through our official {html.escape(m["name"])} Awin partnership. We only list codes confirmed by the merchant — no fake or expired codes.</p>'
+            + (f'<p>The codes and offers above come straight from {html.escape(m["name"])} through our official Awin partnership and are refreshed every morning, so expired codes drop off automatically.</p>'
+               if api_offers else
+               f'<p>The codes above are verified through our official {html.escape(m["name"])} Awin partnership. We only list codes confirmed by the merchant — no fake or expired codes.</p>'
                if mc else
                f'<p>This page links directly to {html.escape(m["name"])}\'s current offers via our verified Awin partnership. Rather than listing individual codes that often expire within hours, we send you straight to {html.escape(m["name"])}\'s official sale and offers pages where the live discounts are guaranteed to work.</p>')
             + f'<p>Browse <a href="/codes/">all our retailer offer pages</a>, check today\'s <a href="/">hot deals</a>, or read our <a href="/guides/spot-a-real-deal-vs-fake-discount.html">guide on spotting fake discounts</a>.</p>'
@@ -1404,11 +1548,17 @@ footer a{color:#94a3b8;text-decoration:none;margin:0 8px}
     cards = ""
     for m in sorted(merchants, key=lambda x: x["name"].lower()):
         mc = lookup_codes(m["name"])
-        slug_b = (mc["slug"] if mc else re.sub(r'[^a-z0-9]+', '-', m["name"].lower()).strip('-'))
+        slug_b = codes_slug(m["name"])
+        api_offers = offers.get(str(m["id"])) or []
         lg = m.get("logo") or local_logo(m["name"])
         logo = (f'<img src="{html.escape(lg)}" alt="{html.escape(m["name"])} logo" class="brand-logo" loading="lazy">' if lg
                 else '<div class="brand-logo" style="display:flex;align-items:center;justify-content:center;background:#f1f5f9;border-radius:8px;font-weight:800;color:#475569">' + html.escape(m["name"][:2].upper()) + '</div>')
-        if mc and mc.get("codes"):
+        if api_offers:
+            api_codes = [o["code"] for o in api_offers if o["code"]]
+            meta = (f'{len(api_codes)} Code{"s" if len(api_codes) != 1 else ""} Available' if api_codes
+                    else f'{len(api_offers)} Offer{"s" if len(api_offers) != 1 else ""} Live')
+            comm = f'<div class="brand-comm">{html.escape(_clip(" · ".join(api_codes) or api_offers[0]["title"], 48))}</div>'
+        elif mc and mc.get("codes"):
             n = len(mc["codes"])
             meta = f'{n} Code{"s" if n != 1 else ""} Available'
             comm = f'<div class="brand-comm">{" · ".join(c[0] for c in mc["codes"])}</div>'
@@ -1460,23 +1610,23 @@ BRAND_GUIDES = {
     "AATU": {
         "intro": "AATU is a British premium pet food brand built on a simple idea: one main animal protein, packed with meat or fish and free from the fillers, grains and additives found in many supermarket brands.",
         "about": "AATU makes dry and wet food for both dogs and cats, using an 80/20 recipe — around 80% meat or fish — with no wheat, no soya and no artificial colours or flavours. The single-protein approach makes it a popular choice for pets with sensitive stomachs or allergies.",
-        "save": "New customers can use code <b>HELLO10</b> for 10% off a first order, or <b>FIRSTSUB</b> for 30% off a first Subscribe &amp; Save order. Delivery is free on orders over £30.",
+        "save": "New subscribers can use code <b>FIRSTSUB</b> for 40% off RRP on a first subscription order, then 20% off every order after. Next-day delivery is free on orders over £50 placed by the daily cut-off.",
         "faqs": [("Is AATU good quality pet food?", "AATU uses around 80% meat or fish with no grains or fillers and a single main protein, which puts it in the premium tier of UK pet food."),
-                 ("How do I get an AATU discount?", "Use HELLO10 for 10% off your first order, or FIRSTSUB for 30% off your first subscription order."),
-                 ("Does AATU offer free delivery?", "Yes — delivery is free on orders over £30.")],
+                 ("How do I get an AATU discount?", "Use FIRSTSUB for 40% off RRP on your first subscription order, then 20% off every order after."),
+                 ("Does AATU offer free delivery?", "Yes. Next-day delivery is free on orders over £50 placed by 7pm on weekdays or 2pm at weekends, to mainland GB.")],
     },
     "8WINES": {
         "intro": "8wines is an award-winning online wine merchant shipping a curated range across the UK, with a focus on quality bottles from established and boutique producers.",
         "about": "8wines stocks a broad range of red, white, rosé, sparkling and fine wines, and has been recognised with industry Gold awards multiple years running. Orders are delivered across the UK.",
-        "save": "New customers get <b>£8 off</b> their first order over £88, applied through our link with no code needed, and <b>free UK shipping</b> on orders over £400. Their live sale page lists current reductions.",
+        "save": "New customers can use code <b>NEWCUST8J</b> for <b>£8 off</b> a first order of £88 or more, and shipping is <b>free</b> on UK orders over £400. Their live sale page lists current reductions.",
         "faqs": [("Is 8wines a reputable wine retailer?", "Yes — 8wines is an established UK merchant that has won industry Gold awards several years running."),
-                 ("How do I save at 8wines?", "New customers get £8 off a first order over £88 via our link, plus free UK shipping over £400. Their sale page shows further reductions."),
+                 ("How do I save at 8wines?", "New customers can use NEWCUST8J for £8 off a first order of £88 or more, plus free UK shipping over £400. Their sale page shows further reductions."),
                  ("Does 8wines deliver across the UK?", "Yes, 8wines delivers nationwide across the UK.")],
     },
     "BUNCHES": {
         "intro": "Bunches is a long-established UK florist delivering fresh flowers by post and hand-tied bouquets to any address in the country.",
         "about": "Bunches offers letterbox flowers, bouquets and gift sets for occasions like birthdays, anniversaries and sympathy, with prices starting from around £20.25 and UK-wide delivery.",
-        "save": "Browse current bouquets and gift offers through our link. Bunches runs seasonal promotions around key dates such as Mother's Day, Valentine's and Christmas.",
+        "save": "Code <b>SAVE15</b> takes 15% off flowers, plants and greetings cards (not hampers, subscriptions or delivery). Bunches also runs seasonal promotions around key dates such as Mother's Day, Valentine's and Christmas.",
         "faqs": [("Does Bunches deliver anywhere in the UK?", "Yes — Bunches delivers fresh flowers to any UK address, including letterbox flowers and bouquets."),
                  ("How much are flowers from Bunches?", "Prices start from around £20.25 depending on the bouquet or gift set."),
                  ("Is Bunches a trusted florist?", "Bunches is a long-established UK flowers-by-post specialist.")],
@@ -1606,6 +1756,8 @@ def make_brand_pages():
             {"@type":"ListItem","position":2,"name":"Brands","item":"https://invisuale.com/brands/"},
             {"@type":"ListItem","position":3,"name":title_disp,"item":f"https://invisuale.com/brands/{s}.html"}]})
         cat_xref = (f'<a href="/categories/{cat_slug(c["cat"])}.html">{html.escape(c["cat"])} deals</a>' if c.get("cat") else '<a href="/">today\'s deals</a>')
+        if bf_in_season():
+            cat_xref = f'<a href="/black-friday/{s}.html">{html.escape(title_disp)} Black Friday</a> &middot; ' + cat_xref
         meta_desc = f"{title_disp} UK guide: what they sell, how to save and FAQs. {re.sub('<[^>]+>','',g['save'])[:90]}"
         page = (
             '<!DOCTYPE html><html lang="en"><head>'
@@ -1839,14 +1991,614 @@ def make_buying_guides():
     with open("guides/index.html", "w") as f: f.write(idx)
     print(f"Built {len(BUYING_GUIDES)} buying guides; index lists {len(arts)} articles.")
 
+# ---------------------------------------------------------------------------
+# Black Friday: /black-friday/ hub + one page per category + one per partner.
+# Evergreen URLs (no year in the slug) so they build authority year on year;
+# titles carry the year and roll over the day after Cyber Monday. Everything
+# refills daily: live deals that mention Black Friday / Cyber Monday come from
+# the scraper, partner Black Friday codes from the Awin Offers API.
+# ---------------------------------------------------------------------------
+def bf_date(year):
+    """Black Friday: the day after the fourth Thursday of November."""
+    first_thu = 1 + (3 - datetime(year, 11, 1).weekday()) % 7
+    return datetime(year, 11, first_thu + 22)
+
+def bf_year(now=None):
+    """The Black Friday the pages target: this year's up to Cyber Monday, then next year's."""
+    now = now or datetime.now()
+    return now.year if now.date() <= (bf_date(now.year) + timedelta(days=3)).date() else now.year + 1
+
+def bf_in_season(now=None):
+    """1 October to Cyber Monday: show the nav link, homepage strip and cross-links."""
+    now = now or datetime.now()
+    return datetime(now.year, 10, 1).date() <= now.date() <= (bf_date(now.year) + timedelta(days=3)).date()
+
+def _bf_countdown(bf):
+    days = (bf.date() - datetime.now().date()).days
+    return f"{days} days to go" if days > 1 else ("1 day to go" if days == 1 else "On now")
+
+def bf_banner_html():
+    """Homepage strip linking to the hub (see update_index)."""
+    bf = bf_date(bf_year())
+    return ('<a href="/black-friday/" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 14px;'
+            'background:#020617;color:#fff;text-decoration:none;padding:12px 16px;font-size:14px;font-weight:700;text-align:center">'
+            f'<span style="font-family:\'Barlow Condensed\',sans-serif;font-size:20px;font-weight:800;letter-spacing:.5px">BLACK FRIDAY {bf.year}</span>'
+            f'<span style="color:#cbd5e1">Friday {bf.day} {bf:%B}</span>'
+            f'<span style="background:#ef4444;border-radius:999px;padding:3px 10px;font-size:12px">{_bf_countdown(bf)}</span>'
+            '<span style="color:#f87171">See the deals &amp; codes &rarr;</span></a>')
+
+def brand_slug(card_name):
+    return re.sub(r'[^a-z0-9]+', '-', card_name.lower()).strip('-')
+
+def brand_disp(card_name):
+    return BRAND_DISPLAY.get(card_name, card_name.title() if card_name.isupper() else card_name)
+
+def card_mid(card):
+    """Awin advertiser id of a FEATURED_CARDS entry, read from its deeplink."""
+    m = re.search(r"awinmid=(\d+)", card.get("cta", ""))
+    return m.group(1) if m else ""
+
+def live_deal_rows():
+    """Every live (not ended) deal page as a dict, newest first."""
+    rows = []
+    if not os.path.exists("deals"):
+        return rows
+    for fname in os.listdir("deals"):
+        if not fname.endswith(".html"):
+            continue
+        try:
+            with open(f"deals/{fname}") as f:
+                c = f.read()
+        except Exception:
+            continue
+        if is_expired_page(c):
+            continue
+        def ex(n):
+            m = re.search(rf'<meta name="{n}" content="([^"]*)"', c)
+            return html.unescape(m.group(1)) if m else ""
+        tm = re.search(r'<h1>(.*?)</h1>', c)
+        title = html.unescape(tm.group(1)) if tm else fname[:-5].replace('-', ' ').title()
+        rows.append({"fname": fname, "title": title, "img": ex("deal-image"), "price": ex("deal-price"),
+                     "merchant": ex("deal-merchant"), "shipping": ex("deal-shipping"),
+                     "category": ex("deal-category") or "Other", "added": ex("deal-added"),
+                     "features": [x for x in ex("deal-features").split("|") if x.strip()][:3],
+                     "bf": bool(BF_RE.search(f'{title} {ex("description")}'))})
+    rows.sort(key=lambda d: (d["added"], d["fname"]), reverse=True)
+    return rows
+
+# Joined merchants with live offers but no featured card yet: which BF category they belong to.
+BF_PARTNER_CATS = {"25121": "Garden & Do It Yourself", "37282": "Gaming"}  # Suttons, Game Over
+
+BF_TIPS = [
+    "<b>Check the price history, not the 'was' price.</b> Free tools like CamelCamelCamel (for Amazon) and PriceSpy show what an item has really sold for in recent months.",
+    "<b>Make a list before the sales start.</b> Knowing what you need, and what it normally costs, is the easiest way to avoid impulse buys dressed up as deals.",
+    "<b>Compare with October.</b> Many products hit similar prices in Amazon's October Prime event, so a Black Friday 'low' may simply match it.",
+    "<b>Check the model number.</b> Some sale TVs, laptops and appliances are cut-down versions made for the sales.",
+    "<b>Stack codes where you can.</b> Some brands let a discount code work on top of sale prices. Our partner codes are refreshed every morning.",
+    "<b>Know your rights.</b> You can usually cancel most online orders within 14 days of delivery, and many retailers extend returns over Christmas.",
+]
+
+# One page per entry. "cats" = site categories whose live deals it lists; "kw" =
+# title regex for deals that have no category of their own (pets); "partners" =
+# extra Awin advertiser ids to feature. Advice only: no invented stats or prices.
+BF_CATEGORIES = [
+    {"slug": "electronics", "name": "Electronics", "icon": "💻", "cats": ["Electronics"],
+     "intro": "TVs, laptops, headphones, smart home kit and kitchen tech get the deepest Black Friday cuts of the year, and also the most inflated 'was' prices. Live electronics deals land here automatically as UK retailers launch them.",
+     "tips": ["<b>Check the exact model number.</b> Some Black Friday TVs and laptops are cut-down variants made for the sales, with a weaker panel, processor or fewer ports than the model that was reviewed.",
+              "<b>Judge the price history, not the 'was' price.</b> Free trackers like CamelCamelCamel (for Amazon) and PriceSpy show what an item has actually sold for in recent months.",
+              "<b>Compare with October.</b> Many gadgets hit a similar low during Amazon's October Prime event, so a Black Friday 'lowest ever' may just match it.",
+              "<b>Last year's model is often the real bargain.</b> When a new range launches, the outgoing one tends to fall further than the new one.",
+              "<b>Check the returns window before buying gifts early.</b> Many retailers extend returns over Christmas, but the terms differ."],
+     "faqs": [("Is Black Friday a good time to buy a TV?", "Usually, yes. TVs are among the most heavily discounted items, but check the exact model number and the price history, as some sale models are cut-down versions."),
+              ("Are Black Friday electronics deals really the cheapest?", "Not always. Consumer group Which? has repeatedly found that many Black Friday deals were the same price or cheaper at other times of the year, so check the price history before you buy.")],
+     "guides": [("Best time to buy electronics", "/guides/best-time-to-buy-electronics-uk.html"), ("How to spot a fake discount", "/guides/spot-a-real-deal-vs-fake-discount.html")]},
+    {"slug": "gaming", "name": "Gaming", "icon": "🎮", "cats": ["Gaming"],
+     "intro": "Consoles, games, controllers and PC gear see some of Black Friday's most competitive offers, with console bundles often the standout. New gaming deals appear here every morning as they go live.",
+     "tips": ["<b>Bundles often beat straight discounts.</b> A console bundled with a game or a second controller can be better value than a price cut, as long as you want what's included.",
+              "<b>Check the console model and storage.</b> Bundles sometimes use an older revision or a smaller drive, so compare specs as well as price.",
+              "<b>Games a few months old drop the most.</b> Brand-new releases and pre-orders rarely see big Black Friday cuts.",
+              "<b>Look at memberships before you renew.</b> Subscriptions such as PlayStation Plus have often been discounted around Black Friday in previous years."],
+     "faqs": [("Do consoles go on sale on Black Friday?", "Consoles are more often sold as discounted bundles than with big standalone price cuts, and bundle value varies a lot, so compare exactly what's included."),
+              ("Are digital game codes from UK retailers legitimate?", "Codes sold by established UK retailers are. Be more careful with grey-market key resellers, where codes can be region-locked or revoked.")]},
+    {"slug": "home", "name": "Home & Kitchen", "icon": "🏠", "cats": ["Home & Living"],
+     "intro": "Air fryers, cordless vacuums, coffee machines, bedding and furniture all see big Black Friday reductions, and small kitchen appliances are among the most popular buys.",
+     "tips": ["<b>Search by the core model code.</b> The same appliance can be sold under slightly different model numbers at different shops, which makes like-for-like price checks harder.",
+              "<b>Factor in running costs.</b> An efficient appliance can save more over its life than a bigger discount on a thirsty one.",
+              "<b>Check delivery lead times</b> on furniture and large items if you need them before Christmas.",
+              "<b>Manufacturer-refurbished stock is worth a look.</b> Sold with a warranty, it can undercut even Black Friday prices on new.",
+              "<b>Think cost per use.</b> Something built to last decades can beat a cheaper item you'll replace in two years."],
+     "faqs": [("Which home appliances are cheapest on Black Friday?", "Small kitchen appliances such as air fryers, coffee machines and blenders, along with cordless vacuums, are typically among the most discounted home items."),
+              ("Is it worth buying a mattress on Black Friday?", "Mattress brands often run big sales, but many also discount heavily at other times of year, so check the price history and the length of the sleep trial.")],
+     "guides": [("Buy it for life homeware guide", "/guides/buy-it-for-life-homeware-guide.html")]},
+    {"slug": "beauty", "name": "Beauty & Health", "icon": "💄", "cats": ["Health & Beauty"],
+     "intro": "Fragrance, skincare, hair tools, electric toothbrushes and gift sets are Black Friday staples, and many double as easy Christmas presents.",
+     "tips": ["<b>Gift sets are often the best value.</b> Fragrance and skincare sets can cost little more than the full-size product on its own.",
+              "<b>Compare price per ml.</b> A low headline price can simply mean a smaller bottle.",
+              "<b>Buy from authorised retailers.</b> Unusually cheap fragrance from unknown sellers can be counterfeit.",
+              "<b>Ignore inflated RRPs on hair tools and toothbrushes.</b> Their prices swing a lot through the year, so judge the deal against recent selling prices."],
+     "faqs": [("Are fragrance deals on Black Friday genuine?", "From authorised UK retailers, yes. Compare the price per ml and be wary of unusually cheap listings from unknown sellers."),
+              ("Are electric toothbrushes cheaper on Black Friday?", "Popular models are often discounted, but their prices move up and down all year, so check the price history rather than the RRP.")],
+     "guides": [("How to spot a fake discount", "/guides/spot-a-real-deal-vs-fake-discount.html")]},
+    {"slug": "fashion", "name": "Fashion", "icon": "👗", "cats": ["Fashion & Accessories"],
+     "intro": "Clothing, trainers, coats and accessories get sitewide Black Friday sales from many UK brands, sometimes with extra codes on top. It's one of the few times winter coats and boots are reduced this early in the season.",
+     "tips": ["<b>Check sizing and returns before you buy.</b> Sale items occasionally carry different return terms.",
+              "<b>See whether codes stack.</b> Some brands allow a discount code on top of already reduced prices; the terms will say.",
+              "<b>Sign up to newsletters early.</b> Many fashion brands give subscribers early access or an extra discount.",
+              "<b>Buy winter staples now.</b> Black Friday is one of the few times coats, knitwear and boots are reduced this early in the season."],
+     "faqs": [("Do UK fashion brands have Black Friday sales?", "Many do, often with sitewide percentage discounts, though a few brands opt out entirely. Check each brand's own site."),
+              ("Can I return clothes bought on Black Friday?", "Under UK consumer law you can usually cancel most online orders within 14 days of delivery, and many retailers extend returns over Christmas. Check each retailer's policy.")],
+     "guides": [("Your consumer rights online", "/guides/uk-consumer-rights-online-shopping.html")]},
+    {"slug": "toys-kids", "name": "Toys & Kids", "icon": "🧸", "cats": ["Family & Kids"],
+     "intro": "Black Friday is the big chance to buy toys, LEGO, games and kids' tech for less before Christmas, but the most wanted toys can sell out before the best prices arrive.",
+     "tips": ["<b>Make your list early.</b> The year's most popular toys can sell out, so a fair price now can beat waiting for a perfect one.",
+              "<b>Compare LEGO prices across retailers.</b> Big sets are commonly discounted around Black Friday, and the discount on the same set varies from shop to shop.",
+              "<b>Check what's in the box.</b> Note batteries, chargers and age ratings before you wrap anything.",
+              "<b>Ask for gift receipts</b> and check how long Christmas returns last."],
+     "faqs": [("Is Black Friday a good time to buy Christmas toys?", "Often, yes. Many toys are discounted, but the most popular ones can sell out, so buying early at a good price can beat waiting."),
+              ("Does LEGO go on sale on Black Friday?", "LEGO sets are commonly discounted by UK retailers around Black Friday. Compare a few retailers, as the discount on the same set varies.")]},
+    {"slug": "food-drink", "name": "Food & Drink", "icon": "🍷", "cats": ["Groceries"],
+     "intro": "Wine, spirits, snacks, coffee and Christmas food all see Black Friday offers, which makes it a sensible time to stock up for the festive season.",
+     "tips": ["<b>Work out the unit price.</b> Mixed cases and multipacks look cheap until you compare the price per bottle or per 100g.",
+              "<b>Check best-before dates</b> if you're stocking up on snacks or coffee.",
+              "<b>Order Christmas drinks early.</b> Delivery slots get busier through December.",
+              "<b>Use free delivery thresholds.</b> Combining orders to pass the threshold beats paying for shipping."],
+     "faqs": [("Is Black Friday good for wine deals?", "Many UK wine merchants run Black Friday promotions, and it's a good time to buy for Christmas. Compare per-bottle prices on mixed cases."),
+              ("How do I know a multipack is good value?", "Compare the unit price, per bottle, per 100g or per item, against buying singles. Retailers usually show it on the product page.")]},
+    {"slug": "broadband-phones", "name": "Broadband & Phones", "icon": "📱", "cats": ["Broadband & Phone Contracts"],
+     "intro": "Broadband, SIM-only plans and phone contracts see some of the year's strongest offers on Black Friday, often as bill credits, reward cards or reduced monthly prices.",
+     "tips": ["<b>Work out the total contract cost.</b> Multiply the monthly price by the term, add any upfront fee, then subtract cashback or vouchers.",
+              "<b>Check the yearly price rise.</b> UK providers now have to state mid-contract price rises in pounds and pence when you sign up, so factor them in.",
+              "<b>Haggle with your current provider.</b> If you're out of contract, asking to leave often unlocks a better offer.",
+              "<b>SIM-only plus an unlocked phone</b> often costs less than a handset contract over the full term."],
+     "faqs": [("Are Black Friday broadband deals worth it?", "They can be, especially offers with large bill credits or reward cards, but compare the total cost over the whole contract, including any price rises."),
+              ("Is it easy to switch broadband provider?", "In most cases, yes. Under Ofcom's One Touch Switch process your new provider arranges the switch, so you don't need to contact your old one first.")]},
+    {"slug": "garden-diy", "name": "Garden & DIY", "icon": "🌱", "cats": ["Garden & Do It Yourself"],
+     "intro": "Power tools, tool kits, garden machinery and plants for next spring are regularly discounted on Black Friday, and autumn is planting time for spring bulbs.",
+     "tips": ["<b>Stick to one battery platform.</b> A cheap cordless tool from a different brand can cost more once you add its battery and charger.",
+              "<b>Check whether a deal is 'body only'.</b> Many power tool offers don't include a battery or charger.",
+              "<b>Plant spring bulbs now.</b> Bulbs planted from September to December flower from late winter into spring.",
+              "<b>Garden furniture and BBQs</b> are usually cheapest out of season."],
+     "faqs": [("Are power tools cheaper on Black Friday?", "Power tools and kits are commonly discounted, but check whether the deal includes batteries and a charger, as many are body only."),
+              ("When should I plant spring bulbs?", "Spring-flowering bulbs go in during autumn, roughly September to December, for colour from late winter into spring.")]},
+    {"slug": "travel", "name": "Travel", "icon": "✈️", "cats": ["Travel"],
+     "intro": "Holidays, hotels, airport parking and travel extras get Black Friday offers too, and booking next year's trips now can lock in lower prices.",
+     "tips": ["<b>Pre-book airport parking.</b> It's far cheaper than paying at the barrier, and prices rise as spaces fill.",
+              "<b>Check cancellation terms.</b> A flexible booking lets you rebook if the price drops later.",
+              "<b>Look for ATOL protection</b> when you book flights and a hotel together as a package.",
+              "<b>Compare the total price</b>, including fees, luggage and transfers, not just the headline fare."],
+     "faqs": [("Is Black Friday a good time to book a holiday?", "It can be, as many travel firms run sales, but January is also a big month for holiday deals. Compare total prices and check cancellation terms."),
+              ("How much can I save on airport parking?", "Pre-booking is usually much cheaper than paying on the day. Comparison services show savings of up to around 60% against on-the-day prices.")],
+     "guides": [("UK airport parking guide", "/guides/uk-airport-parking-guide.html")]},
+    {"slug": "pets", "name": "Pet", "icon": "🐾", "cats": [], "partners": ["17135"],
+     "kw": r"\b(?:dogs?|puppy|puppies|kittens?|pets?|cat food|cat litter|dog food)\b",
+     "intro": "Pet food, treats, beds, toys and accessories are all discounted on Black Friday, and it's a good moment to stock up on dry food, which keeps for months unopened.",
+     "tips": ["<b>Stock up on dry food carefully.</b> It keeps for months unopened, but check the best-before date and how much you can store.",
+              "<b>Compare the price per kg</b>, not the price per bag.",
+              "<b>Compare subscriptions.</b> A repeat-order discount can beat a one-off Black Friday code over a few months of feeding.",
+              "<b>Switch foods gradually.</b> If a deal tempts you to try a new food, mix it in over 7 to 10 days to avoid an upset stomach."],
+     "faqs": [("Is Black Friday a good time to buy pet food?", "It can be, especially dry food you can store. Compare the price per kg and check subscription discounts, which can beat one-off codes over time."),
+              ("How do I switch my dog's food safely?", "Transition gradually over 7 to 10 days, mixing a little more of the new food in each day.")],
+     "guides": [("How to choose premium dog food", "/guides/choosing-premium-dog-food-uk.html")]},
+]
+
+# Partner-page advice, keyed by FEATURED_CARDS name. General buying advice only.
+BF_BRAND_TIPS = {
+    "AATU": ["Dry food keeps for months unopened, so a Black Friday code is a good moment to stock up. Check the best-before date and how much you can store.",
+             "Compare a one-off discount with AATU's subscription pricing over a few months of feeding before you choose.",
+             "If your pet is new to AATU, switch over 7 to 10 days rather than all at once, however big the bag you bought."],
+    "8WINES": ["Buy wine for Christmas now: delivery slots get busier through December.",
+               "Compare the per-bottle price on mixed cases, not just the case price.",
+               "Shipping is free on large orders, so it can pay to combine an order with family or friends."],
+    "BUNCHES": ["Flowers are perishable, so flower deals suit gifts you're sending now or soon. Check the delivery date options.",
+                "Letterbox flowers come by post and don't need anyone home to receive them.",
+                "Check what a code covers: flower codes often exclude hampers, subscriptions and delivery."],
+    "COMPARE PARKING PRICES": ["Pre-book parking for winter or spring trips now: pre-booked prices are normally well below on-the-day rates.",
+                               "Check the cancellation policy so you can rebook if a cheaper price appears.",
+                               "Meet &amp; Greet costs more than Park &amp; Ride but saves time at the terminal."],
+    "MYSTERY BOX SHOP": ["Set a budget first. Mystery boxes are about the surprise, not a specific item.",
+                         "Check dispatch times if the box is a Christmas present.",
+                         "Read the returns policy before you order, as mystery items can have their own terms."],
+    "SEDLEY": ["Check the size guide before buying in a sale.",
+               "Black Friday is a good time to pick up winter staples like knitwear and coats.",
+               "Check whether sale items carry the same returns terms as full-price ones."],
+    "MORISH": ["Bundles usually work out cheapest per pack.",
+               "Check best-before dates if you're stocking up.",
+               "Combine orders to reach the free delivery threshold rather than paying for shipping."],
+    "BRICKZONEHUB": ["LEGO sets themselves are often discounted around Black Friday. If you're buying one, check a frame or case exists for that exact set number.",
+                     "Displays are sized for specific sets, so match the set number before ordering.",
+                     "Order early if it's a Christmas present."],
+    "BUY ME ONCE": ["Think cost per use: a modest discount on something that lasts decades beats a big one on a throwaway item.",
+                    "Only buy what you'd buy anyway. Durable goods are a bad fit for impulse buys.",
+                    "Check the warranty length. A long guarantee is a good sign of durability."],
+    "TTFONE": ["A big-button phone makes a practical Christmas present for an older relative. Set up the SOS contacts before you wrap it.",
+               "Check the listing for network compatibility and whether a SIM card is included.",
+               "Open-box and returned phones can be much cheaper; read the condition notes before buying."],
+    "MYCHWAY": ["On a machine costing hundreds or thousands of pounds, a fixed-amount code can be worth more than a typical percentage discount.",
+                "Check the warranty, the returns window and what support is included.",
+                "Compare specs, not just price: power, treatment heads and certifications vary between models."],
+}
+
+BF_CSS = (
+    "*{box-sizing:border-box;margin:0;padding:0}\n"
+    ":root{--navy:#0f172a;--red:#ef4444;--bg:#f4f4f4;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--green:#16a34a;--shadow:0 1px 4px rgba(0,0,0,.08);--shadow-hover:0 8px 24px rgba(0,0,0,.14)}\n"
+    "body{font-family:'Nunito Sans',sans-serif;background:var(--bg);color:var(--text)}\n"
+    + HEADER_CSS +
+    ".bf-hero{background:radial-gradient(circle at 15% 0%,rgba(239,68,68,.28),transparent 55%),#020617;padding:36px 16px 32px;text-align:center}\n"
+    ".bf-hero .kick{display:inline-block;font-size:11px;font-weight:800;letter-spacing:2px;color:#f87171;text-transform:uppercase;margin-bottom:10px}\n"
+    ".bf-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,6vw,58px);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-.5px;max-width:900px;margin:0 auto}\n"
+    ".bf-hero p{color:#cbd5e1;font-size:15px;margin:12px auto 0;max-width:720px;line-height:1.6}\n"
+    ".bf-dates{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px}\n"
+    ".bf-dates span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700}\n"
+    ".bf-dates .count{background:var(--red);border-color:var(--red)}\n"
+    "main{max-width:1200px;margin:0 auto;padding:24px 16px 60px}\n"
+    ".crumbs{font-size:13px;color:var(--muted);margin-bottom:6px}\n"
+    ".crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--red)}\n"
+    ".bf-sec{margin-top:30px}\n"
+    ".bf-sec h2{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--navy);margin-bottom:6px;line-height:1.1}\n"
+    ".bf-sec .sub{font-size:14px;color:var(--muted);margin-bottom:14px;line-height:1.55}\n"
+    ".bf-note{background:#fff;border:1px dashed #cbd5e1;border-radius:12px;padding:16px 18px;font-size:14px;color:#334155;line-height:1.6;margin-bottom:18px}\n"
+    ".bf-note b{color:var(--navy)}\n"
+    ".tips{list-style:none;display:grid;gap:10px}\n"
+    ".tips li{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px 14px 42px;position:relative;font-size:14px;line-height:1.6;color:#334155}\n"
+    ".tips li::before{content:'✓';position:absolute;left:16px;top:14px;color:var(--green);font-weight:800}\n"
+    ".tips li b{color:var(--navy)}\n"
+    ".tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}\n"
+    ".tile{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:5px;transition:transform .15s,box-shadow .15s}\n"
+    ".tile:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}\n"
+    ".tile .ic{font-size:26px}.tile b{font-size:15px;color:var(--navy)}.tile small{font-size:12px;color:var(--muted);font-weight:700}\n"
+    ".ptiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}\n"
+    ".ptile{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;text-decoration:none;color:inherit;display:flex;gap:12px;align-items:center;transition:transform .15s,box-shadow .15s;min-width:0}\n"
+    ".ptile:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}\n"
+    ".ptile>div{min-width:0}\n"
+    ".ptile img,.ptile .ph{width:76px;height:44px;object-fit:contain;flex-shrink:0;border:1px solid var(--border);border-radius:8px;padding:4px;background:#fff}\n"
+    ".ptile .ph{display:flex;align-items:center;justify-content:center;font-weight:800;color:#475569;font-size:13px}\n"
+    ".ptile .pn{font-size:14px;font-weight:800;color:var(--navy)}\n"
+    ".ptile .po{font-size:12px;color:#334155;line-height:1.4;margin-top:2px}\n"
+    ".ptile .pc{display:inline-block;margin-top:6px;font-size:11px;font-weight:800;letter-spacing:1px;color:#92400e;background:#fefce8;border:1px dashed #d4af37;border-radius:6px;padding:2px 7px;max-width:100%;overflow:hidden;text-overflow:ellipsis}\n"
+    ".ptile .pbf{color:#fff;background:var(--navy);border:none}\n"
+    ".dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}\n"
+    "@media(max-width:600px){.dgrid{grid-template-columns:repeat(2,1fr);gap:10px}}\n"
+    ".deal{background:var(--white);border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column;position:relative;overflow:hidden;min-width:0}\n"
+    ".deal:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}\n"
+    ".hot-badge{position:absolute;top:9px;left:9px;z-index:2;display:flex;align-items:center;gap:3px;background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:3px 8px;border-radius:100px}\n"
+    ".card-img{background:#f8f9fa;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border);padding:14px;height:170px;flex-shrink:0}\n"
+    ".card-img img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}\n"
+    ".card-placeholder{width:100%;height:170px;display:flex;align-items:center;justify-content:center;background:#f1f5f9;font-size:32px;color:#cbd5e1;border-bottom:1px solid var(--border);flex-shrink:0}\n"
+    ".card-body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}\n"
+    ".deal h2{font-size:13px;font-weight:700;line-height:1.4;color:var(--text);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:54px}\n"
+    ".deal h2 a{color:inherit;text-decoration:none}.deal h2 a:hover{color:var(--red)}\n"
+    ".price-row{display:flex;align-items:center;gap:7px}\n"
+    ".price{font-size:20px;font-weight:800;color:var(--red);line-height:1}\n"
+    ".features{list-style:none;display:flex;flex-direction:column;gap:3px}\n"
+    ".features li{font-size:11px;color:#475569;display:flex;align-items:flex-start;gap:5px;line-height:1.35}\n"
+    ".features li::before{content:'✓';color:var(--green);font-weight:800;font-size:11px;flex-shrink:0}\n"
+    ".delivery-row{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:11px;color:var(--muted);font-weight:600;border-top:1px solid var(--border);padding-top:8px;margin-top:auto}\n"
+    "@media(max-width:600px){.card-img,.card-placeholder{height:130px}.features{display:none}}\n"
+    ".codes-grid{display:flex;flex-direction:column;gap:14px;margin:14px 0}\n"
+    ".code-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;align-items:stretch}\n"
+    ".code-card .accent{width:6px;background:linear-gradient(180deg,#d4af37,#a07820);flex-shrink:0}\n"
+    ".code-card .body{padding:18px 20px;flex:1;min-width:0}\n"
+    ".code-type{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--green);margin-bottom:6px}\n"
+    ".code-end{color:var(--muted);margin-left:6px;text-transform:none;letter-spacing:0}\n"
+    ".code-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:8px}\n"
+    ".code-desc{font-size:13px;color:#475569;line-height:1.55;margin-bottom:12px}\n"
+    ".code-box-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}\n"
+    ".code-box{background:#fefce8;border:2px dashed #d4af37;border-radius:8px;padding:9px 16px;font-size:17px;font-weight:800;color:#92400e;letter-spacing:2px;user-select:all;word-break:break-all}\n"
+    ".copy-btn{background:var(--red);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:800;font-size:13px;cursor:pointer}\n"
+    ".shop-btn{display:inline-block;margin-top:14px;background:var(--navy);color:#fff;padding:11px 22px;border-radius:8px;font-weight:800;font-size:14px;text-decoration:none}\n"
+    ".status{border-radius:12px;padding:16px 18px;font-size:14px;line-height:1.6}\n"
+    ".status b{display:block;font-size:16px;margin-bottom:4px}\n"
+    ".status.live{background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46}\n"
+    ".status.wait{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}\n"
+    ".mhead{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:12px}\n"
+    ".mhead img{width:120px;height:66px;object-fit:contain;border:1px solid var(--border);border-radius:10px;padding:8px;background:#fff;flex-shrink:0}\n"
+    ".mhead .lbl{font-size:11px;font-weight:800;letter-spacing:1px;color:var(--red);text-transform:uppercase}\n"
+    ".mhead p{font-size:14px;color:#334155;line-height:1.6;margin-top:4px}\n"
+    "@media(max-width:600px){.mhead{flex-direction:column;align-items:flex-start}}\n"
+    ".cta-wrap{text-align:center;background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;margin-top:14px}\n"
+    ".cta-btn{display:inline-block;background:var(--red);color:#fff;font-weight:800;font-size:15px;padding:13px 26px;border-radius:10px;text-decoration:none}\n"
+    ".faq{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:10px}\n"
+    ".faq b{display:block;font-size:15px;color:var(--navy);margin-bottom:5px}\n"
+    ".faq span{font-size:14px;color:#475569;line-height:1.6}\n"
+    ".xref{font-size:14px;color:var(--muted);margin-top:26px;line-height:1.9}\n"
+    ".xref a{color:var(--red);font-weight:700;text-decoration:none}\n"
+    ".disc{font-size:11px;color:#94a3b8;margin-top:16px;line-height:1.5}\n"
+    "footer a{color:#94a3b8}\n"
+)
+
+BF_JS = ("<script>function copyCode(c,b){navigator.clipboard.writeText(c).then(function(){"
+         "var x=document.getElementById(b),o=x.textContent;x.textContent='Copied!';"
+         "x.style.background='#16a34a';setTimeout(function(){x.textContent=o;x.style.background='';},2000);});}"
+         "(function(){var e=document.getElementById('bfcount');if(!e)return;"
+         "var n=Math.ceil((+e.getAttribute('data-t')-Date.now())/864e5);"
+         "if(n>1)e.textContent=n+' days to go';else if(n===1)e.textContent='1 day to go';else if(n>-4)e.textContent='On now';})();</script>")
+
+def _bf_hero(kick, h1, sub, bf):
+    cm = bf + timedelta(days=3)
+    t = int((bf - datetime(1970, 1, 1)).total_seconds() * 1000)  # UK midnight; November is GMT
+    return (f'<div class="bf-hero"><span class="kick">{html.escape(kick)}</span><h1>{html.escape(h1)}</h1>'
+            f'<p>{html.escape(sub)}</p><div class="bf-dates">'
+            f'<span>Black Friday: Fri {bf.day} {bf:%b}</span><span>Cyber Monday: Mon {cm.day} {cm:%b}</span>'
+            f'<span class="count" id="bfcount" data-t="{t}">{_bf_countdown(bf)}</span></div></div>')
+
+def _bf_write(path, url, title, meta_desc, hero, body, lds):
+    page = (
+        '<!DOCTYPE html><html lang="en"><head>'
+        '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+        f'<title>{html.escape(title)}</title>'
+        f'<meta name="description" content="{html.escape(meta_desc)}">'
+        f'<link rel="canonical" href="{url}">'
+        '<link rel="icon" type="image/svg+xml" href="/favicon.svg">'
+        f'<meta property="og:title" content="{html.escape(title)}">'
+        f'<meta property="og:description" content="{html.escape(meta_desc)}">'
+        f'<meta property="og:url" content="{url}"><meta property="og:type" content="website">'
+        '<meta property="og:image" content="https://invisuale.com/og-image.svg">'
+        + "".join(f'<script type="application/ld+json">{json.dumps(ld)}</script>' for ld in lds) +
+        '<link rel="preconnect" href="https://fonts.googleapis.com">'
+        '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">'
+        '<style>' + BF_CSS + '</style>' + ANALYTICS +
+        '</head><body>' + HEADER_HTML + hero + f'<main>{body}</main>' + FOOTER_HTML + BF_JS + '</body></html>')
+    with open(path, "w") as f:
+        f.write(page)
+
+def _bf_deal_grid(rows):
+    return ('<div class="dgrid">' + "".join(
+        build_card(d["fname"], d["title"], d["img"], d["price"], d["merchant"], d["features"], d["shipping"])
+        for d in rows) + '</div>')
+
+def _bf_partners(merchants, offers):
+    """Partner brands: every featured card (gets its own Black Friday page), plus
+    any other joined merchant with live offers (linked to its /codes/ page)."""
+    out, seen = [], set()
+    for c in FEATURED_CARDS:
+        mid = card_mid(c)
+        seen.add(mid)
+        out.append({"mid": mid, "name": brand_disp(c["name"]), "logo": c["logo"], "label": c["label"],
+                    "cat": c.get("cat"), "href": f"/black-friday/{brand_slug(c['name'])}.html", "card": c})
+    for m in merchants or []:
+        mid = str(m["id"])
+        cs = codes_slug(m["name"])
+        if mid in seen or not offers.get(mid) or not os.path.exists(f"codes/{cs}.html"):
+            continue
+        seen.add(mid)
+        out.append({"mid": mid, "name": m["name"], "logo": local_logo(m["name"]) or m.get("logo") or "",
+                    "label": m.get("sector") or "Partner", "cat": BF_PARTNER_CATS.get(mid),
+                    "href": f"/codes/{cs}.html", "card": None})
+    return out
+
+def _bf_partner_tile(p, offers):
+    offs = offers.get(p["mid"]) or []
+    best = offs[0] if offs else None  # already ranked by _offer_rank
+    logo = (f'<img src="{html.escape(p["logo"])}" alt="{html.escape(p["name"])} logo" loading="lazy">' if p["logo"]
+            else f'<span class="ph">{html.escape(p["name"][:2].upper())}</span>')
+    if best:
+        # Vague titles ("New Customers coupon code") lose to a description that names the saving.
+        vague = not OFFER_AMOUNT_RE.search(best["title"]) and OFFER_AMOUNT_RE.search(best["desc"])
+        line = html.escape(_clip(best["desc"] if vague else best["title"], 70))
+        tag = ('<span class="pc pbf">BLACK FRIDAY</span>' if best["bf"]
+               else f'<span class="pc">{html.escape(best["code"])}</span>' if best["code"] else '')
+    else:
+        line, tag = f'{html.escape(p["label"])}: no Black Friday offer announced yet', ''
+    return (f'<a class="ptile" href="{p["href"]}">{logo}<div><div class="pn">{html.escape(p["name"])}</div>'
+            f'<div class="po">{line}</div>{tag}</div></a>')
+
+def make_black_friday_pages(merchants=None):
+    """Build /black-friday/: hub, one page per BF_CATEGORIES entry and one per
+    featured partner. Regenerated daily so deals and codes stay current."""
+    os.makedirs("black-friday", exist_ok=True)
+    offers = awin_fetch_offers()
+    y = bf_year(); bf = bf_date(y); cm = bf + timedelta(days=3)
+    bf_long, cm_long = f"{bf.day} {bf:%B %Y}", f"{cm.day} {cm:%B %Y}"
+    rows = live_deal_rows()
+    partners = _bf_partners(merchants, offers)
+    base = "https://invisuale.com/black-friday/"
+    written = set()
+    home_li = {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://invisuale.com/"}
+    hub_li = {"@type": "ListItem", "position": 2, "name": "Black Friday", "item": base}
+    def crumbs_ld(name, url):
+        return {"@context": "https://schema.org", "@type": "BreadcrumbList",
+                "itemListElement": [home_li, hub_li, {"@type": "ListItem", "position": 3, "name": name, "item": url}]}
+    def faq_ld(faqs):
+        return {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}
+    def faq_html(faqs):
+        return "".join(f'<div class="faq"><b>{html.escape(q)}</b><span>{html.escape(a)}</span></div>' for q, a in faqs)
+    def items_ld(name, shown):
+        return {"@context": "https://schema.org", "@type": "ItemList", "name": name, "numberOfItems": len(shown[:20]),
+                "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"https://invisuale.com/deals/{d['fname']}",
+                                     "name": d["title"]} for i, d in enumerate(shown[:20])]}
+    def crumbs_html(name):
+        return f'<div class="crumbs"><a href="/">Home</a> › <a href="/black-friday/">Black Friday</a> › {html.escape(name)}</div>'
+    when_q = (f"When is Black Friday {y}?", f"Black Friday {y} is on Friday {bf_long}, and Cyber Monday is on Monday {cm_long}.")
+    disc = ('<p class="disc">Invisuale may earn a commission when you buy through links on this page, at no extra cost to you. '
+            'Prices and offers change quickly, so always check the retailer\'s site before you buy.</p>')
+
+    # --- Category pages ---
+    cat_stats = []
+    for bc in BF_CATEGORIES:
+        kw = re.compile(bc["kw"], re.I) if bc.get("kw") else None
+        mine = [d for d in rows if d["category"] in bc["cats"] or (kw and kw.search(d["title"]))]
+        bf_rows = [d for d in mine if d["bf"]]
+        other = [d for d in mine if not d["bf"]]
+        cat_stats.append((bc, len(bf_rows), len(mine)))
+        nm = bc["name"]
+        url = f"{base}{bc['slug']}.html"
+        body = crumbs_html(f"{nm} deals")
+        if bf_rows:
+            body += (f'<section class="bf-sec"><h2>Black Friday {html.escape(nm.lower())} deals live now</h2>'
+                     f'<p class="sub">{len(bf_rows)} live deal{"s" if len(bf_rows) != 1 else ""}, newest first.</p>'
+                     f'{_bf_deal_grid(bf_rows[:36])}</section>')
+        else:
+            body += ('<section class="bf-sec"><div class="bf-note"><b>No Black Friday '
+                     f'{html.escape(nm.lower())} deals yet.</b> They appear here automatically every morning as UK retailers launch them.</div></section>')
+        if other:
+            body += (f'<section class="bf-sec"><h2>Latest {html.escape(nm.lower())} deals</h2>'
+                     f'<p class="sub">Live today and checked every morning.</p>{_bf_deal_grid(other[:24])}</section>')
+        cps = [p for p in partners if (p["cat"] and p["cat"] in bc["cats"]) or p["mid"] in bc.get("partners", [])]
+        if cps:
+            body += ('<section class="bf-sec"><h2>Partner codes</h2><p class="sub">Live codes and offers from our partner brands, refreshed every morning.</p>'
+                     '<div class="ptiles">' + "".join(_bf_partner_tile(p, offers) for p in cps) + '</div></section>')
+        body += (f'<section class="bf-sec"><h2>How to shop Black Friday {html.escape(nm.lower())} deals</h2>'
+                 '<ul class="tips">' + "".join(f'<li>{t}</li>' for t in bc["tips"]) + '</ul></section>')
+        faqs = bc["faqs"] + [when_q]
+        body += f'<section class="bf-sec"><h2>FAQs</h2>{faq_html(faqs)}</section>'
+        links = [(f"All Black Friday {y} deals", "/black-friday/")]
+        if bc["cats"]:
+            links.append((f'All {bc["cats"][0]} deals', f'/categories/{cat_slug(bc["cats"][0])}.html'))
+        links += bc.get("guides", [])
+        body += '<p class="xref">' + " &middot; ".join(f'<a href="{u}">{html.escape(t)}</a>' for t, u in links) + '</p>' + disc
+        lds = [crumbs_ld(f"{nm} deals", url), faq_ld(faqs)]
+        if mine:
+            lds.append(items_ld(f"Black Friday {nm} deals", bf_rows + other))
+        _bf_write(f"black-friday/{bc['slug']}.html", url,
+                  f"Black Friday {nm} Deals UK {y} | Invisuale",
+                  f"Black Friday {y} {nm.lower()} deals in the UK, updated every morning, plus how to spot a genuine bargain. Black Friday is Friday {bf.day} {bf:%B}.",
+                  _bf_hero(f"Black Friday {y}", f"Black Friday {nm} Deals {y}", bc["intro"], bf), body, lds)
+        written.add(f"{bc['slug']}.html")
+
+    # --- Partner pages ---
+    for p in partners:
+        c = p["card"]
+        if not c:
+            continue
+        nm, s = p["name"], brand_slug(c["name"])
+        offs = offers.get(p["mid"]) or []
+        bf_offs = [o for o in offs if o["bf"]]
+        url = f"{base}{s}.html"
+        if bf_offs:
+            status = (f'<div class="status live"><b>{html.escape(nm)}\'s Black Friday offer is live</b>'
+                      f'The codes and offers below come straight from {html.escape(nm)} through our Awin partnership.</div>')
+        elif offs:
+            status = (f'<div class="status wait"><b>No Black Friday offer from {html.escape(nm)} yet</b>'
+                      f'We check {html.escape(nm)}\'s live offers every morning and add their Black Friday deal here as soon as it\'s published. '
+                      'Until then, these are their best live offers today.</div>')
+        else:
+            status = (f'<div class="status wait"><b>No Black Friday offer from {html.escape(nm)} yet</b>'
+                      f'We check {html.escape(nm)}\'s live offers every morning and add any Black Friday deal here as soon as it\'s published. '
+                      'There are no live codes right now, but the button below takes you straight to their site, where any sale prices are shown.</div>')
+        about = (BRAND_GUIDES.get(c["name"]) or {}).get("intro", "")
+        body = (crumbs_html(nm)
+                + f'<div class="mhead"><img src="{c["logo"]}" alt="{html.escape(nm)} logo">'
+                f'<div><div class="lbl">{html.escape(c["label"])}</div><p>{about}</p></div></div>'
+                f'<section class="bf-sec">{status}{render_offer_cards(offs, nm, "bf")}'
+                f'<div class="cta-wrap"><a class="cta-btn" href="{c["cta"]}" rel="nofollow sponsored" target="_blank">Shop {html.escape(nm)} &rarr;</a></div></section>')
+        tips = BF_BRAND_TIPS.get(c["name"], [])
+        if tips:
+            body += (f'<section class="bf-sec"><h2>Getting the most from {html.escape(nm)} this Black Friday</h2>'
+                     '<ul class="tips">' + "".join(f'<li>{t}</li>' for t in tips) + '</ul></section>')
+        bc = next((b for b in BF_CATEGORIES if (c.get("cat") and c["cat"] in b["cats"]) or p["mid"] in b.get("partners", [])), None)
+        if bc:
+            kw = re.compile(bc["kw"], re.I) if bc.get("kw") else None
+            related = [d for d in rows if d["category"] in bc["cats"] or (kw and kw.search(d["title"]))]
+            related.sort(key=lambda d: not d["bf"])
+            if related:
+                body += (f'<section class="bf-sec"><h2>More Black Friday {html.escape(bc["name"].lower())} deals</h2>'
+                         f'<p class="sub">Live today from other UK retailers. <a href="/black-friday/{bc["slug"]}.html" style="color:var(--red);font-weight:700;text-decoration:none">See them all &rarr;</a></p>'
+                         f'{_bf_deal_grid(related[:8])}</section>')
+        codes = [o for o in offs if o["code"]]
+        if bf_offs:
+            a1 = (f"Yes. {nm}'s Black Friday offer is live: {_clip(bf_offs[0]['title'], 120)}"
+                  + (f" (code {bf_offs[0]['code']})" if bf_offs[0]["code"] else "") + ".")
+        else:
+            a1 = (f"Not yet. {nm} hasn't released a Black Friday {y} offer through its affiliate programme so far. "
+                  "We check every morning and add it here as soon as it's live.")
+        if codes:
+            a2 = "Yes: " + "; ".join(f"{o['code']} ({_clip(o['title'].replace(o['code'], '').strip(' –-:') or o['title'], 70)})"
+                                      for o in codes[:4]) + "."
+        elif offs:
+            a2 = "There's no code right now, but these offers are live: " + "; ".join(_clip(o["title"], 70) for o in offs[:3]) + "."
+        else:
+            a2 = "No codes are live right now. This page updates every morning, so check back closer to Black Friday."
+        faqs = [(f"Does {nm} have a Black Friday sale in {y}?", a1),
+                (f"Are there any {nm} discount codes right now?", a2), when_q]
+        body += f'<section class="bf-sec"><h2>{html.escape(nm)} Black Friday FAQs</h2>{faq_html(faqs)}</section>'
+        links = [(f"All Black Friday {y} deals", "/black-friday/")]
+        if bc:
+            links.append((f'Black Friday {bc["name"]} deals', f'/black-friday/{bc["slug"]}.html'))
+        links.append((f"{nm} buyer's guide", f"/brands/{s}.html"))
+        cs = next((codes_slug(m["name"]) for m in merchants or [] if str(m["id"]) == p["mid"]), None)
+        if cs and os.path.exists(f"codes/{cs}.html"):
+            links.append((f"All {nm} codes", f"/codes/{cs}.html"))
+        body += '<p class="xref">' + " &middot; ".join(f'<a href="{u}">{html.escape(t)}</a>' for t, u in links) + '</p>' + disc
+        _bf_write(f"black-friday/{s}.html", url,
+                  f"{nm} Black Friday {y}: Codes & Deals | Invisuale",
+                  f"{nm} Black Friday {y}: whether there's a sale yet, plus live {nm} discount codes and offers, checked every morning.",
+                  _bf_hero(f"Black Friday {y}", f"{nm} Black Friday {y}",
+                           f"Is there a {nm} Black Friday sale? Live {nm} codes and offers, checked every morning.", bf),
+                  body, [crumbs_ld(nm, url), faq_ld(faqs)])
+        written.add(f"{s}.html")
+
+    # --- Hub ---
+    bf_all = [d for d in rows if d["bf"]]
+    if bf_all:
+        shown = bf_all[:48]
+        body = (f'<section class="bf-sec"><h2>Black Friday deals live now</h2>'
+                f'<p class="sub">{len(bf_all)} live deal{"s" if len(bf_all) != 1 else ""} from UK retailers, newest first.</p>'
+                f'{_bf_deal_grid(shown)}</section>')
+    else:
+        shown = rows[:12]
+        body = ('<section class="bf-sec"><div class="bf-note"><b>Early Black Friday deals usually start in November.</b> '
+                'They appear here automatically every morning as UK retailers launch them. Until then, here are today\'s best deals.</div>'
+                f'<h2>Today\'s best deals</h2><p class="sub">Live today and checked every morning.</p>{_bf_deal_grid(shown)}</section>')
+    body += ('<section class="bf-sec"><h2>Black Friday codes from our partner brands</h2>'
+             '<p class="sub">Live codes and offers, refreshed every morning. Each brand\'s Black Friday offer shows here the day it\'s published.</p>'
+             '<div class="ptiles">' + "".join(_bf_partner_tile(p, offers) for p in partners) + '</div></section>')
+    tiles = "".join(
+        f'<a class="tile" href="/black-friday/{bc["slug"]}.html"><span class="ic">{bc["icon"]}</span>'
+        f'<b>{html.escape(bc["name"])}</b><small>'
+        + (f'{nbf} Black Friday deal{"s" if nbf != 1 else ""}' if nbf else f'{nall} live deal{"s" if nall != 1 else ""}')
+        + '</small></a>'
+        for bc, nbf, nall in cat_stats)
+    body += f'<section class="bf-sec"><h2>Shop Black Friday by category</h2><div class="tiles">{tiles}</div></section>'
+    body += ('<section class="bf-sec"><h2>How to get a genuine Black Friday deal</h2><ul class="tips">'
+             + "".join(f"<li>{t}</li>" for t in BF_TIPS) + '</ul>'
+             '<p class="xref">Read more: <a href="/guides/spot-a-real-deal-vs-fake-discount.html">How to spot a fake discount</a> &middot; '
+             '<a href="/guides/best-time-to-buy-electronics-uk.html">Best time to buy electronics</a> &middot; '
+             '<a href="/guides/uk-consumer-rights-online-shopping.html">Your consumer rights online</a></p></section>')
+    hub_faqs = [
+        (f"When is Black Friday {y} in the UK?", f"Black Friday {y} is on Friday {bf_long}. It always falls on the day after the fourth Thursday in November, which is US Thanksgiving."),
+        (f"When is Cyber Monday {y}?", f"Cyber Monday {y} is on Monday {cm_long}, three days after Black Friday. Many retailers run their offers across the whole weekend."),
+        ("When do Black Friday deals start?", "Many UK retailers launch early Black Friday deals in the weeks before the day itself, and some run offers for most of November. They appear on this page automatically as they go live."),
+        ("Are Black Friday deals worth it?", "Some are, many aren't. Consumer group Which? has repeatedly found that the large majority of Black Friday deals it tracked were the same price or cheaper at other times of the year, so check an item's price history before you buy."),
+        ("Can I return something I bought on Black Friday?", "Usually, yes. For most online orders you can cancel within 14 days of delivery under the Consumer Contracts Regulations, and faulty goods are covered by the Consumer Rights Act. Many retailers also extend returns over Christmas."),
+    ]
+    body += f'<section class="bf-sec"><h2>Black Friday {y} FAQs</h2>{faq_html(hub_faqs)}</section>' + disc
+    on_now = (bf.date() - datetime.now().date()).days <= 0
+    sub = (f"Black Friday {y} is here. Deals and partner codes update every morning through Cyber Monday, {cm.day} {cm:%B}." if on_now else
+           f"Black Friday {y} is on Friday {bf_long}. Early deals and partner codes land here automatically as UK retailers launch them, checked every morning.")
+    hub_lds = [{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [home_li, hub_li]},
+               faq_ld(hub_faqs)]
+    if shown:
+        hub_lds.append(items_ld("Black Friday deals" if bf_all else "Today's best deals", shown))
+    _bf_write("black-friday/index.html", base,
+              f"Black Friday {y} UK: Deals & Discount Codes | Invisuale",
+              f"Black Friday {y} UK deals and verified discount codes, updated every morning. Black Friday is Friday {bf.day} {bf:%B}, Cyber Monday {cm.day} {cm:%B}.",
+              _bf_hero("UK deals · updated every morning", f"Black Friday {y} UK Deals", sub, bf), body, hub_lds)
+    written.add("index.html")
+    for f in os.listdir("black-friday"):  # drop pages for categories/partners that no longer exist
+        if f.endswith(".html") and f not in written:
+            os.remove(f"black-friday/{f}")
+    print(f"Built /black-friday/: {len(written)} pages, {len(bf_all)} live Black Friday deals.")
+
+# In season, every generated page gets a Black Friday link in the top nav.
+if bf_in_season():
+    HEADER_HTML = HEADER_HTML.replace(
+        '<a href="/guides/" class="nav-link">Guides</a>',
+        '<a href="/guides/" class="nav-link">Guides</a>\n      <a href="/black-friday/" class="nav-link" style="color:#f87171">Black Friday</a>', 1)
+
 def make_sitemap():
     cat_pages = [f'categories/{f}' for f in os.listdir('categories') if f.endswith('.html')] if os.path.exists('categories') else []
     brand_pages = [f'brands/{f}' for f in os.listdir('brands') if f.endswith('.html')] if os.path.exists('brands') else []
     guide_pages = [f'guides/{f}' for f in os.listdir('guides') if f.endswith('.html')] if os.path.exists('guides') else []
     code_pages = [f'codes/{f}' for f in os.listdir('codes') if f.endswith('.html') and f != 'index.html'] if os.path.exists('codes') else []
-    static_pages = ['', 'about.html', 'privacy.html', 'terms.html', 'discount-codes.html', 'guides/', 'codes/', 'brands/']
-    pages = static_pages + [f'deals/{f}' for f in os.listdir('deals') if f.endswith('.html')] + cat_pages + [g for g in guide_pages if g != 'guides/index.html'] + code_pages + [b for b in brand_pages if b != 'brands/index.html']
-    urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc></url>' for p in pages])
+    bf_pages = [f'black-friday/{f}' for f in sorted(os.listdir('black-friday')) if f.endswith('.html') and f != 'index.html'] if os.path.exists('black-friday') else []
+    static_pages = ['', 'about.html', 'privacy.html', 'terms.html', 'guides/', 'codes/', 'brands/'] + (['black-friday/'] if bf_pages else [])
+    # Deal pages are deliberately absent: they're noindexed (see make_page), so listing
+    # them would only ask Google to crawl 2,500+ pages we've told it not to index.
+    pages = static_pages + bf_pages + cat_pages + [g for g in guide_pages if g != 'guides/index.html'] + code_pages + [b for b in brand_pages if b != 'brands/index.html']
+    today = time.strftime('%Y-%m-%d')
+    fresh = lambda p: p == '' or p.startswith(('categories/', 'black-friday/'))  # rebuilt with new deals daily
+    urls = '\n'.join([f'  <url><loc>https://invisuale.com/{p}</loc>' + (f'<lastmod>{today}</lastmod>' if fresh(p) else '') + '</url>' for p in pages])
     xml = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>'
     with open('sitemap.xml', 'w') as f: f.write(xml)
 
@@ -2009,6 +2761,10 @@ def main():
     make_category_pages()
     make_brand_pages()
     make_buying_guides()
+    try:
+        make_black_friday_pages(merchants)
+    except Exception:
+        traceback.print_exc()  # never let the seasonal pages stop the sitemap + posted.json save
     make_sitemap()
     save_posted(posted)
     print(f"Done. {count} deals added.")

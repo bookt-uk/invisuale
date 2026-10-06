@@ -32,5 +32,20 @@ jobs:
           git commit -m "update deals" || echo "nothing to commit"
           git push
 
-      - name: Ping Google
-        run: curl -s "https://www.google.com/ping?sitemap=https://invisuale.com/sitemap.xml"
+      # Google retired its sitemap ping in 2023. IndexNow tells Bing (which also feeds
+      # ChatGPT search and Copilot) about the pages that change daily. The key is
+      # public by design: it's served at https://invisuale.com/42b5685d4384e274358a5b5fb3768deb.txt
+      - name: Notify IndexNow
+        run: |
+          python3 - <<'PY'
+          import json, re, urllib.request
+          key = "42b5685d4384e274358a5b5fb3768deb"
+          locs = re.findall(r"<loc>(.*?)</loc>", open("sitemap.xml").read())
+          urls = [u for u in locs if u == "https://invisuale.com/" or any(p in u for p in ("/black-friday/", "/categories/", "/codes/"))]
+          body = json.dumps({"host": "invisuale.com", "key": key, "keyLocation": f"https://invisuale.com/{key}.txt", "urlList": urls}).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8"})
+          try:
+              print("IndexNow:", urllib.request.urlopen(req, timeout=30).status, "for", len(urls), "URLs")
+          except Exception as e:
+              print("IndexNow failed:", e)
+          PY
