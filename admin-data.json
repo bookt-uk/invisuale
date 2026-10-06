@@ -1,60 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-05 22:32 UTC",
+  "updated": "2026-10-06 06:09 UTC",
   "stale": false,
   "totals": {
-    "visitors": 102,
-    "pageviews": 120,
-    "sessions": 111,
-    "views24h": 5
+    "visitors": 97,
+    "pageviews": 115,
+    "sessions": 106,
+    "views24h": 3
   },
   "today": {
-    "date": "2026-10-05",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
-    "pages": [
-      [
-        "/",
-        3
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ],
-      [
-        "Awin",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "",
-        1,
-        ""
-      ],
-      [
-        "Canada",
-        1,
-        "CA"
-      ],
-      [
-        "Sri Lanka",
-        1,
-        "LK"
-      ]
-    ]
+    "date": "2026-10-06",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      87
+      83
     ],
     [
       "Google",
-      7
+      6
     ],
     [
       "ChatGPT",
@@ -76,12 +46,12 @@
   "countries": [
     [
       "Singapore",
-      31,
+      30,
       "SG"
     ],
     [
       "United States",
-      23,
+      22,
       "US"
     ],
     [
@@ -113,7 +83,7 @@
   "pages": [
     [
       "/",
-      53
+      50
     ],
     [
       "/brands/",
@@ -125,14 +95,10 @@
     ],
     [
       "/codes/",
-      7
+      6
     ],
     [
       "/categories/electronics.html",
-      3
-    ],
-    [
-      "/categories/groceries.html",
       3
     ],
     [
@@ -142,10 +108,13 @@
     [
       "/categories/",
       2
+    ],
+    [
+      "/categories/broadband-phone-contracts.html",
+      2
     ]
   ],
   "daily": [
-    5,
     3,
     2,
     10,
