@@ -36,7 +36,7 @@ jobs:
                   st, d = st2, d2
               if st != 200:
                   continue
-              ps = d.get("promotions") or []
+              ps = d.get("data") or d.get("promotions") or []; print("pagination", d.get("pagination"))
               print(f"[{label}] HTTP 200, top-level keys={list(d.keys())}, offers={len(ps)}")
               for p in ps:
                   adv = (p.get("advertiser") or {})
