@@ -1,6 +1,6 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-07 17:23 UTC",
+  "updated": "2026-10-07 23:00 UTC",
   "stale": false,
   "totals": {
     "visitors": 100,
@@ -9,7 +9,7 @@
     "views24h": 5
   },
   "today": {
-    "date": "2026-10-07",
+    "date": "2026-10-08",
     "visitors": 2,
     "views": 2,
     "sessions": 2,
