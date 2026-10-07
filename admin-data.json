@@ -1,26 +1,51 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-07 08:32 UTC",
+  "updated": "2026-10-07 17:23 UTC",
   "stale": false,
   "totals": {
-    "visitors": 98,
-    "pageviews": 115,
-    "sessions": 107,
-    "views24h": 3
+    "visitors": 100,
+    "pageviews": 117,
+    "sessions": 109,
+    "views24h": 5
   },
   "today": {
     "date": "2026-10-07",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
+    "pages": [
+      [
+        "/",
+        1
+      ],
+      [
+        "/codes/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        2
+      ]
+    ],
+    "countries": [
+      [
+        "China",
+        1,
+        "CN"
+      ],
+      [
+        "Hong Kong",
+        1,
+        "HK"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      85
+      87
     ],
     [
       "Google",
@@ -60,19 +85,19 @@
       "GB"
     ],
     [
-      "(not set)",
-      5,
-      "(not set)"
-    ],
-    [
       "China",
-      5,
+      6,
       "CN"
     ],
     [
       "Hong Kong",
-      5,
+      6,
       "HK"
+    ],
+    [
+      "(not set)",
+      5,
+      "(not set)"
     ],
     [
       "Canada",
@@ -83,19 +108,19 @@
   "pages": [
     [
       "/",
-      50
+      51
     ],
     [
       "/brands/",
       9
     ],
     [
-      "/guides/",
+      "/codes/",
       8
     ],
     [
-      "/codes/",
-      7
+      "/guides/",
+      8
     ],
     [
       "/categories/electronics.html",
@@ -139,6 +164,7 @@
     4,
     2,
     3,
-    3
+    3,
+    2
   ]
 }
