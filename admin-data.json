@@ -1,37 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-09 22:33 UTC",
+  "updated": "2026-10-10 05:39 UTC",
   "stale": false,
   "totals": {
-    "visitors": 95,
-    "pageviews": 112,
-    "sessions": 103,
-    "views24h": 6
+    "visitors": 94,
+    "pageviews": 111,
+    "sessions": 102,
+    "views24h": 1
   },
   "today": {
-    "date": "2026-10-09",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "date": "2026-10-10",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
@@ -47,11 +31,11 @@
       3
     ],
     [
-      "ChatGPT",
-      2
+      "appca.act.com",
+      1
     ],
     [
-      "appca.act.com",
+      "ChatGPT",
       1
     ],
     [
@@ -72,7 +56,7 @@
     ],
     [
       "United Kingdom",
-      9,
+      8,
       "GB"
     ],
     [
@@ -99,7 +83,7 @@
   "pages": [
     [
       "/",
-      50
+      49
     ],
     [
       "/guides/",
@@ -131,7 +115,6 @@
     ]
   ],
   "daily": [
-    1,
     4,
     7,
     8,
