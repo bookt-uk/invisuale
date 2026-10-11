@@ -1,55 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-10 23:26 UTC",
+  "updated": "2026-10-11 05:35 UTC",
   "stale": false,
   "totals": {
-    "visitors": 97,
-    "pageviews": 114,
-    "sessions": 105,
+    "visitors": 94,
+    "pageviews": 111,
+    "sessions": 101,
     "views24h": 4
   },
   "today": {
     "date": "2026-10-11",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/brands/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        3
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        2,
-        "US"
-      ],
-      [
-        "",
-        1,
-        ""
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      85
+      83
     ],
     [
       "Google",
-      6
+      5
     ],
     [
       "Awin",
@@ -70,24 +45,24 @@
   ],
   "countries": [
     [
-      "United States",
-      28,
-      "US"
-    ],
-    [
       "Singapore",
       26,
       "SG"
     ],
     [
-      "United Kingdom",
-      8,
-      "GB"
+      "United States",
+      26,
+      "US"
     ],
     [
       "Hong Kong",
       6,
       "HK"
+    ],
+    [
+      "United Kingdom",
+      6,
+      "GB"
     ],
     [
       "(not set)",
@@ -108,7 +83,7 @@
   "pages": [
     [
       "/",
-      51
+      52
     ],
     [
       "/brands/",
@@ -116,19 +91,11 @@
     ],
     [
       "/guides/",
-      9
+      8
     ],
     [
       "/codes/",
       7
-    ],
-    [
-      "/categories/electronics.html",
-      3
-    ],
-    [
-      "/about.html",
-      2
     ],
     [
       "/categories/",
@@ -137,10 +104,17 @@
     [
       "/categories/broadband-phone-contracts.html",
       2
+    ],
+    [
+      "/categories/car-motorcycle.html",
+      2
+    ],
+    [
+      "/categories/culture-leisure.html",
+      2
     ]
   ],
   "daily": [
-    4,
     7,
     8,
     6,
@@ -165,6 +139,6 @@
     3,
     5,
     1,
-    3
+    4
   ]
 }
