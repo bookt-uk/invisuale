@@ -1,38 +1,34 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-11 23:36 UTC",
+  "updated": "2026-10-12 05:45 UTC",
   "stale": false,
   "totals": {
-    "visitors": 96,
-    "pageviews": 113,
-    "sessions": 103,
-    "views24h": 6
+    "visitors": 90,
+    "pageviews": 107,
+    "sessions": 97,
+    "views24h": 3
   },
   "today": {
     "date": "2026-10-12",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
     "pages": [
       [
-        "/brands/",
-        1
-      ],
-      [
-        "/guides/",
+        "/codes/",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        2
+        1
       ]
     ],
     "countries": [
       [
         "United States",
-        2,
+        1,
         "US"
       ]
     ]
@@ -40,7 +36,7 @@
   "sources": [
     [
       "Direct",
-      85
+      79
     ],
     [
       "Google",
@@ -66,12 +62,12 @@
   "countries": [
     [
       "United States",
-      28,
+      29,
       "US"
     ],
     [
       "Singapore",
-      26,
+      22,
       "SG"
     ],
     [
@@ -103,11 +99,11 @@
   "pages": [
     [
       "/",
-      52
+      50
     ],
     [
       "/brands/",
-      10
+      9
     ],
     [
       "/guides/",
@@ -122,20 +118,19 @@
       2
     ],
     [
-      "/categories/broadband-phone-contracts.html",
-      2
-    ],
-    [
-      "/categories/car-motorcycle.html",
-      2
-    ],
-    [
       "/categories/culture-leisure.html",
+      2
+    ],
+    [
+      "/categories/electronics.html",
+      2
+    ],
+    [
+      "/categories/fashion-accessories.html",
       2
     ]
   ],
   "daily": [
-    7,
     8,
     6,
     3,
@@ -160,6 +155,7 @@
     5,
     1,
     4,
-    2
+    2,
+    1
   ]
 }
