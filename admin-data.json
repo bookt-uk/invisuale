@@ -1,47 +1,51 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-12 15:12 UTC",
+  "updated": "2026-10-12 22:53 UTC",
   "stale": false,
   "totals": {
-    "visitors": 91,
-    "pageviews": 108,
-    "sessions": 98,
-    "views24h": 4
+    "visitors": 92,
+    "pageviews": 109,
+    "sessions": 99,
+    "views24h": 5
   },
   "today": {
     "date": "2026-10-12",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
+    "visitors": 3,
+    "views": 3,
+    "sessions": 3,
     "pages": [
       [
         "/codes/",
         2
+      ],
+      [
+        "/",
+        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        2
+        3
       ]
     ],
     "countries": [
       [
+        "United States",
+        2,
+        "US"
+      ],
+      [
         "Japan",
         1,
         "JP"
-      ],
-      [
-        "United States",
-        1,
-        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      80
+      81
     ],
     [
       "Google",
@@ -67,7 +71,7 @@
   "countries": [
     [
       "United States",
-      29,
+      30,
       "US"
     ],
     [
@@ -104,7 +108,7 @@
   "pages": [
     [
       "/",
-      50
+      51
     ],
     [
       "/brands/",
@@ -161,6 +165,6 @@
     1,
     4,
     2,
-    2
+    3
   ]
 }
