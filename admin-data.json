@@ -1,51 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-12 22:53 UTC",
+  "updated": "2026-10-13 06:40 UTC",
   "stale": false,
   "totals": {
-    "visitors": 92,
-    "pageviews": 109,
-    "sessions": 99,
-    "views24h": 5
+    "visitors": 88,
+    "pageviews": 101,
+    "sessions": 94,
+    "views24h": 3
   },
   "today": {
-    "date": "2026-10-12",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
-    "pages": [
-      [
-        "/codes/",
-        2
-      ],
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        3
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        2,
-        "US"
-      ],
-      [
-        "Japan",
-        1,
-        "JP"
-      ]
-    ]
+    "date": "2026-10-13",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      81
+      80
     ],
     [
       "Google",
@@ -53,15 +28,7 @@
     ],
     [
       "Awin",
-      3
-    ],
-    [
-      "appca.act.com",
-      1
-    ],
-    [
-      "ChatGPT",
-      1
+      2
     ],
     [
       "geedo.lv",
@@ -71,7 +38,7 @@
   "countries": [
     [
       "United States",
-      30,
+      29,
       "US"
     ],
     [
@@ -91,7 +58,7 @@
     ],
     [
       "United Kingdom",
-      6,
+      5,
       "GB"
     ],
     [
@@ -108,18 +75,18 @@
   "pages": [
     [
       "/",
-      51
+      46
     ],
     [
       "/brands/",
       9
     ],
     [
-      "/guides/",
-      9
+      "/codes/",
+      8
     ],
     [
-      "/codes/",
+      "/guides/",
       8
     ],
     [
@@ -140,7 +107,6 @@
     ]
   ],
   "daily": [
-    8,
     6,
     3,
     11,
