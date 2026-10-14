@@ -1,15 +1,15 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-13 21:10 UTC",
+  "updated": "2026-10-14 01:07 UTC",
   "stale": false,
   "totals": {
-    "visitors": 88,
-    "pageviews": 101,
-    "sessions": 94,
-    "views24h": 3
+    "visitors": 83,
+    "pageviews": 95,
+    "sessions": 89,
+    "views24h": 0
   },
   "today": {
-    "date": "2026-10-13",
+    "date": "2026-10-14",
     "visitors": 0,
     "views": 0,
     "sessions": 0,
@@ -20,18 +20,18 @@
   "sources": [
     [
       "Direct",
-      80
+      76
     ],
     [
       "Google",
       5
     ],
     [
-      "Awin",
-      2
+      "geedo.lv",
+      1
     ],
     [
-      "geedo.lv",
+      "Awin",
       1
     ]
   ],
@@ -52,30 +52,30 @@
       "(not set)"
     ],
     [
-      "Hong Kong",
-      6,
-      "HK"
-    ],
-    [
       "United Kingdom",
       5,
       "GB"
     ],
     [
       "Canada",
-      4,
+      3,
       "CA"
     ],
     [
       "China",
       3,
       "CN"
+    ],
+    [
+      "Hong Kong",
+      3,
+      "HK"
     ]
   ],
   "pages": [
     [
       "/",
-      46
+      44
     ],
     [
       "/brands/",
@@ -90,10 +90,6 @@
       8
     ],
     [
-      "/categories/",
-      2
-    ],
-    [
       "/categories/culture-leisure.html",
       2
     ],
@@ -104,10 +100,13 @@
     [
       "/categories/fashion-accessories.html",
       2
+    ],
+    [
+      "/categories/groceries.html",
+      2
     ]
   ],
   "daily": [
-    6,
     3,
     11,
     10,
