@@ -1,26 +1,46 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-15 04:25 UTC",
+  "updated": "2026-10-15 11:18 UTC",
   "stale": false,
   "totals": {
-    "visitors": 84,
-    "pageviews": 94,
-    "sessions": 89,
-    "views24h": 2
+    "visitors": 86,
+    "pageviews": 96,
+    "sessions": 91,
+    "views24h": 4
   },
   "today": {
     "date": "2026-10-15",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
+    "pages": [
+      [
+        "/deals/worx-leafjet-wg543e-9-20v-brushless-cordless-leaf-blower-bar.html",
+        1
+      ],
+      [
+        "/deals/ysl-black-opium-eau-de-parfum-ambery-floral-fragrance-for-he.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        2
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        2,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      76
+      78
     ],
     [
       "Google",
@@ -43,7 +63,7 @@
     ],
     [
       "Singapore",
-      22,
+      24,
       "SG"
     ],
     [
@@ -130,6 +150,7 @@
     4,
     2,
     3,
+    2,
     2
   ]
 }
