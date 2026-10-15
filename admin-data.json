@@ -1,46 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-14 23:08 UTC",
+  "updated": "2026-10-15 04:25 UTC",
   "stale": false,
   "totals": {
     "visitors": 84,
-    "pageviews": 96,
-    "sessions": 90,
-    "views24h": 1
+    "pageviews": 94,
+    "sessions": 89,
+    "views24h": 2
   },
   "today": {
     "date": "2026-10-15",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Italy",
-        1,
-        "IT"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      77
+      76
     ],
     [
       "Google",
-      5
+      6
     ],
     [
       "geedo.lv",
@@ -64,12 +48,12 @@
     ],
     [
       "(not set)",
-      7,
+      6,
       "(not set)"
     ],
     [
       "United Kingdom",
-      5,
+      6,
       "GB"
     ],
     [
@@ -91,7 +75,7 @@
   "pages": [
     [
       "/",
-      45
+      42
     ],
     [
       "/brands/",
@@ -123,7 +107,6 @@
     ]
   ],
   "daily": [
-    3,
     11,
     10,
     5,
@@ -147,6 +130,6 @@
     4,
     2,
     3,
-    1
+    2
   ]
 }
