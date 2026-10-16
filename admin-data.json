@@ -1,54 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-15 21:16 UTC",
+  "updated": "2026-10-16 00:17 UTC",
   "stale": false,
   "totals": {
-    "visitors": 86,
-    "pageviews": 96,
-    "sessions": 91,
-    "views24h": 4
+    "visitors": 76,
+    "pageviews": 86,
+    "sessions": 81,
+    "views24h": 3
   },
   "today": {
-    "date": "2026-10-15",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
-    "pages": [
-      [
-        "/deals/worx-leafjet-wg543e-9-20v-brushless-cordless-leaf-blower-bar.html",
-        1
-      ],
-      [
-        "/deals/ysl-black-opium-eau-de-parfum-ambery-floral-fragrance-for-he.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        2,
-        "SG"
-      ]
-    ]
+    "date": "2026-10-16",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      78
+      70
     ],
     [
       "Google",
-      6
-    ],
-    [
-      "geedo.lv",
-      1
+      5
     ],
     [
       "Awin",
@@ -63,13 +39,8 @@
     ],
     [
       "Singapore",
-      24,
+      19,
       "SG"
-    ],
-    [
-      "(not set)",
-      6,
-      "(not set)"
     ],
     [
       "United Kingdom",
@@ -77,32 +48,33 @@
       "GB"
     ],
     [
+      "(not set)",
+      5,
+      "(not set)"
+    ],
+    [
       "Canada",
-      3,
+      2,
       "CA"
     ],
     [
       "China",
-      3,
+      2,
       "CN"
     ],
     [
-      "Hong Kong",
-      3,
-      "HK"
+      "Germany",
+      2,
+      "DE"
     ]
   ],
   "pages": [
     [
       "/",
-      42
+      39
     ],
     [
       "/brands/",
-      9
-    ],
-    [
-      "/codes/",
       8
     ],
     [
@@ -110,24 +82,27 @@
       8
     ],
     [
-      "/categories/culture-leisure.html",
-      2
+      "/codes/",
+      7
     ],
     [
       "/categories/electronics.html",
       2
     ],
     [
-      "/categories/fashion-accessories.html",
+      "/categories/groceries.html",
       2
     ],
     [
-      "/categories/groceries.html",
+      "/categories/other.html",
+      2
+    ],
+    [
+      "/categories/sports-outdoors.html",
       2
     ]
   ],
   "daily": [
-    11,
     10,
     5,
     5,
@@ -151,6 +126,6 @@
     2,
     3,
     2,
-    2
+    3
   ]
 }
