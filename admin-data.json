@@ -1,15 +1,15 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-16 20:57 UTC",
+  "updated": "2026-10-17 00:19 UTC",
   "stale": false,
   "totals": {
-    "visitors": 76,
-    "pageviews": 86,
-    "sessions": 81,
-    "views24h": 3
+    "visitors": 69,
+    "pageviews": 77,
+    "sessions": 72,
+    "views24h": 1
   },
   "today": {
-    "date": "2026-10-16",
+    "date": "2026-10-17",
     "visitors": 0,
     "views": 0,
     "sessions": 0,
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      70
+      63
     ],
     [
       "Google",
@@ -34,12 +34,12 @@
   "countries": [
     [
       "United States",
-      29,
+      30,
       "US"
     ],
     [
       "Singapore",
-      19,
+      12,
       "SG"
     ],
     [
@@ -71,27 +71,19 @@
   "pages": [
     [
       "/",
-      39
+      37
     ],
     [
       "/brands/",
-      8
-    ],
-    [
-      "/guides/",
-      8
+      7
     ],
     [
       "/codes/",
       7
     ],
     [
-      "/categories/electronics.html",
-      2
-    ],
-    [
-      "/categories/groceries.html",
-      2
+      "/guides/",
+      7
     ],
     [
       "/categories/other.html",
@@ -100,10 +92,17 @@
     [
       "/categories/sports-outdoors.html",
       2
+    ],
+    [
+      "/categories/culture-leisure.html",
+      1
+    ],
+    [
+      "/categories/electronics.html",
+      1
     ]
   ],
   "daily": [
-    10,
     5,
     5,
     1,
@@ -126,6 +125,7 @@
     2,
     3,
     2,
-    3
+    3,
+    1
   ]
 }
