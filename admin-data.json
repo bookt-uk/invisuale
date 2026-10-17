@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-17 06:51 UTC",
+  "updated": "2026-10-17 12:07 UTC",
   "stale": false,
   "totals": {
-    "visitors": 69,
-    "pageviews": 77,
-    "sessions": 72,
-    "views24h": 1
+    "visitors": 71,
+    "pageviews": 79,
+    "sessions": 74,
+    "views24h": 3
   },
   "today": {
     "date": "2026-10-17",
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      63
+      65
     ],
     [
       "Google",
@@ -34,7 +34,7 @@
   "countries": [
     [
       "United States",
-      30,
+      32,
       "US"
     ],
     [
@@ -71,7 +71,7 @@
   "pages": [
     [
       "/",
-      37
+      38
     ],
     [
       "/brands/",
@@ -126,6 +126,6 @@
     3,
     2,
     3,
-    1
+    3
   ]
 }
