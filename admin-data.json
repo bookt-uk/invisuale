@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-17 12:07 UTC",
+  "updated": "2026-10-17 17:01 UTC",
   "stale": false,
   "totals": {
-    "visitors": 71,
-    "pageviews": 79,
-    "sessions": 74,
-    "views24h": 3
+    "visitors": 76,
+    "pageviews": 84,
+    "sessions": 79,
+    "views24h": 8
   },
   "today": {
     "date": "2026-10-17",
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      65
+      70
     ],
     [
       "Google",
@@ -34,12 +34,12 @@
   "countries": [
     [
       "United States",
-      32,
+      36,
       "US"
     ],
     [
       "Singapore",
-      12,
+      13,
       "SG"
     ],
     [
@@ -94,11 +94,11 @@
       2
     ],
     [
-      "/categories/culture-leisure.html",
+      "/about.html",
       1
     ],
     [
-      "/categories/electronics.html",
+      "/categories/culture-leisure.html",
       1
     ]
   ],
@@ -126,6 +126,6 @@
     3,
     2,
     3,
-    3
+    8
   ]
 }
