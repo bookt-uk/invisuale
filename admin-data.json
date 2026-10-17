@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-17 20:29 UTC",
+  "updated": "2026-10-17 23:57 UTC",
   "stale": false,
   "totals": {
-    "visitors": 76,
-    "pageviews": 84,
-    "sessions": 79,
-    "views24h": 8
+    "visitors": 77,
+    "pageviews": 85,
+    "sessions": 80,
+    "views24h": 9
   },
   "today": {
-    "date": "2026-10-17",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "date": "2026-10-18",
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Armenia",
+        1,
+        "AM"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      70
+      71
     ],
     [
       "Google",
@@ -71,7 +87,7 @@
   "pages": [
     [
       "/",
-      38
+      39
     ],
     [
       "/brands/",
@@ -126,6 +142,7 @@
     3,
     2,
     3,
-    8
+    8,
+    1
   ]
 }
