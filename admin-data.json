@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-18 10:54 UTC",
+  "updated": "2026-10-18 15:46 UTC",
   "stale": false,
   "totals": {
-    "visitors": 73,
-    "pageviews": 81,
-    "sessions": 76,
-    "views24h": 2
+    "visitors": 78,
+    "pageviews": 86,
+    "sessions": 81,
+    "views24h": 7
   },
   "today": {
     "date": "2026-10-18",
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      67
+      72
     ],
     [
       "Google",
@@ -34,23 +34,23 @@
   "countries": [
     [
       "United States",
-      36,
+      38,
       "US"
     ],
     [
       "Singapore",
-      10,
+      11,
       "SG"
+    ],
+    [
+      "(not set)",
+      7,
+      "(not set)"
     ],
     [
       "United Kingdom",
       6,
       "GB"
-    ],
-    [
-      "(not set)",
-      5,
-      "(not set)"
     ],
     [
       "Canada",
@@ -71,11 +71,11 @@
   "pages": [
     [
       "/",
-      39
+      42
     ],
     [
       "/brands/",
-      7
+      8
     ],
     [
       "/codes/",
@@ -84,6 +84,10 @@
     [
       "/guides/",
       7
+    ],
+    [
+      "/categories/sports-outdoors.html",
+      2
     ],
     [
       "/about.html",
@@ -95,10 +99,6 @@
     ],
     [
       "/categories/electronics.html",
-      1
-    ],
-    [
-      "/categories/fashion-accessories.html",
       1
     ]
   ],
@@ -126,6 +126,6 @@
     2,
     3,
     8,
-    2
+    7
   ]
 }
