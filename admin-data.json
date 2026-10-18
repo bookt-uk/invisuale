@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-18 18:34 UTC",
+  "updated": "2026-10-18 22:22 UTC",
   "stale": false,
   "totals": {
-    "visitors": 78,
-    "pageviews": 86,
-    "sessions": 81,
-    "views24h": 7
+    "visitors": 79,
+    "pageviews": 87,
+    "sessions": 82,
+    "views24h": 8
   },
   "today": {
     "date": "2026-10-18",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/deals/loch-lomond-golden-week-20-off-free-express-next-day-deliver.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        1,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      72
+      73
     ],
     [
       "Google",
@@ -39,7 +55,7 @@
     ],
     [
       "Singapore",
-      11,
+      12,
       "SG"
     ],
     [
@@ -126,6 +142,7 @@
     2,
     3,
     8,
-    7
+    7,
+    1
   ]
 }
