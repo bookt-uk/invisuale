@@ -1,42 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-17 23:57 UTC",
+  "updated": "2026-10-18 04:18 UTC",
   "stale": false,
   "totals": {
-    "visitors": 77,
-    "pageviews": 85,
-    "sessions": 80,
-    "views24h": 9
+    "visitors": 72,
+    "pageviews": 80,
+    "sessions": 75,
+    "views24h": 1
   },
   "today": {
     "date": "2026-10-18",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Armenia",
-        1,
-        "AM"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      71
+      66
     ],
     [
       "Google",
@@ -55,7 +39,7 @@
     ],
     [
       "Singapore",
-      13,
+      9,
       "SG"
     ],
     [
@@ -102,24 +86,23 @@
       7
     ],
     [
-      "/categories/other.html",
-      2
-    ],
-    [
-      "/categories/sports-outdoors.html",
-      2
-    ],
-    [
       "/about.html",
       1
     ],
     [
       "/categories/culture-leisure.html",
       1
+    ],
+    [
+      "/categories/electronics.html",
+      1
+    ],
+    [
+      "/categories/fashion-accessories.html",
+      1
     ]
   ],
   "daily": [
-    5,
     5,
     1,
     5,
