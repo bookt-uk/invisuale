@@ -1,42 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-18 22:22 UTC",
+  "updated": "2026-10-19 04:28 UTC",
   "stale": false,
   "totals": {
-    "visitors": 79,
-    "pageviews": 87,
-    "sessions": 82,
-    "views24h": 8
+    "visitors": 82,
+    "pageviews": 90,
+    "sessions": 85,
+    "views24h": 9
   },
   "today": {
-    "date": "2026-10-18",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/deals/loch-lomond-golden-week-20-off-free-express-next-day-deliver.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        1,
-        "SG"
-      ]
-    ]
+    "date": "2026-10-19",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      73
+      75
     ],
     [
       "Google",
@@ -45,17 +29,21 @@
     [
       "Awin",
       1
+    ],
+    [
+      "yandexsmartcamera",
+      1
     ]
   ],
   "countries": [
     [
       "United States",
-      38,
+      39,
       "US"
     ],
     [
       "Singapore",
-      12,
+      15,
       "SG"
     ],
     [
@@ -79,9 +67,9 @@
       "CN"
     ],
     [
-      "Germany",
+      "Hong Kong",
       2,
-      "DE"
+      "HK"
     ]
   ],
   "pages": [
@@ -95,31 +83,30 @@
     ],
     [
       "/codes/",
-      7
+      6
     ],
     [
       "/guides/",
-      7
-    ],
-    [
-      "/categories/sports-outdoors.html",
-      2
+      6
     ],
     [
       "/about.html",
       1
     ],
     [
-      "/categories/culture-leisure.html",
+      "/categories/electronics.html",
       1
     ],
     [
-      "/categories/electronics.html",
+      "/categories/fashion-accessories.html",
+      1
+    ],
+    [
+      "/categories/groceries.html",
       1
     ]
   ],
   "daily": [
-    5,
     1,
     5,
     2,
@@ -143,6 +130,6 @@
     3,
     8,
     7,
-    1
+    9
   ]
 }
