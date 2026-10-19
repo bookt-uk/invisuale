@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-19 04:28 UTC",
+  "updated": "2026-10-19 12:56 UTC",
   "stale": false,
   "totals": {
-    "visitors": 82,
-    "pageviews": 90,
-    "sessions": 85,
-    "views24h": 9
+    "visitors": 190,
+    "pageviews": 198,
+    "sessions": 193,
+    "views24h": 117
   },
   "today": {
     "date": "2026-10-19",
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      75
+      183
     ],
     [
       "Google",
@@ -37,14 +37,14 @@
   ],
   "countries": [
     [
+      "Singapore",
+      123,
+      "SG"
+    ],
+    [
       "United States",
       39,
       "US"
-    ],
-    [
-      "Singapore",
-      15,
-      "SG"
     ],
     [
       "(not set)",
@@ -90,19 +90,19 @@
       6
     ],
     [
+      "/deals/amazfit-balance-46mm-smart-watch-nfc-payment-ai-fitness-coac.html",
+      2
+    ],
+    [
+      "/deals/habitat-12pc-matte-dinner-set-charcoal-duck-egg.html",
+      2
+    ],
+    [
+      "/deals/seasick-steve-a-trip-a-stumble-a-fall-down-on-your-knees-yel.html",
+      2
+    ],
+    [
       "/about.html",
-      1
-    ],
-    [
-      "/categories/electronics.html",
-      1
-    ],
-    [
-      "/categories/fashion-accessories.html",
-      1
-    ],
-    [
-      "/categories/groceries.html",
       1
     ]
   ],
@@ -130,6 +130,6 @@
     3,
     8,
     7,
-    9
+    117
   ]
 }
