@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-19 19:47 UTC",
+  "updated": "2026-10-19 23:32 UTC",
   "stale": false,
   "totals": {
-    "visitors": 190,
-    "pageviews": 198,
-    "sessions": 193,
-    "views24h": 117
+    "visitors": 191,
+    "pageviews": 199,
+    "sessions": 194,
+    "views24h": 118
   },
   "today": {
-    "date": "2026-10-19",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "date": "2026-10-20",
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/deals/lego-speed-champions-porsche-911-gt3-rs-77239.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        1,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      183
+      184
     ],
     [
       "Google",
@@ -38,7 +54,7 @@
   "countries": [
     [
       "Singapore",
-      123,
+      124,
       "SG"
     ],
     [
@@ -130,6 +146,7 @@
     3,
     8,
     7,
-    117
+    117,
+    1
   ]
 }
