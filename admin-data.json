@@ -1,50 +1,50 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-20 11:24 UTC",
+  "updated": "2026-10-20 16:49 UTC",
   "stale": false,
   "totals": {
-    "visitors": 285,
-    "pageviews": 293,
-    "sessions": 288,
-    "views24h": 96
+    "visitors": 483,
+    "pageviews": 491,
+    "sessions": 487,
+    "views24h": 294
   },
   "today": {
     "date": "2026-10-20",
-    "visitors": 18,
-    "views": 18,
-    "sessions": 18,
+    "visitors": 128,
+    "views": 128,
+    "sessions": 128,
     "pages": [
       [
-        "/deals/dentalife-large-dental-chicken-dog-chews-4-sticks-clubcard-p.html",
+        "/deals/wonder-boy-asha-in-monster-world-nintendo-switch.html",
+        2
+      ],
+      [
+        "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
+        2
+      ],
+      [
+        "/deals/4-waterfront-southport-hotel-merseyside-b-b-2-adults-1-night.html",
         1
       ],
       [
-        "/deals/eurohike-nova-25l-daysack-3-colours-w-code-free-c-c.html",
+        "/deals/adidas-runfalcon-6-cloudfoam-running-shoes-size-8-5uk.html",
         1
       ],
       [
-        "/deals/melamine-dinner-plate-set-of-4-blue-side-plate-set-of-4-2-40.html",
-        1
-      ],
-      [
-        "/deals/nothing-phone-3a-lite-5g-128gb-ai-phone-black-white-6-77-inc.html",
-        1
-      ],
-      [
-        "/deals/return-flights-from-london-gatwick-to-toronto-canada-in-nove.html",
+        "/deals/amazon-essentials-men-s-relaxed-fit-faux-pullover-jumper-siz.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        18
+        128
       ]
     ],
     "countries": [
       [
         "Singapore",
-        18,
+        128,
         "SG"
       ]
     ]
@@ -52,7 +52,7 @@
   "sources": [
     [
       "Direct",
-      278
+      476
     ],
     [
       "Google",
@@ -70,17 +70,17 @@
   "countries": [
     [
       "Singapore",
-      215,
+      409,
       "SG"
     ],
     [
       "United States",
-      41,
+      43,
       "US"
     ],
     [
       "(not set)",
-      7,
+      8,
       "(not set)"
     ],
     [
@@ -107,15 +107,15 @@
   "pages": [
     [
       "/",
-      43
+      44
     ],
     [
       "/brands/",
-      8
+      9
     ],
     [
       "/codes/",
-      7
+      8
     ],
     [
       "/guides/",
@@ -126,15 +126,15 @@
       2
     ],
     [
+      "/deals/einhell-sds-plus-demolition-hammer-240v-750w-5-joule-concret.html",
+      2
+    ],
+    [
+      "/deals/einhell-te-sv-18-li-18v-1-x-4-0ah-li-ion-power-x-change-cord.html",
+      2
+    ],
+    [
       "/deals/habitat-12pc-matte-dinner-set-charcoal-duck-egg.html",
-      2
-    ],
-    [
-      "/deals/parkside-pointed-spade-with-root-saw-shovel-digging-fork-all.html",
-      2
-    ],
-    [
-      "/deals/return-flights-from-london-gatwick-to-toronto-canada-in-nove.html",
       2
     ]
   ],
@@ -162,7 +162,7 @@
     8,
     7,
     117,
-    78,
-    18
+    166,
+    128
   ]
 }
