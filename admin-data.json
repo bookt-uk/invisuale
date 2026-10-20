@@ -1,26 +1,58 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-20 04:38 UTC",
+  "updated": "2026-10-20 11:24 UTC",
   "stale": false,
   "totals": {
-    "visitors": 198,
-    "pageviews": 206,
-    "sessions": 201,
-    "views24h": 9
+    "visitors": 285,
+    "pageviews": 293,
+    "sessions": 288,
+    "views24h": 96
   },
   "today": {
     "date": "2026-10-20",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 18,
+    "views": 18,
+    "sessions": 18,
+    "pages": [
+      [
+        "/deals/dentalife-large-dental-chicken-dog-chews-4-sticks-clubcard-p.html",
+        1
+      ],
+      [
+        "/deals/eurohike-nova-25l-daysack-3-colours-w-code-free-c-c.html",
+        1
+      ],
+      [
+        "/deals/melamine-dinner-plate-set-of-4-blue-side-plate-set-of-4-2-40.html",
+        1
+      ],
+      [
+        "/deals/nothing-phone-3a-lite-5g-128gb-ai-phone-black-white-6-77-inc.html",
+        1
+      ],
+      [
+        "/deals/return-flights-from-london-gatwick-to-toronto-canada-in-nove.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        18
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        18,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      191
+      278
     ],
     [
       "Google",
@@ -38,12 +70,12 @@
   "countries": [
     [
       "Singapore",
-      132,
+      215,
       "SG"
     ],
     [
       "United States",
-      39,
+      41,
       "US"
     ],
     [
@@ -53,7 +85,7 @@
     ],
     [
       "United Kingdom",
-      5,
+      6,
       "GB"
     ],
     [
@@ -75,7 +107,7 @@
   "pages": [
     [
       "/",
-      41
+      43
     ],
     [
       "/brands/",
@@ -83,11 +115,11 @@
     ],
     [
       "/codes/",
-      6
+      7
     ],
     [
       "/guides/",
-      6
+      7
     ],
     [
       "/deals/amazfit-balance-46mm-smart-watch-nfc-payment-ai-fitness-coac.html",
@@ -98,12 +130,12 @@
       2
     ],
     [
-      "/deals/seasick-steve-a-trip-a-stumble-a-fall-down-on-your-knees-yel.html",
+      "/deals/parkside-pointed-spade-with-root-saw-shovel-digging-fork-all.html",
       2
     ],
     [
-      "/about.html",
-      1
+      "/deals/return-flights-from-london-gatwick-to-toronto-canada-in-nove.html",
+      2
     ]
   ],
   "daily": [
@@ -130,6 +162,7 @@
     8,
     7,
     117,
-    9
+    78,
+    18
   ]
 }
