@@ -1,19 +1,23 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-20 16:49 UTC",
+  "updated": "2026-10-20 21:31 UTC",
   "stale": false,
   "totals": {
-    "visitors": 483,
-    "pageviews": 491,
-    "sessions": 487,
-    "views24h": 294
+    "visitors": 523,
+    "pageviews": 531,
+    "sessions": 526,
+    "views24h": 334
   },
   "today": {
     "date": "2026-10-20",
-    "visitors": 128,
-    "views": 128,
-    "sessions": 128,
+    "visitors": 168,
+    "views": 168,
+    "sessions": 168,
     "pages": [
+      [
+        "/deals/weber-master-touch-e-5750-charcoal-bbq-with-gbs-black-with-f.html",
+        2
+      ],
       [
         "/deals/wonder-boy-asha-in-monster-world-nintendo-switch.html",
         2
@@ -29,22 +33,18 @@
       [
         "/deals/adidas-runfalcon-6-cloudfoam-running-shoes-size-8-5uk.html",
         1
-      ],
-      [
-        "/deals/amazon-essentials-men-s-relaxed-fit-faux-pullover-jumper-siz.html",
-        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        128
+        168
       ]
     ],
     "countries": [
       [
         "Singapore",
-        128,
+        168,
         "SG"
       ]
     ]
@@ -52,7 +52,7 @@
   "sources": [
     [
       "Direct",
-      476
+      516
     ],
     [
       "Google",
@@ -70,7 +70,7 @@
   "countries": [
     [
       "Singapore",
-      409,
+      449,
       "SG"
     ],
     [
@@ -126,15 +126,15 @@
       2
     ],
     [
+      "/deals/double-cheeseburger-99p-via-app-today-only-selected-accounts.html",
+      2
+    ],
+    [
       "/deals/einhell-sds-plus-demolition-hammer-240v-750w-5-joule-concret.html",
       2
     ],
     [
       "/deals/einhell-te-sv-18-li-18v-1-x-4-0ah-li-ion-power-x-change-cord.html",
-      2
-    ],
-    [
-      "/deals/habitat-12pc-matte-dinner-set-charcoal-duck-egg.html",
       2
     ]
   ],
@@ -163,6 +163,6 @@
     7,
     117,
     166,
-    128
+    168
   ]
 }
