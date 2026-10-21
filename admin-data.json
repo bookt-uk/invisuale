@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-21 07:27 UTC",
+  "updated": "2026-10-21 13:41 UTC",
   "stale": false,
   "totals": {
-    "visitors": 641,
-    "pageviews": 649,
-    "sessions": 645,
-    "views24h": 291
+    "visitors": 646,
+    "pageviews": 654,
+    "sessions": 651,
+    "views24h": 296
   },
   "today": {
     "date": "2026-10-21",
-    "visitors": 54,
-    "views": 54,
-    "sessions": 54,
+    "visitors": 59,
+    "views": 59,
+    "sessions": 59,
     "pages": [
       [
         "/",
@@ -38,18 +38,18 @@
     "sources": [
       [
         "Direct",
-        54
+        59
       ]
     ],
     "countries": [
       [
         "Singapore",
-        53,
+        57,
         "SG"
       ],
       [
         "United States",
-        1,
+        2,
         "US"
       ]
     ]
@@ -57,7 +57,7 @@
   "sources": [
     [
       "Direct",
-      635
+      640
     ],
     [
       "Google",
@@ -75,12 +75,12 @@
   "countries": [
     [
       "Singapore",
-      571,
+      575,
       "SG"
     ],
     [
       "United States",
-      43,
+      44,
       "US"
     ],
     [
@@ -124,7 +124,7 @@
     ],
     [
       "/guides/",
-      6
+      7
     ],
     [
       "/deals/amazfit-balance-46mm-smart-watch-nfc-payment-ai-fitness-coac.html",
@@ -168,6 +168,6 @@
     117,
     166,
     237,
-    54
+    59
   ]
 }
