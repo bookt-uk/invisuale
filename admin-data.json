@@ -1,62 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-20 21:31 UTC",
+  "updated": "2026-10-21 00:32 UTC",
   "stale": false,
   "totals": {
-    "visitors": 523,
-    "pageviews": 531,
-    "sessions": 526,
-    "views24h": 334
+    "visitors": 539,
+    "pageviews": 547,
+    "sessions": 542,
+    "views24h": 189
   },
   "today": {
-    "date": "2026-10-20",
-    "visitors": 168,
-    "views": 168,
-    "sessions": 168,
-    "pages": [
-      [
-        "/deals/weber-master-touch-e-5750-charcoal-bbq-with-gbs-black-with-f.html",
-        2
-      ],
-      [
-        "/deals/wonder-boy-asha-in-monster-world-nintendo-switch.html",
-        2
-      ],
-      [
-        "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
-        2
-      ],
-      [
-        "/deals/4-waterfront-southport-hotel-merseyside-b-b-2-adults-1-night.html",
-        1
-      ],
-      [
-        "/deals/adidas-runfalcon-6-cloudfoam-running-shoes-size-8-5uk.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        168
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        168,
-        "SG"
-      ]
-    ]
+    "date": "2026-10-21",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      516
+      533
     ],
     [
       "Google",
-      5
+      4
     ],
     [
       "Awin",
@@ -70,12 +38,12 @@
   "countries": [
     [
       "Singapore",
-      449,
+      470,
       "SG"
     ],
     [
       "United States",
-      43,
+      42,
       "US"
     ],
     [
@@ -85,7 +53,7 @@
     ],
     [
       "United Kingdom",
-      6,
+      4,
       "GB"
     ],
     [
@@ -99,15 +67,15 @@
       "CN"
     ],
     [
-      "Hong Kong",
-      2,
-      "HK"
+      "Armenia",
+      1,
+      "AM"
     ]
   ],
   "pages": [
     [
       "/",
-      44
+      41
     ],
     [
       "/brands/",
@@ -119,7 +87,7 @@
     ],
     [
       "/guides/",
-      7
+      6
     ],
     [
       "/deals/amazfit-balance-46mm-smart-watch-nfc-payment-ai-fitness-coac.html",
@@ -139,7 +107,6 @@
     ]
   ],
   "daily": [
-    5,
     2,
     7,
     1,
@@ -163,6 +130,6 @@
     7,
     117,
     166,
-    168
+    189
   ]
 }
