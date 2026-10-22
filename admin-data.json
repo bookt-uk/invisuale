@@ -1,63 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-21 23:11 UTC",
+  "updated": "2026-10-22 04:30 UTC",
   "stale": false,
   "totals": {
-    "visitors": 646,
-    "pageviews": 654,
-    "sessions": 651,
-    "views24h": 296
+    "visitors": 644,
+    "pageviews": 652,
+    "sessions": 649,
+    "views24h": 59
   },
   "today": {
     "date": "2026-10-22",
-    "visitors": 59,
-    "views": 59,
-    "sessions": 59,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/deals/aiko-14ft-inflatable-projector-screen-instore-meadowhead.html",
-        1
-      ],
-      [
-        "/deals/belvita-breakfast-biscuits-golden-oat-225g-sunderland.html",
-        1
-      ],
-      [
-        "/deals/bestek-300w-car-power-inverter-12v-to-230v-240v-transformer.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        59
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        57,
-        "SG"
-      ],
-      [
-        "United States",
-        2,
-        "US"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      640
+      638
     ],
     [
       "Google",
@@ -85,7 +48,7 @@
     ],
     [
       "(not set)",
-      8,
+      7,
       "(not set)"
     ],
     [
@@ -99,20 +62,20 @@
       "CA"
     ],
     [
-      "China",
-      2,
-      "CN"
-    ],
-    [
       "Armenia",
       1,
       "AM"
+    ],
+    [
+      "Belgium",
+      1,
+      "BE"
     ]
   ],
   "pages": [
     [
       "/",
-      42
+      40
     ],
     [
       "/brands/",
@@ -144,7 +107,6 @@
     ]
   ],
   "daily": [
-    2,
     7,
     1,
     5,
