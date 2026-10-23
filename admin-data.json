@@ -1,28 +1,32 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-23 18:14 UTC",
+  "updated": "2026-10-23 23:03 UTC",
   "stale": false,
   "totals": {
-    "visitors": 647,
-    "pageviews": 655,
-    "sessions": 653,
-    "views24h": 3
+    "visitors": 648,
+    "pageviews": 656,
+    "sessions": 654,
+    "views24h": 4
   },
   "today": {
-    "date": "2026-10-23",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 2,
+    "date": "2026-10-24",
+    "visitors": 2,
+    "views": 2,
+    "sessions": 3,
     "pages": [
       [
         "/black-friday/",
+        1
+      ],
+      [
+        "/brands/",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        2
       ]
     ],
     "countries": [
@@ -30,13 +34,18 @@
         "United Kingdom",
         1,
         "GB"
+      ],
+      [
+        "United States",
+        1,
+        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      640
+      641
     ],
     [
       "Google",
@@ -63,7 +72,7 @@
     ],
     [
       "United States",
-      44,
+      45,
       "US"
     ],
     [
@@ -99,7 +108,7 @@
     ],
     [
       "/brands/",
-      10
+      11
     ],
     [
       "/codes/",
@@ -152,6 +161,6 @@
     237,
     59,
     2,
-    1
+    2
   ]
 }
