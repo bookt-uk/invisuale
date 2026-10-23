@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-23 13:19 UTC",
+  "updated": "2026-10-23 18:14 UTC",
   "stale": false,
   "totals": {
     "visitors": 647,
     "pageviews": 655,
-    "sessions": 652,
+    "sessions": 653,
     "views24h": 3
   },
   "today": {
     "date": "2026-10-23",
     "visitors": 1,
     "views": 1,
-    "sessions": 1,
+    "sessions": 2,
     "pages": [
       [
         "/black-friday/",
