@@ -1,31 +1,36 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-24 10:48 UTC",
+  "updated": "2026-10-24 15:49 UTC",
   "stale": false,
   "totals": {
-    "visitors": 644,
-    "pageviews": 651,
-    "sessions": 650,
-    "views24h": 4
+    "visitors": 645,
+    "pageviews": 652,
+    "sessions": 651,
+    "views24h": 5
   },
   "today": {
     "date": "2026-10-24",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
     "pages": [
       [
         "/",
-        1
+        2
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        2
       ]
     ],
     "countries": [
+      [
+        "Czechia",
+        1,
+        "CZ"
+      ],
       [
         "Singapore",
         1,
@@ -36,7 +41,7 @@
   "sources": [
     [
       "Direct",
-      636
+      637
     ],
     [
       "Google",
@@ -95,7 +100,7 @@
   "pages": [
     [
       "/",
-      40
+      41
     ],
     [
       "/brands/",
@@ -152,6 +157,6 @@
     59,
     2,
     3,
-    1
+    2
   ]
 }
