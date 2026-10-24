@@ -1,51 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-23 23:03 UTC",
+  "updated": "2026-10-24 04:25 UTC",
   "stale": false,
   "totals": {
-    "visitors": 648,
-    "pageviews": 656,
-    "sessions": 654,
-    "views24h": 4
+    "visitors": 643,
+    "pageviews": 650,
+    "sessions": 649,
+    "views24h": 3
   },
   "today": {
     "date": "2026-10-24",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 3,
-    "pages": [
-      [
-        "/black-friday/",
-        1
-      ],
-      [
-        "/brands/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ]
-    ],
-    "countries": [
-      [
-        "United Kingdom",
-        1,
-        "GB"
-      ],
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      641
+      635
     ],
     [
       "Google",
@@ -53,7 +28,7 @@
     ],
     [
       "google.com",
-      1
+      2
     ],
     [
       "Awin",
@@ -72,7 +47,7 @@
     ],
     [
       "United States",
-      45,
+      40,
       "US"
     ],
     [
@@ -82,7 +57,7 @@
     ],
     [
       "United Kingdom",
-      6,
+      7,
       "GB"
     ],
     [
@@ -104,11 +79,11 @@
   "pages": [
     [
       "/",
-      41
+      39
     ],
     [
       "/brands/",
-      11
+      9
     ],
     [
       "/codes/",
@@ -117,6 +92,10 @@
     [
       "/guides/",
       7
+    ],
+    [
+      "//checkout/",
+      2
     ],
     [
       "/deals/amazfit-balance-46mm-smart-watch-nfc-payment-ai-fitness-coac.html",
@@ -129,14 +108,9 @@
     [
       "/deals/einhell-sds-plus-demolition-hammer-240v-750w-5-joule-concret.html",
       2
-    ],
-    [
-      "/deals/einhell-te-sv-18-li-18v-1-x-4-0ah-li-ion-power-x-change-cord.html",
-      2
     ]
   ],
   "daily": [
-    7,
     1,
     5,
     3,
@@ -161,6 +135,6 @@
     237,
     59,
     2,
-    2
+    3
   ]
 }
