@@ -1,47 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-24 22:24 UTC",
+  "updated": "2026-10-25 04:28 UTC",
   "stale": false,
   "totals": {
     "visitors": 646,
     "pageviews": 653,
     "sessions": 652,
-    "views24h": 6
+    "views24h": 4
   },
   "today": {
-    "date": "2026-10-24",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
-    "pages": [
-      [
-        "/",
-        3
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        3
-      ]
-    ],
-    "countries": [
-      [
-        "Czechia",
-        1,
-        "CZ"
-      ],
-      [
-        "Singapore",
-        1,
-        "SG"
-      ],
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "date": "2026-10-25",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
@@ -73,7 +47,7 @@
     ],
     [
       "United States",
-      41,
+      40,
       "US"
     ],
     [
@@ -97,9 +71,9 @@
       "DE"
     ],
     [
-      "Armenia",
+      "",
       1,
-      "AM"
+      ""
     ]
   ],
   "pages": [
@@ -137,7 +111,6 @@
     ]
   ],
   "daily": [
-    1,
     5,
     3,
     3,
@@ -162,6 +135,6 @@
     59,
     2,
     3,
-    3
+    4
   ]
 }
