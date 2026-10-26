@@ -1,15 +1,15 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-25 22:28 UTC",
+  "updated": "2026-10-26 04:32 UTC",
   "stale": false,
   "totals": {
-    "visitors": 646,
-    "pageviews": 653,
-    "sessions": 652,
-    "views24h": 4
+    "visitors": 643,
+    "pageviews": 650,
+    "sessions": 649,
+    "views24h": 2
   },
   "today": {
-    "date": "2026-10-25",
+    "date": "2026-10-26",
     "visitors": 0,
     "views": 0,
     "sessions": 0,
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      638
+      635
     ],
     [
       "Google",
@@ -42,12 +42,12 @@
   "countries": [
     [
       "Singapore",
-      576,
+      577,
       "SG"
     ],
     [
       "United States",
-      40,
+      37,
       "US"
     ],
     [
@@ -79,11 +79,11 @@
   "pages": [
     [
       "/",
-      42
+      41
     ],
     [
       "/brands/",
-      9
+      8
     ],
     [
       "/codes/",
@@ -91,7 +91,7 @@
     ],
     [
       "/guides/",
-      7
+      6
     ],
     [
       "//checkout/",
@@ -111,7 +111,6 @@
     ]
   ],
   "daily": [
-    5,
     3,
     3,
     4,
@@ -135,6 +134,7 @@
     59,
     2,
     3,
-    4
+    4,
+    2
   ]
 }
