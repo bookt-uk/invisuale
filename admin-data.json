@@ -1,44 +1,44 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-27 12:00 UTC",
+  "updated": "2026-10-27 17:54 UTC",
   "stale": false,
   "totals": {
-    "visitors": 654,
-    "pageviews": 662,
-    "sessions": 660,
-    "views24h": 15
+    "visitors": 703,
+    "pageviews": 711,
+    "sessions": 708,
+    "views24h": 64
   },
   "today": {
     "date": "2026-10-27",
-    "visitors": 12,
-    "views": 12,
-    "sessions": 12,
+    "visitors": 61,
+    "views": 61,
+    "sessions": 61,
     "pages": [
       [
         "/",
         1
       ],
       [
-        "/deals/apple-iphone-17e-esim-256gb-all-colors-pristine-a-open-box-n.html",
+        "/categories/electronics.html",
         1
       ],
       [
-        "/deals/habitat-matte-glaze-stoneware-mug-1-side-plate-1-12-cereal-b.html",
+        "/categories/fashion-accessories.html",
         1
       ],
       [
-        "/deals/hp-omen-intel-core-ultra-7-255h-24gb-1tb-ssd-nvidia-geforce.html",
+        "/categories/gaming.html",
         1
       ],
       [
-        "/deals/pringles-hot-kickin-sour-cream-flavour-crisps-160g-in-derby.html",
+        "/categories/home-living.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        11
+        60
       ],
       [
         "Google",
@@ -48,12 +48,12 @@
     "countries": [
       [
         "Singapore",
-        11,
+        55,
         "SG"
       ],
       [
         "United States",
-        1,
+        6,
         "US"
       ]
     ]
@@ -61,7 +61,7 @@
   "sources": [
     [
       "Direct",
-      645
+      694
     ],
     [
       "Google",
@@ -83,12 +83,12 @@
   "countries": [
     [
       "Singapore",
-      588,
+      632,
       "SG"
     ],
     [
       "United States",
-      37,
+      42,
       "US"
     ],
     [
@@ -132,22 +132,22 @@
     ],
     [
       "/guides/",
-      6
+      7
     ],
     [
       "//checkout/",
       2
     ],
     [
+      "/categories/fashion-accessories.html",
+      2
+    ],
+    [
+      "/deals/adidas-runfalcon-6-cloudfoam-running-shoes-size-8-5uk.html",
+      2
+    ],
+    [
       "/deals/amazfit-balance-46mm-smart-watch-nfc-payment-ai-fitness-coac.html",
-      2
-    ],
-    [
-      "/deals/double-cheeseburger-99p-via-app-today-only-selected-accounts.html",
-      2
-    ],
-    [
-      "/deals/einhell-sds-plus-demolition-hammer-240v-750w-5-joule-concret.html",
       2
     ]
   ],
@@ -177,6 +177,6 @@
     4,
     2,
     3,
-    12
+    61
   ]
 }
