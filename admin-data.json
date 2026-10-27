@@ -1,60 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-26 23:45 UTC",
+  "updated": "2026-10-27 04:50 UTC",
   "stale": false,
   "totals": {
-    "visitors": 645,
-    "pageviews": 653,
-    "sessions": 651,
-    "views24h": 5
+    "visitors": 642,
+    "pageviews": 650,
+    "sessions": 648,
+    "views24h": 3
   },
   "today": {
-    "date": "2026-10-26",
-    "visitors": 2,
-    "views": 3,
-    "sessions": 2,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/deals/regatta-men-s-thornridge-waterproof-isotex-insulated-jacket.html",
-        1
-      ],
-      [
-        "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ]
-    ],
-    "countries": [
-      [
-        "Canada",
-        1,
-        "CA"
-      ],
-      [
-        "France",
-        1,
-        "FR"
-      ],
-      [
-        "South Africa",
-        1,
-        "ZA"
-      ]
-    ]
+    "date": "2026-10-27",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      637
+      634
     ],
     [
       "Google",
@@ -81,17 +47,17 @@
     ],
     [
       "United States",
-      37,
+      36,
       "US"
     ],
     [
       "(not set)",
-      8,
+      7,
       "(not set)"
     ],
     [
       "United Kingdom",
-      7,
+      6,
       "GB"
     ],
     [
@@ -113,7 +79,7 @@
   "pages": [
     [
       "/",
-      42
+      40
     ],
     [
       "/brands/",
@@ -121,7 +87,7 @@
     ],
     [
       "/codes/",
-      8
+      7
     ],
     [
       "/guides/",
@@ -145,7 +111,6 @@
     ]
   ],
   "daily": [
-    3,
     3,
     4,
     4,
