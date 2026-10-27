@@ -1,19 +1,27 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-27 17:54 UTC",
+  "updated": "2026-10-27 22:06 UTC",
   "stale": false,
   "totals": {
-    "visitors": 703,
-    "pageviews": 711,
-    "sessions": 708,
-    "views24h": 64
+    "visitors": 732,
+    "pageviews": 740,
+    "sessions": 737,
+    "views24h": 93
   },
   "today": {
     "date": "2026-10-27",
-    "visitors": 61,
-    "views": 61,
-    "sessions": 61,
+    "visitors": 90,
+    "views": 90,
+    "sessions": 90,
     "pages": [
+      [
+        "/deals/wetherspoons-end-of-beer-festival-sale-all-stillage-ales-99p.html",
+        2
+      ],
+      [
+        "/deals/zte-nubia-z80-ultra-5g-6-8-144hz-smartphone-16gb-512gb-joypl.html",
+        2
+      ],
       [
         "/",
         1
@@ -25,20 +33,12 @@
       [
         "/categories/fashion-accessories.html",
         1
-      ],
-      [
-        "/categories/gaming.html",
-        1
-      ],
-      [
-        "/categories/home-living.html",
-        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        60
+        89
       ],
       [
         "Google",
@@ -48,7 +48,7 @@
     "countries": [
       [
         "Singapore",
-        55,
+        84,
         "SG"
       ],
       [
@@ -61,7 +61,7 @@
   "sources": [
     [
       "Direct",
-      694
+      723
     ],
     [
       "Google",
@@ -83,7 +83,7 @@
   "countries": [
     [
       "Singapore",
-      632,
+      661,
       "SG"
     ],
     [
@@ -177,6 +177,6 @@
     4,
     2,
     3,
-    61
+    90
   ]
 }
