@@ -1,30 +1,71 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-27 04:50 UTC",
+  "updated": "2026-10-27 12:00 UTC",
   "stale": false,
   "totals": {
-    "visitors": 642,
-    "pageviews": 650,
-    "sessions": 648,
-    "views24h": 3
+    "visitors": 654,
+    "pageviews": 662,
+    "sessions": 660,
+    "views24h": 15
   },
   "today": {
     "date": "2026-10-27",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 12,
+    "views": 12,
+    "sessions": 12,
+    "pages": [
+      [
+        "/",
+        1
+      ],
+      [
+        "/deals/apple-iphone-17e-esim-256gb-all-colors-pristine-a-open-box-n.html",
+        1
+      ],
+      [
+        "/deals/habitat-matte-glaze-stoneware-mug-1-side-plate-1-12-cereal-b.html",
+        1
+      ],
+      [
+        "/deals/hp-omen-intel-core-ultra-7-255h-24gb-1tb-ssd-nvidia-geforce.html",
+        1
+      ],
+      [
+        "/deals/pringles-hot-kickin-sour-cream-flavour-crisps-160g-in-derby.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        11
+      ],
+      [
+        "Google",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        11,
+        "SG"
+      ],
+      [
+        "United States",
+        1,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      634
+      645
     ],
     [
       "Google",
-      4
+      5
     ],
     [
       "google.com",
@@ -42,12 +83,12 @@
   "countries": [
     [
       "Singapore",
-      577,
+      588,
       "SG"
     ],
     [
       "United States",
-      36,
+      37,
       "US"
     ],
     [
@@ -79,7 +120,7 @@
   "pages": [
     [
       "/",
-      40
+      41
     ],
     [
       "/brands/",
@@ -135,6 +176,7 @@
     3,
     4,
     2,
-    3
+    3,
+    12
   ]
 }
