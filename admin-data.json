@@ -1,19 +1,23 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-28 19:28 UTC",
+  "updated": "2026-10-28 23:58 UTC",
   "stale": false,
   "totals": {
-    "visitors": 841,
-    "pageviews": 848,
-    "sessions": 846,
-    "views24h": 201
+    "visitors": 866,
+    "pageviews": 873,
+    "sessions": 871,
+    "views24h": 226
   },
   "today": {
     "date": "2026-10-28",
-    "visitors": 61,
-    "views": 61,
-    "sessions": 61,
+    "visitors": 86,
+    "views": 86,
+    "sessions": 86,
     "pages": [
+      [
+        "/deals/air-jordan-6-gs-trainers-kid-s.html",
+        2
+      ],
       [
         "/deals/grand-theft-auto-the-trilogy-the-definitive-edition-nintendo.html",
         2
@@ -23,41 +27,42 @@
         2
       ],
       [
-        "/deals/vogue-14-mild-steel-wok-flat-base-356-mm-stay-cool-wooden-ha.html",
+        "/deals/tomb-raider-iv-vi-remastered-pc-steam.html",
         2
       ],
       [
-        "/deals/asda-multi-purpose-compost-20-litre-in-store-cardiff-bay.html",
-        1
-      ],
-      [
-        "/deals/birds-eye-8-the-original-potato-waffles-454g-10-for-10.html",
-        1
+        "/deals/vogue-14-mild-steel-wok-flat-base-356-mm-stay-cool-wooden-ha.html",
+        2
       ]
     ],
     "sources": [
       [
         "Direct",
-        61
+        86
       ]
     ],
     "countries": [
       [
         "Singapore",
-        59,
+        83,
         "SG"
       ],
       [
         "United States",
         2,
         "US"
+      ],
+      [
+        "Argentina",
+        1,
+        "AR"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      832
+      857
     ],
     [
       "Google",
@@ -79,7 +84,7 @@
   "countries": [
     [
       "Singapore",
-      769,
+      793,
       "SG"
     ],
     [
@@ -131,6 +136,10 @@
       6
     ],
     [
+      "/deals/tomb-raider-iv-vi-remastered-pc-steam.html",
+      3
+    ],
+    [
       "//checkout/",
       2
     ],
@@ -140,10 +149,6 @@
     ],
     [
       "/deals/adidas-runfalcon-6-cloudfoam-running-shoes-size-8-5uk.html",
-      2
-    ],
-    [
-      "/deals/amazfit-balance-46mm-smart-watch-nfc-payment-ai-fitness-coac.html",
       2
     ]
   ],
@@ -173,6 +178,6 @@
     2,
     3,
     140,
-    61
+    86
   ]
 }
