@@ -1,19 +1,27 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-28 12:40 UTC",
+  "updated": "2026-10-28 19:28 UTC",
   "stale": false,
   "totals": {
-    "visitors": 829,
-    "pageviews": 836,
-    "sessions": 834,
-    "views24h": 189
+    "visitors": 841,
+    "pageviews": 848,
+    "sessions": 846,
+    "views24h": 201
   },
   "today": {
     "date": "2026-10-28",
-    "visitors": 49,
-    "views": 49,
-    "sessions": 49,
+    "visitors": 61,
+    "views": 61,
+    "sessions": 61,
     "pages": [
+      [
+        "/deals/grand-theft-auto-the-trilogy-the-definitive-edition-nintendo.html",
+        2
+      ],
+      [
+        "/deals/tomb-raider-i-vi-remastered-iceland-no-vpn.html",
+        2
+      ],
       [
         "/deals/vogue-14-mild-steel-wok-flat-base-356-mm-stay-cool-wooden-ha.html",
         2
@@ -23,28 +31,20 @@
         1
       ],
       [
-        "/deals/bosgame-e5-plus-mini-pc-ryzen-5400u-up-to-4-0-ghz-8gb-ddr4-2.html",
-        1
-      ],
-      [
-        "/deals/cadbury-roses-chocolate-assortment-tub-475g.html",
-        1
-      ],
-      [
-        "/deals/children-in-need-pudsey-power-yellow-backpack-free-click-and.html",
+        "/deals/birds-eye-8-the-original-potato-waffles-454g-10-for-10.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        49
+        61
       ]
     ],
     "countries": [
       [
         "Singapore",
-        47,
+        59,
         "SG"
       ],
       [
@@ -57,7 +57,7 @@
   "sources": [
     [
       "Direct",
-      820
+      832
     ],
     [
       "Google",
@@ -79,7 +79,7 @@
   "countries": [
     [
       "Singapore",
-      757,
+      769,
       "SG"
     ],
     [
@@ -173,6 +173,6 @@
     2,
     3,
     140,
-    49
+    61
   ]
 }
