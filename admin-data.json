@@ -1,59 +1,55 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-27 22:06 UTC",
+  "updated": "2026-10-28 05:26 UTC",
   "stale": false,
   "totals": {
-    "visitors": 732,
-    "pageviews": 740,
-    "sessions": 737,
-    "views24h": 93
+    "visitors": 799,
+    "pageviews": 806,
+    "sessions": 803,
+    "views24h": 159
   },
   "today": {
-    "date": "2026-10-27",
-    "visitors": 90,
-    "views": 90,
-    "sessions": 90,
+    "date": "2026-10-28",
+    "visitors": 19,
+    "views": 19,
+    "sessions": 19,
     "pages": [
       [
-        "/deals/wetherspoons-end-of-beer-festival-sale-all-stillage-ales-99p.html",
-        2
-      ],
-      [
-        "/deals/zte-nubia-z80-ultra-5g-6-8-144hz-smartphone-16gb-512gb-joypl.html",
-        2
-      ],
-      [
-        "/",
+        "/deals/bosgame-e5-plus-mini-pc-ryzen-5400u-up-to-4-0-ghz-8gb-ddr4-2.html",
         1
       ],
       [
-        "/categories/electronics.html",
+        "/deals/craghoppers-men-s-compresslite-ix-thermopro-hooded-insulatin.html",
         1
       ],
       [
-        "/categories/fashion-accessories.html",
+        "/deals/dewalt-dcr011-xj-bluetooth-speaker-10-8-54v-li-ion-bare-unit.html",
+        1
+      ],
+      [
+        "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
+        1
+      ],
+      [
+        "/deals/nectar-healthy-choice-taste-the-difference-challenge-600-bon.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        89
-      ],
-      [
-        "Google",
-        1
+        19
       ]
     ],
     "countries": [
       [
         "Singapore",
-        84,
+        17,
         "SG"
       ],
       [
         "United States",
-        6,
+        2,
         "US"
       ]
     ]
@@ -61,7 +57,7 @@
   "sources": [
     [
       "Direct",
-      723
+      790
     ],
     [
       "Google",
@@ -83,12 +79,12 @@
   "countries": [
     [
       "Singapore",
-      661,
+      727,
       "SG"
     ],
     [
       "United States",
-      42,
+      44,
       "US"
     ],
     [
@@ -103,7 +99,7 @@
     ],
     [
       "Canada",
-      3,
+      2,
       "CA"
     ],
     [
@@ -120,7 +116,7 @@
   "pages": [
     [
       "/",
-      41
+      39
     ],
     [
       "/brands/",
@@ -132,7 +128,7 @@
     ],
     [
       "/guides/",
-      7
+      6
     ],
     [
       "//checkout/",
@@ -152,7 +148,6 @@
     ]
   ],
   "daily": [
-    3,
     4,
     4,
     2,
@@ -177,6 +172,7 @@
     4,
     2,
     3,
-    90
+    140,
+    19
   ]
 }
