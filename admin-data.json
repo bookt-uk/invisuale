@@ -1,21 +1,29 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-29 19:31 UTC",
+  "updated": "2026-10-29 23:53 UTC",
   "stale": false,
   "totals": {
-    "visitors": 908,
-    "pageviews": 911,
-    "sessions": 911,
-    "views24h": 128
+    "visitors": 919,
+    "pageviews": 922,
+    "sessions": 922,
+    "views24h": 139
   },
   "today": {
     "date": "2026-10-29",
-    "visitors": 27,
-    "views": 27,
-    "sessions": 27,
+    "visitors": 38,
+    "views": 38,
+    "sessions": 38,
     "pages": [
       [
         "/deals/carlsberg-danish-pilsner-lager-beer-15-x-440ml-cans-online-e.html",
+        2
+      ],
+      [
+        "/deals/onimusha-way-of-the-sword-pc-steam-sold-by-bct-online-w-code.html",
+        2
+      ],
+      [
+        "/deals/york-jan-2027-4-hotel-clementine-night-stay-2-people-selecte.html",
         2
       ],
       [
@@ -23,28 +31,20 @@
         1
       ],
       [
-        "/deals/canon-pixma-ts3750i-wireless-colour-all-in-one-inkjet-printe.html",
-        1
-      ],
-      [
-        "/deals/crysis-remastered-trilogy-switch-eu-pc-key-w-code.html",
-        1
-      ],
-      [
-        "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
+        "/deals/black-decker-heated-airer-with-cover-and-wheels-at-checkout.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        27
+        38
       ]
     ],
     "countries": [
       [
         "Singapore",
-        25,
+        35,
         "SG"
       ],
       [
@@ -56,13 +56,18 @@
         "Philippines",
         1,
         "PH"
+      ],
+      [
+        "United States",
+        1,
+        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      899
+      910
     ],
     [
       "Google",
@@ -84,12 +89,12 @@
   "countries": [
     [
       "Singapore",
-      832,
+      842,
       "SG"
     ],
     [
       "United States",
-      45,
+      46,
       "US"
     ],
     [
@@ -178,6 +183,6 @@
     3,
     140,
     101,
-    27
+    38
   ]
 }
