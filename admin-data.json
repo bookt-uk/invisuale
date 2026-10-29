@@ -1,21 +1,29 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-29 05:35 UTC",
+  "updated": "2026-10-29 12:49 UTC",
   "stale": false,
   "totals": {
-    "visitors": 889,
-    "pageviews": 892,
-    "sessions": 892,
-    "views24h": 109
+    "visitors": 903,
+    "pageviews": 906,
+    "sessions": 906,
+    "views24h": 123
   },
   "today": {
     "date": "2026-10-29",
-    "visitors": 8,
-    "views": 8,
-    "sessions": 8,
+    "visitors": 22,
+    "views": 22,
+    "sessions": 22,
     "pages": [
       [
+        "/deals/carlsberg-danish-pilsner-lager-beer-15-x-440ml-cans-online-e.html",
+        2
+      ],
+      [
         "/deals/asda-8-nacho-cheese-pork-sausages-640g.html",
+        1
+      ],
+      [
+        "/deals/canon-pixma-ts3750i-wireless-colour-all-in-one-inkjet-printe.html",
         1
       ],
       [
@@ -23,41 +31,38 @@
         1
       ],
       [
-        "/deals/free-sausage-roll-or-vegan-roll-for-students-at-greggs-with.html",
-        1
-      ],
-      [
-        "/deals/haribo-starmix-160g-0-86-s-s.html",
-        1
-      ],
-      [
-        "/deals/orient-bambino-automatic-watch-leather-strap-model-ra-ac0p01.html",
+        "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        8
+        22
       ]
     ],
     "countries": [
       [
         "Singapore",
-        7,
+        20,
         "SG"
       ],
       [
         "Colombia",
         1,
         "CO"
+      ],
+      [
+        "Philippines",
+        1,
+        "PH"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      880
+      894
     ],
     [
       "Google",
@@ -79,7 +84,7 @@
   "countries": [
     [
       "Singapore",
-      814,
+      827,
       "SG"
     ],
     [
@@ -131,6 +136,10 @@
       6
     ],
     [
+      "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
+      3
+    ],
+    [
       "/deals/robocop-rogue-city-unfinished-business-pc-steam-w-code.html",
       3
     ],
@@ -139,12 +148,8 @@
       3
     ],
     [
-      "//checkout/",
-      2
-    ],
-    [
-      "/deals/adidas-runfalcon-6-cloudfoam-running-shoes-size-8-5uk.html",
-      2
+      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
+      3
     ]
   ],
   "daily": [
@@ -173,6 +178,6 @@
     3,
     140,
     101,
-    8
+    22
   ]
 }
