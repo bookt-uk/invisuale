@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-29 12:49 UTC",
+  "updated": "2026-10-29 19:31 UTC",
   "stale": false,
   "totals": {
-    "visitors": 903,
-    "pageviews": 906,
-    "sessions": 906,
-    "views24h": 123
+    "visitors": 908,
+    "pageviews": 911,
+    "sessions": 911,
+    "views24h": 128
   },
   "today": {
     "date": "2026-10-29",
-    "visitors": 22,
-    "views": 22,
-    "sessions": 22,
+    "visitors": 27,
+    "views": 27,
+    "sessions": 27,
     "pages": [
       [
         "/deals/carlsberg-danish-pilsner-lager-beer-15-x-440ml-cans-online-e.html",
@@ -38,13 +38,13 @@
     "sources": [
       [
         "Direct",
-        22
+        27
       ]
     ],
     "countries": [
       [
         "Singapore",
-        20,
+        25,
         "SG"
       ],
       [
@@ -62,7 +62,7 @@
   "sources": [
     [
       "Direct",
-      894
+      899
     ],
     [
       "Google",
@@ -84,7 +84,7 @@
   "countries": [
     [
       "Singapore",
-      827,
+      832,
       "SG"
     ],
     [
@@ -178,6 +178,6 @@
     3,
     140,
     101,
-    22
+    27
   ]
 }
