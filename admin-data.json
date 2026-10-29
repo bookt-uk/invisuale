@@ -1,68 +1,63 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-28 23:58 UTC",
+  "updated": "2026-10-29 05:35 UTC",
   "stale": false,
   "totals": {
-    "visitors": 866,
-    "pageviews": 873,
-    "sessions": 871,
-    "views24h": 226
+    "visitors": 889,
+    "pageviews": 892,
+    "sessions": 892,
+    "views24h": 109
   },
   "today": {
-    "date": "2026-10-28",
-    "visitors": 86,
-    "views": 86,
-    "sessions": 86,
+    "date": "2026-10-29",
+    "visitors": 8,
+    "views": 8,
+    "sessions": 8,
     "pages": [
       [
-        "/deals/air-jordan-6-gs-trainers-kid-s.html",
-        2
+        "/deals/asda-8-nacho-cheese-pork-sausages-640g.html",
+        1
       ],
       [
-        "/deals/grand-theft-auto-the-trilogy-the-definitive-edition-nintendo.html",
-        2
+        "/deals/crysis-remastered-trilogy-switch-eu-pc-key-w-code.html",
+        1
       ],
       [
-        "/deals/tomb-raider-i-vi-remastered-iceland-no-vpn.html",
-        2
+        "/deals/free-sausage-roll-or-vegan-roll-for-students-at-greggs-with.html",
+        1
       ],
       [
-        "/deals/tomb-raider-iv-vi-remastered-pc-steam.html",
-        2
+        "/deals/haribo-starmix-160g-0-86-s-s.html",
+        1
       ],
       [
-        "/deals/vogue-14-mild-steel-wok-flat-base-356-mm-stay-cool-wooden-ha.html",
-        2
+        "/deals/orient-bambino-automatic-watch-leather-strap-model-ra-ac0p01.html",
+        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        86
+        8
       ]
     ],
     "countries": [
       [
         "Singapore",
-        83,
+        7,
         "SG"
       ],
       [
-        "United States",
-        2,
-        "US"
-      ],
-      [
-        "Argentina",
+        "Colombia",
         1,
-        "AR"
+        "CO"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      857
+      880
     ],
     [
       "Google",
@@ -84,12 +79,12 @@
   "countries": [
     [
       "Singapore",
-      793,
+      814,
       "SG"
     ],
     [
       "United States",
-      44,
+      45,
       "US"
     ],
     [
@@ -121,7 +116,7 @@
   "pages": [
     [
       "/",
-      39
+      36
     ],
     [
       "/brands/",
@@ -136,6 +131,10 @@
       6
     ],
     [
+      "/deals/robocop-rogue-city-unfinished-business-pc-steam-w-code.html",
+      3
+    ],
+    [
       "/deals/tomb-raider-iv-vi-remastered-pc-steam.html",
       3
     ],
@@ -144,16 +143,11 @@
       2
     ],
     [
-      "/categories/fashion-accessories.html",
-      2
-    ],
-    [
       "/deals/adidas-runfalcon-6-cloudfoam-running-shoes-size-8-5uk.html",
       2
     ]
   ],
   "daily": [
-    4,
     4,
     2,
     3,
@@ -178,6 +172,7 @@
     2,
     3,
     140,
-    86
+    101,
+    8
   ]
 }
