@@ -1,56 +1,61 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-30 12:42 UTC",
+  "updated": "2026-10-30 19:11 UTC",
   "stale": false,
   "totals": {
-    "visitors": 934,
-    "pageviews": 936,
-    "sessions": 935,
-    "views24h": 56
+    "visitors": 941,
+    "pageviews": 943,
+    "sessions": 942,
+    "views24h": 63
   },
   "today": {
     "date": "2026-10-30",
-    "visitors": 11,
-    "views": 11,
-    "sessions": 11,
+    "visitors": 18,
+    "views": 18,
+    "sessions": 18,
     "pages": [
       [
         "/",
-        1
+        2
       ],
       [
         "/brands/",
         1
       ],
       [
+        "/deals/arla-natural-cottage-cheese-500g-nectar-price.html",
+        1
+      ],
+      [
+        "/deals/bialetti-moka-express-aluminium-stovetop-coffee-maker-130ml.html",
+        1
+      ],
+      [
         "/deals/british-cherries-200g.html",
-        1
-      ],
-      [
-        "/deals/habitat-blackout-eyelet-curtains-15-colours-free-c-c.html",
-        1
-      ],
-      [
-        "/deals/now-up-to-50-of-f1-store-sale-clearance-with-code-new-lines.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        11
+        18
       ]
     ],
     "countries": [
       [
         "Singapore",
-        8,
+        12,
         "SG"
       ],
       [
         "China",
-        1,
+        2,
         "CN"
+      ],
+      [
+        "United States",
+        2,
+        "US"
       ],
       [
         "France",
@@ -58,16 +63,16 @@
         "FR"
       ],
       [
-        "United States",
+        "Hong Kong",
         1,
-        "US"
+        "HK"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      928
+      935
     ],
     [
       "Google",
@@ -89,12 +94,12 @@
   "countries": [
     [
       "Singapore",
-      857,
+      861,
       "SG"
     ],
     [
       "United States",
-      44,
+      45,
       "US"
     ],
     [
@@ -108,6 +113,11 @@
       "GB"
     ],
     [
+      "China",
+      3,
+      "CN"
+    ],
+    [
       "France",
       3,
       "FR"
@@ -116,17 +126,12 @@
       "Canada",
       2,
       "CA"
-    ],
-    [
-      "China",
-      2,
-      "CN"
     ]
   ],
   "pages": [
     [
       "/",
-      33
+      34
     ],
     [
       "/brands/",
@@ -183,6 +188,6 @@
     140,
     101,
     45,
-    11
+    18
   ]
 }
