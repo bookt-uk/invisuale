@@ -1,19 +1,27 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-30 05:34 UTC",
+  "updated": "2026-10-30 12:42 UTC",
   "stale": false,
   "totals": {
-    "visitors": 929,
-    "pageviews": 931,
-    "sessions": 931,
-    "views24h": 51
+    "visitors": 934,
+    "pageviews": 936,
+    "sessions": 935,
+    "views24h": 56
   },
   "today": {
     "date": "2026-10-30",
-    "visitors": 6,
-    "views": 6,
-    "sessions": 6,
+    "visitors": 11,
+    "views": 11,
+    "sessions": 11,
     "pages": [
+      [
+        "/",
+        1
+      ],
+      [
+        "/brands/",
+        1
+      ],
       [
         "/deals/british-cherries-200g.html",
         1
@@ -25,27 +33,29 @@
       [
         "/deals/now-up-to-50-of-f1-store-sale-clearance-with-code-new-lines.html",
         1
-      ],
-      [
-        "/deals/pg-tips-original-210-tea-bags-656g-instore-livingston.html",
-        1
-      ],
-      [
-        "/deals/prince-of-persia-the-lost-crown-pc-steam-steam-deck-sold-by.html",
-        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        6
+        11
       ]
     ],
     "countries": [
       [
         "Singapore",
-        5,
+        8,
         "SG"
+      ],
+      [
+        "China",
+        1,
+        "CN"
+      ],
+      [
+        "France",
+        1,
+        "FR"
       ],
       [
         "United States",
@@ -57,7 +67,7 @@
   "sources": [
     [
       "Direct",
-      923
+      928
     ],
     [
       "Google",
@@ -79,7 +89,7 @@
   "countries": [
     [
       "Singapore",
-      854,
+      857,
       "SG"
     ],
     [
@@ -98,29 +108,29 @@
       "GB"
     ],
     [
+      "France",
+      3,
+      "FR"
+    ],
+    [
       "Canada",
       2,
       "CA"
     ],
     [
-      "France",
+      "China",
       2,
-      "FR"
-    ],
-    [
-      "Germany",
-      2,
-      "DE"
+      "CN"
     ]
   ],
   "pages": [
     [
       "/",
-      32
+      33
     ],
     [
       "/brands/",
-      8
+      9
     ],
     [
       "/codes/",
@@ -173,6 +183,6 @@
     140,
     101,
     45,
-    6
+    11
   ]
 }
