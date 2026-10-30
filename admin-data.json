@@ -1,21 +1,25 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-30 19:11 UTC",
+  "updated": "2026-10-30 23:37 UTC",
   "stale": false,
   "totals": {
-    "visitors": 941,
-    "pageviews": 943,
-    "sessions": 942,
-    "views24h": 63
+    "visitors": 948,
+    "pageviews": 950,
+    "sessions": 949,
+    "views24h": 70
   },
   "today": {
     "date": "2026-10-30",
-    "visitors": 18,
-    "views": 18,
-    "sessions": 18,
+    "visitors": 25,
+    "views": 25,
+    "sessions": 25,
     "pages": [
       [
         "/",
+        2
+      ],
+      [
+        "/deals/luigi-s-mansion-2-hd-nintendo-switch.html",
         2
       ],
       [
@@ -29,22 +33,18 @@
       [
         "/deals/bialetti-moka-express-aluminium-stovetop-coffee-maker-130ml.html",
         1
-      ],
-      [
-        "/deals/british-cherries-200g.html",
-        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        18
+        25
       ]
     ],
     "countries": [
       [
         "Singapore",
-        12,
+        19,
         "SG"
       ],
       [
@@ -72,7 +72,7 @@
   "sources": [
     [
       "Direct",
-      935
+      942
     ],
     [
       "Google",
@@ -94,7 +94,7 @@
   "countries": [
     [
       "Singapore",
-      861,
+      868,
       "SG"
     ],
     [
@@ -188,6 +188,6 @@
     140,
     101,
     45,
-    18
+    25
   ]
 }
