@@ -1,78 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-30 23:37 UTC",
+  "updated": "2026-10-31 05:23 UTC",
   "stale": false,
   "totals": {
-    "visitors": 948,
-    "pageviews": 950,
-    "sessions": 949,
-    "views24h": 70
+    "visitors": 954,
+    "pageviews": 956,
+    "sessions": 955,
+    "views24h": 31
   },
   "today": {
-    "date": "2026-10-30",
-    "visitors": 25,
-    "views": 25,
-    "sessions": 25,
+    "date": "2026-10-31",
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
     "pages": [
       [
-        "/",
-        2
-      ],
-      [
-        "/deals/luigi-s-mansion-2-hd-nintendo-switch.html",
-        2
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/deals/arla-natural-cottage-cheese-500g-nectar-price.html",
-        1
-      ],
-      [
-        "/deals/bialetti-moka-express-aluminium-stovetop-coffee-maker-130ml.html",
+        "/deals/border-biscuits-150g-ginger-crunch-butterscotch-lemon-drizzl.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        25
+        1
       ]
     ],
     "countries": [
       [
         "Singapore",
-        19,
+        1,
         "SG"
-      ],
-      [
-        "China",
-        2,
-        "CN"
-      ],
-      [
-        "United States",
-        2,
-        "US"
-      ],
-      [
-        "France",
-        1,
-        "FR"
-      ],
-      [
-        "Hong Kong",
-        1,
-        "HK"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      942
+      948
     ],
     [
       "Google",
@@ -94,7 +58,7 @@
   "countries": [
     [
       "Singapore",
-      868,
+      873,
       "SG"
     ],
     [
@@ -114,7 +78,7 @@
     ],
     [
       "China",
-      3,
+      4,
       "CN"
     ],
     [
@@ -131,7 +95,7 @@
   "pages": [
     [
       "/",
-      34
+      35
     ],
     [
       "/brands/",
@@ -150,15 +114,15 @@
       3
     ],
     [
+      "/deals/petg-1-75mm-1kg-3d-printer-filament-many-colours-available-w.html",
+      3
+    ],
+    [
       "/deals/robocop-rogue-city-unfinished-business-pc-steam-w-code.html",
       3
     ],
     [
       "/deals/tomb-raider-iv-vi-remastered-pc-steam.html",
-      3
-    ],
-    [
-      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
       3
     ]
   ],
@@ -188,6 +152,7 @@
     140,
     101,
     45,
-    25
+    30,
+    1
   ]
 }
