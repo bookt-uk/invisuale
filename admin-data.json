@@ -1,42 +1,63 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-31 05:23 UTC",
+  "updated": "2026-10-31 12:12 UTC",
   "stale": false,
   "totals": {
-    "visitors": 954,
-    "pageviews": 956,
-    "sessions": 955,
-    "views24h": 31
+    "visitors": 959,
+    "pageviews": 961,
+    "sessions": 961,
+    "views24h": 36
   },
   "today": {
     "date": "2026-10-31",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 6,
+    "views": 6,
+    "sessions": 6,
     "pages": [
       [
+        "/",
+        1
+      ],
+      [
+        "/deals/amazon-essentials-men-s-relaxed-fit-faux-pullover-jumper-siz.html",
+        1
+      ],
+      [
+        "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
+        1
+      ],
+      [
         "/deals/border-biscuits-150g-ginger-crunch-butterscotch-lemon-drizzl.html",
+        1
+      ],
+      [
+        "/deals/philips-ambilight-55oled760-4k-oled-smart-tv-55-inch-display.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        6
       ]
     ],
     "countries": [
       [
         "Singapore",
-        1,
+        5,
         "SG"
+      ],
+      [
+        "United States",
+        1,
+        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      948
+      953
     ],
     [
       "Google",
@@ -58,12 +79,12 @@
   "countries": [
     [
       "Singapore",
-      873,
+      877,
       "SG"
     ],
     [
       "United States",
-      45,
+      46,
       "US"
     ],
     [
@@ -95,7 +116,7 @@
   "pages": [
     [
       "/",
-      35
+      36
     ],
     [
       "/brands/",
@@ -110,6 +131,10 @@
       6
     ],
     [
+      "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
+      3
+    ],
+    [
       "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
       3
     ],
@@ -119,10 +144,6 @@
     ],
     [
       "/deals/robocop-rogue-city-unfinished-business-pc-steam-w-code.html",
-      3
-    ],
-    [
-      "/deals/tomb-raider-iv-vi-remastered-pc-steam.html",
       3
     ]
   ],
@@ -153,6 +174,6 @@
     101,
     45,
     30,
-    1
+    6
   ]
 }
