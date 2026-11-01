@@ -1,26 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-01 18:51 UTC",
+  "updated": "2026-11-01 23:29 UTC",
   "stale": false,
   "totals": {
-    "visitors": 976,
-    "pageviews": 978,
-    "sessions": 977,
-    "views24h": 23
+    "visitors": 977,
+    "pageviews": 979,
+    "sessions": 978,
+    "views24h": 24
   },
   "today": {
     "date": "2026-11-01",
-    "visitors": 9,
-    "views": 9,
-    "sessions": 9,
+    "visitors": 10,
+    "views": 10,
+    "sessions": 10,
     "pages": [
       [
-        "/deals/intel-core-ultra-5-250kf-plus-4-2-ghz-socket-1851-cpu.html",
+        "/",
         2
       ],
       [
-        "/",
-        1
+        "/deals/intel-core-ultra-5-250kf-plus-4-2-ghz-socket-1851-cpu.html",
+        2
       ],
       [
         "/brands/",
@@ -38,7 +38,7 @@
     "sources": [
       [
         "Direct",
-        9
+        10
       ]
     ],
     "countries": [
@@ -56,13 +56,18 @@
         "China",
         1,
         "CN"
+      ],
+      [
+        "France",
+        1,
+        "FR"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      970
+      971
     ],
     [
       "Google",
@@ -109,7 +114,7 @@
     ],
     [
       "France",
-      3,
+      4,
       "FR"
     ],
     [
@@ -121,7 +126,7 @@
   "pages": [
     [
       "/",
-      37
+      38
     ],
     [
       "/brands/",
@@ -180,6 +185,6 @@
     45,
     30,
     14,
-    9
+    10
   ]
 }
