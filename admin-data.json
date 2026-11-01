@@ -1,21 +1,29 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-01 13:10 UTC",
+  "updated": "2026-11-01 18:51 UTC",
   "stale": false,
   "totals": {
-    "visitors": 971,
-    "pageviews": 973,
-    "sessions": 973,
-    "views24h": 18
+    "visitors": 976,
+    "pageviews": 978,
+    "sessions": 977,
+    "views24h": 23
   },
   "today": {
     "date": "2026-11-01",
-    "visitors": 4,
-    "views": 4,
-    "sessions": 4,
+    "visitors": 9,
+    "views": 9,
+    "sessions": 9,
     "pages": [
       [
+        "/deals/intel-core-ultra-5-250kf-plus-4-2-ghz-socket-1851-cpu.html",
+        2
+      ],
+      [
         "/",
+        1
+      ],
+      [
+        "/brands/",
         1
       ],
       [
@@ -23,42 +31,38 @@
         1
       ],
       [
-        "/deals/logitech-mk270-wireless-keyboard-and-mouse-combo-for-windows.html",
-        1
-      ],
-      [
-        "/deals/wahl-groomsman-cordless-beard-trimmer-for-men-w-voucher.html",
+        "/deals/lego-one-piece-the-going-merry-pirate-ship-75639-price-at-ch.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        4
+        9
       ]
     ],
     "countries": [
       [
         "Singapore",
-        2,
+        5,
         "SG"
+      ],
+      [
+        "United States",
+        3,
+        "US"
       ],
       [
         "China",
         1,
         "CN"
-      ],
-      [
-        "United States",
-        1,
-        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      965
+      970
     ],
     [
       "Google",
@@ -80,12 +84,12 @@
   "countries": [
     [
       "Singapore",
-      887,
+      890,
       "SG"
     ],
     [
       "United States",
-      47,
+      49,
       "US"
     ],
     [
@@ -121,7 +125,7 @@
     ],
     [
       "/brands/",
-      9
+      10
     ],
     [
       "/codes/",
@@ -129,7 +133,7 @@
     ],
     [
       "/guides/",
-      6
+      7
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
@@ -176,6 +180,6 @@
     45,
     30,
     14,
-    4
+    9
   ]
 }
