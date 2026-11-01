@@ -1,63 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-10-31 23:17 UTC",
+  "updated": "2026-11-01 05:49 UTC",
   "stale": false,
   "totals": {
-    "visitors": 965,
-    "pageviews": 967,
-    "sessions": 967,
-    "views24h": 42
+    "visitors": 968,
+    "pageviews": 970,
+    "sessions": 970,
+    "views24h": 15
   },
   "today": {
-    "date": "2026-10-31",
-    "visitors": 12,
-    "views": 12,
-    "sessions": 12,
+    "date": "2026-11-01",
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
     "pages": [
       [
-        "/deals/tecknet-under-cabinet-kitchen-lights-200lm-3-colour-temps-di.html",
-        2
-      ],
-      [
-        "/",
-        1
-      ],
-      [
-        "/deals/amazon-essentials-men-s-relaxed-fit-faux-pullover-jumper-siz.html",
-        1
-      ],
-      [
-        "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
-        1
-      ],
-      [
-        "/deals/border-biscuits-150g-ginger-crunch-butterscotch-lemon-drizzl.html",
+        "/deals/wahl-groomsman-cordless-beard-trimmer-for-men-w-voucher.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        12
+        1
       ]
     ],
     "countries": [
       [
         "Singapore",
-        11,
-        "SG"
-      ],
-      [
-        "United States",
         1,
-        "US"
+        "SG"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      959
+      962
     ],
     [
       "Google",
@@ -79,7 +58,7 @@
   "countries": [
     [
       "Singapore",
-      883,
+      886,
       "SG"
     ],
     [
@@ -174,6 +153,7 @@
     101,
     45,
     30,
-    12
+    14,
+    1
   ]
 }
