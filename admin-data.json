@@ -1,19 +1,31 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-01 05:49 UTC",
+  "updated": "2026-11-01 13:10 UTC",
   "stale": false,
   "totals": {
-    "visitors": 968,
-    "pageviews": 970,
-    "sessions": 970,
-    "views24h": 15
+    "visitors": 971,
+    "pageviews": 973,
+    "sessions": 973,
+    "views24h": 18
   },
   "today": {
     "date": "2026-11-01",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 4,
+    "views": 4,
+    "sessions": 4,
     "pages": [
+      [
+        "/",
+        1
+      ],
+      [
+        "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
+        1
+      ],
+      [
+        "/deals/logitech-mk270-wireless-keyboard-and-mouse-combo-for-windows.html",
+        1
+      ],
       [
         "/deals/wahl-groomsman-cordless-beard-trimmer-for-men-w-voucher.html",
         1
@@ -22,21 +34,31 @@
     "sources": [
       [
         "Direct",
-        1
+        4
       ]
     ],
     "countries": [
       [
         "Singapore",
-        1,
+        2,
         "SG"
+      ],
+      [
+        "China",
+        1,
+        "CN"
+      ],
+      [
+        "United States",
+        1,
+        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      962
+      965
     ],
     [
       "Google",
@@ -58,12 +80,12 @@
   "countries": [
     [
       "Singapore",
-      886,
+      887,
       "SG"
     ],
     [
       "United States",
-      46,
+      47,
       "US"
     ],
     [
@@ -78,7 +100,7 @@
     ],
     [
       "China",
-      4,
+      5,
       "CN"
     ],
     [
@@ -95,7 +117,7 @@
   "pages": [
     [
       "/",
-      36
+      37
     ],
     [
       "/brands/",
@@ -111,7 +133,7 @@
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
-      3
+      4
     ],
     [
       "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
@@ -154,6 +176,6 @@
     45,
     30,
     14,
-    1
+    4
   ]
 }
