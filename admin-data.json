@@ -1,26 +1,64 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-02 05:50 UTC",
+  "updated": "2026-11-02 15:35 UTC",
   "stale": false,
   "totals": {
-    "visitors": 979,
-    "pageviews": 981,
-    "sessions": 980,
-    "views24h": 14
+    "visitors": 983,
+    "pageviews": 986,
+    "sessions": 985,
+    "views24h": 19
   },
   "today": {
     "date": "2026-11-02",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 4,
+    "views": 5,
+    "sessions": 4,
+    "pages": [
+      [
+        "/",
+        2
+      ],
+      [
+        "/codes/",
+        1
+      ],
+      [
+        "/deals/radley-series-57-smart-watch-sold-by-radley-london-watches-a.html",
+        1
+      ],
+      [
+        "/deals/swan-serenity-sk14017blk-1-7-litre-kettle-with-quick-boiling.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        4
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        2,
+        "SG"
+      ],
+      [
+        "Taiwan",
+        1,
+        "TW"
+      ],
+      [
+        "United States",
+        1,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      973
+      977
     ],
     [
       "Google",
@@ -42,17 +80,17 @@
   "countries": [
     [
       "Singapore",
-      891,
+      893,
       "SG"
     ],
     [
       "United States",
-      49,
+      50,
       "US"
     ],
     [
       "(not set)",
-      7,
+      8,
       "(not set)"
     ],
     [
@@ -79,7 +117,7 @@
   "pages": [
     [
       "/",
-      38
+      40
     ],
     [
       "/brands/",
@@ -87,7 +125,7 @@
     ],
     [
       "/codes/",
-      8
+      9
     ],
     [
       "/guides/",
@@ -137,6 +175,7 @@
     45,
     30,
     14,
-    14
+    14,
+    5
   ]
 }
