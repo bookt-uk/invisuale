@@ -1,73 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-01 23:29 UTC",
+  "updated": "2026-11-02 05:50 UTC",
   "stale": false,
   "totals": {
-    "visitors": 977,
-    "pageviews": 979,
-    "sessions": 978,
-    "views24h": 24
+    "visitors": 979,
+    "pageviews": 981,
+    "sessions": 980,
+    "views24h": 14
   },
   "today": {
-    "date": "2026-11-01",
-    "visitors": 10,
-    "views": 10,
-    "sessions": 10,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/deals/intel-core-ultra-5-250kf-plus-4-2-ghz-socket-1851-cpu.html",
-        2
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
-        1
-      ],
-      [
-        "/deals/lego-one-piece-the-going-merry-pirate-ship-75639-price-at-ch.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        10
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        5,
-        "SG"
-      ],
-      [
-        "United States",
-        3,
-        "US"
-      ],
-      [
-        "China",
-        1,
-        "CN"
-      ],
-      [
-        "France",
-        1,
-        "FR"
-      ]
-    ]
+    "date": "2026-11-02",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      971
+      973
     ],
     [
       "Google",
@@ -89,7 +42,7 @@
   "countries": [
     [
       "Singapore",
-      890,
+      891,
       "SG"
     ],
     [
@@ -130,11 +83,11 @@
     ],
     [
       "/brands/",
-      10
+      9
     ],
     [
       "/codes/",
-      7
+      8
     ],
     [
       "/guides/",
@@ -149,16 +102,15 @@
       3
     ],
     [
-      "/deals/now-up-to-80-off-river-island-sale-over-830-lines-new-lines.html",
+      "/deals/indoor-orchid-plant-42-58cm-in-12cm-pot.html",
       3
     ],
     [
-      "/deals/petg-1-75mm-1kg-3d-printer-filament-many-colours-available-w.html",
+      "/deals/now-up-to-80-off-river-island-sale-over-830-lines-new-lines.html",
       3
     ]
   ],
   "daily": [
-    2,
     3,
     3,
     3,
@@ -185,6 +137,6 @@
     45,
     30,
     14,
-    10
+    14
   ]
 }
