@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-02 15:35 UTC",
+  "updated": "2026-11-02 23:25 UTC",
   "stale": false,
   "totals": {
-    "visitors": 983,
-    "pageviews": 986,
-    "sessions": 985,
-    "views24h": 19
+    "visitors": 984,
+    "pageviews": 987,
+    "sessions": 986,
+    "views24h": 20
   },
   "today": {
     "date": "2026-11-02",
-    "visitors": 4,
-    "views": 5,
-    "sessions": 4,
+    "visitors": 5,
+    "views": 6,
+    "sessions": 5,
     "pages": [
       [
         "/",
@@ -20,6 +20,10 @@
       ],
       [
         "/codes/",
+        1
+      ],
+      [
+        "/deals/crivit-walking-sandals-ladies-mens-black-grey-brown.html",
         1
       ],
       [
@@ -34,13 +38,13 @@
     "sources": [
       [
         "Direct",
-        4
+        5
       ]
     ],
     "countries": [
       [
         "Singapore",
-        2,
+        3,
         "SG"
       ],
       [
@@ -58,7 +62,7 @@
   "sources": [
     [
       "Direct",
-      977
+      978
     ],
     [
       "Google",
@@ -80,7 +84,7 @@
   "countries": [
     [
       "Singapore",
-      893,
+      894,
       "SG"
     ],
     [
@@ -176,6 +180,6 @@
     30,
     14,
     14,
-    5
+    6
   ]
 }
