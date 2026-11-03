@@ -1,68 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-02 23:25 UTC",
+  "updated": "2026-11-03 06:32 UTC",
   "stale": false,
   "totals": {
-    "visitors": 984,
-    "pageviews": 987,
-    "sessions": 986,
-    "views24h": 20
+    "visitors": 981,
+    "pageviews": 984,
+    "sessions": 983,
+    "views24h": 6
   },
   "today": {
-    "date": "2026-11-02",
-    "visitors": 5,
-    "views": 6,
-    "sessions": 5,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/codes/",
-        1
-      ],
-      [
-        "/deals/crivit-walking-sandals-ladies-mens-black-grey-brown.html",
-        1
-      ],
-      [
-        "/deals/radley-series-57-smart-watch-sold-by-radley-london-watches-a.html",
-        1
-      ],
-      [
-        "/deals/swan-serenity-sk14017blk-1-7-litre-kettle-with-quick-boiling.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        5
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        3,
-        "SG"
-      ],
-      [
-        "Taiwan",
-        1,
-        "TW"
-      ],
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "date": "2026-11-03",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      978
+      976
     ],
     [
       "Google",
@@ -71,10 +29,6 @@
     [
       "google.com",
       2
-    ],
-    [
-      "Awin",
-      1
     ],
     [
       "yandexsmartcamera",
@@ -94,7 +48,7 @@
     ],
     [
       "(not set)",
-      8,
+      7,
       "(not set)"
     ],
     [
@@ -113,15 +67,15 @@
       "FR"
     ],
     [
-      "Canada",
+      "Germany",
       2,
-      "CA"
+      "DE"
     ]
   ],
   "pages": [
     [
       "/",
-      40
+      37
     ],
     [
       "/brands/",
@@ -153,7 +107,6 @@
     ]
   ],
   "daily": [
-    3,
     3,
     3,
     5,
