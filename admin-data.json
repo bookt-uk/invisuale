@@ -1,26 +1,55 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-04 06:01 UTC",
+  "updated": "2026-11-04 14:21 UTC",
   "stale": false,
   "totals": {
-    "visitors": 979,
-    "pageviews": 982,
-    "sessions": 981,
-    "views24h": 1
+    "visitors": 982,
+    "pageviews": 985,
+    "sessions": 984,
+    "views24h": 4
   },
   "today": {
     "date": "2026-11-04",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 3,
+    "views": 3,
+    "sessions": 3,
+    "pages": [
+      [
+        "/deals/xiaomi-poco-m8-pro-smartphone-8gb-256gb-6500mah-battery-with.html",
+        1
+      ],
+      [
+        "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
+        1
+      ],
+      [
+        "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        3
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        2,
+        "SG"
+      ],
+      [
+        "Qatar",
+        1,
+        "QA"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      974
+      977
     ],
     [
       "Google",
@@ -38,7 +67,7 @@
   "countries": [
     [
       "Singapore",
-      894,
+      896,
       "SG"
     ],
     [
@@ -94,15 +123,15 @@
       4
     ],
     [
+      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
+      4
+    ],
+    [
       "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
       3
     ],
     [
       "/deals/indoor-orchid-plant-42-58cm-in-12cm-pot.html",
-      3
-    ],
-    [
-      "/deals/now-up-to-80-off-river-island-sale-over-830-lines-new-lines.html",
       3
     ]
   ],
@@ -133,6 +162,7 @@
     14,
     14,
     6,
-    1
+    1,
+    3
   ]
 }
