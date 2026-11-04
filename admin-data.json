@@ -1,42 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-03 23:13 UTC",
+  "updated": "2026-11-04 06:01 UTC",
   "stale": false,
   "totals": {
-    "visitors": 982,
-    "pageviews": 985,
-    "sessions": 984,
-    "views24h": 7
+    "visitors": 979,
+    "pageviews": 982,
+    "sessions": 981,
+    "views24h": 1
   },
   "today": {
-    "date": "2026-11-03",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/guides/",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Japan",
-        1,
-        "JP"
-      ]
-    ]
+    "date": "2026-11-04",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      977
+      974
     ],
     [
       "Google",
@@ -59,7 +43,7 @@
     ],
     [
       "United States",
-      50,
+      47,
       "US"
     ],
     [
@@ -95,15 +79,15 @@
     ],
     [
       "/brands/",
-      9
+      8
     ],
     [
       "/codes/",
-      9
+      8
     ],
     [
       "/guides/",
-      8
+      7
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
@@ -123,7 +107,6 @@
     ]
   ],
   "daily": [
-    3,
     3,
     5,
     1,
