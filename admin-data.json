@@ -1,42 +1,63 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-05 12:10 UTC",
+  "updated": "2026-11-05 21:00 UTC",
   "stale": false,
   "totals": {
-    "visitors": 982,
-    "pageviews": 985,
-    "sessions": 984,
-    "views24h": 6
+    "visitors": 988,
+    "pageviews": 991,
+    "sessions": 990,
+    "views24h": 12
   },
   "today": {
     "date": "2026-11-05",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 7,
+    "views": 7,
+    "sessions": 7,
     "pages": [
       [
         "/",
+        1
+      ],
+      [
+        "/deals/belvita-breakfast-biscuits-golden-oat-225g-sunderland.html",
+        1
+      ],
+      [
+        "/deals/casio-g-shock-men-s-digital-display-black-strap-watch-free-c.html",
+        1
+      ],
+      [
+        "/deals/lap-20a-16ax-3-gang-2-way-light-switch-black-nickel-free-c-c.html",
+        1
+      ],
+      [
+        "/deals/lego-back-to-hogwarts-free-ministry-munchies-40901-w-purchas.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        7
       ]
     ],
     "countries": [
       [
         "United States",
-        1,
+        6,
         "US"
+      ],
+      [
+        "Singapore",
+        1,
+        "SG"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      977
+      983
     ],
     [
       "Google",
@@ -54,12 +75,12 @@
   "countries": [
     [
       "Singapore",
-      898,
+      899,
       "SG"
     ],
     [
       "United States",
-      48,
+      53,
       "US"
     ],
     [
@@ -114,11 +135,11 @@
       4
     ],
     [
-      "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
+      "/deals/belvita-breakfast-biscuits-golden-oat-225g-sunderland.html",
       3
     ],
     [
-      "/deals/iceland-prime-beef-joint-14-day-matured-800g-1-1kg.html",
+      "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
       3
     ]
   ],
@@ -150,6 +171,6 @@
     6,
     1,
     5,
-    1
+    7
   ]
 }
