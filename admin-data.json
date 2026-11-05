@@ -1,59 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-04 21:48 UTC",
+  "updated": "2026-11-05 02:16 UTC",
   "stale": false,
   "totals": {
-    "visitors": 983,
-    "pageviews": 986,
-    "sessions": 985,
+    "visitors": 981,
+    "pageviews": 984,
+    "sessions": 983,
     "views24h": 5
   },
   "today": {
-    "date": "2026-11-04",
-    "visitors": 4,
-    "views": 4,
-    "sessions": 4,
-    "pages": [
-      [
-        "/deals/xiaomi-poco-m8-512gb-8gb-5g-smartphone-with-code-auto-discou.html",
-        1
-      ],
-      [
-        "/deals/xiaomi-poco-m8-pro-smartphone-8gb-256gb-6500mah-battery-with.html",
-        1
-      ],
-      [
-        "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
-        1
-      ],
-      [
-        "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        4
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        3,
-        "SG"
-      ],
-      [
-        "Qatar",
-        1,
-        "QA"
-      ]
-    ]
+    "date": "2026-11-05",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      978
+      976
     ],
     [
       "Google",
@@ -71,7 +38,7 @@
   "countries": [
     [
       "Singapore",
-      897,
+      898,
       "SG"
     ],
     [
@@ -91,7 +58,7 @@
     ],
     [
       "China",
-      5,
+      4,
       "CN"
     ],
     [
@@ -108,7 +75,7 @@
   "pages": [
     [
       "/",
-      37
+      36
     ],
     [
       "/brands/",
@@ -116,7 +83,7 @@
     ],
     [
       "/codes/",
-      8
+      7
     ],
     [
       "/guides/",
@@ -135,12 +102,11 @@
       3
     ],
     [
-      "/deals/indoor-orchid-plant-42-58cm-in-12cm-pot.html",
+      "/deals/iceland-prime-beef-joint-14-day-matured-800g-1-1kg.html",
       3
     ]
   ],
   "daily": [
-    3,
     5,
     1,
     4,
@@ -167,6 +133,6 @@
     14,
     6,
     1,
-    4
+    5
   ]
 }
