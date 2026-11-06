@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-06 11:59 UTC",
+  "updated": "2026-11-06 19:16 UTC",
   "stale": false,
   "totals": {
-    "visitors": 987,
-    "pageviews": 989,
-    "sessions": 989,
-    "views24h": 10
+    "visitors": 988,
+    "pageviews": 990,
+    "sessions": 990,
+    "views24h": 11
   },
   "today": {
     "date": "2026-11-06",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        1,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      982
+      983
     ],
     [
       "Google",
@@ -38,7 +54,7 @@
   "countries": [
     [
       "Singapore",
-      900,
+      901,
       "SG"
     ],
     [
@@ -95,7 +111,7 @@
     ],
     [
       "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
-      4
+      5
     ],
     [
       "/deals/belvita-breakfast-biscuits-golden-oat-225g-sunderland.html",
@@ -133,6 +149,7 @@
     6,
     1,
     5,
-    10
+    10,
+    1
   ]
 }
