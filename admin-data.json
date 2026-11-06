@@ -1,63 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-05 21:00 UTC",
+  "updated": "2026-11-06 02:14 UTC",
   "stale": false,
   "totals": {
-    "visitors": 988,
-    "pageviews": 991,
-    "sessions": 990,
-    "views24h": 12
+    "visitors": 985,
+    "pageviews": 987,
+    "sessions": 987,
+    "views24h": 8
   },
   "today": {
-    "date": "2026-11-05",
-    "visitors": 7,
-    "views": 7,
-    "sessions": 7,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/deals/belvita-breakfast-biscuits-golden-oat-225g-sunderland.html",
-        1
-      ],
-      [
-        "/deals/casio-g-shock-men-s-digital-display-black-strap-watch-free-c.html",
-        1
-      ],
-      [
-        "/deals/lap-20a-16ax-3-gang-2-way-light-switch-black-nickel-free-c-c.html",
-        1
-      ],
-      [
-        "/deals/lego-back-to-hogwarts-free-ministry-munchies-40901-w-purchas.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        7
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        6,
-        "US"
-      ],
-      [
-        "Singapore",
-        1,
-        "SG"
-      ]
-    ]
+    "date": "2026-11-06",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      983
+      980
     ],
     [
       "Google",
@@ -75,12 +38,12 @@
   "countries": [
     [
       "Singapore",
-      899,
+      900,
       "SG"
     ],
     [
       "United States",
-      53,
+      51,
       "US"
     ],
     [
@@ -90,7 +53,7 @@
     ],
     [
       "United Kingdom",
-      6,
+      5,
       "GB"
     ],
     [
@@ -104,15 +67,15 @@
       "FR"
     ],
     [
-      "Germany",
+      "Japan",
       2,
-      "DE"
+      "JP"
     ]
   ],
   "pages": [
     [
       "/",
-      37
+      33
     ],
     [
       "/brands/",
@@ -124,11 +87,11 @@
     ],
     [
       "/guides/",
-      7
+      6
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
-      4
+      5
     ],
     [
       "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
@@ -144,7 +107,6 @@
     ]
   ],
   "daily": [
-    5,
     1,
     4,
     2,
@@ -171,6 +133,6 @@
     6,
     1,
     5,
-    7
+    8
   ]
 }
