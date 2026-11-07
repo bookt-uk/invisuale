@@ -1,42 +1,63 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-07 05:50 UTC",
+  "updated": "2026-11-07 12:51 UTC",
   "stale": false,
   "totals": {
-    "visitors": 990,
-    "pageviews": 992,
-    "sessions": 991,
-    "views24h": 4
+    "visitors": 998,
+    "pageviews": 1000,
+    "sessions": 999,
+    "views24h": 12
   },
   "today": {
     "date": "2026-11-07",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 9,
+    "views": 9,
+    "sessions": 9,
     "pages": [
       [
+        "/",
+        2
+      ],
+      [
+        "/black-friday/",
+        1
+      ],
+      [
         "/brands/",
+        1
+      ],
+      [
+        "/categories/culture-leisure.html",
+        1
+      ],
+      [
+        "/categories/electronics.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        1
+        9
       ]
     ],
     "countries": [
       [
         "China",
-        1,
+        6,
         "CN"
+      ],
+      [
+        "United States",
+        3,
+        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      985
+      993
     ],
     [
       "Google",
@@ -59,18 +80,18 @@
     ],
     [
       "United States",
-      50,
+      53,
       "US"
+    ],
+    [
+      "China",
+      12,
+      "CN"
     ],
     [
       "(not set)",
       7,
       "(not set)"
-    ],
-    [
-      "China",
-      7,
-      "CN"
     ],
     [
       "United Kingdom",
@@ -91,7 +112,7 @@
   "pages": [
     [
       "/",
-      34
+      36
     ],
     [
       "/brands/",
@@ -99,7 +120,7 @@
     ],
     [
       "/codes/",
-      7
+      8
     ],
     [
       "/guides/",
@@ -150,6 +171,6 @@
     5,
     10,
     3,
-    1
+    9
   ]
 }
