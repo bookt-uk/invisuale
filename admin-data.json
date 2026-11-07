@@ -1,26 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-07 00:03 UTC",
+  "updated": "2026-11-07 05:50 UTC",
   "stale": false,
   "totals": {
-    "visitors": 989,
-    "pageviews": 991,
+    "visitors": 990,
+    "pageviews": 992,
     "sessions": 991,
-    "views24h": 3
+    "views24h": 4
   },
   "today": {
     "date": "2026-11-07",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
+    "pages": [
+      [
+        "/brands/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "China",
+        1,
+        "CN"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      984
+      985
     ],
     [
       "Google",
@@ -53,7 +69,7 @@
     ],
     [
       "China",
-      6,
+      7,
       "CN"
     ],
     [
@@ -79,7 +95,7 @@
     ],
     [
       "/brands/",
-      9
+      10
     ],
     [
       "/codes/",
@@ -133,6 +149,7 @@
     1,
     5,
     10,
-    3
+    3,
+    1
   ]
 }
