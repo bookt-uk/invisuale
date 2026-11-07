@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-07 12:51 UTC",
+  "updated": "2026-11-07 18:40 UTC",
   "stale": false,
   "totals": {
-    "visitors": 998,
-    "pageviews": 1000,
-    "sessions": 999,
-    "views24h": 12
+    "visitors": 1008,
+    "pageviews": 1010,
+    "sessions": 1008,
+    "views24h": 22
   },
   "today": {
     "date": "2026-11-07",
-    "visitors": 9,
-    "views": 9,
-    "sessions": 9,
+    "visitors": 19,
+    "views": 19,
+    "sessions": 19,
     "pages": [
       [
         "/",
@@ -27,37 +27,37 @@
         1
       ],
       [
-        "/categories/culture-leisure.html",
+        "/brands/aatu.html",
         1
       ],
       [
-        "/categories/electronics.html",
+        "/brands/brickzonehub.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        9
+        19
       ]
     ],
     "countries": [
       [
+        "United States",
+        13,
+        "US"
+      ],
+      [
         "China",
         6,
         "CN"
-      ],
-      [
-        "United States",
-        3,
-        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      993
+      1003
     ],
     [
       "Google",
@@ -80,7 +80,7 @@
     ],
     [
       "United States",
-      53,
+      63,
       "US"
     ],
     [
@@ -171,6 +171,6 @@
     5,
     10,
     3,
-    9
+    19
   ]
 }
