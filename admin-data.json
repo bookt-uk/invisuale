@@ -1,42 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-06 19:16 UTC",
+  "updated": "2026-11-07 00:03 UTC",
   "stale": false,
   "totals": {
-    "visitors": 988,
-    "pageviews": 990,
-    "sessions": 990,
-    "views24h": 11
+    "visitors": 989,
+    "pageviews": 991,
+    "sessions": 991,
+    "views24h": 3
   },
   "today": {
-    "date": "2026-11-06",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
-    "pages": [
-      [
-        "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        1,
-        "SG"
-      ]
-    ]
+    "date": "2026-11-07",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      983
+      984
     ],
     [
       "Google",
@@ -54,12 +38,12 @@
   "countries": [
     [
       "Singapore",
-      901,
+      902,
       "SG"
     ],
     [
       "United States",
-      51,
+      50,
       "US"
     ],
     [
@@ -83,19 +67,19 @@
       "FR"
     ],
     [
-      "Japan",
+      "Hong Kong",
       2,
-      "JP"
+      "HK"
     ]
   ],
   "pages": [
     [
       "/",
-      35
+      34
     ],
     [
       "/brands/",
-      8
+      9
     ],
     [
       "/codes/",
@@ -123,7 +107,6 @@
     ]
   ],
   "daily": [
-    1,
     4,
     2,
     3,
@@ -150,6 +133,6 @@
     1,
     5,
     10,
-    1
+    3
   ]
 }
