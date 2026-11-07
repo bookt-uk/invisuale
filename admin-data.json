@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-07 18:40 UTC",
+  "updated": "2026-11-07 23:35 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1008,
-    "pageviews": 1010,
-    "sessions": 1008,
-    "views24h": 22
+    "visitors": 1013,
+    "pageviews": 1015,
+    "sessions": 1013,
+    "views24h": 27
   },
   "today": {
     "date": "2026-11-07",
-    "visitors": 19,
-    "views": 19,
-    "sessions": 19,
+    "visitors": 24,
+    "views": 24,
+    "sessions": 24,
     "pages": [
       [
         "/",
@@ -38,13 +38,13 @@
     "sources": [
       [
         "Direct",
-        19
+        24
       ]
     ],
     "countries": [
       [
         "United States",
-        13,
+        18,
         "US"
       ],
       [
@@ -57,7 +57,7 @@
   "sources": [
     [
       "Direct",
-      1003
+      1008
     ],
     [
       "Google",
@@ -80,7 +80,7 @@
     ],
     [
       "United States",
-      63,
+      68,
       "US"
     ],
     [
@@ -171,6 +171,6 @@
     5,
     10,
     3,
-    19
+    24
   ]
 }
