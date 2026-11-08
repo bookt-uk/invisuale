@@ -1,63 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-07 23:35 UTC",
+  "updated": "2026-11-08 05:50 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1013,
-    "pageviews": 1015,
-    "sessions": 1013,
-    "views24h": 27
+    "visitors": 1011,
+    "pageviews": 1013,
+    "sessions": 1011,
+    "views24h": 26
   },
   "today": {
-    "date": "2026-11-07",
-    "visitors": 24,
-    "views": 24,
-    "sessions": 24,
+    "date": "2026-11-08",
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
     "pages": [
       [
         "/",
         2
-      ],
-      [
-        "/black-friday/",
-        1
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/brands/aatu.html",
-        1
-      ],
-      [
-        "/brands/brickzonehub.html",
-        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        24
+        2
       ]
     ],
     "countries": [
       [
         "United States",
-        18,
+        2,
         "US"
-      ],
-      [
-        "China",
-        6,
-        "CN"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      1008
+      1006
     ],
     [
       "Google",
@@ -90,7 +69,7 @@
     ],
     [
       "(not set)",
-      7,
+      5,
       "(not set)"
     ],
     [
@@ -112,11 +91,11 @@
   "pages": [
     [
       "/",
-      36
+      35
     ],
     [
       "/brands/",
-      10
+      9
     ],
     [
       "/codes/",
@@ -144,7 +123,6 @@
     ]
   ],
   "daily": [
-    4,
     2,
     3,
     2,
@@ -171,6 +149,7 @@
     5,
     10,
     3,
-    24
+    24,
+    2
   ]
 }
