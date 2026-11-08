@@ -1,22 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-08 13:13 UTC",
+  "updated": "2026-11-08 18:46 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1017,
-    "pageviews": 1019,
-    "sessions": 1017,
-    "views24h": 32
+    "visitors": 1020,
+    "pageviews": 1022,
+    "sessions": 1022,
+    "views24h": 35
   },
   "today": {
     "date": "2026-11-08",
-    "visitors": 8,
-    "views": 8,
-    "sessions": 8,
+    "visitors": 11,
+    "views": 11,
+    "sessions": 11,
     "pages": [
       [
         "/",
-        3
+        4
+      ],
+      [
+        "/brands/",
+        1
       ],
       [
         "/codes/",
@@ -29,36 +33,36 @@
       [
         "/deals/xiaomi-poco-m8-512gb-8gb-5g-smartphone-with-code-auto-discou.html",
         1
-      ],
-      [
-        "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
-        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        8
+        10
       ],
       [
         "(not set)",
         1
+      ],
+      [
+        "aocr.org",
+        1
       ]
     ],
     "countries": [
+      [
+        "United States",
+        5,
+        "US"
+      ],
       [
         "Singapore",
         4,
         "SG"
       ],
       [
-        "United States",
-        3,
-        "US"
-      ],
-      [
         "Hong Kong",
-        1,
+        2,
         "HK"
       ]
     ]
@@ -66,7 +70,7 @@
   "sources": [
     [
       "Direct",
-      1012
+      1014
     ],
     [
       "Google",
@@ -78,6 +82,10 @@
     ],
     [
       "(not set)",
+      1
+    ],
+    [
+      "aocr.org",
       1
     ],
     [
@@ -93,7 +101,7 @@
     ],
     [
       "United States",
-      69,
+      71,
       "US"
     ],
     [
@@ -118,29 +126,29 @@
     ],
     [
       "Hong Kong",
-      3,
+      4,
       "HK"
     ]
   ],
   "pages": [
     [
       "/",
-      36
+      37
     ],
     [
       "/brands/",
-      9
+      10
     ],
     [
       "/codes/",
       9
     ],
     [
-      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
-      6
+      "/guides/",
+      7
     ],
     [
-      "/guides/",
+      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
       6
     ],
     [
@@ -184,6 +192,6 @@
     10,
     3,
     24,
-    8
+    11
   ]
 }
