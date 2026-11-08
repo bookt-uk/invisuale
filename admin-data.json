@@ -1,42 +1,72 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-08 05:50 UTC",
+  "updated": "2026-11-08 13:13 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1011,
-    "pageviews": 1013,
-    "sessions": 1011,
-    "views24h": 26
+    "visitors": 1017,
+    "pageviews": 1019,
+    "sessions": 1017,
+    "views24h": 32
   },
   "today": {
     "date": "2026-11-08",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
+    "visitors": 8,
+    "views": 8,
+    "sessions": 8,
     "pages": [
       [
         "/",
-        2
+        3
+      ],
+      [
+        "/codes/",
+        1
+      ],
+      [
+        "/deals/global-version-poco-m8-5g-512gb-256gb-snapdragon-6-gen-3-pro.html",
+        1
+      ],
+      [
+        "/deals/xiaomi-poco-m8-512gb-8gb-5g-smartphone-with-code-auto-discou.html",
+        1
+      ],
+      [
+        "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
+        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        2
+        8
+      ],
+      [
+        "(not set)",
+        1
       ]
     ],
     "countries": [
       [
+        "Singapore",
+        4,
+        "SG"
+      ],
+      [
         "United States",
-        2,
+        3,
         "US"
+      ],
+      [
+        "Hong Kong",
+        1,
+        "HK"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      1006
+      1012
     ],
     [
       "Google",
@@ -47,6 +77,10 @@
       2
     ],
     [
+      "(not set)",
+      1
+    ],
+    [
       "yandexsmartcamera",
       1
     ]
@@ -54,12 +88,12 @@
   "countries": [
     [
       "Singapore",
-      902,
+      906,
       "SG"
     ],
     [
       "United States",
-      68,
+      69,
       "US"
     ],
     [
@@ -84,14 +118,14 @@
     ],
     [
       "Hong Kong",
-      2,
+      3,
       "HK"
     ]
   ],
   "pages": [
     [
       "/",
-      35
+      36
     ],
     [
       "/brands/",
@@ -99,7 +133,11 @@
     ],
     [
       "/codes/",
-      8
+      9
+    ],
+    [
+      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
+      6
     ],
     [
       "/guides/",
@@ -110,15 +148,11 @@
       5
     ],
     [
-      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
-      5
+      "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
+      4
     ],
     [
       "/deals/belvita-breakfast-biscuits-golden-oat-225g-sunderland.html",
-      3
-    ],
-    [
-      "/deals/ecohub-for-ryanair-cabin-bags-40x30x20-foldable-underseat-ho.html",
       3
     ]
   ],
@@ -150,6 +184,6 @@
     10,
     3,
     24,
-    2
+    8
   ]
 }
