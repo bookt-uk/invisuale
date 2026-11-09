@@ -1,44 +1,44 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-09 06:03 UTC",
+  "updated": "2026-11-09 16:04 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1025,
-    "pageviews": 1027,
-    "sessions": 1027,
-    "views24h": 18
+    "visitors": 1026,
+    "pageviews": 1028,
+    "sessions": 1028,
+    "views24h": 19
   },
   "today": {
     "date": "2026-11-09",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
+    "visitors": 3,
+    "views": 3,
+    "sessions": 3,
     "pages": [
       [
         "/",
-        2
+        3
       ]
     ],
     "sources": [
       [
-        "Direct",
-        1
+        "aocr.org",
+        2
       ],
       [
-        "aocr.org",
+        "Direct",
         1
       ]
     ],
     "countries": [
       [
+        "United States",
+        2,
+        "US"
+      ],
+      [
         "",
         1,
         ""
-      ],
-      [
-        "United States",
-        1,
-        "US"
       ]
     ]
   },
@@ -49,7 +49,7 @@
     ],
     [
       "aocr.org",
-      5
+      6
     ],
     [
       "Google",
@@ -58,10 +58,6 @@
     [
       "google.com",
       2
-    ],
-    [
-      "(not set)",
-      1
     ],
     [
       "yandexsmartcamera",
@@ -76,7 +72,7 @@
     ],
     [
       "United States",
-      73,
+      74,
       "US"
     ],
     [
@@ -86,7 +82,7 @@
     ],
     [
       "(not set)",
-      5,
+      6,
       "(not set)"
     ],
     [
@@ -108,7 +104,7 @@
   "pages": [
     [
       "/",
-      43
+      44
     ],
     [
       "/codes/",
@@ -167,6 +163,6 @@
     3,
     24,
     16,
-    2
+    3
   ]
 }
