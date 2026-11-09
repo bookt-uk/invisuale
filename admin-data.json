@@ -1,85 +1,55 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-08 23:38 UTC",
+  "updated": "2026-11-09 06:03 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1024,
-    "pageviews": 1026,
-    "sessions": 1026,
-    "views24h": 39
+    "visitors": 1025,
+    "pageviews": 1027,
+    "sessions": 1027,
+    "views24h": 18
   },
   "today": {
-    "date": "2026-11-08",
-    "visitors": 15,
-    "views": 15,
-    "sessions": 15,
+    "date": "2026-11-09",
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
     "pages": [
       [
         "/",
-        7
-      ],
-      [
-        "/codes/",
         2
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/deals/global-version-poco-m8-5g-512gb-256gb-snapdragon-6-gen-3-pro.html",
-        1
-      ],
-      [
-        "/deals/xiaomi-poco-m8-512gb-8gb-5g-smartphone-with-code-auto-discou.html",
-        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        12
+        1
       ],
       [
         "aocr.org",
-        3
-      ],
-      [
-        "(not set)",
         1
       ]
     ],
     "countries": [
       [
-        "United States",
-        7,
-        "US"
-      ],
-      [
-        "Singapore",
-        5,
-        "SG"
-      ],
-      [
-        "Hong Kong",
-        2,
-        "HK"
-      ],
-      [
         "",
         1,
         ""
+      ],
+      [
+        "United States",
+        1,
+        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      1016
+      1015
     ],
     [
       "aocr.org",
-      3
+      5
     ],
     [
       "Google",
@@ -138,22 +108,22 @@
   "pages": [
     [
       "/",
-      40
-    ],
-    [
-      "/brands/",
-      10
+      43
     ],
     [
       "/codes/",
       10
     ],
     [
-      "/guides/",
-      7
+      "/brands/",
+      9
     ],
     [
       "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
+      6
+    ],
+    [
+      "/guides/",
       6
     ],
     [
@@ -170,7 +140,6 @@
     ]
   ],
   "daily": [
-    2,
     3,
     2,
     3,
@@ -197,6 +166,7 @@
     10,
     3,
     24,
-    15
+    16,
+    2
   ]
 }
