@@ -1,55 +1,30 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-09 16:04 UTC",
+  "updated": "2026-11-10 00:12 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1026,
-    "pageviews": 1028,
-    "sessions": 1028,
-    "views24h": 19
+    "visitors": 1030,
+    "pageviews": 1032,
+    "sessions": 1032,
+    "views24h": 10
   },
   "today": {
-    "date": "2026-11-09",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
-    "pages": [
-      [
-        "/",
-        3
-      ]
-    ],
-    "sources": [
-      [
-        "aocr.org",
-        2
-      ],
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        2,
-        "US"
-      ],
-      [
-        "",
-        1,
-        ""
-      ]
-    ]
+    "date": "2026-11-10",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      1015
+      1018
     ],
     [
       "aocr.org",
-      6
+      7
     ],
     [
       "Google",
@@ -67,17 +42,17 @@
   "countries": [
     [
       "Singapore",
-      907,
+      908,
       "SG"
     ],
     [
       "United States",
-      74,
+      72,
       "US"
     ],
     [
       "China",
-      12,
+      17,
       "CN"
     ],
     [
@@ -104,22 +79,22 @@
   "pages": [
     [
       "/",
-      44
-    ],
-    [
-      "/codes/",
-      10
+      45
     ],
     [
       "/brands/",
+      10
+    ],
+    [
+      "/codes/",
       9
     ],
     [
-      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
-      6
+      "/guides/",
+      7
     ],
     [
-      "/guides/",
+      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
       6
     ],
     [
@@ -131,12 +106,11 @@
       4
     ],
     [
-      "/deals/belvita-breakfast-biscuits-golden-oat-225g-sunderland.html",
+      "/black-friday/",
       3
     ]
   ],
   "daily": [
-    3,
     2,
     3,
     8,
@@ -163,6 +137,6 @@
     3,
     24,
     16,
-    3
+    10
   ]
 }
