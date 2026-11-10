@@ -1,26 +1,51 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-10 00:12 UTC",
+  "updated": "2026-11-10 09:38 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1030,
-    "pageviews": 1032,
-    "sessions": 1032,
-    "views24h": 10
+    "visitors": 1032,
+    "pageviews": 1034,
+    "sessions": 1034,
+    "views24h": 12
   },
   "today": {
     "date": "2026-11-10",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
+    "pages": [
+      [
+        "/",
+        1
+      ],
+      [
+        "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        2
+      ]
+    ],
+    "countries": [
+      [
+        "France",
+        1,
+        "FR"
+      ],
+      [
+        "United States",
+        1,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      1018
+      1020
     ],
     [
       "aocr.org",
@@ -47,7 +72,7 @@
     ],
     [
       "United States",
-      72,
+      73,
       "US"
     ],
     [
@@ -61,14 +86,14 @@
       "(not set)"
     ],
     [
+      "France",
+      5,
+      "FR"
+    ],
+    [
       "United Kingdom",
       5,
       "GB"
-    ],
-    [
-      "France",
-      4,
-      "FR"
     ],
     [
       "Hong Kong",
@@ -79,7 +104,7 @@
   "pages": [
     [
       "/",
-      45
+      46
     ],
     [
       "/brands/",
@@ -137,6 +162,7 @@
     3,
     24,
     16,
-    10
+    10,
+    2
   ]
 }
