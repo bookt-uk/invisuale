@@ -1,21 +1,25 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-11 14:03 UTC",
+  "updated": "2026-11-11 21:19 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1044,
-    "pageviews": 1046,
-    "sessions": 1046,
-    "views24h": 14
+    "visitors": 1046,
+    "pageviews": 1048,
+    "sessions": 1048,
+    "views24h": 16
   },
   "today": {
     "date": "2026-11-11",
-    "visitors": 5,
-    "views": 5,
-    "sessions": 5,
+    "visitors": 7,
+    "views": 7,
+    "sessions": 7,
     "pages": [
       [
         "/about.html",
+        1
+      ],
+      [
+        "/brands/8wines.html",
         1
       ],
       [
@@ -29,22 +33,18 @@
       [
         "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
         1
-      ],
-      [
-        "/guides/uk-airport-parking-guide.html",
-        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        5
+        7
       ]
     ],
     "countries": [
       [
         "Singapore",
-        4,
+        6,
         "SG"
       ],
       [
@@ -57,7 +57,7 @@
   "sources": [
     [
       "Direct",
-      1032
+      1034
     ],
     [
       "aocr.org",
@@ -79,7 +79,7 @@
   "countries": [
     [
       "Singapore",
-      912,
+      914,
       "SG"
     ],
     [
@@ -176,6 +176,6 @@
     16,
     10,
     9,
-    5
+    7
   ]
 }
