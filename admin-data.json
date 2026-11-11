@@ -1,26 +1,63 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-11 05:57 UTC",
+  "updated": "2026-11-11 14:03 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1039,
-    "pageviews": 1041,
-    "sessions": 1041,
-    "views24h": 9
+    "visitors": 1044,
+    "pageviews": 1046,
+    "sessions": 1046,
+    "views24h": 14
   },
   "today": {
     "date": "2026-11-11",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 5,
+    "views": 5,
+    "sessions": 5,
+    "pages": [
+      [
+        "/about.html",
+        1
+      ],
+      [
+        "/deals/27-lg-ultragear-oled-gx7-gaming-monitor-240hz-0-03ms-gtg-gla.html",
+        1
+      ],
+      [
+        "/deals/3-pack-8-stainless-steel-scissors-with-ultra-sharp-blades-an.html",
+        1
+      ],
+      [
+        "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
+        1
+      ],
+      [
+        "/guides/uk-airport-parking-guide.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        5
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        4,
+        "SG"
+      ],
+      [
+        "China",
+        1,
+        "CN"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      1027
+      1032
     ],
     [
       "aocr.org",
@@ -42,7 +79,7 @@
   "countries": [
     [
       "Singapore",
-      908,
+      912,
       "SG"
     ],
     [
@@ -52,7 +89,7 @@
     ],
     [
       "China",
-      17,
+      18,
       "CN"
     ],
     [
@@ -102,12 +139,12 @@
       5
     ],
     [
-      "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
+      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
       4
     ],
     [
-      "/black-friday/",
-      3
+      "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
+      4
     ]
   ],
   "daily": [
@@ -138,6 +175,7 @@
     24,
     16,
     10,
-    9
+    9,
+    5
   ]
 }
