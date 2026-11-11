@@ -1,63 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-10 23:09 UTC",
+  "updated": "2026-11-11 05:57 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1038,
-    "pageviews": 1040,
-    "sessions": 1040,
-    "views24h": 18
+    "visitors": 1039,
+    "pageviews": 1041,
+    "sessions": 1041,
+    "views24h": 9
   },
   "today": {
-    "date": "2026-11-10",
-    "visitors": 8,
-    "views": 8,
-    "sessions": 8,
-    "pages": [
-      [
-        "/",
-        3
-      ],
-      [
-        "/guides/",
-        2
-      ],
-      [
-        "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
-        1
-      ],
-      [
-        "/privacy.html",
-        1
-      ],
-      [
-        "/terms.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        8
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        7,
-        "US"
-      ],
-      [
-        "France",
-        1,
-        "FR"
-      ]
-    ]
+    "date": "2026-11-11",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      1026
+      1027
     ],
     [
       "aocr.org",
@@ -84,7 +47,7 @@
     ],
     [
       "United States",
-      79,
+      80,
       "US"
     ],
     [
@@ -116,7 +79,7 @@
   "pages": [
     [
       "/",
-      48
+      49
     ],
     [
       "/brands/",
@@ -175,6 +138,6 @@
     24,
     16,
     10,
-    8
+    9
   ]
 }
