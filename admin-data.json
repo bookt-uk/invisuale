@@ -1,26 +1,58 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-12 02:51 UTC",
+  "updated": "2026-11-12 12:32 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1044,
-    "pageviews": 1046,
-    "sessions": 1046,
-    "views24h": 7
+    "visitors": 1051,
+    "pageviews": 1053,
+    "sessions": 1053,
+    "views24h": 14
   },
   "today": {
     "date": "2026-11-12",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 6,
+    "views": 6,
+    "sessions": 6,
+    "pages": [
+      [
+        "/deals/black-friday-save-on-e-bikes-from-367-50-assist-step-thru-el.html",
+        2
+      ],
+      [
+        "/black-friday/",
+        1
+      ],
+      [
+        "/brands/mychway.html",
+        1
+      ],
+      [
+        "/deals/7nts-4-all-inclusive-turkey-hotel-greenland-ovacik-dalaman-f.html",
+        1
+      ],
+      [
+        "/deals/zhiye-2-pack-oil-spray-bottle-for-cooking-500ml-sold-by-suns.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        6
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        6,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      1033
+      1040
     ],
     [
       "aocr.org",
@@ -42,7 +74,7 @@
   "countries": [
     [
       "Singapore",
-      914,
+      921,
       "SG"
     ],
     [
@@ -102,11 +134,11 @@
       5
     ],
     [
-      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
+      "/black-friday/",
       4
     ],
     [
-      "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
+      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
       4
     ]
   ],
@@ -138,6 +170,7 @@
     16,
     10,
     9,
-    7
+    8,
+    6
   ]
 }
