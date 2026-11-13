@@ -1,26 +1,55 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-13 02:32 UTC",
+  "updated": "2026-11-13 12:04 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1048,
-    "pageviews": 1050,
-    "sessions": 1050,
-    "views24h": 6
+    "visitors": 1054,
+    "pageviews": 1061,
+    "sessions": 1056,
+    "views24h": 17
   },
   "today": {
     "date": "2026-11-13",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 4,
+    "views": 4,
+    "sessions": 4,
+    "pages": [
+      [
+        "/",
+        2
+      ],
+      [
+        "/deals/sainsbury-s-french-mild-brie-cheese-200g-nectar-price.html",
+        1
+      ],
+      [
+        "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        4
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        2,
+        "SG"
+      ],
+      [
+        "United States",
+        2,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      1037
+      1043
     ],
     [
       "aocr.org",
@@ -42,12 +71,12 @@
   "countries": [
     [
       "Singapore",
-      918,
+      921,
       "SG"
     ],
     [
       "United States",
-      80,
+      82,
       "US"
     ],
     [
@@ -79,7 +108,7 @@
   "pages": [
     [
       "/",
-      48
+      52
     ],
     [
       "/brands/",
@@ -94,19 +123,19 @@
       9
     ],
     [
+      "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
+      6
+    ],
+    [
       "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
       6
     ],
     [
-      "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
+      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
       5
     ],
     [
       "/black-friday/",
-      4
-    ],
-    [
-      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
       4
     ]
   ],
@@ -138,6 +167,7 @@
     10,
     9,
     8,
-    6
+    13,
+    4
   ]
 }
