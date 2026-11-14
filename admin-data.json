@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-14 00:50 UTC",
+  "updated": "2026-11-14 08:53 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1042,
-    "pageviews": 1049,
-    "sessions": 1043,
-    "views24h": 8
+    "visitors": 1051,
+    "pageviews": 1058,
+    "sessions": 1052,
+    "views24h": 9
   },
   "today": {
     "date": "2026-11-14",
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      1031
+      1040
     ],
     [
       "aocr.org",
@@ -42,17 +42,17 @@
   "countries": [
     [
       "Singapore",
-      914,
+      921,
       "SG"
     ],
     [
       "United States",
-      76,
+      77,
       "US"
     ],
     [
       "China",
-      17,
+      18,
       "CN"
     ],
     [
@@ -79,7 +79,7 @@
   "pages": [
     [
       "/",
-      52
+      53
     ],
     [
       "/brands/",
@@ -102,11 +102,11 @@
       6
     ],
     [
-      "/black-friday/",
-      4
+      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
+      5
     ],
     [
-      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
+      "/black-friday/",
       4
     ]
   ],
@@ -136,7 +136,8 @@
     16,
     10,
     9,
+    8,
     13,
-    8
+    9
   ]
 }
