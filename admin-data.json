@@ -1,68 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-13 19:35 UTC",
+  "updated": "2026-11-14 00:50 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1057,
-    "pageviews": 1064,
-    "sessions": 1058,
-    "views24h": 20
+    "visitors": 1042,
+    "pageviews": 1049,
+    "sessions": 1043,
+    "views24h": 8
   },
   "today": {
-    "date": "2026-11-13",
-    "visitors": 7,
-    "views": 7,
-    "sessions": 7,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/deals/xiaomi-black-friday-xiaomi-robot-vacuum-x20-white-6000pa-4l.html",
-        2
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/deals/sainsbury-s-french-mild-brie-cheese-200g-nectar-price.html",
-        1
-      ],
-      [
-        "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        7
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        3,
-        "SG"
-      ],
-      [
-        "United States",
-        3,
-        "US"
-      ],
-      [
-        "Hong Kong",
-        1,
-        "HK"
-      ]
-    ]
+    "date": "2026-11-14",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      1046
+      1031
     ],
     [
       "aocr.org",
@@ -84,17 +42,17 @@
   "countries": [
     [
       "Singapore",
-      922,
+      914,
       "SG"
     ],
     [
       "United States",
-      83,
+      76,
       "US"
     ],
     [
       "China",
-      18,
+      17,
       "CN"
     ],
     [
@@ -144,16 +102,15 @@
       6
     ],
     [
-      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
-      5
+      "/black-friday/",
+      4
     ],
     [
-      "/black-friday/",
+      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
       4
     ]
   ],
   "daily": [
-    8,
     7,
     117,
     166,
@@ -179,8 +136,7 @@
     16,
     10,
     9,
-    8,
     13,
-    7
+    8
   ]
 }
