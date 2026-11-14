@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-14 16:31 UTC",
+  "updated": "2026-11-14 22:15 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1058,
-    "pageviews": 1065,
-    "sessions": 1059,
-    "views24h": 16
+    "visitors": 1060,
+    "pageviews": 1067,
+    "sessions": 1061,
+    "views24h": 18
   },
   "today": {
     "date": "2026-11-14",
-    "visitors": 7,
-    "views": 7,
-    "sessions": 7,
+    "visitors": 9,
+    "views": 9,
+    "sessions": 9,
     "pages": [
       [
         "/deals/argos-black-friday-deals-2026-home-toys-appliances-tech-more.html",
@@ -27,18 +27,18 @@
         1
       ],
       [
-        "/deals/28-pack-mini-babybel-light-cheese-blackburn.html",
+        "/deals/2-x-original-source-shower-gel-250ml-mint-tea-tree-apple-coc.html",
         1
       ],
       [
-        "/deals/31-aug-2-sep-2-nights-at-3-citiez-hotel-amsterdam-netherland.html",
+        "/deals/28-pack-mini-babybel-light-cheese-blackburn.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        7
+        9
       ]
     ],
     "countries": [
@@ -53,6 +53,16 @@
         "US"
       ],
       [
+        "China",
+        1,
+        "CN"
+      ],
+      [
+        "Germany",
+        1,
+        "DE"
+      ],
+      [
         "Vietnam",
         1,
         "VN"
@@ -62,7 +72,7 @@
   "sources": [
     [
       "Direct",
-      1047
+      1049
     ],
     [
       "aocr.org",
@@ -94,7 +104,7 @@
     ],
     [
       "China",
-      18,
+      19,
       "CN"
     ],
     [
@@ -137,7 +147,7 @@
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
-      6
+      7
     ],
     [
       "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
@@ -181,6 +191,6 @@
     8,
     13,
     9,
-    7
+    9
   ]
 }
