@@ -1,26 +1,68 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-14 08:53 UTC",
+  "updated": "2026-11-14 16:31 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1051,
-    "pageviews": 1058,
-    "sessions": 1052,
-    "views24h": 9
+    "visitors": 1058,
+    "pageviews": 1065,
+    "sessions": 1059,
+    "views24h": 16
   },
   "today": {
     "date": "2026-11-14",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 7,
+    "views": 7,
+    "sessions": 7,
+    "pages": [
+      [
+        "/deals/argos-black-friday-deals-2026-home-toys-appliances-tech-more.html",
+        2
+      ],
+      [
+        "/deals/up-to-80-off-pre-black-friday-sale-on-fashion-further-10-off.html",
+        2
+      ],
+      [
+        "/deals/12-classic-spicy-boneless-bites-w-code-via-app.html",
+        1
+      ],
+      [
+        "/deals/28-pack-mini-babybel-light-cheese-blackburn.html",
+        1
+      ],
+      [
+        "/deals/31-aug-2-sep-2-nights-at-3-citiez-hotel-amsterdam-netherland.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        7
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        4,
+        "SG"
+      ],
+      [
+        "United States",
+        2,
+        "US"
+      ],
+      [
+        "Vietnam",
+        1,
+        "VN"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      1040
+      1047
     ],
     [
       "aocr.org",
@@ -42,12 +84,12 @@
   "countries": [
     [
       "Singapore",
-      921,
+      925,
       "SG"
     ],
     [
       "United States",
-      77,
+      79,
       "US"
     ],
     [
@@ -138,6 +180,7 @@
     9,
     8,
     13,
-    9
+    9,
+    7
   ]
 }
