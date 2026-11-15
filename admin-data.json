@@ -1,19 +1,23 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-15 15:35 UTC",
+  "updated": "2026-11-15 20:58 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1063,
-    "pageviews": 1070,
-    "sessions": 1065,
-    "views24h": 19
+    "visitors": 1064,
+    "pageviews": 1071,
+    "sessions": 1066,
+    "views24h": 20
   },
   "today": {
     "date": "2026-11-15",
-    "visitors": 10,
-    "views": 10,
-    "sessions": 10,
+    "visitors": 11,
+    "views": 11,
+    "sessions": 11,
     "pages": [
+      [
+        "/",
+        2
+      ],
       [
         "/deals/black-friday-buy-two-get-one-free-pc.html",
         2
@@ -21,10 +25,6 @@
       [
         "/deals/jurassic-world-legacy-collection-brachiosaurus-dinosaur-figu.html",
         2
-      ],
-      [
-        "/",
-        1
       ],
       [
         "/brands/",
@@ -38,7 +38,7 @@
     "sources": [
       [
         "Direct",
-        10
+        11
       ]
     ],
     "countries": [
@@ -46,6 +46,11 @@
         "Singapore",
         5,
         "SG"
+      ],
+      [
+        "",
+        1,
+        ""
       ],
       [
         "Albania",
@@ -61,18 +66,13 @@
         "South Korea",
         1,
         "KR"
-      ],
-      [
-        "United States",
-        1,
-        "US"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      1052
+      1053
     ],
     [
       "aocr.org",
@@ -131,7 +131,7 @@
   "pages": [
     [
       "/",
-      50
+      51
     ],
     [
       "/brands/",
@@ -191,6 +191,6 @@
     13,
     9,
     9,
-    10
+    11
   ]
 }
