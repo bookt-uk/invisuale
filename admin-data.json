@@ -1,66 +1,48 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-14 22:15 UTC",
+  "updated": "2026-11-15 06:12 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1060,
-    "pageviews": 1067,
-    "sessions": 1061,
-    "views24h": 18
+    "visitors": 1048,
+    "pageviews": 1050,
+    "sessions": 1049,
+    "views24h": 12
   },
   "today": {
-    "date": "2026-11-14",
-    "visitors": 9,
-    "views": 9,
-    "sessions": 9,
+    "date": "2026-11-15",
+    "visitors": 3,
+    "views": 3,
+    "sessions": 3,
     "pages": [
       [
-        "/deals/argos-black-friday-deals-2026-home-toys-appliances-tech-more.html",
-        2
-      ],
-      [
-        "/deals/up-to-80-off-pre-black-friday-sale-on-fashion-further-10-off.html",
-        2
-      ],
-      [
-        "/deals/12-classic-spicy-boneless-bites-w-code-via-app.html",
+        "/",
         1
       ],
       [
-        "/deals/2-x-original-source-shower-gel-250ml-mint-tea-tree-apple-coc.html",
+        "/deals/2-for-1-pastries-at-caff-nero-via-three-rewards-app.html",
         1
       ],
       [
-        "/deals/28-pack-mini-babybel-light-cheese-blackburn.html",
+        "/deals/3-months-audible-membership-for-0-99-pm-2-97-total-for-3-mon.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        9
+        3
       ]
     ],
     "countries": [
       [
-        "Singapore",
-        4,
-        "SG"
+        "Albania",
+        1,
+        "AL"
       ],
       [
         "United States",
-        2,
+        1,
         "US"
-      ],
-      [
-        "China",
-        1,
-        "CN"
-      ],
-      [
-        "Germany",
-        1,
-        "DE"
       ],
       [
         "Vietnam",
@@ -72,7 +54,7 @@
   "sources": [
     [
       "Direct",
-      1049
+      1037
     ],
     [
       "aocr.org",
@@ -94,12 +76,12 @@
   "countries": [
     [
       "Singapore",
-      925,
+      916,
       "SG"
     ],
     [
       "United States",
-      79,
+      78,
       "US"
     ],
     [
@@ -109,7 +91,7 @@
     ],
     [
       "(not set)",
-      8,
+      6,
       "(not set)"
     ],
     [
@@ -131,11 +113,11 @@
   "pages": [
     [
       "/",
-      53
+      48
     ],
     [
       "/brands/",
-      11
+      10
     ],
     [
       "/codes/",
@@ -147,7 +129,7 @@
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
-      7
+      6
     ],
     [
       "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
@@ -158,12 +140,11 @@
       5
     ],
     [
-      "/black-friday/",
+      "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
       4
     ]
   ],
   "daily": [
-    7,
     117,
     166,
     237,
@@ -189,8 +170,8 @@
     10,
     9,
     8,
-    13,
     9,
-    9
+    9,
+    3
   ]
 }
