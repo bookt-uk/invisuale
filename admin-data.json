@@ -1,60 +1,78 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-15 06:12 UTC",
+  "updated": "2026-11-15 15:35 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1048,
-    "pageviews": 1050,
-    "sessions": 1049,
-    "views24h": 12
+    "visitors": 1063,
+    "pageviews": 1070,
+    "sessions": 1065,
+    "views24h": 19
   },
   "today": {
     "date": "2026-11-15",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
+    "visitors": 10,
+    "views": 10,
+    "sessions": 10,
     "pages": [
+      [
+        "/deals/black-friday-buy-two-get-one-free-pc.html",
+        2
+      ],
+      [
+        "/deals/jurassic-world-legacy-collection-brachiosaurus-dinosaur-figu.html",
+        2
+      ],
       [
         "/",
         1
       ],
       [
-        "/deals/2-for-1-pastries-at-caff-nero-via-three-rewards-app.html",
+        "/brands/",
         1
       ],
       [
-        "/deals/3-months-audible-membership-for-0-99-pm-2-97-total-for-3-mon.html",
+        "/deals/2-for-1-pastries-at-caff-nero-via-three-rewards-app.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        3
+        10
       ]
     ],
     "countries": [
+      [
+        "Singapore",
+        5,
+        "SG"
+      ],
       [
         "Albania",
         1,
         "AL"
       ],
       [
+        "Ecuador",
+        1,
+        "EC"
+      ],
+      [
+        "South Korea",
+        1,
+        "KR"
+      ],
+      [
         "United States",
         1,
         "US"
-      ],
-      [
-        "Vietnam",
-        1,
-        "VN"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      1037
+      1052
     ],
     [
       "aocr.org",
@@ -76,7 +94,7 @@
   "countries": [
     [
       "Singapore",
-      916,
+      928,
       "SG"
     ],
     [
@@ -113,11 +131,11 @@
   "pages": [
     [
       "/",
-      48
+      50
     ],
     [
       "/brands/",
-      10
+      11
     ],
     [
       "/codes/",
@@ -129,7 +147,7 @@
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
-      6
+      7
     ],
     [
       "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
@@ -140,7 +158,7 @@
       5
     ],
     [
-      "/deals/xiaomi-redmi-note-15-5g-8-256-gb-ultra-slim-design-ip65-wate.html",
+      "/black-friday/",
       4
     ]
   ],
@@ -170,8 +188,9 @@
     10,
     9,
     8,
+    13,
     9,
     9,
-    3
+    10
   ]
 }
