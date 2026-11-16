@@ -1,100 +1,44 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-15 20:58 UTC",
+  "updated": "2026-11-16 01:52 UTC",
   "stale": false,
   "totals": {
-    "visitors": 1064,
-    "pageviews": 1071,
-    "sessions": 1066,
-    "views24h": 20
+    "visitors": 950,
+    "pageviews": 957,
+    "sessions": 952,
+    "views24h": 14
   },
   "today": {
-    "date": "2026-11-15",
-    "visitors": 11,
-    "views": 11,
-    "sessions": 11,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/deals/black-friday-buy-two-get-one-free-pc.html",
-        2
-      ],
-      [
-        "/deals/jurassic-world-legacy-collection-brachiosaurus-dinosaur-figu.html",
-        2
-      ],
-      [
-        "/brands/",
-        1
-      ],
-      [
-        "/deals/2-for-1-pastries-at-caff-nero-via-three-rewards-app.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        11
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        5,
-        "SG"
-      ],
-      [
-        "",
-        1,
-        ""
-      ],
-      [
-        "Albania",
-        1,
-        "AL"
-      ],
-      [
-        "Ecuador",
-        1,
-        "EC"
-      ],
-      [
-        "South Korea",
-        1,
-        "KR"
-      ]
-    ]
+    "date": "2026-11-16",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      1053
+      939
     ],
     [
       "aocr.org",
       7
     ],
     [
-      "google.com",
+      "Google",
       2
     ],
     [
-      "Google",
-      1
-    ],
-    [
-      "yandexsmartcamera",
-      1
+      "google.com",
+      2
     ]
   ],
   "countries": [
     [
       "Singapore",
-      928,
+      812,
       "SG"
     ],
     [
@@ -124,7 +68,7 @@
     ],
     [
       "United Kingdom",
-      4,
+      5,
       "GB"
     ]
   ],
@@ -139,7 +83,7 @@
     ],
     [
       "/codes/",
-      9
+      10
     ],
     [
       "/guides/",
@@ -163,7 +107,6 @@
     ]
   ],
   "daily": [
-    117,
     166,
     237,
     59,
@@ -191,6 +134,6 @@
     13,
     9,
     9,
-    11
+    14
   ]
 }
