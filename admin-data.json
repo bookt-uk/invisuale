@@ -1,26 +1,69 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-16 01:52 UTC",
+  "updated": "2026-11-16 09:27 UTC",
   "stale": false,
   "totals": {
-    "visitors": 950,
-    "pageviews": 957,
-    "sessions": 952,
-    "views24h": 14
+    "visitors": 955,
+    "pageviews": 962,
+    "sessions": 957,
+    "views24h": 19
   },
   "today": {
     "date": "2026-11-16",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 5,
+    "views": 5,
+    "sessions": 5,
+    "pages": [
+      [
+        "/deals/robot-vacuum-megathread-all-the-latest-black-friday-deals.html",
+        2
+      ],
+      [
+        "/codes/",
+        1
+      ],
+      [
+        "/deals/20-pack-non-slip-hangers-durable-slimline-design-for-space-s.html",
+        1
+      ],
+      [
+        "/deals/4-x-persil-non-bio-laundry-washing-liquid-detergent-53-washe.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        5
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        2,
+        "SG"
+      ],
+      [
+        "Germany",
+        1,
+        "DE"
+      ],
+      [
+        "Hong Kong",
+        1,
+        "HK"
+      ],
+      [
+        "United States",
+        1,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      939
+      944
     ],
     [
       "aocr.org",
@@ -38,12 +81,12 @@
   "countries": [
     [
       "Singapore",
-      812,
+      814,
       "SG"
     ],
     [
       "United States",
-      78,
+      79,
       "US"
     ],
     [
@@ -57,14 +100,14 @@
       "(not set)"
     ],
     [
+      "Hong Kong",
+      6,
+      "HK"
+    ],
+    [
       "France",
       5,
       "FR"
-    ],
-    [
-      "Hong Kong",
-      5,
-      "HK"
     ],
     [
       "United Kingdom",
@@ -83,7 +126,7 @@
     ],
     [
       "/codes/",
-      10
+      11
     ],
     [
       "/guides/",
@@ -134,6 +177,7 @@
     13,
     9,
     9,
-    14
+    14,
+    5
   ]
 }
