@@ -1,46 +1,72 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-17 15:52 UTC",
+  "updated": "2026-11-17 23:27 UTC",
   "stale": false,
   "totals": {
-    "visitors": 799,
-    "pageviews": 806,
-    "sessions": 801,
-    "views24h": 15
+    "visitors": 815,
+    "pageviews": 822,
+    "sessions": 818,
+    "views24h": 31
   },
   "today": {
     "date": "2026-11-17",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
+    "visitors": 18,
+    "views": 18,
+    "sessions": 18,
     "pages": [
       [
-        "/deals/2-for-1-pastries-at-caff-nero-via-three-rewards-app.html",
-        1
+        "/",
+        2
       ],
       [
-        "/deals/3-months-audible-membership-for-0-99-pm-2-97-total-for-3-mon.html",
-        1
+        "/deals/amazon-fire-tv-stick-hd-newest-gen-early-black-friday.html",
+        2
+      ],
+      [
+        "/deals/green-spot-single-pot-still-irish-whiskey-40-abv-70cl-with-g.html",
+        2
+      ],
+      [
+        "/deals/invicta-pro-diver-stainless-steel-men-s-quartz-watch-40mm-ea.html",
+        2
+      ],
+      [
+        "/deals/ring-battery-video-doorbell-2k-newest-gen-matte-mocha-early.html",
+        2
       ]
     ],
     "sources": [
       [
         "Direct",
-        2
+        17
+      ],
+      [
+        "sonnysphoneshop",
+        1
       ]
     ],
     "countries": [
       [
         "Singapore",
-        2,
+        16,
         "SG"
+      ],
+      [
+        "Canada",
+        1,
+        "CA"
+      ],
+      [
+        "United Kingdom",
+        1,
+        "GB"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      788
+      803
     ],
     [
       "aocr.org",
@@ -53,12 +79,16 @@
     [
       "google.com",
       2
+    ],
+    [
+      "sonnysphoneshop",
+      1
     ]
   ],
   "countries": [
     [
       "Singapore",
-      658,
+      672,
       "SG"
     ],
     [
@@ -82,20 +112,20 @@
       "HK"
     ],
     [
-      "France",
-      4,
-      "FR"
+      "United Kingdom",
+      5,
+      "GB"
     ],
     [
-      "United Kingdom",
+      "Canada",
       4,
-      "GB"
+      "CA"
     ]
   ],
   "pages": [
     [
       "/",
-      51
+      53
     ],
     [
       "/brands/",
@@ -118,12 +148,12 @@
       6
     ],
     [
-      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
+      "/black-friday/",
       5
     ],
     [
-      "/black-friday/",
-      4
+      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
+      5
     ]
   ],
   "daily": [
@@ -155,6 +185,6 @@
     9,
     14,
     13,
-    2
+    18
   ]
 }
