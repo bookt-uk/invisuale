@@ -1,26 +1,46 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-17 04:25 UTC",
+  "updated": "2026-11-17 15:52 UTC",
   "stale": false,
   "totals": {
-    "visitors": 797,
-    "pageviews": 804,
-    "sessions": 799,
-    "views24h": 13
+    "visitors": 799,
+    "pageviews": 806,
+    "sessions": 801,
+    "views24h": 15
   },
   "today": {
     "date": "2026-11-17",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
+    "pages": [
+      [
+        "/deals/2-for-1-pastries-at-caff-nero-via-three-rewards-app.html",
+        1
+      ],
+      [
+        "/deals/3-months-audible-membership-for-0-99-pm-2-97-total-for-3-mon.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        2
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        2,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      786
+      788
     ],
     [
       "aocr.org",
@@ -38,7 +58,7 @@
   "countries": [
     [
       "Singapore",
-      656,
+      658,
       "SG"
     ],
     [
@@ -134,6 +154,7 @@
     9,
     9,
     14,
-    13
+    13,
+    2
   ]
 }
