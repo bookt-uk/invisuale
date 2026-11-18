@@ -1,72 +1,42 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-17 23:27 UTC",
+  "updated": "2026-11-18 07:10 UTC",
   "stale": false,
   "totals": {
-    "visitors": 815,
-    "pageviews": 822,
-    "sessions": 818,
-    "views24h": 31
+    "visitors": 579,
+    "pageviews": 586,
+    "sessions": 581,
+    "views24h": 19
   },
   "today": {
-    "date": "2026-11-17",
-    "visitors": 18,
-    "views": 18,
-    "sessions": 18,
+    "date": "2026-11-18",
+    "visitors": 1,
+    "views": 1,
+    "sessions": 1,
     "pages": [
       [
-        "/",
-        2
-      ],
-      [
-        "/deals/amazon-fire-tv-stick-hd-newest-gen-early-black-friday.html",
-        2
-      ],
-      [
-        "/deals/green-spot-single-pot-still-irish-whiskey-40-abv-70cl-with-g.html",
-        2
-      ],
-      [
-        "/deals/invicta-pro-diver-stainless-steel-men-s-quartz-watch-40mm-ea.html",
-        2
-      ],
-      [
-        "/deals/ring-battery-video-doorbell-2k-newest-gen-matte-mocha-early.html",
-        2
+        "/about.html",
+        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        17
-      ],
-      [
-        "sonnysphoneshop",
         1
       ]
     ],
     "countries": [
       [
         "Singapore",
-        16,
+        1,
         "SG"
-      ],
-      [
-        "Canada",
-        1,
-        "CA"
-      ],
-      [
-        "United Kingdom",
-        1,
-        "GB"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      803
+      567
     ],
     [
       "aocr.org",
@@ -88,7 +58,7 @@
   "countries": [
     [
       "Singapore",
-      672,
+      436,
       "SG"
     ],
     [
@@ -144,20 +114,19 @@
       7
     ],
     [
-      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
-      6
-    ],
-    [
       "/black-friday/",
       5
     ],
     [
       "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
       5
+    ],
+    [
+      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
+      5
     ]
   ],
   "daily": [
-    237,
     59,
     2,
     3,
@@ -185,6 +154,7 @@
     9,
     14,
     13,
-    18
+    18,
+    1
   ]
 }
