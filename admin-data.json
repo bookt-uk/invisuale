@@ -1,25 +1,37 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-18 07:10 UTC",
+  "updated": "2026-11-18 17:10 UTC",
   "stale": false,
   "totals": {
-    "visitors": 579,
-    "pageviews": 586,
-    "sessions": 581,
-    "views24h": 19
+    "visitors": 581,
+    "pageviews": 588,
+    "sessions": 583,
+    "views24h": 21
   },
   "today": {
     "date": "2026-11-18",
-    "visitors": 1,
-    "views": 1,
-    "sessions": 1,
+    "visitors": 3,
+    "views": 3,
+    "sessions": 3,
     "pages": [
       [
         "/about.html",
         1
+      ],
+      [
+        "/deals/samsung-50-inch-ue50u7000fk-smart-4k-uhd-hdr-led-tv-free-c-c.html",
+        1
+      ],
+      [
+        "/deals/xiaomi-redmi-pad-se-11-90hz-display-4gb-128gb-quad-speakers.html",
+        1
       ]
     ],
     "sources": [
+      [
+        "Google",
+        2
+      ],
       [
         "Direct",
         1
@@ -30,6 +42,16 @@
         "Singapore",
         1,
         "SG"
+      ],
+      [
+        "United Kingdom",
+        1,
+        "GB"
+      ],
+      [
+        "United States",
+        1,
+        "US"
       ]
     ]
   },
@@ -44,7 +66,7 @@
     ],
     [
       "Google",
-      2
+      4
     ],
     [
       "google.com",
@@ -63,7 +85,7 @@
     ],
     [
       "United States",
-      76,
+      77,
       "US"
     ],
     [
@@ -83,7 +105,7 @@
     ],
     [
       "United Kingdom",
-      5,
+      6,
       "GB"
     ],
     [
@@ -155,6 +177,6 @@
     14,
     13,
     18,
-    1
+    3
   ]
 }
