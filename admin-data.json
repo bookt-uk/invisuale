@@ -1,64 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-18 17:10 UTC",
+  "updated": "2026-11-19 00:14 UTC",
   "stale": false,
   "totals": {
-    "visitors": 581,
-    "pageviews": 588,
-    "sessions": 583,
-    "views24h": 21
+    "visitors": 523,
+    "pageviews": 530,
+    "sessions": 525,
+    "views24h": 4
   },
   "today": {
-    "date": "2026-11-18",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
-    "pages": [
-      [
-        "/about.html",
-        1
-      ],
-      [
-        "/deals/samsung-50-inch-ue50u7000fk-smart-4k-uhd-hdr-led-tv-free-c-c.html",
-        1
-      ],
-      [
-        "/deals/xiaomi-redmi-pad-se-11-90hz-display-4gb-128gb-quad-speakers.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Google",
-        2
-      ],
-      [
-        "Direct",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        1,
-        "SG"
-      ],
-      [
-        "United Kingdom",
-        1,
-        "GB"
-      ],
-      [
-        "United States",
-        1,
-        "US"
-      ]
-    ]
+    "date": "2026-11-19",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      567
+      509
     ],
     [
       "aocr.org",
@@ -80,12 +42,12 @@
   "countries": [
     [
       "Singapore",
-      436,
+      379,
       "SG"
     ],
     [
       "United States",
-      77,
+      75,
       "US"
     ],
     [
@@ -117,11 +79,11 @@
   "pages": [
     [
       "/",
-      53
+      52
     ],
     [
       "/brands/",
-      11
+      10
     ],
     [
       "/codes/",
@@ -129,11 +91,11 @@
     ],
     [
       "/guides/",
-      9
+      8
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
-      7
+      6
     ],
     [
       "/black-friday/",
@@ -149,7 +111,6 @@
     ]
   ],
   "daily": [
-    59,
     2,
     3,
     4,
@@ -177,6 +138,6 @@
     14,
     13,
     18,
-    3
+    4
   ]
 }
