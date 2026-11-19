@@ -1,12 +1,12 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-19 00:14 UTC",
+  "updated": "2026-11-19 10:09 UTC",
   "stale": false,
   "totals": {
-    "visitors": 523,
-    "pageviews": 530,
-    "sessions": 525,
-    "views24h": 4
+    "visitors": 525,
+    "pageviews": 532,
+    "sessions": 527,
+    "views24h": 6
   },
   "today": {
     "date": "2026-11-19",
@@ -20,7 +20,7 @@
   "sources": [
     [
       "Direct",
-      509
+      510
     ],
     [
       "aocr.org",
@@ -28,7 +28,7 @@
     ],
     [
       "Google",
-      4
+      5
     ],
     [
       "google.com",
@@ -42,7 +42,7 @@
   "countries": [
     [
       "Singapore",
-      379,
+      380,
       "SG"
     ],
     [
@@ -56,6 +56,11 @@
       "CN"
     ],
     [
+      "United Kingdom",
+      7,
+      "GB"
+    ],
+    [
       "(not set)",
       6,
       "(not set)"
@@ -64,11 +69,6 @@
       "Hong Kong",
       6,
       "HK"
-    ],
-    [
-      "United Kingdom",
-      6,
-      "GB"
     ],
     [
       "Canada",
@@ -138,6 +138,6 @@
     14,
     13,
     18,
-    4
+    6
   ]
 }
