@@ -1,26 +1,46 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-19 10:09 UTC",
+  "updated": "2026-11-19 20:27 UTC",
   "stale": false,
   "totals": {
-    "visitors": 525,
-    "pageviews": 532,
-    "sessions": 527,
-    "views24h": 6
+    "visitors": 527,
+    "pageviews": 534,
+    "sessions": 529,
+    "views24h": 8
   },
   "today": {
     "date": "2026-11-19",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 2,
+    "views": 2,
+    "sessions": 2,
+    "pages": [
+      [
+        "/deals/mozillion-e-sim-1gb-data-w-eu-roaming-monthly-rolling-plan-u.html",
+        1
+      ],
+      [
+        "/deals/rhythm-paradise-groove-nintendo-switch.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        2
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        2,
+        "SG"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      510
+      512
     ],
     [
       "aocr.org",
@@ -42,7 +62,7 @@
   "countries": [
     [
       "Singapore",
-      380,
+      382,
       "SG"
     ],
     [
@@ -138,6 +158,7 @@
     14,
     13,
     18,
-    6
+    6,
+    2
   ]
 }
