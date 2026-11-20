@@ -1,46 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-19 20:27 UTC",
+  "updated": "2026-11-20 03:00 UTC",
   "stale": false,
   "totals": {
-    "visitors": 527,
-    "pageviews": 534,
-    "sessions": 529,
-    "views24h": 8
+    "visitors": 528,
+    "pageviews": 535,
+    "sessions": 530,
+    "views24h": 5
   },
   "today": {
-    "date": "2026-11-19",
-    "visitors": 2,
-    "views": 2,
-    "sessions": 2,
-    "pages": [
-      [
-        "/deals/mozillion-e-sim-1gb-data-w-eu-roaming-monthly-rolling-plan-u.html",
-        1
-      ],
-      [
-        "/deals/rhythm-paradise-groove-nintendo-switch.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        2
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        2,
-        "SG"
-      ]
-    ]
+    "date": "2026-11-20",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      512
+      513
     ],
     [
       "aocr.org",
@@ -48,11 +28,11 @@
     ],
     [
       "Google",
-      5
+      6
     ],
     [
       "google.com",
-      2
+      1
     ],
     [
       "sonnysphoneshop",
@@ -62,7 +42,7 @@
   "countries": [
     [
       "Singapore",
-      382,
+      383,
       "SG"
     ],
     [
@@ -72,7 +52,7 @@
     ],
     [
       "China",
-      25,
+      26,
       "CN"
     ],
     [
@@ -99,7 +79,7 @@
   "pages": [
     [
       "/",
-      52
+      51
     ],
     [
       "/brands/",
@@ -131,7 +111,6 @@
     ]
   ],
   "daily": [
-    2,
     3,
     4,
     2,
@@ -159,6 +138,6 @@
     13,
     18,
     6,
-    2
+    5
   ]
 }
