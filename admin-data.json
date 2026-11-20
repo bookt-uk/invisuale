@@ -1,26 +1,58 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-20 03:00 UTC",
+  "updated": "2026-11-20 12:43 UTC",
   "stale": false,
   "totals": {
-    "visitors": 528,
-    "pageviews": 535,
-    "sessions": 530,
-    "views24h": 5
+    "visitors": 533,
+    "pageviews": 540,
+    "sessions": 535,
+    "views24h": 10
   },
   "today": {
     "date": "2026-11-20",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 5,
+    "views": 5,
+    "sessions": 5,
+    "pages": [
+      [
+        "/black-friday/",
+        1
+      ],
+      [
+        "/brands/",
+        1
+      ],
+      [
+        "/categories/electronics.html",
+        1
+      ],
+      [
+        "/codes/",
+        1
+      ],
+      [
+        "/guides/",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        5
+      ]
+    ],
+    "countries": [
+      [
+        "China",
+        5,
+        "CN"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      513
+      518
     ],
     [
       "aocr.org",
@@ -52,7 +84,7 @@
     ],
     [
       "China",
-      26,
+      31,
       "CN"
     ],
     [
@@ -83,30 +115,30 @@
     ],
     [
       "/brands/",
-      10
+      11
     ],
     [
       "/codes/",
-      9
+      10
     ],
     [
       "/guides/",
-      8
+      9
+    ],
+    [
+      "/black-friday/",
+      6
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
       6
     ],
     [
-      "/black-friday/",
+      "/categories/electronics.html",
       5
     ],
     [
       "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
-      5
-    ],
-    [
-      "/deals/xiaomi-poco-x8-pro-5g-8-256gb-global-version-1-5k-120hz-dime.html",
       5
     ]
   ],
@@ -138,6 +170,7 @@
     13,
     18,
     6,
+    5,
     5
   ]
 }
