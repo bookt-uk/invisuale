@@ -1,50 +1,68 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-21 12:29 UTC",
+  "updated": "2026-11-21 20:27 UTC",
   "stale": false,
   "totals": {
-    "visitors": 538,
-    "pageviews": 545,
-    "sessions": 539,
-    "views24h": 13
+    "visitors": 548,
+    "pageviews": 555,
+    "sessions": 549,
+    "views24h": 23
   },
   "today": {
     "date": "2026-11-21",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
+    "visitors": 13,
+    "views": 13,
+    "sessions": 13,
     "pages": [
       [
+        "/black-friday/",
+        2
+      ],
+      [
+        "/deals/god-of-war-playstation-hits-ps4-shipper-seller-amazon.html",
+        2
+      ],
+      [
+        "/deals/paramount-black-friday-75-off-first-2-months-standard-2-50-m.html",
+        2
+      ],
+      [
+        "/deals/tullamore-dew-irish-whiskey-70cl-16-62-14-87-max-s-s-early-b.html",
+        2
+      ],
+      [
         "/",
-        1
-      ],
-      [
-        "/brands/aatu.html",
-        1
-      ],
-      [
-        "/brands/ttfone.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        3
+        13
       ]
     ],
     "countries": [
       [
+        "Singapore",
+        8,
+        "SG"
+      ],
+      [
         "United States",
-        3,
+        4,
         "US"
+      ],
+      [
+        "Colombia",
+        1,
+        "CO"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      523
+      533
     ],
     [
       "aocr.org",
@@ -62,12 +80,12 @@
   "countries": [
     [
       "Singapore",
-      383,
+      391,
       "SG"
     ],
     [
       "United States",
-      79,
+      80,
       "US"
     ],
     [
@@ -114,12 +132,12 @@
       9
     ],
     [
-      "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
-      6
+      "/black-friday/",
+      7
     ],
     [
-      "/black-friday/",
-      5
+      "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
+      6
     ],
     [
       "/categories/electronics.html",
@@ -159,6 +177,6 @@
     6,
     5,
     10,
-    3
+    13
   ]
 }
