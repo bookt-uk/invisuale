@@ -1,26 +1,64 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-22 02:05 UTC",
+  "updated": "2026-11-22 12:27 UTC",
   "stale": false,
   "totals": {
-    "visitors": 545,
-    "pageviews": 553,
-    "sessions": 546,
-    "views24h": 15
+    "visitors": 548,
+    "pageviews": 556,
+    "sessions": 549,
+    "views24h": 18
   },
   "today": {
     "date": "2026-11-22",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 3,
+    "views": 3,
+    "sessions": 3,
+    "pages": [
+      [
+        "/",
+        1
+      ],
+      [
+        "/brands/bunches.html",
+        1
+      ],
+      [
+        "/deals/2x8gb-netac-ddr4-memory-shadow-ill-3200mhz-back-or-white-w-c.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        3
+      ],
+      [
+        "(not set)",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Hong Kong",
+        1,
+        "HK"
+      ],
+      [
+        "Indonesia",
+        1,
+        "ID"
+      ],
+      [
+        "United States",
+        1,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      530
+      533
     ],
     [
       "aocr.org",
@@ -29,6 +67,10 @@
     [
       "Google",
       7
+    ],
+    [
+      "(not set)",
+      1
     ],
     [
       "sonnysphoneshop",
@@ -43,7 +85,7 @@
     ],
     [
       "United States",
-      79,
+      80,
       "US"
     ],
     [
@@ -53,7 +95,7 @@
     ],
     [
       "Hong Kong",
-      6,
+      7,
       "HK"
     ],
     [
@@ -75,7 +117,7 @@
   "pages": [
     [
       "/",
-      50
+      51
     ],
     [
       "/brands/",
@@ -134,6 +176,7 @@
     6,
     5,
     10,
-    15
+    15,
+    3
   ]
 }
