@@ -1,21 +1,25 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-22 12:27 UTC",
+  "updated": "2026-11-22 20:40 UTC",
   "stale": false,
   "totals": {
-    "visitors": 548,
-    "pageviews": 556,
-    "sessions": 549,
-    "views24h": 18
+    "visitors": 552,
+    "pageviews": 560,
+    "sessions": 553,
+    "views24h": 22
   },
   "today": {
     "date": "2026-11-22",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
+    "visitors": 7,
+    "views": 7,
+    "sessions": 7,
     "pages": [
       [
         "/",
+        1
+      ],
+      [
+        "/brands/8wines.html",
         1
       ],
       [
@@ -25,12 +29,16 @@
       [
         "/deals/2x8gb-netac-ddr4-memory-shadow-ill-3200mhz-back-or-white-w-c.html",
         1
+      ],
+      [
+        "/guides/buy-it-for-life-homeware-guide.html",
+        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        3
+        7
       ],
       [
         "(not set)",
@@ -38,6 +46,16 @@
       ]
     ],
     "countries": [
+      [
+        "United States",
+        2,
+        "US"
+      ],
+      [
+        "Colombia",
+        1,
+        "CO"
+      ],
       [
         "Hong Kong",
         1,
@@ -49,16 +67,16 @@
         "ID"
       ],
       [
-        "United States",
+        "Spain",
         1,
-        "US"
+        "ES"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      533
+      537
     ],
     [
       "aocr.org",
@@ -85,7 +103,7 @@
     ],
     [
       "United States",
-      80,
+      81,
       "US"
     ],
     [
@@ -177,6 +195,6 @@
     5,
     10,
     15,
-    3
+    7
   ]
 }
