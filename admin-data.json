@@ -1,26 +1,78 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-23 02:31 UTC",
+  "updated": "2026-11-23 14:25 UTC",
   "stale": false,
   "totals": {
-    "visitors": 555,
-    "pageviews": 563,
-    "sessions": 556,
-    "views24h": 12
+    "visitors": 563,
+    "pageviews": 571,
+    "sessions": 563,
+    "views24h": 20
   },
   "today": {
     "date": "2026-11-23",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 8,
+    "views": 8,
+    "sessions": 8,
+    "pages": [
+      [
+        "/",
+        2
+      ],
+      [
+        "/deals/levi-s-men-s-free-belt-at-checkout-8-60-with-5-red-tab-welco.html",
+        2
+      ],
+      [
+        "/black-friday/",
+        1
+      ],
+      [
+        "/deals/13nts-solo-pattaya-thailand-momento-resort-from-london-4th-n.html",
+        1
+      ],
+      [
+        "/deals/x3-yorkshire-tea-210-tea-bags-656g-longton.html",
+        1
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        8
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        3,
+        "SG"
+      ],
+      [
+        "",
+        1,
+        ""
+      ],
+      [
+        "Bangladesh",
+        1,
+        "BD"
+      ],
+      [
+        "Brazil",
+        1,
+        "BR"
+      ],
+      [
+        "Colombia",
+        1,
+        "CO"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      540
+      548
     ],
     [
       "aocr.org",
@@ -31,10 +83,6 @@
       7
     ],
     [
-      "(not set)",
-      1
-    ],
-    [
       "sonnysphoneshop",
       1
     ]
@@ -42,12 +90,12 @@
   "countries": [
     [
       "Singapore",
-      389,
+      392,
       "SG"
     ],
     [
       "United States",
-      81,
+      82,
       "US"
     ],
     [
@@ -79,7 +127,7 @@
   "pages": [
     [
       "/",
-      50
+      52
     ],
     [
       "/brands/",
@@ -95,7 +143,7 @@
     ],
     [
       "/black-friday/",
-      7
+      8
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
@@ -138,6 +186,7 @@
     5,
     10,
     15,
-    12
+    12,
+    8
   ]
 }
