@@ -1,82 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-22 20:40 UTC",
+  "updated": "2026-11-23 02:31 UTC",
   "stale": false,
   "totals": {
-    "visitors": 552,
-    "pageviews": 560,
-    "sessions": 553,
-    "views24h": 22
+    "visitors": 555,
+    "pageviews": 563,
+    "sessions": 556,
+    "views24h": 12
   },
   "today": {
-    "date": "2026-11-22",
-    "visitors": 7,
-    "views": 7,
-    "sessions": 7,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/brands/8wines.html",
-        1
-      ],
-      [
-        "/brands/bunches.html",
-        1
-      ],
-      [
-        "/deals/2x8gb-netac-ddr4-memory-shadow-ill-3200mhz-back-or-white-w-c.html",
-        1
-      ],
-      [
-        "/guides/buy-it-for-life-homeware-guide.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        7
-      ],
-      [
-        "(not set)",
-        1
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        2,
-        "US"
-      ],
-      [
-        "Colombia",
-        1,
-        "CO"
-      ],
-      [
-        "Hong Kong",
-        1,
-        "HK"
-      ],
-      [
-        "Indonesia",
-        1,
-        "ID"
-      ],
-      [
-        "Spain",
-        1,
-        "ES"
-      ]
-    ]
+    "date": "2026-11-23",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      537
+      540
     ],
     [
       "aocr.org",
@@ -98,7 +42,7 @@
   "countries": [
     [
       "Singapore",
-      390,
+      389,
       "SG"
     ],
     [
@@ -135,15 +79,15 @@
   "pages": [
     [
       "/",
-      51
+      50
     ],
     [
       "/brands/",
-      10
+      11
     ],
     [
       "/codes/",
-      10
+      9
     ],
     [
       "/guides/",
@@ -167,7 +111,6 @@
     ]
   ],
   "daily": [
-    2,
     3,
     140,
     101,
@@ -195,6 +138,6 @@
     5,
     10,
     15,
-    7
+    12
   ]
 }
