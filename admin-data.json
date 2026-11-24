@@ -1,73 +1,21 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-23 14:25 UTC",
+  "updated": "2026-11-24 02:51 UTC",
   "stale": false,
   "totals": {
     "visitors": 563,
-    "pageviews": 571,
+    "pageviews": 570,
     "sessions": 563,
-    "views24h": 20
+    "views24h": 10
   },
   "today": {
-    "date": "2026-11-23",
-    "visitors": 8,
-    "views": 8,
-    "sessions": 8,
-    "pages": [
-      [
-        "/",
-        2
-      ],
-      [
-        "/deals/levi-s-men-s-free-belt-at-checkout-8-60-with-5-red-tab-welco.html",
-        2
-      ],
-      [
-        "/black-friday/",
-        1
-      ],
-      [
-        "/deals/13nts-solo-pattaya-thailand-momento-resort-from-london-4th-n.html",
-        1
-      ],
-      [
-        "/deals/x3-yorkshire-tea-210-tea-bags-656g-longton.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        8
-      ]
-    ],
-    "countries": [
-      [
-        "Singapore",
-        3,
-        "SG"
-      ],
-      [
-        "",
-        1,
-        ""
-      ],
-      [
-        "Bangladesh",
-        1,
-        "BD"
-      ],
-      [
-        "Brazil",
-        1,
-        "BR"
-      ],
-      [
-        "Colombia",
-        1,
-        "CO"
-      ]
-    ]
+    "date": "2026-11-24",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
@@ -95,7 +43,7 @@
     ],
     [
       "United States",
-      82,
+      83,
       "US"
     ],
     [
@@ -159,7 +107,6 @@
     ]
   ],
   "daily": [
-    3,
     140,
     101,
     45,
@@ -187,6 +134,6 @@
     10,
     15,
     12,
-    8
+    10
   ]
 }
