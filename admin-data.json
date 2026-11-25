@@ -1,55 +1,68 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-25 11:09 UTC",
+  "updated": "2026-11-25 21:35 UTC",
   "stale": false,
   "totals": {
-    "visitors": 448,
-    "pageviews": 455,
-    "sessions": 449,
-    "views24h": 25
+    "visitors": 512,
+    "pageviews": 519,
+    "sessions": 513,
+    "views24h": 89
   },
   "today": {
     "date": "2026-11-25",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
+    "visitors": 67,
+    "views": 67,
+    "sessions": 67,
     "pages": [
       [
         "/",
-        1
+        4
       ],
       [
         "/brands/",
         1
       ],
       [
-        "/guides/",
+        "/brands/mychway.html",
+        1
+      ],
+      [
+        "/codes/",
+        1
+      ],
+      [
+        "/deals/a-round-up-of-the-best-amazon-black-friday-sale-binocular-de.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        3
+        67
       ]
     ],
     "countries": [
       [
+        "Singapore",
+        63,
+        "SG"
+      ],
+      [
         "United States",
-        2,
+        3,
         "US"
       ],
       [
-        "Singapore",
+        "Algeria",
         1,
-        "SG"
+        "DZ"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      434
+      498
     ],
     [
       "aocr.org",
@@ -67,12 +80,12 @@
   "countries": [
     [
       "Singapore",
-      270,
+      332,
       "SG"
     ],
     [
       "United States",
-      81,
+      82,
       "US"
     ],
     [
@@ -104,7 +117,7 @@
   "pages": [
     [
       "/",
-      56
+      59
     ],
     [
       "/brands/",
@@ -112,7 +125,7 @@
     ],
     [
       "/codes/",
-      10
+      11
     ],
     [
       "/guides/",
@@ -164,6 +177,6 @@
     12,
     10,
     22,
-    3
+    67
   ]
 }
