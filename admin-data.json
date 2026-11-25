@@ -1,50 +1,26 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-24 14:44 UTC",
+  "updated": "2026-11-25 00:33 UTC",
   "stale": false,
   "totals": {
-    "visitors": 566,
-    "pageviews": 573,
-    "sessions": 567,
-    "views24h": 13
+    "visitors": 433,
+    "pageviews": 440,
+    "sessions": 434,
+    "views24h": 10
   },
   "today": {
-    "date": "2026-11-24",
-    "visitors": 3,
-    "views": 3,
-    "sessions": 3,
-    "pages": [
-      [
-        "/",
-        1
-      ],
-      [
-        "/deals/2k-safeview-window-camera-dual-band-wifi-indoor-window-secur.html",
-        1
-      ],
-      [
-        "/terms.html",
-        1
-      ]
-    ],
-    "sources": [
-      [
-        "Direct",
-        3
-      ]
-    ],
-    "countries": [
-      [
-        "United States",
-        3,
-        "US"
-      ]
-    ]
+    "date": "2026-11-25",
+    "visitors": 0,
+    "views": 0,
+    "sessions": 0,
+    "pages": [],
+    "sources": [],
+    "countries": []
   },
   "sources": [
     [
       "Direct",
-      551
+      419
     ],
     [
       "aocr.org",
@@ -52,7 +28,7 @@
     ],
     [
       "Google",
-      7
+      6
     ],
     [
       "sonnysphoneshop",
@@ -62,17 +38,17 @@
   "countries": [
     [
       "Singapore",
-      392,
+      259,
       "SG"
     ],
     [
       "United States",
-      86,
+      79,
       "US"
     ],
     [
       "China",
-      31,
+      37,
       "CN"
     ],
     [
@@ -103,19 +79,19 @@
     ],
     [
       "/brands/",
-      11
+      12
     ],
     [
       "/codes/",
+      10
+    ],
+    [
+      "/black-friday/",
       9
     ],
     [
       "/guides/",
       9
-    ],
-    [
-      "/black-friday/",
-      8
     ],
     [
       "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
@@ -127,11 +103,10 @@
     ],
     [
       "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
-      5
+      4
     ]
   ],
   "daily": [
-    140,
     101,
     45,
     30,
@@ -159,6 +134,6 @@
     15,
     12,
     10,
-    3
+    10
   ]
 }
