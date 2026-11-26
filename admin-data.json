@@ -1,18 +1,18 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-26 13:49 UTC",
+  "updated": "2026-11-26 22:55 UTC",
   "stale": false,
   "totals": {
-    "visitors": 439,
-    "pageviews": 446,
-    "sessions": 440,
-    "views24h": 95
+    "visitors": 450,
+    "pageviews": 457,
+    "sessions": 451,
+    "views24h": 106
   },
   "today": {
     "date": "2026-11-26",
-    "visitors": 12,
-    "views": 12,
-    "sessions": 12,
+    "visitors": 23,
+    "views": 23,
+    "sessions": 23,
     "pages": [
       [
         "/deals/netac-nv3000-2tb-nvme-ssd-pcie-3-0-m-2-2280mm-internal-solid.html",
@@ -23,28 +23,28 @@
         1
       ],
       [
+        "/deals/12-pack-irn-bru-zero-diet-330ml.html",
+        1
+      ],
+      [
+        "/deals/any-3-for-3-schweppes-lemonade-inc-diet-2l-mixers-1l-pepsi-1.html",
+        1
+      ],
+      [
         "/deals/laila-red-split-lentils-5kg-5-40-with-s-s.html",
-        1
-      ],
-      [
-        "/deals/regina-blitz-12-rolls-of-household-towel-3-ply-13-94-s-s.html",
-        1
-      ],
-      [
-        "/deals/sonax-brilliant-shine-detailer-750-ml.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        12
+        23
       ]
     ],
     "countries": [
       [
         "Singapore",
-        12,
+        23,
         "SG"
       ]
     ]
@@ -52,7 +52,7 @@
   "sources": [
     [
       "Direct",
-      425
+      436
     ],
     [
       "aocr.org",
@@ -70,7 +70,7 @@
   "countries": [
     [
       "Singapore",
-      260,
+      271,
       "SG"
     ],
     [
@@ -167,6 +167,6 @@
     10,
     22,
     83,
-    12
+    23
   ]
 }
