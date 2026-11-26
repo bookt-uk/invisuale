@@ -1,68 +1,50 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-25 21:35 UTC",
+  "updated": "2026-11-26 04:05 UTC",
   "stale": false,
   "totals": {
-    "visitors": 512,
-    "pageviews": 519,
-    "sessions": 513,
-    "views24h": 89
+    "visitors": 431,
+    "pageviews": 438,
+    "sessions": 432,
+    "views24h": 87
   },
   "today": {
-    "date": "2026-11-25",
-    "visitors": 67,
-    "views": 67,
-    "sessions": 67,
+    "date": "2026-11-26",
+    "visitors": 4,
+    "views": 4,
+    "sessions": 4,
     "pages": [
       [
-        "/",
-        4
+        "/deals/netac-nv3000-2tb-nvme-ssd-pcie-3-0-m-2-2280mm-internal-solid.html",
+        2
       ],
       [
-        "/brands/",
+        "/categories/electronics.html",
         1
       ],
       [
-        "/brands/mychway.html",
-        1
-      ],
-      [
-        "/codes/",
-        1
-      ],
-      [
-        "/deals/a-round-up-of-the-best-amazon-black-friday-sale-binocular-de.html",
+        "/deals/wickes-water-butt-kit-210l-free-c-c.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        67
+        4
       ]
     ],
     "countries": [
       [
         "Singapore",
-        63,
+        4,
         "SG"
-      ],
-      [
-        "United States",
-        3,
-        "US"
-      ],
-      [
-        "Algeria",
-        1,
-        "DZ"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      498
+      417
     ],
     [
       "aocr.org",
@@ -80,12 +62,12 @@
   "countries": [
     [
       "Singapore",
-      332,
+      252,
       "SG"
     ],
     [
       "United States",
-      82,
+      80,
       "US"
     ],
     [
@@ -117,7 +99,7 @@
   "pages": [
     [
       "/",
-      59
+      61
     ],
     [
       "/brands/",
@@ -125,7 +107,7 @@
     ],
     [
       "/codes/",
-      11
+      12
     ],
     [
       "/guides/",
@@ -136,11 +118,11 @@
       9
     ],
     [
-      "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
+      "/categories/electronics.html",
       6
     ],
     [
-      "/categories/electronics.html",
+      "/deals/blueendless-mac-909-mac-mini-m4-m4-pro-dock-with-nvme-ssd-en.html",
       5
     ],
     [
@@ -149,7 +131,6 @@
     ]
   ],
   "daily": [
-    101,
     45,
     30,
     14,
@@ -177,6 +158,7 @@
     12,
     10,
     22,
-    67
+    83,
+    4
   ]
 }
