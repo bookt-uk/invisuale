@@ -1,58 +1,68 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-26 22:55 UTC",
+  "updated": "2026-11-27 08:08 UTC",
   "stale": false,
   "totals": {
-    "visitors": 450,
-    "pageviews": 457,
-    "sessions": 451,
-    "views24h": 106
+    "visitors": 421,
+    "pageviews": 428,
+    "sessions": 422,
+    "views24h": 39
   },
   "today": {
-    "date": "2026-11-26",
-    "visitors": 23,
-    "views": 23,
-    "sessions": 23,
+    "date": "2026-11-27",
+    "visitors": 11,
+    "views": 11,
+    "sessions": 11,
     "pages": [
       [
-        "/deals/netac-nv3000-2tb-nvme-ssd-pcie-3-0-m-2-2280mm-internal-solid.html",
-        2
-      ],
-      [
-        "/categories/electronics.html",
+        "/",
         1
       ],
       [
-        "/deals/12-pack-irn-bru-zero-diet-330ml.html",
+        "/brands/mychway.html",
         1
       ],
       [
-        "/deals/any-3-for-3-schweppes-lemonade-inc-diet-2l-mixers-1l-pepsi-1.html",
+        "/deals/10-26-podofo-wireless-carplay-portable-digital-dashboard-and.html",
         1
       ],
       [
-        "/deals/laila-red-split-lentils-5kg-5-40-with-s-s.html",
+        "/deals/2k-safeview-window-camera-dual-band-wifi-indoor-window-secur.html",
+        1
+      ],
+      [
+        "/deals/a-round-up-of-the-best-amazon-black-friday-sale-binocular-de.html",
         1
       ]
     ],
     "sources": [
       [
         "Direct",
-        23
+        11
       ]
     ],
     "countries": [
       [
         "Singapore",
-        23,
+        7,
         "SG"
+      ],
+      [
+        "United States",
+        3,
+        "US"
+      ],
+      [
+        "China",
+        1,
+        "CN"
       ]
     ]
   },
   "sources": [
     [
       "Direct",
-      436
+      407
     ],
     [
       "aocr.org",
@@ -70,17 +80,17 @@
   "countries": [
     [
       "Singapore",
-      271,
+      240,
       "SG"
     ],
     [
       "United States",
-      80,
+      82,
       "US"
     ],
     [
       "China",
-      37,
+      38,
       "CN"
     ],
     [
@@ -99,15 +109,15 @@
       "GB"
     ],
     [
-      "Brazil",
-      4,
-      "BR"
+      "Vietnam",
+      5,
+      "VN"
     ]
   ],
   "pages": [
     [
       "/",
-      61
+      62
     ],
     [
       "/brands/",
@@ -119,7 +129,7 @@
     ],
     [
       "/guides/",
-      10
+      11
     ],
     [
       "/black-friday/",
@@ -134,12 +144,11 @@
       5
     ],
     [
-      "/deals/v-color-manta-xsky-rgb-expo-32gb-2x16gb-ddr5-c28-6000mhz-dua.html",
+      "/brands/mychway.html",
       4
     ]
   ],
   "daily": [
-    45,
     30,
     14,
     14,
@@ -167,6 +176,7 @@
     10,
     22,
     83,
-    23
+    28,
+    11
   ]
 }
