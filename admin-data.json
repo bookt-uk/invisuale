@@ -1,21 +1,29 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-27 08:08 UTC",
+  "updated": "2026-11-27 19:25 UTC",
   "stale": false,
   "totals": {
-    "visitors": 421,
-    "pageviews": 428,
-    "sessions": 422,
-    "views24h": 39
+    "visitors": 434,
+    "pageviews": 441,
+    "sessions": 435,
+    "views24h": 52
   },
   "today": {
     "date": "2026-11-27",
-    "visitors": 11,
-    "views": 11,
-    "sessions": 11,
+    "visitors": 24,
+    "views": 24,
+    "sessions": 24,
     "pages": [
       [
         "/",
+        2
+      ],
+      [
+        "/deals/iniu-240w-usb-c-to-usb-c-cable-2m-2m-orange-blue-8-02.html",
+        2
+      ],
+      [
+        "/black-friday/",
         1
       ],
       [
@@ -25,31 +33,23 @@
       [
         "/deals/10-26-podofo-wireless-carplay-portable-digital-dashboard-and.html",
         1
-      ],
-      [
-        "/deals/2k-safeview-window-camera-dual-band-wifi-indoor-window-secur.html",
-        1
-      ],
-      [
-        "/deals/a-round-up-of-the-best-amazon-black-friday-sale-binocular-de.html",
-        1
       ]
     ],
     "sources": [
       [
         "Direct",
-        11
+        24
       ]
     ],
     "countries": [
       [
         "Singapore",
-        7,
+        19,
         "SG"
       ],
       [
         "United States",
-        3,
+        4,
         "US"
       ],
       [
@@ -62,7 +62,7 @@
   "sources": [
     [
       "Direct",
-      407
+      420
     ],
     [
       "aocr.org",
@@ -80,12 +80,12 @@
   "countries": [
     [
       "Singapore",
-      240,
+      252,
       "SG"
     ],
     [
       "United States",
-      82,
+      83,
       "US"
     ],
     [
@@ -117,7 +117,7 @@
   "pages": [
     [
       "/",
-      62
+      63
     ],
     [
       "/brands/",
@@ -133,7 +133,7 @@
     ],
     [
       "/black-friday/",
-      9
+      10
     ],
     [
       "/categories/electronics.html",
@@ -177,6 +177,6 @@
     22,
     83,
     28,
-    11
+    24
   ]
 }
