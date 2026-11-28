@@ -1,26 +1,67 @@
 {
   "range": "Last 28 days",
-  "updated": "2026-11-28 02:35 UTC",
+  "updated": "2026-11-28 12:52 UTC",
   "stale": false,
   "totals": {
-    "visitors": 429,
-    "pageviews": 436,
-    "sessions": 430,
-    "views24h": 49
+    "visitors": 468,
+    "pageviews": 475,
+    "sessions": 469,
+    "views24h": 88
   },
   "today": {
     "date": "2026-11-28",
-    "visitors": 0,
-    "views": 0,
-    "sessions": 0,
-    "pages": [],
-    "sources": [],
-    "countries": []
+    "visitors": 39,
+    "views": 39,
+    "sessions": 39,
+    "pages": [
+      [
+        "/",
+        2
+      ],
+      [
+        "/deals/acer-67w-usb-c-usb-a-gan-laptop-mobile-charger-free-c-c.html",
+        2
+      ],
+      [
+        "/deals/apple-watch-ultra-3-gps-cellular-49mm-trail-loop-m-l-blue-mi.html",
+        2
+      ],
+      [
+        "/deals/boss-men-s-relegant-shirt-3-colours-limited-sizes-w-code.html",
+        2
+      ],
+      [
+        "/deals/chiq-jkw75883w-a-rated-7kg-1200rpm-washing-machine-with-bldc.html",
+        2
+      ]
+    ],
+    "sources": [
+      [
+        "Direct",
+        38
+      ],
+      [
+        "bizidex",
+        1
+      ]
+    ],
+    "countries": [
+      [
+        "Singapore",
+        38,
+        "SG"
+      ],
+      [
+        "United States",
+        1,
+        "US"
+      ]
+    ]
   },
   "sources": [
     [
       "Direct",
-      414
+      452
     ],
     [
       "aocr.org",
@@ -31,6 +72,10 @@
       7
     ],
     [
+      "bizidex",
+      1
+    ],
+    [
       "sonnysphoneshop",
       1
     ]
@@ -38,12 +83,12 @@
   "countries": [
     [
       "Singapore",
-      252,
+      290,
       "SG"
     ],
     [
       "United States",
-      81,
+      82,
       "US"
     ],
     [
@@ -75,7 +120,7 @@
   "pages": [
     [
       "/",
-      60
+      62
     ],
     [
       "/brands/",
@@ -134,6 +179,7 @@
     22,
     83,
     28,
-    49
+    49,
+    39
   ]
 }
